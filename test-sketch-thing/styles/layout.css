@@ -43,6 +43,8 @@ a:hover{
 }
 nav.sidebarHolder{
 	height: 1000px;
+	width: 250px;
+	z-index: -1;
 }
 
 nav .sidebar{
@@ -54,4 +56,51 @@ nav .sidebar{
 	float: right;
 	font-size: 20px;
 }
+#showpiece-fridge{
+	float: left;
+	background-color: #FFF5EB;
+	border-radius: 10px;
+    width: -moz-calc(100% - 250px);
+    width: -webkit-calc(100% - 250px);
+    width: calc(100% - 250px);
+	height: 20%;
+}
+#showpiece-fridge .scrollable{
+	overflow: scroll;
+}
 
+#showpiece-fridge ul{
+	list-style-type:none;
+	margin:0;
+	-webkit-box-shadow: inset 10px 10px 158px 31px rgba(255,255,255,1);
+	-moz-box-shadow: inset 10px 10px 158px 31px rgba(255,255,255,1);
+	box-shadow: inset 10px 10px 158px 31px rgba(255,255,255,1);
+	padding:10px;
+}
+
+#showpiece-fridge .foodPic{
+	display: inline-block;
+}
+
+#showpiece-fridge .foodPic img{
+	border-width: 0px;
+	border-style: solid;
+	border-color: black;
+	border-radius: 10px;
+	-webkit-box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
+	margin-left: -20px;
+}
+#showpiece .active{
+
+}
+#showpiece-fridge #content{
+	width: auto;
+	height: 80%;
+	background-color: white;
+	padding: 10px;
+}
+h1{
+	margin: 0px;
+}
