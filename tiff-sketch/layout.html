@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fridge</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Exo:200,300,400,500|Alegreya+Sans' rel='stylesheet' type='text/css'>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.min.css">
+
+	<link rel="stylesheet" type="text/css" href="styles/layout.css">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+</head>
+<body>
+	<header>
+		<nav>
+			<div class="siteTitle">
+				<h1>frjr</h1>
+			</div>
+<!-- 			<label class="seperatorLine">|</label> -->
+			<a href="index.html"><div id='logout' style='float:right'>
+				<span class='glyphicon glyphicon-log-out' style='margin-left:12px'></span>
+				<br>logout
+			</div></a>
+		</nav>
+	</header>
+
+
+	<nav class='sidebarHolder' style='float:left;'>
+		<ul class="sidebar nav nav-pills nav-stacked">
+			<li><a id = 'fridgeTab' href="#fridge"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-cutlery'></span> | Todays Breakdown<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+			<li><a href=""><i  class='glyphicon glyphicon-user'></i> | Relationships<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+		</ul>
+	</nav>
+
+
+	<div id="showpiece-fridge" class='showpiece'>
+		<div class='scrollable'>
+			<div id = 'current-fridge' style="width:1000000px; padding-left:20px;">
+				<ul 'nav nav-pills'>
+					<li class='foodPic'><img src="image_use/broccoli.jpg" width="150px" height="150px"></li>
+					<li class='foodPic'><img src="image_use/carrot.jpg" width="150px" height="150px"></li>
+					<li class='foodPic active'><img src="image_use/chicken.jpg" width="150px" height="150px"></li>
+					<li class='foodPic'><img src="image_use/corn.jpg" width="150px" height="150px"></li>
+					<li class='foodPic'><img src="image_use/ham.jpg" width="150px" height="150px"></li>
+					<li class='foodPic'><img src="image_use/handle.jpg" width="150px" height="150px"></li>
+					<li class='foodPic'><img src="image_use/lettuce.jpg" width="150px" height="150px"></li>
+					<li class='foodPic'><img src="image_use/peanut butter.jpg" width="150px" height="150px"></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id = 'content'>
+			<h1>Nutrition</h1>
+			<img src="image_use/nutrition.jpg" width="500px">
+		</div>
+	</div>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="styles/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
