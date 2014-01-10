@@ -10,7 +10,7 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.min.css">
 
-	<link rel="stylesheet" type="text/css" href="styles/layout.css">
+	<link rel="stylesheet" type="text/css" href="styles/shopping.css">
 	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
 </head>
 <body>
@@ -42,31 +42,31 @@
 
 
 	<div class='showpiece'>
-		<div style="width:300px; font-size:16px; background-color:#fff5eb">
-			<ul class="sidebar nav nav-pills nav-stacked">
-				<li style="margin-left:14px; padding-top:7px; padding-bottom:10px; font-size:20px"><b>Shopping List</b></li>
+		<div id="shopping-list">
+			<ul class="nav nav-pills nav-stacked">
+				<li id="shoppingheader"><b>Shopping List</b></li>
 				<li><a href="">Chicken
 					<button type="button" class="close"><span class="glyphicon glyphicon-remove"></span></button>
-					<button type="button" class="close"><span class="glyphicon glyphicon-pencil" style="padding-right:30px"></span></button>
+					<button type="button" class="close"><span class="glyphicon glyphicon-pencil" id="listspace"></span></button>
 				</a></li>
 				<li><a href="">3 ounces of chocolate milk
 					<button type="button" class="close"><span class="glyphicon glyphicon-remove"></span></button>
-					<button type="button" class="close"><span class="glyphicon glyphicon-pencil" style="padding-right:30px"></span></button>
+					<button type="button" class="close"><span class="glyphicon glyphicon-pencil" id="listspace"></span></button>
 				</a></li>
 				<li><a href="">10 sticks of string cheese
 					<button type="button" class="close"><span class="glyphicon glyphicon-remove"></span></button>
-					<button type="button" class="close"><span class="glyphicon glyphicon-pencil" style="padding-right:30px"></span></button>
+					<button type="button" class="close"><span class="glyphicon glyphicon-pencil" id="listspace"></span></button>
 				</a></li>
 				<li><a href="">Lettuce
 					<button type="button" class="close"><span class="glyphicon glyphicon-remove"></span></button>
-					<button type="button" class="close"><span class="glyphicon glyphicon-pencil" style="padding-right:30px"></span></button>
+					<button type="button" class="close"><span class="glyphicon glyphicon-pencil" id="listspace"></span></button>
 				</a></li>
 			
 			
 				<li>
 				<!--Input box -->
 					<div class="row">
-					  <div class="col-lg-6" style="width:100%; padding-left:20px; padding-right:20px; padding-top:7px; padding-bottom:10px">
+					  <div class="col-lg-6" id="foodinput">
 						<div class="input-group">
 						  <input type="text" style="font-size:16px" class="form-control" placeholder="Food">
 						  <span class="input-group-btn">
