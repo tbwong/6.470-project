@@ -59,6 +59,7 @@ nav .sidebar{
 
 
 
+
 #nutrition-info{
 	font-size: 50px;
 	font-weight: bold;
@@ -74,52 +75,36 @@ nav .sidebar{
 	float: right;
 }
 
-#calories {
+#column1 {
 	position: relative;
-	left: 250px;
-	top: -950px;
+}
+
+#column2 {
+	position: relative;
+}
+
+#calories {
 }
 
 #calories-text {
-	position: relative;
 	font-size: 15px;
-	left: 250px;
-	top: -900px;
 }
 
 #carbs {
-	position: relative;
-	left: 250px;
-	top: -950px;
 }
 
 #carbs-text {
-	position: relative;
 	font-size: 15px;
-	left: 300px;
-	top: -900px;
 }
 
 #fat {
-	position: relative;
-	left: 250px;
-	top: -950px;
 }
 
 #protein {
-	position: relative;
-	left: 250px;
-	top: -950px;
 }
 
 #sodium {
-	position: relative;
-	left: 250px;
-	top: -950px;
 }
 
 #sugar {
-	position: relative;
-	left: 250px;
-	top: -950px;
 }
