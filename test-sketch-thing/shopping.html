@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fridge</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Exo:200,300,400,500|Alegreya+Sans' rel='stylesheet' type='text/css'>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.min.css">
+
+	<link rel="stylesheet" type="text/css" href="styles/layout.css">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+</head>
+<body>
+	<header>
+		<nav>
+			<div class="siteTitle">
+				<h1>frjr</h1>
+			</div>
+<!-- 			<label class="seperatorLine">|</label> -->
+			<a href="index.html"><div id='logout' style='float:right'>
+				<span class='glyphicon glyphicon-log-out' style='margin-left:12px'></span>
+				<br>logout
+			</div></a>
+		</nav>
+	</header>
+
+
+	<nav class='sidebarHolder' style='float:left;'>
+		<ul class="sidebar nav nav-pills nav-stacked">
+			<li><a id = 'fridgeTab' href="#fridge"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-cutlery'></span> | Todays Breakdown<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+			<li><a href=""><i  class='glyphicon glyphicon-user'></i> | Relationships<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Shopping List<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+		</ul>
+	</nav>
+
+
+	<div id="showpiece-fridge">
+		<div style="width:300px; font-size:16px; background-color:#fff5eb">
+			<ul class="sidebar nav nav-pills nav-stacked">
+				<li style="margin-left:14px; padding-top:7px; padding-bottom:10px; font-size:20px"><b>Shopping List</b></li>
+				<li><a href="">Chicken
+					<button type="button" class="close"><span class="glyphicon glyphicon-remove"></span></button>
+					<button type="button" class="close"><span class="glyphicon glyphicon-pencil" style="padding-right:30px"></span></button>
+				</a></li>
+				<li><a href="">3 ounces of chocolate milk
+					<button type="button" class="close"><span class="glyphicon glyphicon-remove"></span></button>
+					<button type="button" class="close"><span class="glyphicon glyphicon-pencil" style="padding-right:30px"></span></button>
+				</a></li>
+				<li><a href="">10 sticks of string cheese
+					<button type="button" class="close"><span class="glyphicon glyphicon-remove"></span></button>
+					<button type="button" class="close"><span class="glyphicon glyphicon-pencil" style="padding-right:30px"></span></button>
+				</a></li>
+				<li><a href="">Lettuce
+					<button type="button" class="close"><span class="glyphicon glyphicon-remove"></span></button>
+					<button type="button" class="close"><span class="glyphicon glyphicon-pencil" style="padding-right:30px"></span></button>
+				</a></li>
+			
+			
+				<li>
+				<!--Input box -->
+					<div class="row">
+					  <div class="col-lg-6" style="width:100%; padding-left:20px; padding-right:20px; padding-top:7px; padding-bottom:10px">
+						<div class="input-group">
+						  <input type="text" style="font-size:16px" class="form-control" placeholder="Food">
+						  <span class="input-group-btn">
+							<button class="btn btn-default" type="button">Add</button>
+						  </span>
+						</div><!-- /input-group -->
+					  </div><!-- /.col-lg-6 -->
+					</div><!-- /.row -->
+				</li>
+			
+			</ul>
+		</div>
+
+	</div>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="styles/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
