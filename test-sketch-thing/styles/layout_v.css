@@ -56,18 +56,14 @@ nav .sidebar{
 	float: right;
 	font-size: 20px;
 }
-.showpiece{
-	float: left;
-	width: -moz-calc(100% - 250px);
-    width: -webkit-calc(100% - 250px);
-    width: calc(100% - 250px);
-    height: 20%;
-}
-
 #showpiece-fridge{
+	float: left;
 	background-color: #FFF5EB;
 	border-radius: 10px;
- 
+    width: -moz-calc(100% - 250px);
+    width: -webkit-calc(100% - 250px);
+    width: calc(100% - 250px);
+	height: 20%;
 }
 #showpiece-fridge .scrollable{
 	overflow: scroll;
