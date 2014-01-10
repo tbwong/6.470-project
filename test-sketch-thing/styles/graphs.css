@@ -62,7 +62,8 @@ nav .sidebar{
 #nutrition-info{
 	font-size: 50px;
 	font-weight: bold;
-
+	margin: 10px;
+	float: left;
 }
 
 #body-info {
@@ -70,6 +71,7 @@ nav .sidebar{
 	font-weight: bold;
 	margin-right: 100px;
 	margin-top: 10px;
+	float: right;
 }
 
 #calories {
