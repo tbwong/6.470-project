@@ -10,10 +10,8 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.min.css">
 
-	<link rel="stylesheet" type="text/css" href="styles/graphs.css">
+	<link rel="stylesheet" type="text/css" href="styles/layout.css">
 	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
-	<script type="text/javascript" src="graphs.js"> </script>
-	<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"> </script>
 </head>
 <body>
 	<header>
@@ -33,17 +31,17 @@
 	<nav class='sidebarHolder' style='float:left;'>
 		<ul class="sidebar nav nav-pills nav-stacked">
 			<li><a id = 'fridgeTab' href="#fridge"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
-			<li><a href=""><span class='glyphicon glyphicon-cutlery'></span> | Today's Breakdown<i class='arrow'>></i></a></li>
-			<li><a href="graphs.html"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-cutlery'></span> | Todays Breakdown<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
 			<li><a href=""><i  class='glyphicon glyphicon-user'></i> | Relationships<i class='arrow'>></i></a></li>
-			<li><a href="scrapbook.html"><span class='glyphicon glyphicon-book'></span> | Scrapbook<i class='arrow'>></i></a></li>
-			<li><a href="shopping.html"><span class='glyphicon glyphicon-book'></span> | Shopping List<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
 			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
 		</ul>
 	</nav>
 
 
-	<div id="showpiece-fridge" class='showpiece' style='display:none;'>
+	<div id="showpiece-fridge" class='showpiece'>
 		<div class='scrollable'>
 			<div id = 'current-fridge' style="width:1000000px; padding-left:20px;">
 				<ul 'nav nav-pills'>
@@ -63,51 +61,6 @@
 			<h1>Nutrition</h1>
 			<img src="image_use/nutrition.jpg" width="500px">
 		</div>
-	</div>
-
-
-	<div class='showpiece'>
-		<div id="title-description" style="width: 1200px; height: 100px">
-			<div id="nutrition-info" >
-				Nutrition Trends
-			</div>
-				
-			<div id="body-info">
-				Body weight: 120 lbs 
-				<p> Age: 25
-			</div>
-		</div>
-
-
-		<div id="column1" style="float: left">
-				<div id="calories" style="width: 400px; height: 250px"></div>
-				<div id="carbs" style=" width: 400px; height: 250px "></div>
-				<div id="fat" style=" width: 400px; height: 250px"></div>
-				<div id="protein" style=" width: 400px; height: 250px"></div>
-				<div id="sodium" style=" width: 400px; height: 250px"></div>	
-				<div id="sugar" style="  width: 400px; height: 250px"></div>
-		</div>
-
-		<div id="column2" style: "float: left">
-			<div id="calories-text" style=" width: 400px; height: 250px">
-				Calories are units of energy that are burned by your body to stay healthy.
-				Intaking too many calories can lead to weight gain and health problems, while
-				intaking too few can lead to poor nutrition and low energy levels.
-			</div>		
-			
-			
-			
-			<div id="carbs-text" style=" width: 400px; height: 250px">
-                Something about carbs. Blah. Lalalalallalal. 
-                Ermpdlkajs;fl a;sldkfjasld fj
-                asldkfja;sldkfjas;ldkjfa;lskdjf;lkdjfk
-                as;ldkfjasldkfjdlkjfkdjfk
-	        </div>
-
-		</div>
-			
-	
-
 	</div>
 
 	<!-- Latest compiled and minified JavaScript -->

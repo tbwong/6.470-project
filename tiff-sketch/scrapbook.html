@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+  <meta charset=”utf-8”> 
+  <title>ScrapBook</title>
+  <link href='http://fonts.googleapis.com/css?family=Exo:200,300,400,500|Alegreya+Sans' rel='stylesheet' type='text/css'>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.min.css">
+
+  <link rel="stylesheet" type="text/css" href="styles/layout.css">
+  <link rel="stylesheet" type="text/css" href="styles/scrapbook.css">
+  <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+  <script type="text/javascript" src="scrapbook.js"> </script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="siteTitle">
+        <h1>frjr</h1>
+      </div>
+<!--      <label class="seperatorLine">|</label> -->
+      <a href="index.html"><div id='logout' style='float:right'>
+        <span class='glyphicon glyphicon-log-out' style='margin-left:12px'></span>
+        <br>logout
+      </div></a>
+    </nav>
+  </header>
+
+  <nav class='sidebarHolder' style='float:left;'>
+    <ul class="sidebar nav nav-pills nav-stacked">
+      <li><a id = 'fridgeTab' href="#fridge"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+      <li><a href=""><span class='glyphicon glyphicon-cutlery'></span> | Today's Breakdown<i class='arrow'>></i></a></li>
+      <li><a href="graphs.html"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+      <li><a href=""><i  class='glyphicon glyphicon-user'></i> | Relationships<i class='arrow'>></i></a></li>
+      <li><a href="scrapbook.html"><span class='glyphicon glyphicon-book'></span> | Scrapbook<i class='arrow'>></i></a></li>
+      <li><a href="shopping.html"><span class='glyphicon glyphicon-book'></span> | Shopping List<i class='arrow'>></i></a></li>
+      <li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+    </ul>
+  </nav>
+
+
+  <div id="showpiece-fridge" class='showpiece' style='display:none;'>
+    <div class='scrollable'>
+      <div id = 'current-fridge' style="width:1000000px; padding-left:20px;">
+        <ul 'nav nav-pills'>
+          <li class='foodPic'><img src="image_use/broccoli.jpg" width="150px" height="150px"></li>
+          <li class='foodPic'><img src="image_use/carrot.jpg" width="150px" height="150px"></li>
+          <li class='foodPic active'><img src="image_use/chicken.jpg" width="150px" height="150px"></li>
+          <li class='foodPic'><img src="image_use/corn.jpg" width="150px" height="150px"></li>
+          <li class='foodPic'><img src="image_use/ham.jpg" width="150px" height="150px"></li>
+          <li class='foodPic'><img src="image_use/handle.jpg" width="150px" height="150px"></li>
+          <li class='foodPic'><img src="image_use/lettuce.jpg" width="150px" height="150px"></li>
+          <li class='foodPic'><img src="image_use/peanut butter.jpg" width="150px" height="150px"></li>
+        </ul>
+      </div>
+    </div>
+<div id = 'content'>
+      <h1>Nutrition</h1>
+      <img src="image_use/nutrition.jpg" width="500px">
+    </div>
+  </div>
+
+  <div class='showpiece'>
+    <ul class='nav nav-pill'>
+      
+    </ul>
+
+  </div>
+    <div class="hero-unit">
+      <h1> Welcome to your Scrapbook! </h1>
+      <p> Upload a picture? </p>
+    </div>
+
+  <div class="media">
+  <a class="pull-left" href="#">
+    <img class="media-object" style="height:auto; width:auto; max-width:300px; max-height:300px;" src="http://www.chocolatecoveredkatie.com/wp-content/uploads/Healthy-Breakfast-Month_7BC0/chocolate-pancake.jpg?73e30c" alt="">
+  </a>
+  <div class="media-body">
+    <h2 class="media-heading">Healthy Breakfast Waffle</h2>
+    <p> You made this on January 7th, 2013, with your friend tbwong </p>
+  </div>
+</div>
+
+  <div class="media">
+  <a class="pull-left" href="#">
+    <img class="media-object" style="height:auto; width:auto; max-width:300px; max-height:300px;" src= "http://www.chocolatecoveredkatie.com/wp-content/uploads/dfeeb67d5f29_11A24/IMG_0312.jpg?73e30c" alt="">
+  </a>
+  <div class="media-body">
+    <h2 class="media-heading">I don't remember what this is</h2>
+    <p> This is a waffle you made on January 8th, 2013, with your friend the plant </p>
+  </div>
+  <div class=""
+  <input type="text" class="form-control" placeholder="Text input">
+
+
+  </body>
+</html>

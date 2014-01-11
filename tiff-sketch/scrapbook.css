@@ -1,0 +1,32 @@
+#container {
+    column-count: 3;
+    column-fill: balance;
+    column-gap: 10px;
+    width: 330px;
+}
+
+
+.img {
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media (max-width: 699px) {
+#pic{
+background: url(img/Akash.png);
+background-repeat: no-repeat;
+height: 100px;
+width: 150px;
+margin-left: 200px;
+}
+}
+
+p 
+{
+margin-left:2cm;
+}
