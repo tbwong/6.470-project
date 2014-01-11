@@ -108,3 +108,7 @@ nav .sidebar{
 h1{
 	margin: 0px;
 }
+#current-fridge{
+	width:1000000px; 
+	padding-left:20px;
+}
