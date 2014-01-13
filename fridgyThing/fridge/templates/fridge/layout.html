@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fridge</title>
+	{% load staticfiles %}
+
+	<link href='http://fonts.googleapis.com/css?family=Exo:200,300,400,500|Alegreya+Sans' rel='stylesheet' type='text/css'>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap.min.css' %}">
+	<!-- Optional theme -->
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap-theme.min.css'">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/layout.css' %}">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+	<script type="text/javascript" src="{% static 'fridge/js/appPage.js' %}"></script>
+</head>
+<body>
+	<header>
+		<nav>
+			<div class="siteTitle">
+				<h1>frjr</h1>
+			</div>
+<!-- 			<label class="seperatorLine">|</label> -->
+
+			<a id='logout' href="">
+					<span class='glyphicon glyphicon-log-out' style='margin-left:12px'></span>
+					<br>logout
+			</a>
+			<div id='control-panel-holder'>
+				<label class='panelLabel'>Controls</label>
+				<label class='cpBracket' style="display:inline-block; margin-left:-19px;">|</label>
+				<span id='control-content' style="display:inline-block;"> 
+					<div id='control-fridge' class='controlGroup' style='display:none;'>
+						<div id='noms' class='control-button' href="">
+							<img class='control-im' src="{% static 'fridge/images/bowl.png' %}" />
+							<br>
+							<label class='control-label'>Noms!</label>
+						</div>
+						<div  class='control-button' href="">
+							<img class='control-im' src="{% static 'fridge/images/bowl.png' %}" />
+							<br>
+							<label class='control-label'>Noms!</label>
+						</div>
+						<div  class='control-button' href="">
+							<img class='control-im' src="{% static 'fridge/images/bowl.png' %}" />
+							<br>
+							<label class='control-label'>Noms!</label>
+						</div>
+						<div  class='control-button' href="">
+							<img class='control-im' src="{% static 'fridge/images/bowl.png' %}" />
+							<br>
+							<label class='control-label'>Noms!</label>
+						</div>
+						<div  class='control-button' href="">
+							<img class='control-im' src="{% static 'fridge/images/bowl.png' %}" />
+							<br>
+							<label class='control-label'>Noms!</label>
+						</div>
+
+					</div>
+				</span>
+				<label class='cpBracket' style="display:inline-block;">|</label>
+			</div>
+		</nav>
+	</header>
+	<nav class='sidebarHolder' style='float:left;'>
+		<ul class="sidebar nav nav-pills nav-stacked">
+			<li><a id = 'fridge' href="#fridge"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+			<li><a id = 'todays' href="#todays"><span class='glyphicon glyphicon-cutlery'></span> | Todays Breakdown<i class='arrow'>></i></a></li>
+			<li><a id = 'nutrition' href="#nutrition"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+			<li><a href=""><i  class='glyphicon glyphicon-user'></i> | Relationships<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+		</ul>
+	</nav>
+	<div id="showpiece-fridge" class='showpiece'>
+		<div class='scrollable'>
+			<div id = 'current-fridge'>
+				<ul 'nav nav-pills'>
+					{% for ingredient in ingredients%}
+						<li class='foodPic'><img src="{{STATIC_URL}}fridge/images/ingredientImages/{{ingredient.pic}}" width="150px" height="150px"></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+		<div id = 'content'>
+		</div>
+	</div>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="{% static 'fridge/styles/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

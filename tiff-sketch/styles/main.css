@@ -1,13 +1,16 @@
 body{
 	background-color: white;
+	height: 100%;
+	width: 100%;
+	margin: 0px;
 }
-#background{
+#background, #background img{
 	position:absolute; 
 	z-index:-1;
 	left:0;
 	top:0;
-	width:100%;
-	height:auto
+	height: 100%;
+	max-width: 100%;
 }
 
 #siteTitle{
@@ -16,17 +19,22 @@ body{
 	text-align: center;
 	font-size: 80px;
 	margin-top: 10%;
-	margin-left: 50%
 }
+
+#login-holder{
+	float: right;
+	width: 300px;
+	margin-right: 10%;
+	margin-left:10%;
+}
+
 #login-group{
 	text-align: center;
-	width: 33%;
-	margin-left: 60%;
-
 }
-#login-button{
+#login-group #login-button{
 	text-align: center;
-	margin-left: 40%;
+	position: absolute;
+	width: 50px;
 }
 .input-group{
 	margin:10px;
