@@ -47,15 +47,13 @@
 			<div id = 'current-fridge'>
 				<ul 'nav nav-pills'>
 					{% for ingredient in ingredients%}
-						<li class='foodPic'><img src="{% ingredient.pic.url %}" width="150px" height="150px"></li>
+						<li class='foodPic'><img src="{{STATIC_URL}}fridge/images/ingredientImages/{{ingredient.pic}}" width="150px" height="150px"></li>
 					{% endfor %}
 				</ul>
 			</div>
 		</div>
 
 		<div id = 'content'>
-			<h1>Nutrition</h1>
-			<img src="{% static 'fridge/images/nutrition.jpg'" width="500px">
 		</div>
 	</div>
 
