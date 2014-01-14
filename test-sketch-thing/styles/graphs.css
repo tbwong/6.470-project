@@ -57,8 +57,17 @@ nav .sidebar{
 	font-size: 20px;
 }
 
+.hiddenones {
+	margin-top: 10px;
+	position: relative;
+	padding: 20px;
+	width: 90%;
+	margin-left: 5%;
+}
 
-
+.nutrition-stuff {
+	position: relative;
+}
 
 #nutrition-info{
 	font-size: 50px;
@@ -75,20 +84,19 @@ nav .sidebar{
 	float: right;
 }
 
-#column1 {
-	position: relative;
-	float: left;
-	display: block;
-}
+#left {
+	position: absolute;
+	left: 50%;
+	width: 20px;
+	margin-left: -20px;
 
-#column2 {
-	position: relative;
-	float: left;
-	display: block;
-	margin-top: 50px;
-	margin-left: 30px;
 }
+#right {
+	position: absolute;
+	left: 50%;
+	width: 20px;
 
+}
 #calories {
 }
 
@@ -115,15 +123,4 @@ nav .sidebar{
 #sugar {
 }
 
-#showpiece .scrollable{
-	overflow: scroll;
-}
 
-#showpiece ul{
-	list-style-type:none;
-	margin:0;
-	-webkit-box-shadow: inset 10px 10px 158px 31px rgba(255,255,255,1);
-	-moz-box-shadow: inset 10px 10px 158px 31px rgba(255,255,255,1);
-	box-shadow: inset 10px 10px 158px 31px rgba(255,255,255,1);
-	padding:10px;
-}

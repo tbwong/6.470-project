@@ -10,6 +10,7 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.min.css">
 
+	<link rel="stylesheet" type="text/css" href="styles/layout.css">
 	<link rel="stylesheet" type="text/css" href="styles/graphs.css">
 	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
 	<script type="text/javascript" src="graphs.js"> </script>
@@ -66,78 +67,71 @@
 	</div>
 
 
-	<div id="showpiece" class='showpiece'>
-
-		<div id="title-description" style="width: 1200px; height: 100px">
-			<div id="nutrition-info" >
-				Nutrition Trends
+	<div id="showpiece" class='showpiece'>	
+			<div id="title-description" style="width: 1200px; height: 100px">
+				<div id="nutrition-info" >
+					Nutrition Trends
+				</div>
+					
+				<div id="body-info">
+					Body weight: 120 lbs 
+					<p> Age: 25
+				</div>
 			</div>
-				
-			<div id="body-info">
-				Body weight: 120 lbs 
-				<p> Age: 25
+
+			<div class="nutrition-stuff">
+				<button id="left"> < </button>
+				<button id="right"> > </button>
 			</div>
-		</div>
-
-
-		<div class="scrollable">
-			<ul >
-				<li> 
-					<div id="calorie-container">
-						<div id="calories" style="width: 400px; height: 250px; float: left"></div>
-						<div id="calories-text" style=" width: 300px; height: 250px; float: left">
-							Calories are units of energy that are burned by your body to stay healthy.
-							Intaking too many calories can lead to weight gain and health problems, while
-							intaking too few can lead to poor nutrition and low energy levels.
-						</div>	
-					</div>
-				</li>
-				<li>
-					<div id="carbs-container">
-						<div id="carbs" style=" width: 400px; height: 250px; float:left"></div>
-						<div id="carbs-text" style=" width: 300px; height: 250px; float: left">
-		                Something about carbs. Blah. Lalalalallalal. 
-		                Ermpdlkajs;fl a;sldkfjasld fj
-		                asldkfja;sldkfjas;ldkjfa;lskdjf;lkdjfk
-		                as;ldkfjasldkfjdlkjfkdjfk
-			      		</div>
-			      	</div>
-		        </li>
-		        <li>
-		        	<div id="fat-container">
-						<div id="fat" style=" width: 400px; height: 250px; float:left"></div>
-						<div id="fat-text" style=" width: 300px; height: 250px; float: left">
-							a;sldkfja;sldkf ja;ldfkj a;ls dk
-						</div>
-					</div>
-				</li>
-		        <li>
-		        	<div id="protein-container">
-		        		<div id="protein" style=" width: 400px; height: 250px; float: left"></div>
-		        		<div id="fat-text" style=" width: 300px; height: 250px; float: left">
-		        			lijlijl;jn;lkjf;alskjf;as
-		        		</div>
-		        	</div>
-		        </li>
-		        <li>
-		        	<div id="sodium-container">
-		        		<div id="sodium" style=" width: 400px; height: 250px; float: left"></div>
-		        		<div id="sodium-text" style=" width: 300px; height: 250px; float: left">
-		        			a;sldfja ;lkja;lf kja;slkfj
-		        		</div>
-		        	</div>
-		        </li>
-		        <li>
-		        	<div id="sugar-container">
-		        		<div id="sugar" style="  width: 400px; height: 250px; float: left"></div>
-		        		<div id="sugar-text" style=" width: 300px; height: 250px; float: left">
-		        			a;sldfk a;lfkjas;ldkf ja;slkfj
-		        		</div>
-		        	</div>
-		        </li>
-		    </ul>
-		</div>	
-	
+			
+			<div id="health-1" class="hiddenones">
+				<div id="calories" style="width: 100%; height: 250px;">hihi</div>
+				<div id="calories-text" style=" width: 90%; height: 250px;">
+					Calories are units of energy that are burned by your body to stay healthy.
+					Intaking too many calories can lead to weight gain and health problems, while
+					intaking too few can lead to poor nutrition and low energy levels.
+				</div>	
+			</div>
+		
+			<div id="health-2" class="hiddenones" style='display:none'>
+				<div id="carbs" style=" width: 100%; height: 250px;"></div>
+				<div id="carbs-text" style=" width: 95%; height: 250px;">
+	            Something about carbs. Blah. Lalalalallalal. 
+	            Ermpdlkajs;fl a;sldkfjasld fj
+	            asldkfja;sldkfjas;ldkjfa;lskdjf;lkdjfk
+	            as;ldkfjasldkfjdlkjfkdjfk
+	      		</div>
+	      	</div>
+	   
+	    	<div id="health-3" class="hiddenones" style='display:none'>
+				<div id="fat" style="width: 100%; height: 250px;"></div>
+				<div id="fat-text" style=" width: 45%; height: 250px;">
+					a;sldkfja;sldkf ja;ldfkj a;ls dk
+				</div>
+			</div>
+		
+	    	<div id="health-4" class="hiddenones" style='display:none'>
+	    		<div id="protein" style=" width: 100%; height: 250px;"></div>
+	    		<div id="protein-text" style=" width: 45%; height: 250px;">
+	    			lijlijl;jn;lkjf;alskjf;as
+	    		</div>
+	    	</div>
+	    
+	    	<div id="health-5" class="hiddenones" style='display:none'>
+	    		<div id="sodium" style=" width: 100%; height: 250px;"></div>
+	    		<div id="sodium-text" style=" width: 45%; height: 250px;">
+	    			a;sldfja ;lkja;lf kja;slkfj
+	    		</div>
+	    	</div>
+	    
+	    	<div id="health-6" class="hiddenones" style='display:none'>
+	    		<div id="sugar" style="  width: 100%; height: 250px;"></div>
+	    		<div id="sugar-text" style=" width: 45%; height: 250px;">
+	    			a;sldfk a;lfkjas;ldkf ja;slkfj
+	    		</div>
+	    	</div>
+		        
+		
 
 	</div>
 
