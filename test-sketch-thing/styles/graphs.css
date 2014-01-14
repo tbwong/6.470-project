@@ -77,10 +77,16 @@ nav .sidebar{
 
 #column1 {
 	position: relative;
+	float: left;
+	display: block;
 }
 
 #column2 {
 	position: relative;
+	float: left;
+	display: block;
+	margin-top: 50px;
+	margin-left: 30px;
 }
 
 #calories {
@@ -107,4 +113,17 @@ nav .sidebar{
 }
 
 #sugar {
+}
+
+#showpiece .scrollable{
+	overflow: scroll;
+}
+
+#showpiece ul{
+	list-style-type:none;
+	margin:0;
+	-webkit-box-shadow: inset 10px 10px 158px 31px rgba(255,255,255,1);
+	-moz-box-shadow: inset 10px 10px 158px 31px rgba(255,255,255,1);
+	box-shadow: inset 10px 10px 158px 31px rgba(255,255,255,1);
+	padding:10px;
 }
