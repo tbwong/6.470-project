@@ -24,5 +24,82 @@ $(document).ready(function(){
 		page = $(this).attr('id');
 		//$('#control-panel-holder #control-content').html(page);
 	});
+
+	//TODO: need to do this in a for loop with values posibly from inside the html so I can use django variables
+    $('.ingredientPie').each(function(){
+    	 var chart = new Highcharts.Chart({
+	        chart: {
+	        	renderTo: this,
+	        	backgroundColor: null,
+	            plotBackgroundColor: null,
+	            plotBorderWidth: null,
+	            plotShadow: false
+	        },
+	        title: {
+	            text: null
+	        },
+	        tooltip: {
+	        	enabled: false
+	    	    // pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	        },
+	        plotOptions: {
+	            pie: {
+	                allowPointSelect: false,
+	                cursor: null,
+	                dataLabels: {
+	                    enabled: false,
+	                    // color: '#000000',
+	                    // connectorColor: '#000000',
+	                    // format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+	                },
+	                point: {
+	                	enabled:null,
+						events: {
+							click: function(event){
+								//nothing
+							},
+							// legendItemClick: null,
+							mouseOut: function(event){
+								//nothing
+							},
+							mouseOver: function(event){
+								//nothing
+							}
+							// remove: null,
+							// select: null,
+							// unselect: null,
+							// update: null
+						}
+					}
+	            }
+	        },
+	        series: [{
+	            type: 'pie',
+	            name: 'Ingredient',
+	            data: [
+	                ['Firefox',   45.0],
+	                ['IE',       26.8]
+	            ]
+		    }]
+    	});
+    });
+
+	$('.foodPic').mouseenter(function(){
+		$(this).children('.ingredientPie').fadeIn();
+	});
+	$('.ingredientPie').mouseout(function(){
+		$(this).fadeOut();
+	});
+
+	$('#addIng').click(function(){
+		$('#popupBackground').fadeIn();
+		$('#addIng-popup').show('slow');
+	});
+	$('#popupBackground').click(function(){
+		$('#popupBackground').fadeOut();
+		$('#addIng-popup').hide('fast');
+	});
+
+
 });
 
