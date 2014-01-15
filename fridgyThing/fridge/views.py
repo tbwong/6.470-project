@@ -44,4 +44,7 @@ def showGraphsPage(request):
 #----------------Jacqui-----------------\/
 #----------------Jacqui-----------------/\
 #----------------Rujia-----------------\/
+def showShoppingPage(request):
+        items = 0
+        return render(request, 'shopping/shopping.html', {'item':items})
 #----------------Rujia-----------------/\

@@ -9,11 +9,12 @@ urlpatterns = patterns('',
     url(r'^addIngredient/',views.addIngredient,name='addIngredient'),
     #----------------Pav-----------------/\
     #----------------Tiff-----------------\/
-    url(r'^graphs/',views.showGraphsPage,name='showGraphs')
+    url(r'^graphs/',views.showGraphsPage,name='showGraphs'),
     #----------------Tiff-----------------/\
     #----------------Jacqui-----------------\/
     #----------------Jacqui-----------------/\
     #----------------Rujia-----------------\/
+    url(r'^shopping/',views.showShoppingPage, name='showShopping')
     #----------------Rujia-----------------/\
     
 )

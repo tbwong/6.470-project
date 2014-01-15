@@ -3,16 +3,18 @@
 <head>
 	<title>Fridge</title>
 
+	{% load staticfiles %}
+	
 	<link href='http://fonts.googleapis.com/css?family=Exo:200,300,400,500|Alegreya+Sans' rel='stylesheet' type='text/css'>
 
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap.min.css' %}">
 	<!-- Optional theme -->
-	<link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap-theme.min.css' %}">
 
-	<link rel="stylesheet" type="text/css" href="styles/shopping.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'shopping/styles/shopping.css' %}">
 	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
-	<script type="text/javascript" src="shopping.js"></script>
+	<script type="text/javascript" src="{% static 'shopping/js/shopping.js' %}"></script>
 </head>
 <body>
 	<header>
