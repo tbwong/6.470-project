@@ -1,0 +1,49 @@
+.images {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    position: relative
+}
+
+#grid {
+    display: table-cell;
+    height: 300px;
+    display: table-cell;
+    vertical-align: middle;
+
+}
+
+#title {
+	margin: 40 px;
+    display: center;
+}
+
+#id {
+	height: 40 px;
+	display: button
+	vertical-align: middle;
+}
+
+#img-center {
+    display: inline-block;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: auto;
+}
+
+.grid #row {
+	display: block;
+	margin: 0 auto;
+}
+
+.blueimp-gallery > .description {
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  color: #fff;
+  display: none;
+}
+.blueimp-gallery-controls > .description {
+  display: block;
+}

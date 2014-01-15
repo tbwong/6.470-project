@@ -10,18 +10,23 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap.min.css' %}">
 	<!-- Optional theme -->
 	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap-theme.min.css'">
-
 	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/layout.css' %}">
+	
 	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/modules/exporting.js"></script>
+	
 	<script type="text/javascript" src="{% static 'fridge/js/appPage.js' %}"></script>
+	<script src="https://www.google.com/jsapi"></script>
+
 </head>
 <body>
+
 	<header>
 		<nav>
 			<div class="siteTitle">
 				<h1>frjr</h1>
 			</div>
-<!-- 			<label class="seperatorLine">|</label> -->
 
 			<a id='logout' href="">
 					<span class='glyphicon glyphicon-log-out' style='margin-left:12px'></span>
@@ -37,28 +42,22 @@
 							<br>
 							<label class='control-label'>Noms!</label>
 						</div>
-						<div  class='control-button' href="">
-							<img class='control-im' src="{% static 'fridge/images/bowl.png' %}" />
+						<div id='addIng' class='control-button' href="">
+							<img class='control-im' src="{% static 'fridge/images/plus.png' %}" />
 							<br>
-							<label class='control-label'>Noms!</label>
-						</div>
-						<div  class='control-button' href="">
-							<img class='control-im' src="{% static 'fridge/images/bowl.png' %}" />
-							<br>
-							<label class='control-label'>Noms!</label>
-						</div>
-						<div  class='control-button' href="">
-							<img class='control-im' src="{% static 'fridge/images/bowl.png' %}" />
-							<br>
-							<label class='control-label'>Noms!</label>
-						</div>
-						<div  class='control-button' href="">
-							<img class='control-im' src="{% static 'fridge/images/bowl.png' %}" />
-							<br>
-							<label class='control-label'>Noms!</label>
+							<label class='control-label'>Food</label>
 						</div>
 
 					</div>
+
+					<div id='control-scrapbook' class='controlGroup' style='display:none;'>
+						<div id='helloButton' class='control-button' href="">
+								<img class='control-im' src="{% static 'fridge/images/bowl.png' %}" />
+								<br>
+								<label class='control-label'>Hello</label>
+						</div>
+					</div>
+
 				</span>
 				<label class='cpBracket' style="display:inline-block;">|</label>
 			</div>
@@ -66,28 +65,119 @@
 	</header>
 	<nav class='sidebarHolder' style='float:left;'>
 		<ul class="sidebar nav nav-pills nav-stacked">
-			<li><a id = 'fridge' href="#fridge"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
-			<li><a id = 'todays' href="#todays"><span class='glyphicon glyphicon-cutlery'></span> | Todays Breakdown<i class='arrow'>></i></a></li>
-			<li><a id = 'nutrition' href="#nutrition"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
-			<li><a href=""><i  class='glyphicon glyphicon-user'></i> | Relationships<i class='arrow'>></i></a></li>
+			<li><a id = 'fridge' href="{% url 'fridge:appPage' %}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+			<li><a id = 'todays' href="#todays"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
+			<li><a id = 'nutrition' href="{% url 'fridge:showGraphs' %}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+			<li><a id='scrapbook' href="#asdfsadfasf"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
 			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
 			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
 			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
 		</ul>
 	</nav>
+
+
 	<div id="showpiece-fridge" class='showpiece'>
 		<div class='scrollable' style="display:none;">
 			<div id = 'current-fridge'>
 				<ul 'nav nav-pills'>
 					{% for ingredient in ingredients%}
-						<li class='foodPic'><img src="{{STATIC_URL}}fridge/images/ingredientImages/{{ingredient.pic}}" width="150px" height="150px"></li>
+						<li class='foodPic'>
+							<div id='ing-{{forloop.counter}}' width="150px" height="150px"> </div>
+							<!-- src="{{STATIC_URL}}fridge/images/ingredientImages/{{ingredient.pic}}" -->
+
+						    <script type="text/javascript">
+						    /*
+						    *  The SearchControl manages searchers and draws a UI for them.  However,
+						    *  searchers can be used by themselves without the SearchControl.  This is
+						    *  called using a "Raw Searcher".  When doing this, you must handle and draw
+						    *  the search results manually.
+						    */
+						    
+						    google.load('search', '1');
+						    
+						    var imageSearch{{forloop.counter}};
+						    
+						    function searchComplete{{forloop.counter}}() {
+						      // Check that we got results
+								if (imageSearch{{forloop.counter}}.results && imageSearch{{forloop.counter}}.results.length > 0) {
+									// Grab our content div, clear it.
+									 var contentDiv{{forloop.counter}} = document.getElementById('ing-{{forloop.counter}}');
+									// contentDiv{{forloop.counter}}.innerHTML = '';
+
+									// Loop through our results, printing them to the page.
+									var results{{forloop.counter}} = imageSearch{{forloop.counter}}.results;
+									var result{{forloop.counter}} = results{{forloop.counter}}[0];
+									var newImg{{forloop.counter}} = document.createElement('img');
+									// There is also a result.url property which has the escaped version
+									newImg{{forloop.counter}}.src = result{{forloop.counter}}.tbUrl;
+									newImg{{forloop.counter}}.width=150;
+									newImg{{forloop.counter}}.height=150;
+									contentDiv{{forloop.counter}}.appendChild(newImg{{forloop.counter}});
+
+								}
+						    
+						      }
+						    
+						    
+						    function OnLoad{{forloop.counter}}() {
+						      // Our ImageSearch instance.
+						      imageSearch{{forloop.counter}} = new google.search.ImageSearch();
+						    
+						      // Restrict to extra large images only
+						      // imageSearch{{forloop.counter}}.setRestriction(google.search.ImageSearch.RESTRICT_IMAGESIZE,
+						      //                            google.search.ImageSearch.IMAGESIZE_LARGE);
+						    
+						      // Here we set a callback so that anytime a search is executed, it will call
+						      // the searchComplete function and pass it our ImageSearch searcher.
+						      // When a search completes, our ImageSearch object is automatically
+						      // populated with the results.
+						      imageSearch{{forloop.counter}}.setSearchCompleteCallback(this, searchComplete{{forloop.counter}}, null);
+						    
+						      // Find me a beautiful car.
+						      imageSearch{{forloop.counter}}.execute("{{ingredient.name}}");
+						    }
+						    google.setOnLoadCallback(OnLoad{{forloop.counter}});
+						    </script>
+ 
+							<div class="ingredientPie"></div>
+						</li>
 					{% endfor %}
 				</ul>
 			</div>
 		</div>
 
+
 		<div id = 'content'>
 		</div>
+		
+		<div id="popupBackground"></div>
+		<div id='addIng-popup' class='popup' >
+			<h1 style="text-align:center;">Add Ingredient</h1>
+			<br><br>
+			<form id='addIng-group' action="{% url 'fridge:addIngredient'%}" method="post">
+				{% csrf_token %}
+
+				<div class="input-group">
+				  <span class="input-group-addon">Ingredient Name:</span>
+				  <input type="text" name='IngName'class="form-control" placeholder="Be general. ex: ">
+				</div>
+				<br>
+				<div class="input-group">
+				  <span class="input-group-addon"># Grams:</span>
+				  <input type="number" name='IngAmount' class="form-control" placeholder="# Grams">
+				</div>
+				<br>
+				<div class="input-group btn-group centeredButton" >
+					<input type='submit' class='btn btn-default' value='Add It'></input>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+
+	<div id="showpiece-scrapbook" class='showpiece' style="display:none;">
+		hi friends
 	</div>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="{% static 'fridge/styles/bootstrap/js/bootstrap.min.js' %}"></script>

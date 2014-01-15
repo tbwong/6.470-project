@@ -19,7 +19,8 @@ $(document).ready(function(){
 })
     
 
-$(function () {
+function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
+
         $('#calories').highcharts({
             title: {
                 text: 'Daily calorie intake',
@@ -57,14 +58,7 @@ $(function () {
                 color: '#9966FF'
             }]
         });
-    });
-    
 
-
-
-
-
-$(function () {
         $('#carbs').highcharts({
             title: {
                 text: 'Daily carb intake',
@@ -103,13 +97,7 @@ $(function () {
                 color: '#0033FF'
             }]
         });
-    });
 
-
-
-
-
-$(function () {
         $('#fat').highcharts({
             title: {
                 text: 'Daily fat intake',
@@ -147,13 +135,7 @@ $(function () {
                 color: '#339900'
             }]
         });
-    });
 
-
-
-
-
-$(function () {
         $('#protein').highcharts({
             title: {
                 text: 'Daily protein intake',
@@ -191,13 +173,7 @@ $(function () {
                 color: '#FF3300'
             }]
         });
-    });
 
-
-
-
-
-$(function () {
         $('#sodium').highcharts({
             title: {
                 text: 'Daily sodium intake',
@@ -235,14 +211,7 @@ $(function () {
                 color: '#CC0033'
             }]
         });
-    });
 
-
-
-
-
-
-$(function () {
         $('#sugar').highcharts({
             title: {
                 text: 'Daily sugar intake',
@@ -281,7 +250,7 @@ $(function () {
             }]
         });
 
-    });
+}
 
 
 

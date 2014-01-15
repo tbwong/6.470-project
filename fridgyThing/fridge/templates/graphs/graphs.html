@@ -3,20 +3,41 @@
 <head>
 	<title>Fridge</title>
 
+	{% load staticfiles %} 
+
 	<link href='http://fonts.googleapis.com/css?family=Exo:200,300,400,500|Alegreya+Sans' rel='stylesheet' type='text/css'>
 
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap.min.css' %}">
 	<!-- Optional theme -->
-	<link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap-theme.min.css' %}">
 
-	<link rel="stylesheet" type="text/css" href="styles/layout.css">
-	<link rel="stylesheet" type="text/css" href="styles/graphs.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/layout.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'graphs/styles/graphs.css' %}">
 	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
-	<script type="text/javascript" src="graphs.js"> </script>
+	<script type="text/javascript" src="{% static 'graphs/js/graphs.js' %}"> </script>
 	<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"> </script>
 </head>
 <body>
+
+
+
+	<script type="text/javascript">
+		$(function(){
+			//the whole page has loaded.
+			//calories,carbs,fat,protein,sodium,sugar
+			makeHighCharts({{cal}},);
+
+			{% for i in cal %}
+
+			{%endfor%}	
+		});
+	</script>
+
+
+
+
+
 	<header>
 		<nav>
 			<div class="siteTitle">
@@ -33,12 +54,12 @@
 
 	<nav class='sidebarHolder' style='float:left;'>
 		<ul class="sidebar nav nav-pills nav-stacked">
-			<li><a id = 'fridgeTab' href="#fridge"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
-			<li><a href=""><span class='glyphicon glyphicon-cutlery'></span> | Today's Breakdown<i class='arrow'>></i></a></li>
-			<li><a href="graphs.html"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
-			<li><a href=""><i  class='glyphicon glyphicon-user'></i> | Relationships<i class='arrow'>></i></a></li>
-			<li><a href="scrapbook.html"><span class='glyphicon glyphicon-book'></span> | Scrapbook<i class='arrow'>></i></a></li>
-			<li><a href="shopping.html"><span class='glyphicon glyphicon-book'></span> | Shopping List<i class='arrow'>></i></a></li>
+			<li><a id = 'fridge' href="{% url 'fridge:appPage' %}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+			<li><a id = 'todays' href="#todays"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
+			<li><a id = 'nutrition' href="{% url 'fridge:showGraphs' %}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+			<li><a id='scrapbook' href="#asdfsadfasf"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
 			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
 		</ul>
 	</nav>
@@ -136,6 +157,6 @@
 	</div>
 
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="styles/bootstrap/js/bootstrap.min.js"></script>
+	<script src="{% static 'fridge/styles/bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
 </html>
