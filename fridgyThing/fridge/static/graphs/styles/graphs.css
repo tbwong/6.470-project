@@ -1,0 +1,126 @@
+body{
+	font-family: 'Alegreya Sans';
+}
+header{
+	margin:0px;
+	padding: 0px;
+}
+nav{
+	margin:0px;
+	padding: 0px;
+	width: 100%;
+}
+header nav{
+	color:white;	
+	background-color: #333333;
+	padding: 10px;
+}
+header nav .siteTitle{
+	display: inline-block;
+}
+header nav .siteTitle h1{
+	font-family:'Exo';
+	margin: 10px;
+}
+.seperatorLine{
+	display: inline-block;
+	font-family: Exo;
+	font-weight: 200;
+	font-size: 40px;
+	margin: 0px;
+}
+#logout{
+	margin: 10px;
+
+}
+
+a{
+	text-decoration: none;
+	color: inherit;
+}
+a:hover{
+	color: grey;
+}
+nav.sidebarHolder{
+	height: 1000px;
+	width: 250px;
+	z-index: -1;
+}
+
+nav .sidebar{
+	width: 250px;
+	background-color: #FFE4C4;
+	height: 100%;
+}
+.arrow{
+	float: right;
+	font-size: 20px;
+}
+
+.hiddenones {
+	margin-top: 10px;
+	position: relative;
+	padding: 20px;
+	width: 90%;
+	margin-left: 5%;
+}
+
+.nutrition-stuff {
+	position: relative;
+}
+
+#nutrition-info{
+	font-size: 50px;
+	font-weight: bold;
+	margin: 10px;
+	float: left;
+}
+
+#body-info {
+	font-size: 15px;
+	font-weight: bold;
+	margin-right: 100px;
+	margin-top: 10px;
+	float: right;
+}
+
+#left {
+	position: absolute;
+	left: 50%;
+	width: 20px;
+	margin-left: -20px;
+
+}
+#right {
+	position: absolute;
+	left: 50%;
+	width: 20px;
+
+}
+#calories {
+}
+
+#calories-text {
+	font-size: 15px;
+}
+
+#carbs {
+}
+
+#carbs-text {
+	font-size: 15px;
+}
+
+#fat {
+}
+
+#protein {
+}
+
+#sodium {
+}
+
+#sugar {
+}
+
+

@@ -15,15 +15,17 @@ $(document).ready(function(){
 		$(control).show('slow');
 		console.log(page);
 	}
-	$('.sidebarHolder .sidebar li a').click(function(){
-		if(page!=$(this).attr('id')){
-			showShowpiece('#showpiece-'+$(this).attr('id'));
-			showControls('#control-'+$(this).attr('id'));
+	showShowpiece('#showpiece-fridge');
+	showControls('#control-fridge');
 
-		}
-		page = $(this).attr('id');
-		//$('#control-panel-holder #control-content').html(page);
-	});
+	// $('.sidebarHolder .sidebar li a').click(function(){
+	// 	if(page!=$(this).attr('id')){
+	// 		showShowpiece('#showpiece-'+$(this).attr('id'));
+	// 		showControls('#control-'+$(this).attr('id'));
+	// 	}
+	// 	page = $(this).attr('id');
+	// 	//$('#control-panel-holder #control-content').html(page);
+	// });
 
 	//TODO: need to do this in a for loop with values posibly from inside the html so I can use django variables
     $('.ingredientPie').each(function(){
@@ -99,7 +101,5 @@ $(document).ready(function(){
 		$('#popupBackground').fadeOut();
 		$('#addIng-popup').hide('fast');
 	});
-
-
 });
 

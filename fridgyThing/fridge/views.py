@@ -10,9 +10,12 @@ def index(request):
 def app(request):
 	ingredients = Ingredient.objects.all() 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients} )
+
+
 def addIngredient(request):
 	try:
 		IngName = request.POST['IngName']
+		IngName.strip()
 		# IngAmount = float(request.POST['IngAmount'])
 		i = Ingredient(name=IngName,pic='search')
 		i.save();
@@ -24,6 +27,19 @@ def addIngredient(request):
 
 #----------------Pav-----------------/\
 #----------------Tiff-----------------\/
+def showGraphsPage(request):
+	#calories,carbs,fat,protein,sodium,sugar
+	calories = [100,20,30,40]
+	carbValues = [100,20,30,40]
+	fatValues = [20,40,50]
+	proteinValues = [100,20,30,40]
+	sodiumValues = [100,20,30,40]
+	sugarValues = [100,20,30,40]
+
+	return render(request, 'graphs/graphs.html',{'cal':calories,
+												'fat':fatValues,
+												
+												})
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
 #----------------Jacqui-----------------/\
