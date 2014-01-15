@@ -31,7 +31,6 @@ header nav .siteTitle h1{
 }
 #logout{
 	margin: 10px;
-
 }
 
 a{
@@ -141,7 +140,6 @@ h1{
 	padding-top: 8px;
 	padding-bottom: 5px;
 	padding-right:14px;
-	height:40px;
 	background-color:#fff5eb;
 	word-wrap:break-word;
 }
@@ -184,7 +182,6 @@ h1{
 	font-style:italic;
 	font-size:16px;
 	width:150%;
-
 }
 
 #text-length {
