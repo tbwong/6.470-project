@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from fridge.models import Ingredient 
 # Create your views here.
 
-#------------Pav-----------------
+#----------------Pav-----------------\/
 def index(request):
 	return render(request, 'fridge/index.html')
 def app(request):
@@ -22,4 +22,10 @@ def addIngredient(request):
 	else:
 		return HttpResponseRedirect(reverse('fridge:appPage',args=()))
 
-#-------------------------------
+#----------------Pav-----------------/\
+#----------------Tiff-----------------\/
+#----------------Tiff-----------------/\
+#----------------Jacqui-----------------\/
+#----------------Jacqui-----------------/\
+#----------------Rujia-----------------\/
+#----------------Rujia-----------------/\

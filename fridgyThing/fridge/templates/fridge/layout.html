@@ -87,30 +87,61 @@
 				<ul 'nav nav-pills'>
 					{% for ingredient in ingredients%}
 						<li class='foodPic'>
-							<img id='ing-{{forloop.counter}}' width="150px" height="150px"> 
+							<div id='ing-{{forloop.counter}}' width="150px" height="150px"> </div>
 							<!-- src="{{STATIC_URL}}fridge/images/ingredientImages/{{ingredient.pic}}" -->
-<!-- 
-							<script type="text/javascript">
-								$(function(){
-									google.load('search','1');
-									var imageSearch;
-									function searchComplete(){
-										if(imageSearch.results && imageSearch.results.length>0){
-											var results=imageSearch.results;
-											var result = results[0];
-											$('#ing-{{forloop.counter}}').attr('scr',result.tbUrl);
-											console.log('#ing-{{forloop.counter}}');
-										}
-									}
-									function OnLoad(){
-										imageSearch = new google.search.ImageSearch();
-										imageSearch.setSearchCompleteCallback(document,searchComplete,null);
-										imageSearch.execute("{{ingredient.name}}")
-									}
-								});
 
-							</script>
-  -->
+						    <script type="text/javascript">
+						    /*
+						    *  The SearchControl manages searchers and draws a UI for them.  However,
+						    *  searchers can be used by themselves without the SearchControl.  This is
+						    *  called using a "Raw Searcher".  When doing this, you must handle and draw
+						    *  the search results manually.
+						    */
+						    
+						    google.load('search', '1');
+						    
+						    var imageSearch{{forloop.counter}};
+						    
+						    function searchComplete() {
+						      // Check that we got results
+						      if (imageSearch{{forloop.counter}}.results && imageSearch{{forloop.counter}}.results.length > 0) {
+						        // Grab our content div, clear it.
+						        var contentDiv = document.getElementById('ing-{{forloop.counter}}');
+						        contentDiv.innerHTML = '';
+						    
+						        // Loop through our results, printing them to the page.
+						        var results = imageSearch{{forloop.counter}}.results;
+						          var result = results[0];
+						          var newImg = document.createElement('img');
+						          // There is also a result.url property which has the escaped version
+						          newImg.src = result.tbUrl;
+						          contentDiv.appendChild(newImg);
+
+						        }
+						    
+						      }
+						    
+						    
+						    function OnLoad() {
+						      // Our ImageSearch instance.
+						      imageSearch{{forloop.counter}} = new google.search.ImageSearch();
+						    
+						      // Restrict to extra large images only
+						      imageSearch{{forloop.counter}}.setRestriction(google.search.ImageSearch.RESTRICT_IMAGESIZE,
+						                                 google.search.ImageSearch.IMAGESIZE_LARGE);
+						    
+						      // Here we set a callback so that anytime a search is executed, it will call
+						      // the searchComplete function and pass it our ImageSearch searcher.
+						      // When a search completes, our ImageSearch object is automatically
+						      // populated with the results.
+						      imageSearch{{forloop.counter}}.setSearchCompleteCallback(this, searchComplete, null);
+						    
+						      // Find me a beautiful car.
+						      imageSearch{{forloop.counter}}.execute("{{ingredient.name}}");
+						    }
+						    google.setOnLoadCallback(OnLoad);
+						    </script>
+ 
 							<div class="ingredientPie"></div>
 						</li>
 					{% endfor %}

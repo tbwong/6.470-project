@@ -10,6 +10,14 @@ urlpatterns = patterns('',
     # url(r'^$', 'fridgyThing.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
+    #----------------Pav-----------------\/
     url(r'^admin/', include(admin.site.urls)),
     url(r'^fridge/', include('fridge.urls', namespace='fridge')),
+    #----------------Pav-----------------/\
+    #----------------Tiff-----------------\/
+    #----------------Tiff-----------------/\
+    #----------------Jacqui-----------------\/
+    #----------------Jacqui-----------------/\
+    #----------------Rujia-----------------\/
+    #----------------Rujia-----------------/\
 )
