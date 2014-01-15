@@ -1,16 +1,25 @@
+
 <!DOCTYPE html>
+
 <head>
-  <meta charset=”utf-8”> 
+  <meta charset=”utf-8”>  
   <title>ScrapBook</title>
   <link href='http://fonts.googleapis.com/css?family=Exo:200,300,400,500|Alegreya+Sans' rel='stylesheet' type='text/css'>
+  <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-lightbox/0.6.1/bootstrap-lightbox.js"></script>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type = "text/css" href="styles/bootstrap-lightbox/bootstrap-lightbox.min.css">
+   <script type="text/javascript" href="styles/bootstrap-lightbox/bootstrap-lightbox.min.js"></script>
   <!-- Optional theme -->
   <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.min.css">
 
+  <link rel="text/javascript" href="styles/bootstrap/js/bootstrap.js">
   <link rel="stylesheet" type="text/css" href="styles/layout.css">
-  <link rel="stylesheet" type="text/css" href="styles/scrapbook.css">
+  <link rel="stylesheet" type="text/css" href="scrapbook2.css">
   <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
   <script type="text/javascript" src="scrapbook.js"> </script>
 </head>
@@ -41,87 +50,86 @@
     </ul>
   </nav>
 
-
-  <div id="showpiece-fridge" class='showpiece' style='display:none;'>
-    <div class='scrollable'>
-      <div id = 'current-fridge' style="width:1000000px; padding-left:20px;">
-        <ul 'nav nav-pills'>
-          <li class='foodPic'><img src="image_use/broccoli.jpg" width="150px" height="150px"></li>
-          <li class='foodPic'><img src="image_use/carrot.jpg" width="150px" height="150px"></li>
-          <li class='foodPic active'><img src="image_use/chicken.jpg" width="150px" height="150px"></li>
-          <li class='foodPic'><img src="image_use/corn.jpg" width="150px" height="150px"></li>
-          <li class='foodPic'><img src="image_use/ham.jpg" width="150px" height="150px"></li>
-          <li class='foodPic'><img src="image_use/handle.jpg" width="150px" height="150px"></li>
-          <li class='foodPic'><img src="image_use/lettuce.jpg" width="150px" height="150px"></li>
-          <li class='foodPic'><img src="image_use/peanut butter.jpg" width="150px" height="150px"></li>
-        </ul>
-      </div>
-    </div>
-<div id = 'content'>
-      <h1>Nutrition</h1>
-      <img src="image_use/nutrition.jpg" width="500px">
-    </div>
-  </div>
-
-  <div class='showpiece'>
-    <ul class='nav nav-pill'>
-      
-    </ul>
-
-  </div>
-    <div class="hero-unit">
+<center>
+  <div id = "title">
       <h1> Welcome to your Scrapbook! </h1>
-      <p> Upload a picture? </p>
-    </div>
+  </div>
 
-  <div class="media">
-  <a class="pull-left" href="#">
-    <img class="media-object" style="height:auto; width:auto; max-width:300px; max-height:300px;" src="http://www.chocolatecoveredkatie.com/wp-content/uploads/Healthy-Breakfast-Month_7BC0/chocolate-pancake.jpg?73e30c" alt="">
-  </a>
-  <div class="media-body">
-    <h2 class="media-heading">Healthy Breakfast Waffle</h2>
-    <p> You made this on January 7th, 2013, with your friend tbwong </p>
+  <div class = "button"; id = "upload-button">
+      <span class="glyphicon glyphicon-upload">
+      <a href="/images/new"> Upload another image?</a>
+  </div>
+</center>
+
+ <!--Lightbox WDe
+
+<a data-toggle="lightbox" href="#demoLightbox">Open Lightbox</a>
+<div id="demoLightbox" class="lightbox fade"  tabindex="-1" role="dialog" aria-hidden="true">
+    <div class='lightbox-dialog'>
+        <div class='lightbox-content'>
+            <img src="image.png">
+            <div class='lightbox-caption'>
+                Your caption here
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+ <!--Grid -->
+<div class="row"; id = "grid">
+    <div class="col-lg-4 col-sm-6 col-xs-12" id= "img-center">
+        <div class = "lightbox-content">
+        <a data-toggle="lightbox" href="#lightbox">Open Lightbox</a>
+        <a data-toggle="lightbox" data-target="#lightbox" data-gallery="multiimages" data-title="Waffle" href = "#" >
+             <img src="http://www.chocolatecoveredkatie.com/wp-content/uploads/Healthy-Breakfast-Month_7BC0/chocolate-pancake.jpg?73e30c" class= "thumbnail img-responsive">
+             <div class="lightbox-caption">
+             </div> 
+           </div>
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href= "http://www.chocolatecoveredkatie.com/wp-content/uploads/dfeeb67d5f29_11A24/IMG_0312.jpg?73e30c" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
+             <img src= "http://www.chocolatecoveredkatie.com/wp-content/uploads/dfeeb67d5f29_11A24/IMG_0312.jpg?73e30c" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
   </div>
 </div>
 
-  <div class="media">
-  <a class="pull-left" href="#">
-    <img class="media-object" style="height:auto; width:auto; max-width:300px; max-height:300px;" src= "http://www.chocolatecoveredkatie.com/wp-content/uploads/dfeeb67d5f29_11A24/IMG_0312.jpg?73e30c" alt="">
-  </a>
-  <div class="media-body">
-    <h2 class="media-heading">I don't remember what this is</h2>
-    <p> This is a waffle you made on January 8th, 2013, with your friend the plant 
-  </div>
-  
-  <div class = "media-heading">    
-  <a class="pull-left">
-  <h2> Want to upload another picture to the scrapbook? </h2>
-  </div>
-
-  <form role="form">
-  
-  <div class="form-group">
-    <label for="exampleInputFile">File input</label>
-    <input type="file" id="exampleInputFile">
-  </div>
-  
-  <div class="form-group">
-
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-
-  <div class="checkbox">
-    <label>
-      <input type="checkbox"> Check me out
-    </label>
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
-
-  </body>
+</body>
 </html>
