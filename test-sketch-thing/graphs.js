@@ -1,3 +1,24 @@
+var currentDiv = 12;
+$(document).ready(function(){
+    $('#right').click(function(){
+        currentDiv += 1;
+        if(currentDiv>6){
+            currentDiv=6;
+        }
+        $('.hiddenones').hide();
+        $('#health-'+currentDiv).show();
+    });
+    $('#left').click(function(){
+        currentDiv -= 1;
+        if(currentDiv < 1){
+            currentDiv = 1;
+        }
+        $('.hiddenones').hide();
+        $('#health-'+currentDiv).show();
+    });
+})
+    
+
 $(function () {
         $('#calories').highcharts({
             title: {
@@ -259,4 +280,11 @@ $(function () {
                 color: '#FF66CC'
             }]
         });
+
     });
+
+
+
+
+
+
