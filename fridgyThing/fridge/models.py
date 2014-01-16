@@ -11,6 +11,30 @@ class Ingredient(models.Model):
 		
 #----------------Pav-----------------/\
 #----------------Tiff-----------------\/
+class Calories(models.Model):
+	amount = models.IntegerField(default=0)
+	eaten_date = models.DateTimeField('date published')
+
+class Carbs(models.Model):
+	amount = models.IntegerField(default=0)
+	eaten_date = models.DateTimeField('date published')
+
+class Fats(models.Model):
+	amount = models.IntegerField(default=0)
+	eaten_date = models.DateTimeField('date published')
+
+class Protein(models.Model):
+	amount = models.IntegerField(default=0)
+	eaten_date = models.DateTimeField('date published')
+
+class Sodium(models.Model):
+	amount = models.IntegerField(default=0)
+	eaten_date = models.DateTimeField('date published')
+
+class Sugar(models.Model):
+	amount = models.IntegerField(default=0)
+	eaten_date = models.DateTimeField('date published')
+
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
 #----------------Jacqui-----------------/\

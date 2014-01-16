@@ -7,7 +7,7 @@ from fridge.models import Ingredient
 #----------------Pav-----------------\/
 def index(request):
 	return render(request, 'fridge/index.html')
-def app(request):
+def showFridge(request):
 	ingredients = Ingredient.objects.all() 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients} )
 
@@ -37,7 +37,7 @@ def showGraphsPage(request):
 	sugarValues = [100,20,30,40]
 	currentDates = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
 	return render(request, 'graphs/graphs.html',{'cal':calories,
-												'carb': carbValues,
+												'carbs': carbValues,
 												'fat':fatValues,
 												'protein': proteinValues,
 												'sodium': sodiumValues,

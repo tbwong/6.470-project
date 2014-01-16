@@ -5,6 +5,7 @@ $(document).ready(function(){
 	
 	//$('#control-panel-holder #control-content').html(page);
 	$('.showpiece').hide();
+	$('.controlGroup').hide();
 	function showShowpiece(page){
 		$('.showpiece').hide();
 		$(page).show('slow');
@@ -101,14 +102,20 @@ $(document).ready(function(){
 		$('#popupBackground').fadeOut();
 		$('#addIng-popup').hide('fast');
 	});
-	function getRecipies(Ingredients){
-		var url =' http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true'
-		for i in range(0,len(Ingredients)):
-			url = url+'&allowedIngredient[]='+Ingredients[i]
-		$.get(url,function(data){
-			alert(data);
-		});
-	}
-
 });
+function getRecipies(Ingredients){
+	var url =' http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
+	var i =1;
+	for(i;i<Ingredients.length;i++){
+		url = url+'&allowedIngredient[]='+Ingredients[i].replace(/ /g, '');
+	}
+	$.ajax({
+		url: url,
+		dataType: "jsonp",
+		success: function (data) {
+			console.log(data)
+			alert(data);
+		}
+	});
+}
 
