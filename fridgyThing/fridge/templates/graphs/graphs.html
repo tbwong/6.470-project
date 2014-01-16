@@ -26,7 +26,7 @@
 		$(function(){
 			//the whole page has loaded.
 			//cal,carbs,fat,protein,sodium,sugar
-			makeHighCharts({{cal}}, {{fat}}, {{fat}}, {{protein}}, {{sodium}}, {{sugar}})
+			makeHighCharts({{cal}}, {{carbs}}, {{fat}}, {{protein}}, {{sodium}}, {{sugar}}, {{dates|safe}})
 
 			// {% for i in cal %}
 
@@ -57,7 +57,7 @@
 			<li><a id = 'fridge' href="{% url 'fridge:appPage' %}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
 			<li><a id = 'shopping-list' href="{% url 'fridge:showShopping' %}"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
 			<li><a id = 'nutrition' href="{% url 'fridge:showGraphs' %}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
-			<li><a id='scrapbook' href="#asdfsadfasf"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
+			<li><a id='scrapbook' href="{% url 'fridge:showScrapbook' %}"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
 			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
 			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
 			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
@@ -106,7 +106,7 @@
 			</div>
 			
 			<div id="health-1" class="hiddenones">
-				<div id="calories" style="width: 100%; height: 250px;">hihi</div>
+				<div id="calories-container" style="width: 100%; height: 250px; max-height=100%"></div>
 				<div id="calories-text" style=" width: 90%; height: 250px;">
 					Calories are units of energy that are burned by your body to stay healthy.
 					Intaking too many calories can lead to weight gain and health problems, while
@@ -115,8 +115,8 @@
 			</div>
 		
 			<div id="health-2" class="hiddenones" style='display:none'>
-				<div id="carbs" style=" width: 100%; height: 250px;"></div>
-				<div id="carbs-text" style=" width: 95%; height: 250px;">
+				<div id="carbs-container" style=" width: 100%; height: 250px; max-height=100%"></div>
+				<div id="carbs-text" style=" width: 90%; height: 250px;">
 	            Something about carbs. Blah. Lalalalallalal. 
 	            Ermpdlkajs;fl a;sldkfjasld fj
 	            asldkfja;sldkfjas;ldkjfa;lskdjf;lkdjfk
@@ -126,28 +126,28 @@
 	   
 	    	<div id="health-3" class="hiddenones" style='display:none'>
 				<div id="fat" style="width: 100%; height: 250px;"></div>
-				<div id="fat-text" style=" width: 45%; height: 250px;">
+				<div id="fat-text" style=" width: 90%; height: 250px;">
 					a;sldkfja;sldkf ja;ldfkj a;ls dk
 				</div>
 			</div>
 		
 	    	<div id="health-4" class="hiddenones" style='display:none'>
 	    		<div id="protein" style=" width: 100%; height: 250px;"></div>
-	    		<div id="protein-text" style=" width: 45%; height: 250px;">
+	    		<div id="protein-text" style=" width: 90%; height: 250px;">
 	    			lijlijl;jn;lkjf;alskjf;as
 	    		</div>
 	    	</div>
 	    
 	    	<div id="health-5" class="hiddenones" style='display:none'>
 	    		<div id="sodium" style=" width: 100%; height: 250px;"></div>
-	    		<div id="sodium-text" style=" width: 45%; height: 250px;">
+	    		<div id="sodium-text" style=" width: 90%; height: 250px;">
 	    			a;sldfja ;lkja;lf kja;slkfj
 	    		</div>
 	    	</div>
 	    
 	    	<div id="health-6" class="hiddenones" style='display:none'>
 	    		<div id="sugar" style="  width: 100%; height: 250px;"></div>
-	    		<div id="sugar-text" style=" width: 45%; height: 250px;">
+	    		<div id="sugar-text" style=" width: 90%; height: 250px;">
 	    			a;sldfk a;lfkjas;ldkf ja;slkfj
 	    		</div>
 	    	</div>

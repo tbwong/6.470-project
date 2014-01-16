@@ -18,30 +18,36 @@ $(document).ready(function(){
         $('#health-'+currentDiv).show();
         console.log(currentDiv);
     });
+    $(window).resize()
 })
     
 
-function makeHighCharts(calories,carbs,fat,protein,sodium,sugar, dates) {
+function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarData, dates) {
 
-        $('#calories').highcharts({
-            title: {
-                text: 'Daily calorie intake',
-                x: -20 //center
+    function drawCalories(x,y) {
+        calorieChart = new Highcharts.Chart({
+            chart: {
+                height : x , 
+                width : y ,
+                renderTo: 'calories-container',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                reflow: true
             },
-            subtitle: {
-                
-                x: -20
+            title: {
+                text: 'Daily calorie intake'
             },
             xAxis: {
                 categories: dates
             },
             yAxis: {
                 title: {
-                    text: 'Calories'
+                    text: 'Calories (g)'
                 },
                 plotLines: [{
                     value: 0,
-                    width: 1
+                    width: 1 
                 }]
             },
             tooltip: {
@@ -54,20 +60,28 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar, dates) {
                 borderWidth: 0
             },
             series: [{
+                type: 'line',
                 name: 'Tiffany',
-                data: calories,
-                color: '#9966FF'
+                data: calData
             }]
         });
+    }
+    drawCalories('#calories-container'.width, '#calories-container'.height) ; 
+    console.log('#calories-container'.width, '#calories-container'.height)
 
-        $('#carbs').highcharts({
-            title: {
-                text: 'Daily carb intake',
-                x: -20 //center
+    function drawCarbs(x, y) {
+        carbChart = new Highcharts.Chart({
+            chart: {
+                height : x , 
+                width : y ,
+                renderTo: 'carbs-container',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                reflow: true
             },
-            subtitle: {
-                
-                x: -20
+            title: {
+                text: 'Daily carb intake'
             },
             xAxis: {
                 categories: dates
@@ -78,8 +92,7 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar, dates) {
                 },
                 plotLines: [{
                     value: 0,
-                    width: 1
-                    
+                    width: 1 
                 }]
             },
             tooltip: {
@@ -92,11 +105,17 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar, dates) {
                 borderWidth: 0
             },
             series: [{
+                type: 'line',
                 name: 'Tiffany',
-                data: carbs,
+                data: carbsData,
                 color: '#0033FF'
             }]
         });
+    }
+    drawCarbs('#carbs-container'.width, '#carbs-container'.height);
+    console.log($('#carbs-container').width, $('#carbs-container').height)    
+
+
 
         $('#fat').highcharts({
             title: {
@@ -249,10 +268,11 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar, dates) {
 }
 
 
-$(window).resize(function() {
-    height = chart.height
-    width = $("#chartRow").width() / 2
-    chart.setSize(width, height, doAnimation = true);
+$('#calories').resize(function() {
+    calorieChart.redraw();
+});
+$('#calories').resize(function() {
+    carbChart.redraw();
 });
 
 
