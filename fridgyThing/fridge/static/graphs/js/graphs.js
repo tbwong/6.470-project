@@ -8,7 +8,7 @@ $(document).ready(function(){
         $('.hiddenones').hide();
         $('#health-'+currentDiv).show();
         console.log(currentDiv);
-    });
+    });  
     $('#left').click(function(){
         currentDiv -= 1;
         if(currentDiv < 1){
@@ -19,6 +19,26 @@ $(document).ready(function(){
         console.log(currentDiv);
     });
     $(window).resize()
+
+    
+$('#calories-container').resize(function() {
+    calorieChart.redraw();
+});
+$('#carbs-container').resize(function() {
+    carbChart.redraw();
+});
+$('#fat-container').resize(function() {
+    fatChart.redraw();
+});
+$('#protein-container').resize(function() {
+    proteinChart.redraw();
+});
+$('#sodium-container').resize(function() {
+    sodiumChart.redraw();
+});
+$('#sugar-container').resize(function() {
+    sugarChart.redraw();
+});
 })
     
 
@@ -154,7 +174,6 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 name: 'Tiffany',
                 data: fatData,
                 color: '#339900'
-                console.log(fatData)
             }]
         });
     }
@@ -292,27 +311,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 color: '#FF66CC'
             }]
         });
+        
     }
+    drawSugar('#sodium-container'.width, '#sodium-container'.height);
+}
 
-
-$('#calories-container').resize(function() {
-    calorieChart.redraw();
-});
-$('#carbs-container').resize(function() {
-    carbChart.redraw();
-});
-$('#fat-container').resize(function() {
-    fatChart.redraw();
-});
-$('#protein-container').resize(function() {
-    proteinChart.redraw();
-});
-$('#sodium-container').resize(function() {
-    sodiumChart.redraw();
-});
-$('#sugar-container').resize(function() {
-    sugarChart.redraw();
-});
 
 
 
