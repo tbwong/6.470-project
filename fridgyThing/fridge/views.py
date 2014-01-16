@@ -46,7 +46,15 @@ def showGraphsPage(request):
 												})
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
+
+def showScrapbookPage(request):
+       items = 0
+       return render(request, 'scrapbook/scrapbook.html', {'item':items})
+
 #----------------Jacqui-----------------/\
+
+
+
 #----------------Rujia-----------------\/
 def showShoppingPage(request):
         items = 0

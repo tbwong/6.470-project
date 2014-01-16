@@ -117,10 +117,11 @@ h1{
 }
 
 #shoppingheader {
-	margin-left:14px; 
+	margin-left:14px;
 	padding-top:7px; 
-	padding-bottom:15px; 
-	font-size:20px
+	padding-bottom:6px; 
+	font-size:20px;
+	height:45px;
 }
 
 #listspace {
@@ -158,16 +159,24 @@ h1{
 	float:right;
 }
 
+.check {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+
 #foodedit {
 	font-size:16px;
 	font-style:italic;
 	background-color:#eeeeee;
 	border:transparent;
 	padding-left: 14px;
-	padding-top: 6px;
+	padding-top: 7px;
 	padding-bottom: 5px;
 	padding-right:14px;
-	height:40px;
+	height:36px;
 }
 
 #foodedit, #food:focus {

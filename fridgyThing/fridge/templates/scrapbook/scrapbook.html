@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+
+<head>
+  <meta charset=”utf-8”>  
+  <title>ScrapBook</title>
+
+  {% load staticfiles %} 
+
+  <link href='http://fonts.googleapis.com/css?family=Exo:200,300,400,500|Alegreya+Sans' rel='stylesheet' type='text/css'>
+
+  <!-- Boostrap -->
+  <link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap-theme.min.css' %}">
+
+  <!-- Styles -->
+
+  <link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/layout.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'scrapbook/styles/scrapbook.css'%}">
+
+  <!-- Scripts -->
+  <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+  <script type="text/javascript" src="{% static 'scrapbook/js/scrapBook.js' %}"> </script>
+   <!--End Header -->
+
+<!--
+  <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-lightbox/0.6.1/bootstrap-lightbox.js"></script>
+
+  <!-- Latest compiled and minified CSS
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type = "text/css" href="styles/bootstrap-lightbox/bootstrap-lightbox.min.css">
+   <script type="text/javascript" href="styles/bootstrap-lightbox/bootstrap-lightbox.min.js"></script>
+  <!-- Optional theme
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.min.css">
+
+  <link rel="text/javascript" href="styles/bootstrap/js/bootstrap.js">
+  <link rel="stylesheet" type="text/css" href="styles/layout.css">
+  <link rel="stylesheet" type="text/css" href="scrapbook2.css">
+  <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+  <script type="text/javascript" src="scrapbook.js"> </script>
+--> 
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="siteTitle">
+        <h1>frjr</h1>
+      </div>
+<!--      <label class="seperatorLine">|</label> -->
+      <a href="index.html"><div id='logout' style='float:right'>
+        <span class='glyphicon glyphicon-log-out' style='margin-left:12px'></span>
+        <br>logout
+      </div></a>
+    </nav>
+  </header>
+
+  <nav class='sidebarHolder' style='float:left;'>
+    <ul class="sidebar nav nav-pills nav-stacked">
+      <li><a id = 'fridge' href="{% url 'fridge:appPage' %}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+      <li><a id = 'shopping-list' href="{% url 'fridge:showShopping' %}"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
+      <li><a id = 'nutrition' href="{% url 'fridge:showGraphs' %}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+      <li><a id='scrapbook' href="#% url 'fridge:showScrapbook"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
+      <li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+      <li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+      <li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+    </ul>
+  </nav>
+
+<center>
+  <div id = "title">
+      <h1> Welcome to your Scrapbook! </h1>
+  </div>
+
+  <div class = "button"; id = "upload-button">
+      <span class="glyphicon glyphicon-upload">
+      <a href="/images/new"> Upload another image?</a>
+  </div>
+</center>
+
+ <!--Lightbox WDe
+
+<a data-toggle="lightbox" href="#demoLightbox">Open Lightbox</a>
+<div id="demoLightbox" class="lightbox fade"  tabindex="-1" role="dialog" aria-hidden="true">
+    <div class='lightbox-dialog'>
+        <div class='lightbox-content'>
+            <img src="image.png">
+            <div class='lightbox-caption'>
+                Your caption here
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+ <!--Grid -->
+<div class="row"; id = "grid">
+    <div class="col-lg-4 col-sm-6 col-xs-12" id= "img-center">
+        <div class = "lightbox-content">
+        <a data-toggle="lightbox" href="#lightbox">Open Lightbox</a>
+        <a data-toggle="lightbox" data-target="#lightbox" data-gallery="multiimages" data-title="Waffle" href = "#" >
+             <img src="http://www.chocolatecoveredkatie.com/wp-content/uploads/Healthy-Breakfast-Month_7BC0/chocolate-pancake.jpg?73e30c" class= "thumbnail img-responsive">
+             <div class="lightbox-caption">
+             </div> 
+           </div>
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href= "http://www.chocolatecoveredkatie.com/wp-content/uploads/dfeeb67d5f29_11A24/IMG_0312.jpg?73e30c" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
+             <img src= "http://www.chocolatecoveredkatie.com/wp-content/uploads/dfeeb67d5f29_11A24/IMG_0312.jpg?73e30c" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
+        <a href="#">
+             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
+        </a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
