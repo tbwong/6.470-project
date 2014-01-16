@@ -54,6 +54,8 @@ MIDDLEWARE_CLASSES = (
     'corsheaders.middleware.CorsMiddleware'
 )
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 ROOT_URLCONF = 'fridgyThing.urls'
 
 WSGI_APPLICATION = 'fridgyThing.wsgi.application'

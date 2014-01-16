@@ -7,7 +7,7 @@ from fridge.models import Ingredient
 #----------------Pav-----------------\/
 def index(request):
 	return render(request, 'fridge/index.html')
-def app(request):
+def showFridge(request):
 	ingredients = Ingredient.objects.all() 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients} )
 
