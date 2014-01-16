@@ -85,10 +85,10 @@ $(document).click(function(e) {
 		$("#foodedit").replaceWith("<div class='hov'>"+foodedit+"<button type='button' class='close invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
 	}
 });
-*/
+
 
 $(document).click(function(e) {
 //	if ($("#foodedit").length!=0 && e.target.id !== '' && e.target.id !== 'foodedit' && e.target.id !== 'edit') {
-		alert(e.target.id);
-	}
+	alert(e.target.id);
 });
+*/

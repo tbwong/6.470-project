@@ -1,0 +1,75 @@
+﻿Merge branch 'master' of https://github.com/tbwong/6.470-project
+
+Conflicts:
+	fridgyThing/fridge/models.pyc
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 7 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#   (use "git commit" to conclude merge)
+#
+# Changes to be committed:
+#
+#	deleted:    .DS_Store
+#	new file:   .gitignore
+#	deleted:    fridgyThing/fridge/.DS_Store
+#	modified:   fridgyThing/fridge/__init__.pyc
+#	modified:   fridgyThing/fridge/admin.pyc
+#	deleted:    fridgyThing/fridge/models.py
+#	deleted:    fridgyThing/fridge/models.pyc
+#	deleted:    fridgyThing/fridge/static/fridge/images/.DS_Store
+#	modified:   fridgyThing/fridge/static/graphs/js/graphs.js
+#	new file:   fridgyThing/fridge/static/scrapbook/js/scrapbook.js
+#	new file:   fridgyThing/fridge/static/scrapbook/styles/scrapbook.css
+#	renamed:    fridgyThing/.DS_Store -> fridgyThing/fridge/templates/.DS_Store
+#	modified:   fridgyThing/fridge/templates/graphs/.DS_Store
+#	modified:   fridgyThing/fridge/templates/graphs/graphs.html
+#	new file:   fridgyThing/fridge/templates/scrapbook/scrapbook.html
+#	modified:   fridgyThing/fridge/urls.py
+#	modified:   fridgyThing/fridge/urls.pyc
+#	modified:   fridgyThing/fridge/views.py
+#	modified:   fridgyThing/fridge/views.pyc
+#	deleted:    fridgyThing/fridgyThing/.DS_Store
+#	modified:   fridgyThing/fridgyThing/__init__.pyc
+#	modified:   fridgyThing/fridgyThing/settings.pyc
+#	modified:   fridgyThing/fridgyThing/urls.pyc
+#	modified:   fridgyThing/fridgyThing/wsgi.pyc
+#	new file:   test-sketch-thing/css/scrapbook.css
+#	deleted:    test-sketch-thing/images/.DS_Store
+#	new file:   test-sketch-thing/images/scrapbook/Breakfast-Quinoa.jpg
+#	new file:   test-sketch-thing/images/scrapbook/Gluten-Free-Waffles_thumb_4.jpg
+#	new file:   test-sketch-thing/images/scrapbook/IMG_0312.jpg
+#	new file:   test-sketch-thing/images/scrapbook/Oatmeal-Cupcakes.jpg
+#	new file:   test-sketch-thing/images/scrapbook/Yogurt-Breakfast-Bowl.jpg
+#	new file:   test-sketch-thing/js/jquery-1.9.1.min.js
+#	new file:   test-sketch-thing/js/script.js
+#	new file:   test-sketch-thing/scrapbook3.html
+#	new file:   test-sketch-thing/scrapbook_fin.html
+#	new file:   test-sketch-thing/scrapbook_test.html
+#	deleted:    test-sketch-thing/styles/.DS_Store
+#	deleted:    tiff-sketch/.DS_Store
+#	deleted:    tiff-sketch/image_use/.DS_Store
+#	deleted:    tiff-sketch/images/.DS_Store
+#	deleted:    tiff-sketch/styles/.DS_Store
+#
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   fridgyThing/fridge/__init__.pyc
+#	modified:   fridgyThing/fridgyThing/__init__.pyc
+#	modified:   fridgyThing/fridgyThing/settings.pyc
+#	modified:   fridgyThing/fridgyThing/wsgi.pyc
+#
+
