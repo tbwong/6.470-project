@@ -1,4 +1,4 @@
-var currentDiv = 12;
+var currentDiv = 1;
 $(document).ready(function(){
     $('#right').click(function(){
         currentDiv += 1;
@@ -7,6 +7,7 @@ $(document).ready(function(){
         }
         $('.hiddenones').hide();
         $('#health-'+currentDiv).show();
+        console.log(currentDiv);
     });
     $('#left').click(function(){
         currentDiv -= 1;
@@ -15,11 +16,12 @@ $(document).ready(function(){
         }
         $('.hiddenones').hide();
         $('#health-'+currentDiv).show();
+        console.log(currentDiv);
     });
 })
     
 
-function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
+function makeHighCharts(calories,carbs,fat,protein,sodium,sugar, dates) {
 
         $('#calories').highcharts({
             title: {
@@ -31,8 +33,7 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
                 x: -20
             },
             xAxis: {
-                categories: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat',
-                    'Sun', 'Mon']
+                categories: dates
             },
             yAxis: {
                 title: {
@@ -54,7 +55,7 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
             },
             series: [{
                 name: 'Tiffany',
-                data: [6.9, 9.5, 14.5, 25.2, 23.3, 18.3, 13.9, 9.6],
+                data: calories,
                 color: '#9966FF'
             }]
         });
@@ -69,8 +70,7 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
                 x: -20
             },
             xAxis: {
-                categories: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat',
-                    'Sun', 'Mon']
+                categories: dates
             },
             yAxis: {
                 title: {
@@ -93,7 +93,7 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
             },
             series: [{
                 name: 'Tiffany',
-                data: [9.9, 9.5, 14.5, 20.2, 17.3, 18.3, 13.9, 11.6],
+                data: carbs,
                 color: '#0033FF'
             }]
         });
@@ -108,8 +108,7 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
                 x: -20
             },
             xAxis: {
-                categories: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat',
-                    'Sun', 'Mon']
+                categories: dates
             },
             yAxis: {
                 title: {
@@ -131,7 +130,7 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
             },
             series: [{
                 name: 'Tiffany',
-                data: [19.9, 18.5, 16.5, 13.2, 12.3, 10.3, 7.9, 8.6],
+                data: fat,
                 color: '#339900'
             }]
         });
@@ -146,8 +145,7 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
                 x: -20
             },
             xAxis: {
-                categories: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat',
-                    'Sun', 'Mon']
+                categories: dates
             },
             yAxis: {
                 title: {
@@ -169,7 +167,7 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
             },
             series: [{
                 name: 'Tiffany',
-                data: [2.9, 5.5, 10.5, 7.2, 12.3, 15.3, 17.9, 19.6],
+                data: protein,
                 color: '#FF3300'
             }]
         });
@@ -184,8 +182,7 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
                 x: -20
             },
             xAxis: {
-                categories: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat',
-                    'Sun', 'Mon']
+                categories: dates
             },
             yAxis: {
                 title: {
@@ -207,7 +204,7 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
             },
             series: [{
                 name: 'Tiffany',
-                data: [12.9, 10.5, 8.5, 12.2, 14.3, 16.3, 18.9, 19.6],
+                data: sodium,
                 color: '#CC0033'
             }]
         });
@@ -222,8 +219,7 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
                 x: -20
             },
             xAxis: {
-                categories: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat',
-                    'Sun', 'Mon']
+                categories: dates
             },
             yAxis: {
                 title: {
@@ -245,13 +241,19 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar) {
             },
             series: [{
                 name: 'Tiffany',
-                data: [18.9, 19.5, 15.5, 13.2, 8.3, 3.3, 6.9, 7.6],
+                data: sugar,
                 color: '#FF66CC'
             }]
         });
 
 }
 
+
+$(window).resize(function() {
+    height = chart.height
+    width = $("#chartRow").width() / 2
+    chart.setSize(width, height, doAnimation = true);
+});
 
 
 

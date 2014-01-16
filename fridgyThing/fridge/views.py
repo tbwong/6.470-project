@@ -35,10 +35,14 @@ def showGraphsPage(request):
 	proteinValues = [100,20,30,40]
 	sodiumValues = [100,20,30,40]
 	sugarValues = [100,20,30,40]
-
+	currentDates = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
 	return render(request, 'graphs/graphs.html',{'cal':calories,
+												'carb': carbValues,
 												'fat':fatValues,
-												
+												'protein': proteinValues,
+												'sodium': sodiumValues,
+												'sugar': sugarValues,
+												'dates': currentDates
 												})
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
