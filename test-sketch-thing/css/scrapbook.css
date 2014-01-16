@@ -100,3 +100,11 @@ h2{
 	top:150px;
 	opacity: 0.5;
 }
+
+span.glyphicon-chevron-right {
+    font-size: 5em;
+}
+
+span.glyphicon-chevron-left {
+    font-size: 5em;
+}
