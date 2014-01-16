@@ -16,23 +16,68 @@
   	<link rel="stylesheet" type="text/css" href="styles/layout.css">
 </head>
 <body>
-	<div id = "header">
-		<div id = "menu">
-			<h2>Welcome to Your Scrapbook!</h2>
-		</div>
-	</div>
+
+	<header>
+    <nav>
+      <div class="siteTitle">
+        <h1>frjr</h1>
+      </div>
+<!--      <label class="seperatorLine">|</label> -->
+      <a href="index.html"><div id='logout' style='float:right'>
+        <span class='glyphicon glyphicon-log-out' style='margin-left:12px'></span>
+        <br>logout
+      </div></a>
+    </nav>
+  </header>
+
+  <nav class='sidebarHolder' style='float:left;'>
+    <ul class="sidebar nav nav-pills nav-stacked">
+      <li><a id = 'fridgeTab' href="#fridge"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+      <li><a href=""><span class='glyphicon glyphicon-cutlery'></span> | Today's Breakdown<i class='arrow'>></i></a></li>
+      <li><a href="graphs.html"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+      <li><a href=""><i  class='glyphicon glyphicon-user'></i> | Relationships<i class='arrow'>></i></a></li>
+      <li><a href="scrapbook.html"><span class='glyphicon glyphicon-book'></span> | Scrapbook<i class='arrow'>></i></a></li>
+      <li><a href="shopping.html"><span class='glyphicon glyphicon-book'></span> | Shopping List<i class='arrow'>></i></a></li>
+      <li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+    </ul>
+  </nav>
+
+<!-- Welcome Message and Upload -->
+<center>
+  <div id = "title">
+      <h1> Welcome to your Scrapbook! </h1>
+  </div>
+
+  <div class = "button"; id = "upload-button">
+      <span class="glyphicon glyphicon-upload">
+      <a href="/images/new"> Upload another image?</a>
+  </div>
+</center>
+
+<!--Picture Display code -->
 	<div id='overlay'></div>
-	<div id='frame'><img src="" alt="" width="100%"/></div>
+	<div id='frame'>
+    <table id = "frame-table">
+        <tr>
+          <td id = "left">
+            <img src = "img/left.png" alt = "left"/>
+          </td>
+          <td id = "right">
+            <img src = "img/right.png" alt = "right"/>
+          </td>
+        </tr>
+      </table>
+    <img id = "main" src="" alt=""/>
+  </div>
 	<div id = "wrapper">
 		<ul id = "portfolio">
-			<li><img src="images/1.jpg" alt = "img"/></li>
-			<li><img src="images/2.jpg" alt = "img"/></li>
-			<li><img src="images/3.jpg" alt = "img"/></li>
-			<li><img src="images/4.jpg" alt = "img"/></li>
-			<li><img src="images/5.jpg" alt = "img"/></li>
-			<li><img src="images/6.jpg" alt = "img"/></li>
-			<li><img src="images/7.jpg" alt = "img"/></li>
-			<li><img src="images/8.jpg" alt = "img"/></li>
+			<li><img src="images/scrapbook/Breakfast-Quinoa.jpg" alt = "img"/></li>
+			<li><img src="images/scrapbook/Gluten-Free-Waffles_thumb_4.jpg" alt = "img"/></li>
+			<li><img src="images/scrapbook/Apple-Pie-Enchiladas.jpg" alt = "img"/></li>
+			<li><img src="images/scrapbook/cookie-dough-bowls.jpg" alt = "img"/></li>
+			<li><img src="images/scrapbook/IMG_0312.jpg" alt = "img"/></li>
+			<li><img src="images/scrapbook/Oatmeal-Cupcakes.jpg" alt = "img"/></li>
+			<li><img src="images/scrapbook/Yogurt-Breakfast-Bowl.jpg" alt = "img"/></li>
 		</ul>
 	</div>	
 
