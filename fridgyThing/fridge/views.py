@@ -48,8 +48,10 @@ def showGraphsPage(request):
 #----------------Jacqui-----------------\/
 
 def showScrapbookPage(request):
-       items = 0
-       return render(request, 'scrapbook/scrapbook.html', {'item':items})
+       pictures = [x.picture for x in Pictures.objects.all()]
+       date = [x.date for x in Pictures.objects.all()]
+       caption = [x.caption for x in Pictures.objects.all()]
+       return render(request, 'scrapbook/scrapbook.html', {'pictures':pictures, 'date':date, 'caption':caption})
 
 #----------------Jacqui-----------------/\
 

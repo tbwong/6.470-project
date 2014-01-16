@@ -66,8 +66,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
             }]
         });
     }
-    drawCalories('#calories-container'.width, '#calories-container'.height) ; 
-    console.log('#calories-container'.width, '#calories-container'.height)
+    drawCalories('#calories-container'.width, '#calories-container'.height) 
 
     function drawCarbs(x, y) {
         carbChart = new Highcharts.Chart({
@@ -112,34 +111,37 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
             }]
         });
     }
-    drawCarbs('#carbs-container'.width, '#carbs-container'.height);
-    console.log($('#carbs-container').width, $('#carbs-container').height)    
+    drawCarbs('#carbs-container'.width, '#carbs-container'.height);   
 
 
-
-        $('#fat').highcharts({
-            title: {
-                text: 'Daily fat intake',
-                x: -20 //center
+    function drawFats(x, y) {
+        fatChart = new Highcharts.Chart({
+            chart: {
+                height : x , 
+                width : y ,
+                renderTo: 'fat-container',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                reflow: true
             },
-            subtitle: {
-                
-                x: -20
+            title: {
+                text: 'Daily fat intake'
             },
             xAxis: {
                 categories: dates
             },
             yAxis: {
                 title: {
-                    text: 'Fat (g)'
+                    text: 'Fats (g)'
                 },
                 plotLines: [{
                     value: 0,
-                    width: 1
+                    width: 1 
                 }]
             },
             tooltip: {
-                valueSuffix: '°C'
+                valueSuffix: ''
             },
             legend: {
                 layout: 'vertical',
@@ -148,35 +150,44 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 borderWidth: 0
             },
             series: [{
+                type: 'line',
                 name: 'Tiffany',
-                data: fat,
+                data: fatData,
                 color: '#339900'
+                console.log(fatData)
             }]
         });
+    }
+    drawFats('#fat-container'.width, '#fat-container'.height);
 
-        $('#protein').highcharts({
-            title: {
-                text: 'Daily protein intake',
-                x: -20 //center
+    function drawProtein(x, y) {
+        proteinChart = new Highcharts.Chart({
+            chart: {
+                height : x , 
+                width : y ,
+                renderTo: 'protein-container',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                reflow: true
             },
-            subtitle: {
-                
-                x: -20
+            title: {
+                text: 'Daily protein intake'
             },
             xAxis: {
                 categories: dates
             },
             yAxis: {
                 title: {
-                    text: 'Sodium (g)'
+                    text: 'Protein (g)'
                 },
                 plotLines: [{
                     value: 0,
-                    width: 1
+                    width: 1 
                 }]
             },
             tooltip: {
-                valueSuffix: '°C'
+                valueSuffix: ''
             },
             legend: {
                 layout: 'vertical',
@@ -185,20 +196,28 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 borderWidth: 0
             },
             series: [{
+                type: 'line',
                 name: 'Tiffany',
-                data: protein,
+                data: proteinData,
                 color: '#FF3300'
             }]
         });
+    }
+    drawProtein('#protein-container'.width, '#protein-container'.height);
 
-        $('#sodium').highcharts({
-            title: {
-                text: 'Daily sodium intake',
-                x: -20 //center
+    function drawSodium(x, y) {
+        sodiumChart = new Highcharts.Chart({
+            chart: {
+                height : x , 
+                width : y ,
+                renderTo: 'sodium-container',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                reflow: true
             },
-            subtitle: {
-                
-                x: -20
+            title: {
+                text: 'Daily sodium intake'
             },
             xAxis: {
                 categories: dates
@@ -209,11 +228,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 },
                 plotLines: [{
                     value: 0,
-                    width: 1
+                    width: 1 
                 }]
             },
             tooltip: {
-                valueSuffix: '°C'
+                valueSuffix: ''
             },
             legend: {
                 layout: 'vertical',
@@ -222,20 +241,28 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 borderWidth: 0
             },
             series: [{
+                type: 'line',
                 name: 'Tiffany',
-                data: sodium,
+                data: sodiumData,
                 color: '#CC0033'
             }]
         });
+    }
+    drawSodium('#sodium-container'.width, '#sodium-container'.height);
 
-        $('#sugar').highcharts({
-            title: {
-                text: 'Daily sugar intake',
-                x: -20 //center
+    function drawSugar(x, y) {
+        sugarChart = new Highcharts.Chart({
+            chart: {
+                height : x , 
+                width : y ,
+                renderTo: 'sugar-container',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                reflow: true
             },
-            subtitle: {
-                
-                x: -20
+            title: {
+                text: 'Daily sugar intake'
             },
             xAxis: {
                 categories: dates
@@ -246,11 +273,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 },
                 plotLines: [{
                     value: 0,
-                    width: 1
+                    width: 1 
                 }]
             },
             tooltip: {
-                valueSuffix: '°C'
+                valueSuffix: ''
             },
             legend: {
                 layout: 'vertical',
@@ -259,22 +286,33 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 borderWidth: 0
             },
             series: [{
+                type: 'line',
                 name: 'Tiffany',
-                data: sugar,
+                data: sugarData,
                 color: '#FF66CC'
             }]
         });
+    }
 
-}
 
-
-$('#calories').resize(function() {
+$('#calories-container').resize(function() {
     calorieChart.redraw();
 });
-$('#calories').resize(function() {
+$('#carbs-container').resize(function() {
     carbChart.redraw();
 });
-
+$('#fat-container').resize(function() {
+    fatChart.redraw();
+});
+$('#protein-container').resize(function() {
+    proteinChart.redraw();
+});
+$('#sodium-container').resize(function() {
+    sodiumChart.redraw();
+});
+$('#sugar-container').resize(function() {
+    sugarChart.redraw();
+});
 
 
 
