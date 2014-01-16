@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from fridge.models import Ingredient 
+from fridge.models import Calories, Carbs, Fats, Protein, Sodium, Sugar
 # Create your views here.
 
 #----------------Pav-----------------\/
