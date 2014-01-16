@@ -86,12 +86,12 @@ $(document).ready(function(){
     	});
     });
 
-	$('.foodPic').mouseenter(function(){
-		$(this).children('.ingredientPie').fadeIn();
-	});
-	$('.ingredientPie').mouseout(function(){
-		$(this).fadeOut();
-	});
+	// $('.foodPic').mouseenter(function(){
+	// 	$(this).children('.ingredientPie').fadeIn();
+	// });
+	// $('.ingredientPie').mouseout(function(){
+	// 	$(this).fadeOut();
+	// });
 
 	$('#addIng').click(function(){
 		$('#popupBackground').fadeIn();
@@ -101,5 +101,14 @@ $(document).ready(function(){
 		$('#popupBackground').fadeOut();
 		$('#addIng-popup').hide('fast');
 	});
+	function getRecipies(Ingredients){
+		var url =' http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true'
+		for i in range(0,len(Ingredients)):
+			url = url+'&allowedIngredient[]='+Ingredients[i]
+		$.get(url,function(data){
+			alert(data);
+		});
+	}
+
 });
 

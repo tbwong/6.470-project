@@ -194,10 +194,10 @@ h1{
 .popup{
 	display: none;
 	position: fixed;
-	width: 400px;
+	width: 500px;
 	height: 300px;
 	left: 50%;
-	margin-left: -200px;
+	margin-left: -250px;
 	top: 50%;
 	margin-top: -150px;
 	background-color: white;
