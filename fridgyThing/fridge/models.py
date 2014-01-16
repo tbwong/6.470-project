@@ -16,19 +16,24 @@ class Calories(models.Model):
 	eaten_date = models.DateTimeField('date published')
 
 class Carbs(models.Model):
-
+	amount = models.IntegerField(default=0)
+	eaten_date = models.DateTimeField('date published')
 
 class Fats(models.Model):
-
+	amount = models.IntegerField(default=0)
+	eaten_date = models.DateTimeField('date published')
 
 class Protein(model.Model):
-
+	amount = models.IntegerField(default=0)
+	eaten_date = models.DateTimeField('date published')
 
 class Sodium(model.Model):
-
+	amount = models.IntegerField(default=0)
+	eaten_date = models.DateTimeField('date published')
 
 class Sugar(model.Model):
-
+	amount = models.IntegerField(default=0)
+	eaten_date = models.DateTimeField('date published')
 
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
