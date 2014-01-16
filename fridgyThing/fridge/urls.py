@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^graphs/',views.showGraphsPage,name='showGraphs'),
     #----------------Tiff-----------------/\
     #----------------Jacqui-----------------\/
+    url(r'^scrapbook/',views.showScrapbookPage, name='showScrapbook'),
     #----------------Jacqui-----------------/\
     #----------------Rujia-----------------\/
     url(r'^shopping/',views.showShoppingPage, name='showShopping')
