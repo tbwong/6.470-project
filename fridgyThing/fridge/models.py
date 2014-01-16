@@ -15,4 +15,6 @@ class Ingredient(models.Model):
 #----------------Jacqui-----------------\/
 #----------------Jacqui-----------------/\
 #----------------Rujia-----------------\/
+#class ShoppingList(models.Model):
+#        name = 
 #----------------Rujia-----------------/\
