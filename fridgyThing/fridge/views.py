@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from fridge.models import Ingredient 
+from fridge.models import Ingredient, Pictures
 # Create your views here.
 
 #----------------Pav-----------------\/
