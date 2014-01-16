@@ -11,6 +11,25 @@ class Ingredient(models.Model):
 		
 #----------------Pav-----------------/\
 #----------------Tiff-----------------\/
+class Calories(models.Model):
+	amount = models.IntegerField(default=0)
+	eaten_date = models.DateTimeField('date published')
+
+class Carbs(models.Model):
+
+
+class Fats(models.Model):
+
+
+class Protein(model.Model):
+
+
+class Sodium(model.Model):
+
+
+class Sugar(model.Model):
+
+
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
 #----------------Jacqui-----------------/\

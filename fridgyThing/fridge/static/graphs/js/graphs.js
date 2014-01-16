@@ -250,7 +250,7 @@ function makeHighCharts(calories,carbs,fat,protein,sodium,sugar, dates) {
 
 
 $(window).resize(function() {
-    height = chart.height
+    height = window.height
     width = $("#chartRow").width() / 2
     chart.setSize(width, height, doAnimation = true);
 });
