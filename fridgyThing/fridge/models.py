@@ -23,15 +23,15 @@ class Fats(models.Model):
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
 
-class Protein(model.Model):
+class Protein(models.Model):
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
 
-class Sodium(model.Model):
+class Sodium(models.Model):
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
 
-class Sugar(model.Model):
+class Sugar(models.Model):
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
 
