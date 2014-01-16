@@ -3,16 +3,18 @@
 <head>
 	<title>Fridge</title>
 
+	{% load staticfiles %}
+	
 	<link href='http://fonts.googleapis.com/css?family=Exo:200,300,400,500|Alegreya+Sans' rel='stylesheet' type='text/css'>
 
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap.min.css' %}">
 	<!-- Optional theme -->
-	<link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap-theme.min.css' %}">
 
-	<link rel="stylesheet" type="text/css" href="styles/shopping.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'shopping/styles/shopping.css' %}">
 	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
-	<script type="text/javascript" src="shopping.js"></script>
+	<script type="text/javascript" src="{% static 'shopping/js/shopping.js' %}"></script>
 </head>
 <body>
 	<header>
@@ -31,12 +33,12 @@
 
 	<nav class='sidebarHolder' style='float:left;'>
 		<ul class="sidebar nav nav-pills nav-stacked">
-			<li><a id = 'fridgeTab' href="layout.html"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
-			<li><a href="graphs.html"><span class='glyphicon glyphicon-cutlery'></span> | Todays Breakdown<i class='arrow'>></i></a></li>
-			<li><a href="graphs.html"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
-			<li><a href=""><i class='glyphicon glyphicon-user'></i> | Relationships<i class='arrow'>></i></a></li>
-			<li><a href="scrapbook.html"><span class='glyphicon glyphicon-book'></span> | Scrapbook<i class='arrow'>></i></a></li>
-			<li><a href="shopping.html"><span class='glyphicon glyphicon-book'></span> | Shopping List<i class='arrow'>></i></a></li>
+			<li><a id = 'fridge' href="{% url 'fridge:appPage' %}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+			<li><a id = 'shopping list' href="{% url 'fridge:showShopping' %}"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
+			<li><a id = 'nutrition' href="{% url 'fridge:showGraphs' %}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+			<li><a id='scrapbook' href="#asdfsadfasf"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
 			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
 		</ul>
 	</nav>
@@ -80,6 +82,7 @@
 			</div><!-- /.row -->
 		
 		</div>
+		
 	</div>
 
 	<!-- Latest compiled and minified JavaScript -->

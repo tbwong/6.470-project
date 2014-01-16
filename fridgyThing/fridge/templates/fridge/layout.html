@@ -27,7 +27,6 @@
 			<div class="siteTitle">
 				<h1>frjr</h1>
 			</div>
-<!-- 			<label class="seperatorLine">|</label> -->
 
 			<a id='logout' href="">
 					<span class='glyphicon glyphicon-log-out' style='margin-left:12px'></span>
@@ -66,14 +65,10 @@
 	</header>
 	<nav class='sidebarHolder' style='float:left;'>
 		<ul class="sidebar nav nav-pills nav-stacked">
-			<li><a id = 'fridge' href="#fridge"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
-			<li><a id = 'todays' href="#todays"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
-			<li><a id = 'nutrition' href="#nutrition"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
-			
-
+			<li><a id = 'fridge' href="{% url 'fridge:appPage' %}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+			<li><a id = 'shopping-list' href="{% url 'fridge:showShopping' %}"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
+			<li><a id = 'nutrition' href="{% url 'fridge:showGraphs' %}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
 			<li><a id='scrapbook' href="#asdfsadfasf"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
-
-
 			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
 			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
 			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
@@ -82,7 +77,7 @@
 
 
 	<div id="showpiece-fridge" class='showpiece'>
-		<div class='scrollable'>
+		<div class='scrollable' style="display:none;">
 			<div id = 'current-fridge'>
 				<ul 'nav nav-pills'>
 					{% for ingredient in ingredients%}
@@ -102,44 +97,46 @@
 						    
 						    var imageSearch{{forloop.counter}};
 						    
-						    function searchComplete() {
+						    function searchComplete{{forloop.counter}}() {
 						      // Check that we got results
-						      if (imageSearch{{forloop.counter}}.results && imageSearch{{forloop.counter}}.results.length > 0) {
-						        // Grab our content div, clear it.
-						        var contentDiv = document.getElementById('ing-{{forloop.counter}}');
-						        contentDiv.innerHTML = '';
-						    
-						        // Loop through our results, printing them to the page.
-						        var results = imageSearch{{forloop.counter}}.results;
-						          var result = results[0];
-						          var newImg = document.createElement('img');
-						          // There is also a result.url property which has the escaped version
-						          newImg.src = result.tbUrl;
-						          contentDiv.appendChild(newImg);
+								if (imageSearch{{forloop.counter}}.results && imageSearch{{forloop.counter}}.results.length > 0) {
+									// Grab our content div, clear it.
+									 var contentDiv{{forloop.counter}} = document.getElementById('ing-{{forloop.counter}}');
+									// contentDiv{{forloop.counter}}.innerHTML = '';
 
-						        }
+									// Loop through our results, printing them to the page.
+									var results{{forloop.counter}} = imageSearch{{forloop.counter}}.results;
+									var result{{forloop.counter}} = results{{forloop.counter}}[0];
+									var newImg{{forloop.counter}} = document.createElement('img');
+									// There is also a result.url property which has the escaped version
+									newImg{{forloop.counter}}.src = result{{forloop.counter}}.tbUrl;
+									newImg{{forloop.counter}}.width=150;
+									newImg{{forloop.counter}}.height=150;
+									contentDiv{{forloop.counter}}.appendChild(newImg{{forloop.counter}});
+
+								}
 						    
 						      }
 						    
 						    
-						    function OnLoad() {
+						    function OnLoad{{forloop.counter}}() {
 						      // Our ImageSearch instance.
 						      imageSearch{{forloop.counter}} = new google.search.ImageSearch();
 						    
 						      // Restrict to extra large images only
-						      imageSearch{{forloop.counter}}.setRestriction(google.search.ImageSearch.RESTRICT_IMAGESIZE,
-						                                 google.search.ImageSearch.IMAGESIZE_LARGE);
+						      // imageSearch{{forloop.counter}}.setRestriction(google.search.ImageSearch.RESTRICT_IMAGESIZE,
+						      //                            google.search.ImageSearch.IMAGESIZE_LARGE);
 						    
 						      // Here we set a callback so that anytime a search is executed, it will call
 						      // the searchComplete function and pass it our ImageSearch searcher.
 						      // When a search completes, our ImageSearch object is automatically
 						      // populated with the results.
-						      imageSearch{{forloop.counter}}.setSearchCompleteCallback(this, searchComplete, null);
+						      imageSearch{{forloop.counter}}.setSearchCompleteCallback(this, searchComplete{{forloop.counter}}, null);
 						    
 						      // Find me a beautiful car.
 						      imageSearch{{forloop.counter}}.execute("{{ingredient.name}}");
 						    }
-						    google.setOnLoadCallback(OnLoad);
+						    google.setOnLoadCallback(OnLoad{{forloop.counter}});
 						    </script>
  
 							<div class="ingredientPie"></div>
@@ -161,12 +158,12 @@
 				{% csrf_token %}
 
 				<div class="input-group">
-				  <span class="input-group-addon">Aa</span>
-				  <input type="text" name='IngName'class="form-control" placeholder="Ingredient Name">
+				  <span class="input-group-addon">Ingredient Name:</span>
+				  <input type="text" name='IngName'class="form-control" placeholder="Be general. ex: ">
 				</div>
 				<br>
 				<div class="input-group">
-				  <span class="input-group-addon">#</span>
+				  <span class="input-group-addon"># Grams:</span>
 				  <input type="number" name='IngAmount' class="form-control" placeholder="# Grams">
 				</div>
 				<br>

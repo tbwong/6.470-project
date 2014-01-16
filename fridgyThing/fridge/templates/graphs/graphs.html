@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fridge</title>
+
+	{% load staticfiles %} 
+
+	<link href='http://fonts.googleapis.com/css?family=Exo:200,300,400,500|Alegreya+Sans' rel='stylesheet' type='text/css'>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap.min.css' %}">
+	<!-- Optional theme -->
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap-theme.min.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/layout.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'graphs/styles/graphs.css' %}">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+	<script type="text/javascript" src="{% static 'graphs/js/graphs.js' %}"> </script>
+	<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"> </script>
+</head>
+<body>
+
+
+
+	<script type="text/javascript">
+		$(function(){
+			//the whole page has loaded.
+			//cal,carbs,fat,protein,sodium,sugar
+			makeHighCharts({{cal}}, {{fat}}, {{fat}}, {{protein}}, {{sodium}}, {{sugar}})
+
+			// {% for i in cal %}
+
+			// {%endfor%}	
+		});
+	</script>
+
+
+
+
+
+	<header>
+		<nav>
+			<div class="siteTitle">
+				<h1>frjr</h1>
+			</div>
+<!-- 			<label class="seperatorLine">|</label> -->
+			<a href="index.html"><div id='logout' style='float:right'>
+				<span class='glyphicon glyphicon-log-out' style='margin-left:12px'></span>
+				<br>logout
+			</div></a>
+		</nav>
+	</header>
+
+
+	<nav class='sidebarHolder' style='float:left;'>
+		<ul class="sidebar nav nav-pills nav-stacked">
+			<li><a id = 'fridge' href="{% url 'fridge:appPage' %}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+			<li><a id = 'shopping-list' href="{% url 'fridge:showShopping' %}"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
+			<li><a id = 'nutrition' href="{% url 'fridge:showGraphs' %}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+			<li><a id='scrapbook' href="#asdfsadfasf"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+		</ul>
+	</nav>
+
+
+	<div id="showpiece-fridge" class='showpiece' style='display:none;'>
+		<div class='scrollable'>
+			<div id = 'current-fridge' style="width:1000000px; padding-left:20px;">
+				<ul 'nav nav-pills'>
+					<li class='foodPic'><img src="image_use/broccoli.jpg" width="150px" height="150px"></li>
+					<li class='foodPic'><img src="image_use/carrot.jpg" width="150px" height="150px"></li>
+					<li class='foodPic active'><img src="image_use/chicken.jpg" width="150px" height="150px"></li>
+					<li class='foodPic'><img src="image_use/corn.jpg" width="150px" height="150px"></li>
+					<li class='foodPic'><img src="image_use/ham.jpg" width="150px" height="150px"></li>
+					<li class='foodPic'><img src="image_use/handle.jpg" width="150px" height="150px"></li>
+					<li class='foodPic'><img src="image_use/lettuce.jpg" width="150px" height="150px"></li>
+					<li class='foodPic'><img src="image_use/peanut butter.jpg" width="150px" height="150px"></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id = 'content'>
+			<h1>Nutrition</h1>
+			<img src="image_use/nutrition.jpg" width="500px">
+		</div>
+	</div>
+
+
+	<div id="showpiece" class='showpiece'>	
+			<div id="title-description" style="width: 1200px; height: 100px">
+				<div id="nutrition-info" >
+					Nutrition Trends
+				</div>
+					
+				<div id="body-info">
+					Body weight: 120 lbs 
+					<p> Age: 25
+				</div>
+			</div>
+
+			<div class="nutrition-stuff">
+				<button id="left"> < </button>
+				<button id="right"> > </button>
+			</div>
+			
+			<div id="health-1" class="hiddenones">
+				<div id="calories" style="width: 100%; height: 250px;">hihi</div>
+				<div id="calories-text" style=" width: 90%; height: 250px;">
+					Calories are units of energy that are burned by your body to stay healthy.
+					Intaking too many calories can lead to weight gain and health problems, while
+					intaking too few can lead to poor nutrition and low energy levels.
+				</div>	
+			</div>
+		
+			<div id="health-2" class="hiddenones" style='display:none'>
+				<div id="carbs" style=" width: 100%; height: 250px;"></div>
+				<div id="carbs-text" style=" width: 95%; height: 250px;">
+	            Something about carbs. Blah. Lalalalallalal. 
+	            Ermpdlkajs;fl a;sldkfjasld fj
+	            asldkfja;sldkfjas;ldkjfa;lskdjf;lkdjfk
+	            as;ldkfjasldkfjdlkjfkdjfk
+	      		</div>
+	      	</div>
+	   
+	    	<div id="health-3" class="hiddenones" style='display:none'>
+				<div id="fat" style="width: 100%; height: 250px;"></div>
+				<div id="fat-text" style=" width: 45%; height: 250px;">
+					a;sldkfja;sldkf ja;ldfkj a;ls dk
+				</div>
+			</div>
+		
+	    	<div id="health-4" class="hiddenones" style='display:none'>
+	    		<div id="protein" style=" width: 100%; height: 250px;"></div>
+	    		<div id="protein-text" style=" width: 45%; height: 250px;">
+	    			lijlijl;jn;lkjf;alskjf;as
+	    		</div>
+	    	</div>
+	    
+	    	<div id="health-5" class="hiddenones" style='display:none'>
+	    		<div id="sodium" style=" width: 100%; height: 250px;"></div>
+	    		<div id="sodium-text" style=" width: 45%; height: 250px;">
+	    			a;sldfja ;lkja;lf kja;slkfj
+	    		</div>
+	    	</div>
+	    
+	    	<div id="health-6" class="hiddenones" style='display:none'>
+	    		<div id="sugar" style="  width: 100%; height: 250px;"></div>
+	    		<div id="sugar-text" style=" width: 45%; height: 250px;">
+	    			a;sldfk a;lfkjas;ldkf ja;slkfj
+	    		</div>
+	    	</div>
+		        
+		
+
+	</div>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="{% static 'fridge/styles/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
