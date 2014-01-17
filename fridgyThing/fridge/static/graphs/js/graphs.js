@@ -82,7 +82,9 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
             series: [{
                 type: 'line',
                 name: 'Tiffany',
-                data: calData
+                data: calData,
+                color: '#CC99FF'
+
             }]
         });
     }
@@ -283,7 +285,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 text: 'Daily sugar intake'
             },
             xAxis: {
-                
+
             },
             yAxis: {
                 title: {
