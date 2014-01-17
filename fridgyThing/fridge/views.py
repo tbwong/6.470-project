@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from fridge.models import Ingredient, ShoppingList
+from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList
 # Create your views here.
 
 #----------------Pav-----------------\/
@@ -31,10 +31,10 @@ def showGraphsPage(request):
 	#calories,carbs,fat,protein,sodium,sugar
 	calories = [x.amount for x in Calories.objects.all()]
 	carbValues = [x.amount for x in Carbs.objects.all()]
-	fatValues = [x.amount for x in Fats.object.all()]
-	proteinValues = [x.amount for x in Protein.object.all()]
-	sodiumValues = [x.amount for x in Sodium.object.all()]
-	sugarValues = [x.amount for x in Sugar.object.all()]
+	fatValues = [x.amount for x in Fats.objects.all()]
+	proteinValues = [x.amount for x in Protein.objects.all()]
+	sodiumValues = [x.amount for x in Sodium.objects.all()]
+	sugarValues = [x.amount for x in Sugar.objects.all()]
 	currentDates = [x.date for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'cal':calories,
 												'carbs': carbValues,
