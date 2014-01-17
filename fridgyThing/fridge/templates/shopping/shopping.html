@@ -51,30 +51,71 @@
 			<div id="food-list">
 				<div id="shoppingheader"><span id="shoppingheadertext"><b>Shopping List</b></span><button type="button" class="close print"><span class="glyphicon glyphicon-print"></span></button></div>
 				{% for x in itemslist %}
-					<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">{{x}}</span><button type="button" class="close closer invisible remove"><span class="glyphicon glyphicon-remove"></span></button><button type="button" class="close closer invisible edit"><span class="glyphicon glyphicon-pencil" id="listspace"></span></button></div>
+				<!--	<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">{{x}}</span>
+					<span>
+					<form action="{% url 'fridge:removeItem' %}" method="post">
+					{% csrf_token %}
+					<input name="ItemName"><button type="button" class="close"><span class="glyphicon glyphicon-remove"></span></button></input>
+					</form>
+					</span>
+					<button type="button" class="close closer invisible edit"><span class="glyphicon glyphicon-pencil" id="listspace"></span></button></div> -->
+<!--	{% for x in itemslist %}
+			<div class="hov">
+					<button type="button" class="check close">
+							<span class="glyphicon glyphicon-check"></span>
+					</button>
+					<span id="text">{{x}}</span>
+					<a href="">
+							<button type="button" class="close closer invisible remove">
+									<span class="glyphicon glyphicon-remove"></span>
+							</button>
+					</a>
+					<button type="button" class="close closer invisible edit">
+							<span class="glyphicon glyphicon-pencil" id="listspace"></span>
+					</button>
+			</div>
+	{% endfor %}
+-->
+				<div class="hov">
+					<button type="button" class="check close">
+						<span class="glyphicon glyphicon-check"></span>
+					</button>
+					<span id="text" name="ItemNames">{{x}}</span>
+					<a href="{% url 'fridge:removeItem' %}">
+						<button type="button">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</a>
+					<button type="button" class="close closer invisible edit">
+						<span class="glyphicon glyphicon-pencil" id="listspace"></span>
+					</button>
+				</div>
 				{% endfor %}
 				
-				<div action="{% url 'fridge:addItem' %}" method="post">
-				{% csrf_token %}
-				<input type="text" name="ItemName" class="form-control" id="foodedit"></input>
-				<input type='submit' class='btn btn-default' value='Add It'></input>
-				</div>
 				
+				<!-- add to list -->
+				<form action="{% url 'fridge:addItem' %}" method="post">
+				{% csrf_token %}
+				<input type="text" name="ItemName" class="form-control" placeholder="Add to list..."></input>
+				</form>
+				
+				<!-- edit list -->
+				<form class="cantsee" action="{% url 'fridge:addItem' %}" method="post">
+				{% csrf_token %}
+				<input type="text" name="ItemName" class="form-control cantseeinput" value=" "></input>
+				</form>
 			</div>
 				
 			<!--Input box -->
+			<!--
 			<div class="row">
 			  <div class="col-lg-6" id="foodinput">
 				<div class="input-group">
 				  <input type="text" style="font-size:16px" class="form-control" id="food" placeholder="Add to list">
-			<!--  <span class="input-group-btn">
-					<button class="btn btn-default" type="submit" id='addFood' value="Add">Add</button>
-				  </span>
-			-->
-				</div><!-- /input-group -->
-			  </div><!-- /.col-lg-6 -->
-			</div><!-- /.row -->
-		</div>
+				</div>
+			  </div>
+			</div>
+		</div> -->
 		
 		<div id="spacer">    .</div>
 		

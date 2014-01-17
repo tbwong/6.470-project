@@ -51,8 +51,9 @@ $(document).ready(function() {
 	$("#food-list").on("click", ".edit", function() {
 		if ($("#foodedit").length==0) {
 			var foodcontent = $(this).parent(".hov").text();
-			$(this).parent(".hov").replaceWith('<input type="text" class="form-control" id="foodedit" '+'value="' + foodcontent+'"></input>');
-			$("#foodedit").focus().setCursorToTextEnd();
+			$('input[name="ItemName"]').val(foodcontent);
+			$(this).parent(".hov").replaceWith($(".cantsee"));
+			$(".cantseeinput").focus().setCursorToTextEnd();
 		}
 	});
 
