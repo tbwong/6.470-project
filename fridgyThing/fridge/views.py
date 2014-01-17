@@ -43,7 +43,7 @@ def addIngredient(request):
 # 		}
 # 	});
 # }
-def getRecipies(Ingredients):
+def getRecipes(Ingredients):
  	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
  	ings = Ingredient.objects.all()
  	for i in range(len(ings)):
