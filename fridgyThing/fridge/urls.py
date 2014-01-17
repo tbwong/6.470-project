@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, url
-
 from fridge import views
 
 urlpatterns = patterns('',
@@ -7,6 +6,7 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^fridge/', views.showFridge, name='appPage'),
     url(r'^addIngredient/',views.addIngredient,name='addIngredient'),
+    url(r'^getRecipes/',views.getRecipes,name='getRecipes'),
     #----------------Pav-----------------/\
     #----------------Tiff-----------------\/
     url(r'^graphs/',views.showGraphsPage,name='showGraphs'),
