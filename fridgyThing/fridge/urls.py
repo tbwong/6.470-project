@@ -15,7 +15,8 @@ urlpatterns = patterns('',
     url(r'^scrapbook/',views.showScrapbookPage, name='showScrapbook'),
     #----------------Jacqui-----------------/\
     #----------------Rujia-----------------\/
-    url(r'^shopping/',views.showShoppingPage, name='showShopping')
+    url(r'^shopping/',views.showShoppingPage, name='showShopping'),
+    url(r'^addItem/', views.addItem, name='addItem')
     #----------------Rujia-----------------/\
     
 )

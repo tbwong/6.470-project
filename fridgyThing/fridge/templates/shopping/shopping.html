@@ -53,7 +53,13 @@
 				{% for x in itemslist %}
 					<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">{{x}}</span><button type="button" class="close closer invisible remove"><span class="glyphicon glyphicon-remove"></span></button><button type="button" class="close closer invisible edit"><span class="glyphicon glyphicon-pencil" id="listspace"></span></button></div>
 				{% endfor %}
-				<input type="text" class="form-control" id="foodedit" '+'value="' + foodcontent+'"></input>
+				
+				<div action="{% url 'fridge:addItem' %}" method="post">
+				{% csrf_token %}
+				<input type="text" name="ItemName" class="form-control" id="foodedit"></input>
+				<input type='submit' class='btn btn-default' value='Add It'></input>
+				</div>
+				
 			</div>
 				
 			<!--Input box -->

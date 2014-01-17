@@ -62,16 +62,16 @@ def showShoppingPage(request):
         return render(request, 'shopping/shopping.html', {'itemslist':itemslist, 'memolist':memolist})
 
 
-##def addItem(request):
-##	try:
-##		ItemName = request.POST['ItemName']
-##		ItemName.strip()
-##		# IngAmount = float(request.POST['IngAmount']) what.
-##		i = ShoppingList(item=ItemName,note='')
-##		i.save();
-##	except:
-##		#nothing
-##		i=1
-##	else:
-##		return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+def addItem(request):
+	try:
+		ItemName = request.POST['ItemName']
+		ItemName.strip()
+		i = ShoppingList(item=ItemName,note='')
+		i.save();
+	except:
+		#nothing
+		i=1
+	else:
+		return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+	
 #----------------Rujia-----------------/\
