@@ -49,6 +49,10 @@ def getRecipies(Ingredients):
  		temp = re.sub('/ /g', '',temp)
  		url = url+'&allowedIngredient[]='+temp
 	rec = requests.get(url)
+	
+
+	ingredients = Ingredient.objects.all() 
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients} )
 
 
 
