@@ -23,7 +23,7 @@
   <script type="text/javascript" src="{% static 'scrapbook/js/scrapBook.js' %}"> </script>
    <!--End Header -->
 
-<!--
+<!-- Old Code
   <script src="https://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-lightbox/0.6.1/bootstrap-lightbox.js"></script>
@@ -80,75 +80,31 @@
   </div>
 </center>
 
- <!--Lightbox WDe
-
-<a data-toggle="lightbox" href="#demoLightbox">Open Lightbox</a>
-<div id="demoLightbox" class="lightbox fade"  tabindex="-1" role="dialog" aria-hidden="true">
-    <div class='lightbox-dialog'>
-        <div class='lightbox-content'>
-            <img src="image.png">
-            <div class='lightbox-caption'>
-                Your caption here
-            </div>
-        </div>
-    </div>
-</div>
--->
-
  <!--Grid -->
-<div class="row"; id = "grid">
-    <div class="col-lg-4 col-sm-6 col-xs-12" id= "img-center">
-        <div class = "lightbox-content">
-        <a data-toggle="lightbox" href="#lightbox">Open Lightbox</a>
-        <a data-toggle="lightbox" data-target="#lightbox" data-gallery="multiimages" data-title="Waffle" href = "#" >
-             <img src="http://www.chocolatecoveredkatie.com/wp-content/uploads/Healthy-Breakfast-Month_7BC0/chocolate-pancake.jpg?73e30c" class= "thumbnail img-responsive">
-             <div class="lightbox-caption">
-             </div> 
-           </div>
-        </a>
-    </div>
-     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
-        <a href= "http://www.chocolatecoveredkatie.com/wp-content/uploads/dfeeb67d5f29_11A24/IMG_0312.jpg?73e30c" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
-             <img src= "http://www.chocolatecoveredkatie.com/wp-content/uploads/dfeeb67d5f29_11A24/IMG_0312.jpg?73e30c" class="thumbnail img-responsive">
-        </a>
-    </div>
-     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
-        <a href="#">
-             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
-        </a>
-    </div>
-     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
-        <a href="#">
-             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
-        </a>
-    </div>
-     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
-        <a href="#">
-             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
-        </a>
-    </div>
-     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
-        <a href="#">
-             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
-        </a>
-    </div>
-     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
-        <a href="#">
-             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
-        </a>
-    </div>
-     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
-        <a href="#">
-             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
-        </a>
-    </div>
-     <div class="col-lg-4 col-sm-6 col-xs-12" id = "img-center">
-        <a href="#">
-             <img src="http://placehold.it/800x600" class="thumbnail img-responsive">
-        </a>
-    </div>
+<div id='overlay'></div>
+  <div id='frame'>
+    <table id = "frame-table">
+        <tr>
+          <td id = "left">
+            <span class="glyphicon glyphicon-chevron-left" alt = "left"></span>
+          </td>
+          <td id = "right">
+            <span class = "glyphicon glyphicon-chevron-right" alt = "right"/>
+          </td>
+        </tr>
+      </table>
+    <img id = "main" src="" alt=""/>
   </div>
-</div>
-
+  <div id = "wrapper" class="showpiece">
+    <ul id = "portfolio">
+      <li><img src="images/scrapbook/Breakfast-Quinoa.jpg" alt = "img"/></li>
+      <li><img src="images/scrapbook/Gluten-Free-Waffles_thumb_4.jpg" alt = "img"/></li>
+      <li><img src="images/scrapbook/Apple-Pie-Enchiladas.jpg" alt = "img"/></li>
+      <li><img src="images/scrapbook/cookie-dough-bowls.jpg" alt = "img"/></li>
+      <li><img src="images/scrapbook/IMG_0312.jpg" alt = "img"/></li>
+      <li><img src="images/scrapbook/Oatmeal-Cupcakes.jpg" alt = "img"/></li>
+      <li><img src="images/scrapbook/Yogurt-Breakfast-Bowl.jpg" alt = "img"/></li>
+    </ul>
+  </div>  
 </body>
 </html>

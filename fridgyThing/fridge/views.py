@@ -1,7 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
+<<<<<<< HEAD
 from fridge.models import Ingredient, ShoppingList
+=======
+from fridge.models import Ingredient, Pictures
+>>>>>>> 0b922416a4a99b10a7d237a93c838dee29f85ac3
 # Create your views here.
 
 #----------------Pav-----------------\/
@@ -48,8 +52,10 @@ def showGraphsPage(request):
 #----------------Jacqui-----------------\/
 
 def showScrapbookPage(request):
-       items = 0
-       return render(request, 'scrapbook/scrapbook.html', {'item':items})
+       pictures = [x.picture for x in Pictures.objects.all()]
+       date = [x.date for x in Pictures.objects.all()]
+       caption = [x.caption for x in Pictures.objects.all()]
+       return render(request, 'scrapbook/scrapbook.html', {'pictures':pictures, 'date':date, 'caption':caption})
 
 #----------------Jacqui-----------------/\
 

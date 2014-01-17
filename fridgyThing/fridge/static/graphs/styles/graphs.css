@@ -97,32 +97,42 @@ nav .sidebar{
 	width: 20px;
 
 }
-#calories-container {
 
-}
 
 #calories-text {
 	font-size: 15px;
 }
-
-#carbs-container {
-}
-
 #carbs-text {
 	font-size: 15px;
 }
 
-#fat {
-	
+#calories-container {
+	width: 100%; 
+	height: 50%; 
+}
+#carbs-container {
+	width: 100%; 
+	height: 250px; 
 }
 
-#protein {
+#fat-container {
+	width: 90%; 
+	height: 250px;
 }
 
-#sodium {
+#protein-container {
+	 width: 100%; 
+	 height: 250px;
 }
 
-#sugar {
+#sodium-container {
+	width: 100%; 
+	height: 250px;
+}
+
+#sugar-container {
+	width: 100%; 
+	height: 250px;
 }
 
 
