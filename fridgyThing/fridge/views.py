@@ -55,16 +55,16 @@ def getRecipes(request):
 	recipeNames = []
 	recipeIngs = []
 	count=0
-	temp = matches[0]
-	# for match in matches:
-	# 	recipeNames[count] = match['recipeName']
-	# 	recipeIngs[count] = match['ingredients']
+
+	for match in matches:
+		recipeNames.append(match['recipeName'])
+		recipeIngs.append(match['ingredients'])
 
 
 
 # 'recipeNames':recipeNames,'recipeIngs':recipeIngs
 	ingredients = Ingredient.objects.all() 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'recipeNames':temp} )
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'recipeNames':recipeNames,'recipeIngs':recipeIngs} )
 
 
 
