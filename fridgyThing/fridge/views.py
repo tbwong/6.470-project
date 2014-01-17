@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from fridge.models import Ingredient, Pictures
+import requests
 # Create your views here.
 
 #----------------Pav-----------------\/
@@ -24,6 +25,25 @@ def addIngredient(request):
 		i=1
 	else:
 		return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+
+# function getRecipies(Ingredients){
+# 	var url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
+# 	var i =1;
+# 	for(i;i<Ingredients.length;i++){
+# 		url = url+'&allowedIngredient[]='+Ingredients[i].replace(/ /g, '');
+# 	}
+# 	$.ajax({
+# 		url: url,
+# 		dataType: "jsonp",
+# 		success: function (data) {
+# 			console.log(data)
+# 			alert(data);
+# 		}
+# 	});
+# }
+def getRecipies(Ingredients){
+	rec = requests.get()
+}
 
 #----------------Pav-----------------/\
 #----------------Tiff-----------------\/
