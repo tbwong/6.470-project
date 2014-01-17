@@ -1,10 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures
-import requests,re
-from forms import ImageUploadForm;
-
+from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList
 # Create your views here.
 
 #----------------Pav-----------------\/
@@ -17,7 +14,7 @@ def showFridge(request):
 
 def addIngredient(request):
 	try:
-		IngName = reqforuest.POST['IngName']
+		IngName = request.POST['IngName']
 		IngName.strip()
 		# IngAmount = float(request.POST['IngAmount'])
 		i = Ingredient(name=IngName,pic='search')
@@ -27,37 +24,6 @@ def addIngredient(request):
 		i=1
 	else:
 		return HttpResponseRedirect(reverse('fridge:appPage',args=()))
-
-# function getRecipies(Ingredients){
-# 	var url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
-# 	var i =1;
-# 	for(i;i<Ingredients.length;i++){
-# 		url = url+'&allowedIngredient[]='+Ingredients[i].replace(/ /g, '');
-# 	}
-# 	$.ajax({
-# 		url: url,
-# 		dataType: "jsonp",
-# 		success: function (data) {
-# 			console.log(data)
-# 			alert(data);
-# 		}
-# 	});
-# }
-def getRecipies(Ingredients):
- 	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
- 	ings = Ingredient.objects.all()
- 	for i in range(len(ings)):
- 		temp = ings[i].name
- 		temp = re.sub('/ /g', '',temp)
- 		url = url+'&allowedIngredient[]='+temp
-	rec = requests.get(url)
-	
-
-	ingredients = Ingredient.objects.all() 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients} )
-
-
-
 
 #----------------Pav-----------------/\
 #----------------Tiff-----------------\/
@@ -81,10 +47,11 @@ def showGraphsPage(request):
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
 def showScrapbookPage(request):
+<<<<<<< HEAD
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            m = Pictures.objects.get('upload_pictures');
+            m = ExampleModel.objects.get(pk=course_id)
             m.model_pic = form.cleaned_data['image']
             m.save()
             return HttpResponse('Successfully added image!')
@@ -93,6 +60,10 @@ def showScrapbookPage(request):
        date = [x.date for x in Pictures.objects.all()]
        caption = [x.caption for x in Pictures.objects.all()]
        return render(request, 'scrapbook/scrapbook.html', {'date':date, 'caption':caption})
+=======
+       items = 0
+       return render(request, 'scrapbook/scrapbook.html', {'item':items})
+>>>>>>> 90c3706e3518b146e20acdb556c14d3ee56ee75c
 
 #----------------Jacqui-----------------/\
 
@@ -107,38 +78,14 @@ def showShoppingPage(request):
 
 def addItem(request):
 	try:
-		Item = request.POST['ItemName']
-		i = ShoppingList(item=Item,note=' ')
+		ItemName = request.POST['ItemName']
+		ItemName.strip()
+		i = ShoppingList(item=ItemName,note='')
 		i.save();
 	except:
 		#nothing
 		i=1
-		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
-
-def removeItem(request):
-	try:
-		Item = request.POST['ItemNames']
-		i = ShoppingList.objects.get(item=Item)
-		i.delete();
-	except:
-		#nothing
-		i=1
-		raise
-	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
-
-def replaceItem(request):
-        try:
-		Item = request.POST['ItemName']
-		i = ShoppingList.objects.get(item=Item)
-		i.delete();
-	except:
-		#nothing
-		i=1
-		raise
-	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:appPage',args=()))
 	
 #----------------Rujia-----------------/\

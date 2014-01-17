@@ -58,7 +58,7 @@
 
   <div class = "button"; id = "upload-button">
       <p> Upload another image? </p>
-       <form action="{% url upload_pic %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+       <form action="{% url 'fridge:showScrapbook' %}" method="post" enctype="multipart/form-data">{% csrf_token %} <!--COME HERE -->
                 <p>
                     <input id="id_image" type="file" class="" name="image">
                 </p>

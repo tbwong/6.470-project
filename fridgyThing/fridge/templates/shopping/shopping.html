@@ -51,6 +51,7 @@
 			<div id="food-list">
 				<div id="shoppingheader"><span id="shoppingheadertext"><b>Shopping List</b></span><button type="button" class="close print"><span class="glyphicon glyphicon-print"></span></button></div>
 				{% for x in itemslist %}
+<<<<<<< HEAD
 				<!--	<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">{{x}}</span>
 					<span>
 					<form action="{% url 'fridge:removeItem' %}" method="post">
@@ -97,6 +98,28 @@
 				<form action="{% url 'fridge:addItem' %}" method="post">
 				{% csrf_token %}
 				<input type="text" name="ItemName" class="form-control" placeholder="Add to list..."></input>
+=======
+					<div class="hov">
+						<button type="button" class="check close">
+							<span class="glyphicon glyphicon-check"></span>
+						</button>
+						<span id="text">{{x}}</span>
+						<a href="">
+							<button type="button" class="close closer invisible remove">
+								<span class="glyphicon glyphicon-remove"></span>
+							</button>
+						</a>
+						<button type="button" class="close closer invisible edit">
+							<span class="glyphicon glyphicon-pencil" id="listspace"></span>
+						</button>
+					</div>
+				{% endfor %}
+				
+				<form action="{% url 'fridge:addItem' %}" method="post">
+					{% csrf_token %}
+					<input type="text" name="theName" class="form-control" required autofocus></input>
+					<!-- <input type='submit' class='btn btn-default' value='Add It'></input> -->
+>>>>>>> ec4bf6c140d09c6df3f440a22c7a6609e315d216
 				</form>
 				
 				<!-- edit list -->
@@ -112,10 +135,25 @@
 			  <div class="col-lg-6" id="foodinput">
 				<div class="input-group">
 				  <input type="text" style="font-size:16px" class="form-control" id="food" placeholder="Add to list">
+<<<<<<< HEAD
 				</div>
 			  </div>
 			</div>
 		</div> -->
+=======
+
+				  -->
+			<!--  <span class="input-group-btn">
+					<button class="btn btn-default" type="submit" id='addFood' value="Add">Add</button>
+				  </span>
+			-->
+			
+				<!--</div><!-- /input-group -->
+			  <!--</div><!-- /.col-lg-6 -->
+			<!--</div><!-- /.row -->
+			
+		</div>
+>>>>>>> ec4bf6c140d09c6df3f440a22c7a6609e315d216
 		
 		<div id="spacer">    .</div>
 		
