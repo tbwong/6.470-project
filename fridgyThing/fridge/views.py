@@ -1,9 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from fridge.models import Ingredient,ShoppingList#, Pictures
+from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures
 import requests,re
-
 # Create your views here.
 
 #----------------Pav-----------------\/
@@ -58,13 +57,13 @@ def getRecipies(Ingredients):
 #----------------Tiff-----------------\/
 def showGraphsPage(request):
 	#calories,carbs,fat,protein,sodium,sugar
-	calories = [100,20,30,40]
-	carbValues = [100,20,30,40]
-	fatValues = [20,40,50]
-	proteinValues = [100,20,30,40]
-	sodiumValues = [100,20,30,40]
-	sugarValues = [100,20,30,40]
-	currentDates = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
+	calories = [x.amount for x in Calories.objects.all()]
+	carbValues = [x.amount for x in Carbs.objects.all()]
+	fatValues = [x.amount for x in Fats.objects.all()]
+	proteinValues = [x.amount for x in Protein.objects.all()]
+	sodiumValues = [x.amount for x in Sodium.objects.all()]
+	sugarValues = [x.amount for x in Sugar.objects.all()]
+	currentDates = [x.date for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'cal':calories,
 												'carbs': carbValues,
 												'fat':fatValues,
@@ -75,10 +74,19 @@ def showGraphsPage(request):
 												})
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
-
 def showScrapbookPage(request):
-       items = 0
-       return render(request, 'scrapbook/scrapbook.html', {'item':items})
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            m = ExampleModel.objects.get(pk=course_id)
+            m.model_pic = form.cleaned_data['image']
+            m.save()
+            return HttpResponse('Successfully added image!')
+   	return HttpResponseForbidden('Allowed only via POST :( ')
+    else:
+       date = [x.date for x in Pictures.objects.all()]
+       caption = [x.caption for x in Pictures.objects.all()]
+       return render(request, 'scrapbook/scrapbook.html', {'date':date, 'caption':caption})
 
 #----------------Jacqui-----------------/\
 

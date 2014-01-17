@@ -37,6 +37,12 @@ class Sugar(models.Model):
 
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
+
+class Pictures(models.Model):
+	picture = models.ImageField(upload_to = 'scrapbook/', default = 'fridge/static/scrapbook/images/no_pic_uploaded.jpg');
+	date = models.DateTimeField('date published')
+	caption = models.TextField()
+
 #----------------Jacqui-----------------/\
 #----------------Rujia-----------------\/
 class ShoppingList (models.Model):

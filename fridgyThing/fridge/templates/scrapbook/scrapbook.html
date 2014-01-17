@@ -21,27 +21,9 @@
   <!-- Scripts -->
   <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
   <script type="text/javascript" src="{% static 'scrapbook/js/scrapBook.js' %}"> </script>
-   <!--End Header -->
-
-<!-- Old Code
-  <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-lightbox/0.6.1/bootstrap-lightbox.js"></script>
-
-  <!-- Latest compiled and minified CSS
-  <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" type = "text/css" href="styles/bootstrap-lightbox/bootstrap-lightbox.min.css">
-   <script type="text/javascript" href="styles/bootstrap-lightbox/bootstrap-lightbox.min.js"></script>
-  <!-- Optional theme
-  <link rel="stylesheet" type="text/css" href="styles/bootstrap/css/bootstrap-theme.min.css">
-
-  <link rel="text/javascript" href="styles/bootstrap/js/bootstrap.js">
-  <link rel="stylesheet" type="text/css" href="styles/layout.css">
-  <link rel="stylesheet" type="text/css" href="scrapbook2.css">
-  <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
-  <script type="text/javascript" src="scrapbook.js"> </script>
---> 
 </head>
+
+   <!--End Header -->
 
 <body>
   <header>
@@ -75,8 +57,13 @@
   </div>
 
   <div class = "button"; id = "upload-button">
-      <span class="glyphicon glyphicon-upload">
-      <a href="/images/new"> Upload another image?</a>
+      <p> Upload another image? </p>
+       <form action="{% url upload_pic %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <p>
+                    <input id="id_image" type="file" class="" name="image">
+                </p>
+                <input type="submit" value="Submit" />
+            </form>
   </div>
 </center>
 
