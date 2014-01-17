@@ -37,12 +37,12 @@ class Sugar(models.Model):
 
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
-
-class Pictures(models.Model):
-	picture = models.ImageField(upload_to = 'scrapbook/', null = True, blank = True);
-	date = models.DateTimeField('date published')
-	caption = models.TextField()
-
 #----------------Jacqui-----------------/\
 #----------------Rujia-----------------\/
+class ShoppingList (models.Model):
+        item = models.CharField(max_length=200)
+        note = models.CharField(max_length=500)
+        def __unicode__(self):
+                return self.item
+        
 #----------------Rujia-----------------/\

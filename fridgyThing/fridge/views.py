@@ -68,10 +68,8 @@ def showGraphsPage(request):
 #----------------Jacqui-----------------\/
 
 def showScrapbookPage(request):
-       pictures = [x.picture for x in Pictures.objects.all()]
-       date = [x.date for x in Pictures.objects.all()]
-       caption = [x.caption for x in Pictures.objects.all()]
-       return render(request, 'scrapbook/scrapbook.html', {'pictures':pictures, 'date':date, 'caption':caption})
+       items = 0
+       return render(request, 'scrapbook/scrapbook.html', {'item':items})
 
 #----------------Jacqui-----------------/\
 
@@ -79,6 +77,21 @@ def showScrapbookPage(request):
 
 #----------------Rujia-----------------\/
 def showShoppingPage(request):
-        items = 0
-        return render(request, 'shopping/shopping.html', {'item':items})
+        itemslist = [x.item for x in ShoppingList.objects.all()]
+        memolist = [x.note for x in ShoppingList.objects.all()]
+        return render(request, 'shopping/shopping.html', {'itemslist':itemslist, 'memolist':memolist})
+
+
+def addItem(request):
+	try:
+		ItemName = request.POST['ItemName']
+		ItemName.strip()
+		i = ShoppingList(item=ItemName,note='')
+		i.save();
+	except:
+		#nothing
+		i=1
+	else:
+		return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+	
 #----------------Rujia-----------------/\
