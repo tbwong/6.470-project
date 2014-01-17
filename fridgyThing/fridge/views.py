@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from fridge.models import Ingredient 
+from fridge.models import Ingredient, ShoppingList
 # Create your views here.
 
 #----------------Pav-----------------\/
@@ -57,6 +57,21 @@ def showScrapbookPage(request):
 
 #----------------Rujia-----------------\/
 def showShoppingPage(request):
-        items = 0
-        return render(request, 'shopping/shopping.html', {'item':items})
+        itemslist = [x.item for x in ShoppingList.objects.all()]
+        memolist = [x.note for x in ShoppingList.objects.all()]
+        return render(request, 'shopping/shopping.html', {'itemslist':itemslist, 'memolist':memolist})
+
+
+def addItem(request):
+	try:
+		ItemName = request.POST['ItemName']
+		ItemName.strip()
+		# IngAmount = float(request.POST['IngAmount']) what.
+		i = ShoppingList(item=ItemName,note='')
+		i.save();
+	except:
+		#nothing
+		i=1
+	else:
+		return HttpResponseRedirect(reverse('fridge:appPage',args=()))
 #----------------Rujia-----------------/\

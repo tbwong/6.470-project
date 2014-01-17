@@ -50,14 +50,10 @@
 		<div id="shopping-list">
 			<div id="food-list">
 				<div id="shoppingheader"><span id="shoppingheadertext"><b>Shopping List</b></span><button type="button" class="close print"><span class="glyphicon glyphicon-print"></span></button></div>
-				<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">Chicken</span><button type="button" class="close closer invisible remove"><span class="glyphicon glyphicon-remove"></span></button><button type="button" class="close closer invisible edit"><span class="glyphicon glyphicon-pencil" id="listspace"></span></button></div>
-				<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">3 ounces of chocolate milk</span><button type="button" class="close closer invisible remove"><span class="glyphicon glyphicon-remove"></span></button><button type="button" class="close closer invisible edit"><span class="glyphicon glyphicon-pencil" id="listspace"></span></button></div>
-				<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">10 sticks of string cheese</span><button type="button" class="close closer invisible remove"><span class="glyphicon glyphicon-remove"></span></button>
-					<button type="button" class="close closer invisible edit"><span class="glyphicon glyphicon-pencil" id="listspace"></span></button>
-				</div>
-				<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">Lettuce</span><button type="button" class="close closer invisible remove"><span class="glyphicon glyphicon-remove"></span></button>
-					<button type="button" class="close closer invisible edit"><span class="glyphicon glyphicon-pencil" id="listspace"></span></button>
-				</div>
+				{% for x in itemslist %}
+					<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">{{x}}</span><button type="button" class="close closer invisible remove"><span class="glyphicon glyphicon-remove"></span></button><button type="button" class="close closer invisible edit"><span class="glyphicon glyphicon-pencil" id="listspace"></span></button></div>
+				{% endfor %}
+				<input type="text" class="form-control" id="foodedit" '+'value="' + foodcontent+'"></input>
 			</div>
 				
 			<!--Input box -->
@@ -72,7 +68,6 @@
 				</div><!-- /input-group -->
 			  </div><!-- /.col-lg-6 -->
 			</div><!-- /.row -->
-		
 		</div>
 		
 		<div id="spacer">    .</div>
@@ -80,7 +75,10 @@
 		<div id="memo">
 			<div id="shoppingheader"><b>Memo</b></div>
 <!--			<input type="text" id="memocontent" rows="17">30% discount from Shaw's!</div>   -->
-			<textarea class="form-control" id="memocontent" rows="17">30% discount from Shaw's!</textarea>
+			<textarea class="form-control" id="memocontent" rows="1">30% discount from Shaw's!</textarea>
+			{% for x in memolist %}
+			<div class="hov"><span id="text">{{x}}</span></div>
+			{% endfor %}
 		</div>
 		
 	</div>

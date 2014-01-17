@@ -39,4 +39,10 @@ class Sugar(models.Model):
 #----------------Jacqui-----------------\/
 #----------------Jacqui-----------------/\
 #----------------Rujia-----------------\/
+class ShoppingList (models.Model):
+        item = models.CharField(max_length=200)
+        note = models.CharField(max_length=500)
+        def __unicode__(self):
+                return self.item
+        
 #----------------Rujia-----------------/\
