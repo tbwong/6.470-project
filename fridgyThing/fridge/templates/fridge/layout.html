@@ -37,11 +37,13 @@
 				<label class='cpBracket' style="display:inline-block; margin-left:-19px;">|</label>
 				<span id='control-content' style="display:inline-block;"> 
 					<div id='control-fridge' class='controlGroup' style='display:none;'>
-						<div id='noms' class='control-button' href="">
-							<img class='control-im' src="{% static 'fridge/images/bowl.png' %}" />
-							<br>
-							<label class='control-label'>Noms!</label>
-						</div>
+						<a href="{% url 'fridge:getRecipes' %}">
+							<div id='noms' class='control-button' href="">
+								<img class='control-im' src="{% static 'fridge/images/bowl.png' %}" />
+								<br>
+								<label class='control-label'>Noms!</label>
+							</div>
+						</a>
 						<div id='addIng' class='control-button' href="">
 							<img class='control-im' src="{% static 'fridge/images/plus.png' %}" />
 							<br>
@@ -146,19 +148,17 @@
 			</div>
 		</div>
 
+		{% if recipeNames %}
+			<div id = 'content'>
+				{{recipeNames}}
 
-		<div id = 'content'>
-			<script type="text/javascript">
-				$(function(){
-					var myIngredients = new Array();
-					{% for ingredient in ingredients%}
-						myIngredients[{{forloop.counter}}] = "{{ingredient.name}}";
-					{% endfor %}
-					getRecipies(myIngredients);
-
-				});
-			</script>
-		</div>
+				<!-- <ul>
+					{%for name in recipeNames%}
+					<li>{{name}}</li>
+					{%endfor%}					
+				</ul> -->
+			</div>
+		{% endif %}
 		
 		<div id="popupBackground"></div>
 		<div id='addIng-popup' class='popup' >
@@ -169,7 +169,7 @@
 
 				<div class="input-group">
 				  <span class="input-group-addon">Ingredient Name:</span>
-				  <input type="text" name='IngName'class="form-control" placeholder="Be general.  ex: Ketchup, NOT Heins Tomator Ketchup" required autofocus>
+				  <input type="text" name='IngName'class="form-control" placeholder="Be general.  ex: Ketchup NOT Heins Tomato Ketchup" required autofocus>
 				</div>
 				<br>
 				<div class="input-group">

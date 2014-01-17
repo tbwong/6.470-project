@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures
-import requests,re
+import requests,re,json,ast
 # Create your views here.
 
 #----------------Pav-----------------\/
@@ -41,7 +41,7 @@ def addIngredient(request):
 # 		}
 # 	});
 # }
-def getRecipies(Ingredients):
+def getRecipes(request):
  	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
  	ings = Ingredient.objects.all()
  	for i in range(len(ings)):
@@ -49,10 +49,22 @@ def getRecipies(Ingredients):
  		temp = re.sub('/ /g', '',temp)
  		url = url+'&allowedIngredient[]='+temp
 	rec = requests.get(url)
-	
+	temp = json.dumps(rec.json())
+	dct = json.loads(temp)
+	matches = dct['matches']
+	recipeNames = []
+	recipeIngs = []
+	count=0
+	temp = matches[0]
+	# for match in matches:
+	# 	recipeNames[count] = match['recipeName']
+	# 	recipeIngs[count] = match['ingredients']
 
+
+
+# 'recipeNames':recipeNames,'recipeIngs':recipeIngs
 	ingredients = Ingredient.objects.all() 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients} )
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'recipeNames':temp} )
 
 
 
