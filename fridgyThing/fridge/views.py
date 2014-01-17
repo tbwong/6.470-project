@@ -33,13 +33,13 @@ def addIngredient(request):
 #----------------Tiff-----------------\/
 def showGraphsPage(request):
 	#calories,carbs,fat,protein,sodium,sugar
-	calories = [100,20,30,40]
-	carbValues = [100,20,30,40]
-	fatValues = [20,40,50]
-	proteinValues = [100,20,30,40]
-	sodiumValues = [100,20,30,40]
-	sugarValues = [100,20,30,40]
-	currentDates = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
+	calories = [x.amount for x in Calories.objects.all()]
+	carbValues = [x.amount for x in Carbs.objects.all()]
+	fatValues = [x.amount for x in Fats.object.all()]
+	proteinValues = [x.amount for x in Protein.object.all()]
+	sodiumValues = [x.amount for x in Sodium.object.all()]
+	sugarValues = [x.amount for x in Sugar.object.all()]
+	currentDates = [x.date for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'cal':calories,
 												'carbs': carbValues,
 												'fat':fatValues,
