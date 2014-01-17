@@ -101,13 +101,25 @@ def showShoppingPage(request):
 
 def addItem(request):
 	try:
-		ItemName = request.POST['ItemName']
-		ItemName.strip()
-		i = ShoppingList(item=ItemName,note='')
+		Item = request.POST['theName']
+		i = ShoppingList(item=Item,note='')
 		i.save();
 	except:
 		#nothing
 		i=1
+		raise
+	else:
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+
+def removeItem(request):
+	try:
+		Item = request.POST['theName']
+		i = ShoppingList.objects.get(name=Item)
+		i.delete();
+	except:
+		#nothing
+		i=1
+		raise
 	else:
 		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
 	
