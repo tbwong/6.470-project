@@ -46,12 +46,19 @@ def showGraphsPage(request):
 												})
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
-
 def showScrapbookPage(request):
-       pictures = [x.picture for x in Pictures.objects.all()]
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            m = ExampleModel.objects.get(pk=course_id)
+            m.model_pic = form.cleaned_data['image']
+            m.save()
+            return HttpResponse('Successfully added image!')
+   	return HttpResponseForbidden('Allowed only via POST :( ')
+    else:
        date = [x.date for x in Pictures.objects.all()]
        caption = [x.caption for x in Pictures.objects.all()]
-       return render(request, 'scrapbook/scrapbook.html', {'pictures':pictures, 'date':date, 'caption':caption})
+       return render(request, 'scrapbook/scrapbook.html', {'date':date, 'caption':caption})
 
 #----------------Jacqui-----------------/\
 
