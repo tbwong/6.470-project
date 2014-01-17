@@ -1,13 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures
-<<<<<<< HEAD
-import requests,re
-from datetime import datetime
-=======
-import requests,re,json,ast
->>>>>>> 6a3c8eb4732799330fd0f0f4df9d41dbf6f8f913
+from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList
 # Create your views here.
 
 #----------------Pav-----------------\/
@@ -31,49 +25,6 @@ def addIngredient(request):
 	else:
 		return HttpResponseRedirect(reverse('fridge:appPage',args=()))
 
-# function getRecipies(Ingredients){
-# 	var url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
-# 	var i =1;
-# 	for(i;i<Ingredients.length;i++){
-# 		url = url+'&allowedIngredient[]='+Ingredients[i].replace(/ /g, '');
-# 	}
-# 	$.ajax({
-# 		url: url,
-# 		dataType: "jsonp",
-# 		success: function (data) {
-# 			console.log(data)
-# 			alert(data);
-# 		}
-# 	});
-# }
-def getRecipes(request):
- 	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
- 	ings = Ingredient.objects.all()
- 	for i in range(len(ings)):
- 		temp = ings[i].name
- 		temp = re.sub('/ /g', '',temp)
- 		url = url+'&allowedIngredient[]='+temp
-	rec = requests.get(url)
-	temp = json.dumps(rec.json())
-	dct = json.loads(temp)
-	matches = dct['matches']
-	recipeNames = []
-	recipeIngs = []
-	count=0
-	temp = matches[0]
-	# for match in matches:
-	# 	recipeNames[count] = match['recipeName']
-	# 	recipeIngs[count] = match['ingredients']
-
-
-
-# 'recipeNames':recipeNames,'recipeIngs':recipeIngs
-	ingredients = Ingredient.objects.all() 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'recipeNames':temp} )
-
-
-
-
 #----------------Pav-----------------/\
 #----------------Tiff-----------------\/
 def showGraphsPage(request):
@@ -84,17 +35,19 @@ def showGraphsPage(request):
 	proteinValues = [x.amount for x in Protein.objects.all()]
 	sodiumValues = [x.amount for x in Sodium.objects.all()]
 	sugarValues = [x.amount for x in Sugar.objects.all()]
-#	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
+	currentDates = [x.date for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'cal':calories,
 												'carbs': carbValues,
 												'fat':fatValues,
 												'protein': proteinValues,
 												'sodium': sodiumValues,
-												'sugar': sugarValues
+												'sugar': sugarValues,
+												'dates': currentDates
 												})
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
 def showScrapbookPage(request):
+<<<<<<< HEAD
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
@@ -107,6 +60,10 @@ def showScrapbookPage(request):
        date = [x.date for x in Pictures.objects.all()]
        caption = [x.caption for x in Pictures.objects.all()]
        return render(request, 'scrapbook/scrapbook.html', {'date':date, 'caption':caption})
+=======
+       items = 0
+       return render(request, 'scrapbook/scrapbook.html', {'item':items})
+>>>>>>> 90c3706e3518b146e20acdb556c14d3ee56ee75c
 
 #----------------Jacqui-----------------/\
 
@@ -121,26 +78,14 @@ def showShoppingPage(request):
 
 def addItem(request):
 	try:
-		Item = request.POST['theName']
-		i = ShoppingList(item=Item,note='')
+		ItemName = request.POST['ItemName']
+		ItemName.strip()
+		i = ShoppingList(item=ItemName,note='')
 		i.save();
 	except:
 		#nothing
 		i=1
-		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
-
-def removeItem(request):
-	try:
-		Item = request.POST['theName']
-		i = ShoppingList.objects.get(name=Item)
-		i.delete();
-	except:
-		#nothing
-		i=1
-		raise
-	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:appPage',args=()))
 	
 #----------------Rujia-----------------/\

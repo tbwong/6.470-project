@@ -2,7 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures
-import requests,re,json,ast
+import requests,re
+from forms import ImageUploadForm;
+
 # Create your views here.
 
 #----------------Pav-----------------\/
@@ -15,7 +17,7 @@ def showFridge(request):
 
 def addIngredient(request):
 	try:
-		IngName = request.POST['IngName']
+		IngName = reqforuest.POST['IngName']
 		IngName.strip()
 		# IngAmount = float(request.POST['IngAmount'])
 		i = Ingredient(name=IngName,pic='search')
@@ -41,7 +43,7 @@ def addIngredient(request):
 # 		}
 # 	});
 # }
-def getRecipes(request):
+def getRecipies(Ingredients):
  	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
  	ings = Ingredient.objects.all()
  	for i in range(len(ings)):
@@ -49,22 +51,10 @@ def getRecipes(request):
  		temp = re.sub('/ /g', '',temp)
  		url = url+'&allowedIngredient[]='+temp
 	rec = requests.get(url)
-	temp = json.dumps(rec.json())
-	dct = json.loads(temp)
-	matches = dct['matches']
-	recipeNames = []
-	recipeIngs = []
-	count=0
-	temp = matches[0]
-	# for match in matches:
-	# 	recipeNames[count] = match['recipeName']
-	# 	recipeIngs[count] = match['ingredients']
+	
 
-
-
-# 'recipeNames':recipeNames,'recipeIngs':recipeIngs
 	ingredients = Ingredient.objects.all() 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'recipeNames':temp} )
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients} )
 
 
 
@@ -93,7 +83,7 @@ def showScrapbookPage(request):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            m = ExampleModel.objects.get(pk=course_id)
+            m = Pictures.objects.get('upload_pictures');
             m.model_pic = form.cleaned_data['image']
             m.save()
             return HttpResponse('Successfully added image!')
@@ -116,8 +106,8 @@ def showShoppingPage(request):
 
 def addItem(request):
 	try:
-		Item = request.POST['theName']
-		i = ShoppingList(item=Item,note='')
+		Item = request.POST['ItemName']
+		i = ShoppingList(item=Item,note=' ')
 		i.save();
 	except:
 		#nothing
@@ -128,8 +118,20 @@ def addItem(request):
 
 def removeItem(request):
 	try:
-		Item = request.POST['theName']
-		i = ShoppingList.objects.get(name=Item)
+		Item = request.POST['ItemNames']
+		i = ShoppingList.objects.get(item=Item)
+		i.delete();
+	except:
+		#nothing
+		i=1
+		raise
+	else:
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+
+def replaceItem(request):
+        try:
+		Item = request.POST['ItemName']
+		i = ShoppingList.objects.get(item=Item)
 		i.delete();
 	except:
 		#nothing

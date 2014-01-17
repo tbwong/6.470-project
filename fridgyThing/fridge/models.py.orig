@@ -1,6 +1,5 @@
 from django.db import models
 from django.conf import settings
-from django import forms
 
 # Create your models here.
 #----------------Pav-----------------\/
@@ -38,12 +37,15 @@ class Sugar(models.Model):
 
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
+<<<<<<< HEAD
 
 class Pictures(models.Model):
 	picture = models.ImageField(upload_to = 'scrapbook/', default = 'fridge/static/scrapbook/images/no_pic_uploaded.jpg');
 	date = models.DateTimeField('date published')
 	caption = models.TextField()
 
+=======
+>>>>>>> 90c3706e3518b146e20acdb556c14d3ee56ee75c
 #----------------Jacqui-----------------/\
 #----------------Rujia-----------------\/
 class ShoppingList (models.Model):
