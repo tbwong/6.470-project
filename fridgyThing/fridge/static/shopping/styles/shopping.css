@@ -56,11 +56,12 @@ nav .sidebar{
 	font-size: 20px;
 }
 .showpiece{
-	float: left;
+/*	float: left;
 	width: -moz-calc(100% - 250px);
     width: -webkit-calc(100% - 250px);
     width: calc(100% - 250px);
     height: 20%;
+*/
 }
 
 #showpiece-fridge{
@@ -114,6 +115,7 @@ h1{
 	width:300px; 
 	font-size:16px; 
 	background-color:#fff5eb;
+	float:left;
 }
 
 #shoppingheader {
@@ -137,7 +139,7 @@ h1{
 }
 
 .hov {
-	padding-left: 14px;
+	padding-left: 12px;
 	padding-top: 8px;
 	padding-bottom: 5px;
 	padding-right:14px;
@@ -160,11 +162,28 @@ h1{
 }
 
 .check {
-  padding: 0;
+ /* padding: 0;
   cursor: pointer;
   background: transparent;
   border: 0;
   -webkit-appearance: none;
+  */
+	float:left;
+	padding: 7px 13px;
+	font-size: 16px;
+    line-height: 1.5;
+	border-radius: 5px;
+}
+
+.print {
+	float:left;
+	font-size: 16px;
+	line-height: 2;
+}
+
+#shoppingheadertext {
+	padding-left: 10px;
+	
 }
 
 #foodedit {
@@ -182,17 +201,54 @@ h1{
 #foodedit, #food:focus {
 	border-color: #66afe9;
 	outline: 0;
+	box-shadow: None;
 	-webkit-box-shadow: None;
-		box-shadow: None;
-}
+}	
 
 #food {
 	border: #FEEAEA;
 	font-style:italic;
 	font-size:16px;
-	width:150%;
+	width:155%;
 }
 
 #text-length {
 	padding-right: 150px;
+}
+#spacer {
+	width:30px;
+	float: left;
+	background-color:white;
+}
+
+#memo {
+	width: 300px;
+	height:400px;
+	background-color:#fff5eb;
+	float:left;
+	font-size:15px;
+}
+
+#memocontent {
+	padding-left: 14px;
+	padding-top: 8px;
+	padding-bottom: 5px;
+	padding-right:14px;
+	background-color:#fff5eb;
+	font-size:16px;
+	font-family:'Segoe Print';
+	border:transparent;
+	outline:0;
+	float:left;
+}
+
+#memocontent:focus {
+	border-color: #66afe9;
+	outline: 0;
+	box-shadow: None;
+	-webkit-box-shadow: None;
+}
+
+#text {
+	padding: 6px;
 }

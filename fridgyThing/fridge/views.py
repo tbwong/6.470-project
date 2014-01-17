@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from fridge.models import Ingredient, Pictures
+from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList
 # Create your views here.
 
 #----------------Pav-----------------\/
@@ -29,13 +29,13 @@ def addIngredient(request):
 #----------------Tiff-----------------\/
 def showGraphsPage(request):
 	#calories,carbs,fat,protein,sodium,sugar
-	calories = [100,20,30,40]
-	carbValues = [100,20,30,40]
-	fatValues = [20,40,50]
-	proteinValues = [100,20,30,40]
-	sodiumValues = [100,20,30,40]
-	sugarValues = [100,20,30,40]
-	currentDates = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
+	calories = [x.amount for x in Calories.objects.all()]
+	carbValues = [x.amount for x in Carbs.objects.all()]
+	fatValues = [x.amount for x in Fats.objects.all()]
+	proteinValues = [x.amount for x in Protein.objects.all()]
+	sodiumValues = [x.amount for x in Sodium.objects.all()]
+	sugarValues = [x.amount for x in Sugar.objects.all()]
+	currentDates = [x.date for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'cal':calories,
 												'carbs': carbValues,
 												'fat':fatValues,
@@ -66,6 +66,21 @@ def showScrapbookPage(request):
 
 #----------------Rujia-----------------\/
 def showShoppingPage(request):
-        items = 0
-        return render(request, 'shopping/shopping.html', {'item':items})
+        itemslist = [x.item for x in ShoppingList.objects.all()]
+        memolist = [x.note for x in ShoppingList.objects.all()]
+        return render(request, 'shopping/shopping.html', {'itemslist':itemslist, 'memolist':memolist})
+
+
+def addItem(request):
+	try:
+		ItemName = request.POST['ItemName']
+		ItemName.strip()
+		i = ShoppingList(item=ItemName,note='')
+		i.save();
+	except:
+		#nothing
+		i=1
+	else:
+		return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+	
 #----------------Rujia-----------------/\

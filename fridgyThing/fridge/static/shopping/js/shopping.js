@@ -2,14 +2,14 @@ $(document).ready(function() {
 //hover to make icons visible
 	$("#food-list").on("mouseenter", ".hov", function() {
 		if ($("#foodedit").length==0) {
-			$(this).children(".close").removeClass("invisible");
+			$(this).children(".closer").removeClass("invisible");
 			$(this).css("background-color", "#eeeeee");
 		}
 	});
 	
 	$("#food-list").on("mouseleave", ".hov", function() {
 		if ($("#foodedit").length==0) {
-			$(this).children(".close").addClass("invisible");
+			$(this).children(".closer").addClass("invisible");
 			$(this).css("background-color", "#fff5eb");
 		}
 	});
@@ -25,7 +25,21 @@ $(document).ready(function() {
 			$(this).parent(".hov").remove();
 		}
 	});
-
+	
+//print NEED TO WORK ON THIS NOT WORKING ATM!!!!!
+/*
+	$(".print").printThis ({
+		debug: false, * show the iframe for debugging
+		importCSS: true, * import page CSS
+		printContainer: true, * grab outer container as well as the contents of the selector
+		loadCSS: "path/to/my.css", * path to additional css file
+		pageTitle: "", * add title to print page
+		removeInline: false, * remove all inline styles from print elements
+		printDelay: 333, * variable print delay S. Vance
+		header: null * prefix to html
+	});
+*/
+		
 //set cursor to end
 	$.fn.setCursorToTextEnd = function() {
 		$initialVal = this.val();
@@ -36,7 +50,7 @@ $(document).ready(function() {
 //click "pencil" to edit
 	$("#food-list").on("click", ".edit", function() {
 		if ($("#foodedit").length==0) {
-			var foodcontent = $(this).parent(".hov").contents().first().text();
+			var foodcontent = $(this).parent(".hov").text();
 			$(this).parent(".hov").replaceWith('<input type="text" class="form-control" id="foodedit" '+'value="' + foodcontent+'"></input>');
 			$("#foodedit").focus().setCursorToTextEnd();
 		}
@@ -48,7 +62,7 @@ $(document).ready(function() {
 		if (e.keyCode === 13) {
 		  e.preventDefault();
 		  var foodedit = $("#foodedit").val();
-		  $(this).replaceWith("<div class='hov'>"+foodedit+"<button type='button' class='close invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
+		  $(this).replaceWith('<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">'+foodedit+"</span><button type='button' class='close closer invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close closer invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
 		}
 	});
 
@@ -59,14 +73,9 @@ $(document).ready(function() {
 		var food = $("#food").val();
 		$("#food").val("");
 		if (food !== "" && food !== " "){
-		$("#food-list").append("<div class='hov'>"+food+"<button type='button' class='close invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
+		$("#food-list").append('<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">'+food+"</span><button type='button' class='close closer invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close closer invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
 		}
 	}
-
-/*	$("#addFood").click(function() {
-		addIng();
-	});
-*/
 	
 	$("#food").keypress(function(e) {
 		console.log(e.keyCode);
@@ -77,18 +86,9 @@ $(document).ready(function() {
 	});
 });
 
-/*
 $(document).click(function(e) {
-	if ($("#foodedit").length!=0 && (e.target.id !== 'foodedit') && (e.target.id !== 'edit')) {
-//		alert(e.target.id);
+	if ($("#foodedit").length!=0 && e.target.id !== 'foodedit' && !($(e.target).hasClass("edit"))) {
 		var foodedit = $("#foodedit").val();
-		$("#foodedit").replaceWith("<div class='hov'>"+foodedit+"<button type='button' class='close invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
-	}
-});
-*/
-
-$(document).click(function(e) {
-//	if ($("#foodedit").length!=0 && e.target.id !== '' && e.target.id !== 'foodedit' && e.target.id !== 'edit') {
-		alert(e.target.id);
+		$("#foodedit").replaceWith('<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">'+foodedit+"</span><button type='button' class='close closer invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close closer invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
 	}
 });
