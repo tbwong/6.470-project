@@ -13,6 +13,10 @@ urlpatterns = patterns('',
     #----------------Tiff-----------------/\
     #----------------Jacqui-----------------\/
     url(r'^scrapbook/',views.showScrapbookPage, name='showScrapbook'),
+    #url(r'^scrapbook/',views.addImage, name='addImage'),
+    #if settings.DEBUG:
+    # static files (images, css, javascript, etc.)
+
     #----------------Jacqui-----------------/\
     #----------------Rujia-----------------\/
     url(r'^shopping/',views.showShoppingPage, name='showShopping'),

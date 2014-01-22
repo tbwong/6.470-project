@@ -26,6 +26,7 @@
    <!--End Header -->
 
 <body>
+  <div id='overlay'></div>
   <header>
     <nav>
       <div class="siteTitle">
@@ -60,7 +61,7 @@
       <p> Upload another image? </p>
        <form action="{% url 'fridge:showScrapbook' %}" method="post" enctype="multipart/form-data">{% csrf_token %} <!--COME HERE -->
                 <p>
-                    <input id="id_image" type="file" class="" name="image">
+                    <input type="file" class="" name="image">
                 </p>
                 <input type="submit" value="Submit" />
             </form>
@@ -68,7 +69,6 @@
 </center>
 
  <!--Grid -->
-<div id='overlay'></div>
   <div id='frame'>
     <table id = "frame-table">
         <tr>
@@ -84,13 +84,13 @@
   </div>
   <div id = "wrapper" class="showpiece">
     <ul id = "portfolio">
-      <li><img src="images/scrapbook/Breakfast-Quinoa.jpg" alt = "img"/></li>
-      <li><img src="images/scrapbook/Gluten-Free-Waffles_thumb_4.jpg" alt = "img"/></li>
-      <li><img src="images/scrapbook/Apple-Pie-Enchiladas.jpg" alt = "img"/></li>
-      <li><img src="images/scrapbook/cookie-dough-bowls.jpg" alt = "img"/></li>
-      <li><img src="images/scrapbook/IMG_0312.jpg" alt = "img"/></li>
-      <li><img src="images/scrapbook/Oatmeal-Cupcakes.jpg" alt = "img"/></li>
-      <li><img src="images/scrapbook/Yogurt-Breakfast-Bowl.jpg" alt = "img"/></li>
+      {% for x in url %}
+      <li><img src = {% static x %} ></li>
+      {% endfor %}
+      {% for x in scrapbook_gen %}
+      <li>{{x.date}}</li>
+      {% endfor %}
+
     </ul>
   </div>  
 </body>
