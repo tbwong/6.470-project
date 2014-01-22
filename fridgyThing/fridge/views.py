@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures
 import requests,re
 from forms import ImageUploadForm;
+from django.utils import timezone;
 
 # Create your views here.
 
@@ -83,15 +84,57 @@ def showScrapbookPage(request):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            m = Pictures.objects.get('upload_pictures');
-            m.model_pic = form.cleaned_data['image']
+            m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
+         #   m.model_pic = form.cleaned_data['image']
             m.save()
-            return HttpResponse('Successfully added image!')
-   	return HttpResponseForbidden('Allowed only via POST :( ')
+    scrapbook_gen = Pictures.objects.all()
+    url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
+    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url': url})
+
+
+
+
+
+
+"""
+def addImage(request):
+    try:
+    	if request.method == 'POST':
+        	form = ImageUploadForm(request.POST, request.FILES)
+        	if form.is_valid():
+        		m = Pictures(date = timezone.now(), caption = "")
+         		#   m.model_pic = form.cleaned_data['image']
+         		m.save()
+         	return HttpResponse('Successfully added image!')
+    except:
+    	m = 1
+    	raise
     else:
-       date = [x.date for x in Pictures.objects.all()]
-       caption = [x.caption for x in Pictures.objects.all()]
-       return render(request, 'scrapbook/scrapbook.html', {'date':date, 'caption':caption})
+   		return HttpResponseRedirect(reverse('fridge:showScrapbookPage', args = ()))
+
+
+def addImage(request):
+	if request.method == 'POST':
+		form = ImageUploadForm(request.POST, request.FILES)
+		if form.is_valid():
+			m = Pictures(date = timezone.now(), caption = "")
+         		#   m.model_pic = form.cleaned_data['image']
+         		m.save()
+         		return HttpResponse('Successfully added image!') 
+	return HttpResponseForbidden('Allowed only via POST :( ')
+	else:
+		picture = [x.picture for x in Pictures.objects.all()]	
+		date = [x.date for x in Pictures.objects.all()]
+		caption = [x.caption for x in Pictures.objects.all()]
+		return render(request, 'scrapbook/scrapbook.html', {'picture':picture, 'date':date, 'caption':caption})
+
+     
+def showScrapbookPage(request):
+	picture = [x.picture for x in Pictures.objects.all()]
+	date = [x.date for x in Pictures.objects.all()]
+	caption = [x.caption for x in Pictures.objects.all()]
+	return render(request, 'scrapbook/scrapbook.html', {'picture': picture, 'date':date, 'caption':caption})
+"""
 
 #----------------Jacqui-----------------/\
 
