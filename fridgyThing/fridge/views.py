@@ -43,7 +43,7 @@ def addIngredient(request):
 # 		}
 # 	});
 # }
-def getRecipies(Ingredients):
+def getRecipes(Ingredients):
  	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
  	ings = Ingredient.objects.all()
  	for i in range(len(ings)):
@@ -69,14 +69,13 @@ def showGraphsPage(request):
 	proteinValues = [x.amount for x in Protein.objects.all()]
 	sodiumValues = [x.amount for x in Sodium.objects.all()]
 	sugarValues = [x.amount for x in Sugar.objects.all()]
-	currentDates = [x.date for x in Calories.objects.all()]
+#	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'cal':calories,
 												'carbs': carbValues,
 												'fat':fatValues,
 												'protein': proteinValues,
 												'sodium': sodiumValues,
-												'sugar': sugarValues,
-												'dates': currentDates
+												'sugar': sugarValues
 												})
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
