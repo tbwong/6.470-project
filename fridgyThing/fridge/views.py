@@ -145,7 +145,13 @@ def showShoppingPage(request):
 	itemslist = [(x.id, x.item) for x in ShoppingList.objects.all()]
 	memolist = [(x.id, x.note) for x in ShoppingList.objects.all()]
 	genlist = ShoppingList.objects.all()
-	return render(request, 'shopping/shopping.html', {'genlist':genlist, 'itemslist':itemslist, 'memolist':memolist})
+	if ShoppingList.objects.all()[0].id != 1:
+		other = ShoppingList(item ='', note='', id=1)
+		other.save()
+	else:
+		other = ShoppingList.objects.get(id=1).note
+#		genlist.remove(0)
+	return render(request, 'shopping/shopping.html', {'genlist':genlist, 'other':other})
 
 
 def addItem(request):
@@ -212,5 +218,19 @@ def replaceNote(request):
 		raise
 	else:
 		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		
+def genNote(request):
+	try:
+		genNote = request.POST['other']
+		i = ShoppingList.objects.get(id=1)
+		i.note = genNote
+		i.save()
+	except:
+		#nothing
+		i=1
+		raise
+	else:
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		
 	
 #----------------Rujia-----------------/\

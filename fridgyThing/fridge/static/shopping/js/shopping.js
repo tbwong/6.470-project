@@ -94,6 +94,14 @@ $(document).ready(function() {
 		}
 	});
 
+//gen note click to edit
+	$(".note").click(function() {
+		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
+			var note = $(this);
+			note.attr('id', 'othernote');
+		}
+	});
+	
 //press enter to save edits
 /*
 	$("#food-list").on("keypress", "#foodedit", function(e) {
@@ -125,12 +133,16 @@ $(document).ready(function() {
 		}
 	});
 */
+
 });
 
+
 $(document).click(function(e) {
-	if (e.target.id !== 'foodedit' && e.target.id !== 'noteedit' && e.target.id !== 'memocontent' && !($(e.target).hasClass("edit"))) {
+	if (e.target.id !== 'foodedit' && e.target.id !== 'noteedit' && e.target.id !== "memocontent" && e.target.id !== "othernote" && !($(e.target).hasClass("edit"))) {
 		$("#foodedit").closest('.submitedit').submit(); 
 		$("#noteedit").closest('.submitedit').submit();
-		$(".othernote").children('.submitnote').submit();
+		var a=$("#memocontent").val();
+		$("#other").val(a);
+		$("#othernote").children('.submitnote').submit();
 	}
 });
