@@ -111,7 +111,7 @@ h1{
 
 /* above is layout.css */
 
-#shopping-list {
+#food-list {
 	width:300px; 
 	font-size:16px; 
 	background-color:#fff5eb;
@@ -130,49 +130,58 @@ h1{
 	padding-right:30px;
 }
 
-#foodinput {
-	width:100%; 
-	padding-left:20px; 
-	padding-right:0px; 
-	padding-top:7px; 
-	padding-bottom:10px;
-}
-
-.hov {
+.shoppingdisplay{
 	padding-left: 12px;
 	padding-top: 8px;
-	padding-bottom: 5px;
+	padding-bottom: 8px;
 	padding-right:14px;
-	background-color:#fff5eb;
 	word-wrap:break-word;
 }
-
-/*
-.hov:hover {
-	background-color: #EEEEEE;
-}
-*/
 	
-.invisible {
-	opacity:0;
-}
-
-.close{
-	float:right;
-}
-
 .check {
- /* padding: 0;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  -webkit-appearance: none;
-  */
 	float:left;
 	padding: 7px 13px;
 	font-size: 16px;
     line-height: 1.5;
 	border-radius: 5px;
+}
+
+.closer{
+	float:right;
+}
+
+.invisible {
+	opacity:0;
+}
+#editfood, #editnote{
+	display:none;
+}
+
+#foodedit, #noteedit {
+	font-size:16px;
+	font-style:italic;
+	background-color:#eeeeee;
+	border:transparent;
+	padding-left: 14px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-right:14px;
+	height:100%;
+	width:100%;
+}
+
+#foodedit, #food, #noteedit:focus {
+	border-color: #66afe9;
+	outline: 0;
+	box-shadow: None;
+	-webkit-box-shadow: None;
+}	
+
+#food {
+	border: #FEEAEA;
+	font-style:italic;
+	font-size:16px;
+	background-color:#fff5eb;
 }
 
 .print {
@@ -186,32 +195,6 @@ h1{
 	
 }
 
-#foodedit {
-	font-size:16px;
-	font-style:italic;
-	background-color:#eeeeee;
-	border:transparent;
-	padding-left: 14px;
-	padding-top: 7px;
-	padding-bottom: 5px;
-	padding-right:14px;
-	height:36px;
-}
-
-#foodedit, #food:focus {
-	border-color: #66afe9;
-	outline: 0;
-	box-shadow: None;
-	-webkit-box-shadow: None;
-}	
-
-#food {
-	border: #FEEAEA;
-	font-style:italic;
-	font-size:16px;
-	width:155%;
-}
-
 #text-length {
 	padding-right: 150px;
 }
@@ -223,10 +206,20 @@ h1{
 
 #memo {
 	width: 300px;
-	height:400px;
 	background-color:#fff5eb;
 	float:left;
-	font-size:15px;
+	font-size:16px;
+}
+
+#text {
+	padding: 6px;
+}
+
+.memodisplay {
+	padding-left: 8px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-right:14px;
 }
 
 #memocontent {
@@ -235,11 +228,12 @@ h1{
 	padding-bottom: 5px;
 	padding-right:14px;
 	background-color:#fff5eb;
-	font-size:16px;
+	font-size:14px;
 	font-family:'Segoe Print';
 	border:transparent;
 	outline:0;
 	float:left;
+	width: 180px;
 }
 
 #memocontent:focus {
@@ -247,8 +241,4 @@ h1{
 	outline: 0;
 	box-shadow: None;
 	-webkit-box-shadow: None;
-}
-
-#text {
-	padding: 6px;
 }

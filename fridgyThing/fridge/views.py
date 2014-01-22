@@ -100,9 +100,10 @@ def showScrapbookPage(request):
 
 #----------------Rujia-----------------\/
 def showShoppingPage(request):
-        itemslist = [x.item for x in ShoppingList.objects.all()]
-        memolist = [x.note for x in ShoppingList.objects.all()]
-        return render(request, 'shopping/shopping.html', {'itemslist':itemslist, 'memolist':memolist})
+	itemslist = [(x.id, x.item) for x in ShoppingList.objects.all()]
+	memolist = [(x.id, x.note) for x in ShoppingList.objects.all()]
+	genlist = ShoppingList.objects.all()
+	return render(request, 'shopping/shopping.html', {'genlist':genlist, 'itemslist':itemslist, 'memolist':memolist})
 
 
 def addItem(request):
@@ -119,8 +120,8 @@ def addItem(request):
 
 def removeItem(request):
 	try:
-		Item = request.POST['ItemNames']
-		i = ShoppingList.objects.get(item=Item)
+		Item = request.POST['ItemId']
+		i = ShoppingList.objects.get(id=Item)
 		i.delete();
 	except:
 		#nothing
@@ -130,10 +131,39 @@ def removeItem(request):
 		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
 
 def replaceItem(request):
-        try:
-		Item = request.POST['ItemName']
-		i = ShoppingList.objects.get(item=Item)
-		i.delete();
+	try:
+		NewItem = request.POST['NewItem']
+		ItemId = request.POST["ItemId"]
+		i = ShoppingList.objects.get(id=ItemId)
+		i.item = NewItem
+		i.save()
+	except:
+		#nothing
+		i=1
+		raise
+	else:
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		
+def removeNote(request):
+	try:
+		Note = request.POST['NoteId']
+		i = ShoppingList.objects.get(id=Note)
+		i.note = ''
+		i.save()
+	except:
+		#nothing
+		i=1
+		raise
+	else:
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+
+def replaceNote(request):
+	try:
+		NewNote = request.POST['NewNote']
+		NoteId = request.POST["NoteId"]
+		i = ShoppingList.objects.get(id=NoteId)
+		i.note = NewNote
+		i.save()
 	except:
 		#nothing
 		i=1
