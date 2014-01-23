@@ -95,17 +95,14 @@ def showScrapbookPage(request):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
+            #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
          #   m.model_pic = form.cleaned_data['image']
-            m.save()
+            #m.save()
+            form.save()
     scrapbook_gen = Pictures.objects.all()
-    url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
-    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url': url})
-
-
-
-
-
+    url = Pictures.objects.all()
+    #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
+    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm()})
 
 """
 def addImage(request):
@@ -161,7 +158,6 @@ def showShoppingPage(request):
 		other.save()
 	else:
 		other = ShoppingList.objects.get(id=1).note
-#		genlist.remove(0)
 	return render(request, 'shopping/shopping.html', {'genlist':genlist, 'other':other})
 
 

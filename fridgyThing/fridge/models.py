@@ -40,9 +40,9 @@ class Sugar(models.Model):
 #----------------Jacqui-----------------\/
 
 class Pictures(models.Model):
-	picture = models.ImageField(upload_to = 'scrapbook/', default = 'fridge/static/scrapbook/images/no_pic_uploaded.jpg');
-	date = models.DateTimeField('date published')
-	caption = models.TextField()
+	picture = models.ImageField(upload_to = 'scrapbook_uploads', default = 'static/scrapbook/images/no_pic_uploaded.jpg');
+	date = models.DateTimeField('date published', auto_now=True)
+	caption = models.TextField(blank = True)
 	def __unicode__(self):
 		return self.caption
 
