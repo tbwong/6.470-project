@@ -28,7 +28,7 @@
 				<h1>frjr</h1>
 			</div>
 
-			<a id='logout' href="">
+			<a id='logout' href="{%url 'fridge:logout'%}">
 					<span class='glyphicon glyphicon-log-out' style='margin-left:12px'></span>
 					<br>logout
 			</a>
@@ -46,6 +46,11 @@
 						</a>
 						<div id='addIng' class='control-button' href="">
 							<img class='control-im' src="{% static 'fridge/images/plus.png' %}" />
+							<br>
+							<label class='control-label'>Food</label>
+						</div>
+						<div id='delIng' class='control-button' href="">
+							<img class='control-im' src="{% static 'fridge/images/minus.png' %}" />
 							<br>
 							<label class='control-label'>Food</label>
 						</div>
@@ -67,10 +72,10 @@
 	</header>
 	<nav class='sidebarHolder' style='float:left;'>
 		<ul class="sidebar nav nav-pills nav-stacked">
-			<li><a id = 'fridge' href="{% url 'fridge:appPage' %}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
-			<li><a id = 'shopping-list' href="{% url 'fridge:showShopping' %}"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
-			<li><a id = 'nutrition' href="{% url 'fridge:showGraphs' %}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
-			<li><a id='scrapbook' href="{% url 'fridge:showScrapbook' %}"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
+			<li><a id = 'fridge' href="{% url 'fridge:appPage' userID%}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+			<li><a id = 'shopping-list' href="{% url 'fridge:showShopping' userID%}"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
+			<li><a id = 'nutrition' href="{% url 'fridge:showGraphs' userID%}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+			<li><a id='scrapbook' href="{% url 'fridge:showScrapbook' userID%}"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
 		</ul>
 	</nav>
 
@@ -157,23 +162,40 @@
 		{% endif %}
 		
 		<div id="popupBackground"></div>
-		<div id='recipeInfo' class='popup'>
+		<div id='recipeInfo' class='popup-recipe'>
 			{%for r in recipe%}
 			<div id = 'rInfo-{{forloop.counter}}' class='rInfo' style='display:none; height:100%; overflow:scroll;'>
-				<h2>{{r.0}}</h2>
-				<h3>Ingredients: </h3>
+				<span id="recipetitle">{{r.0}}</span> <a href="{%url 'fridge:appPage' userID%}"><button class='btn btn-default' id="made">I Made It!</button></a> <br>
+				<h3 id="recipeing">Ingredients: </h3>
 				<ul>
 				{%for ingredient in r.1%}
-					<li>{{ingredient}}</li>
+					<li id="recipelist">{{ingredient}}</li>
 				{%endfor%}
 				</ul>
-				<a href="http://www.yummly.com/recipe/{{r.3}}"><button>See Directions</button></a>
+				<span><a href="http://www.yummly.com/recipe/{{r.3}}"><button class='btn btn-default' id="directions">See Directions</button></a><span>
+				<span>
+				<form action="{%url 'fridge:addShopping'%}" method='post'>
+					{% csrf_token %}
+
+					{%for ing in r.1%}
+					<input type='hidden' name='ingsList' value="{{ing}}">
+					{%endfor%}
+					<input type="hidden" name="userID" value="{{userID}}">
+
+					<span class="input-group btn-group centeredButton add" >
+						<input type='submit' class='btn btn-default' value='Add These Ingredients to My Shopping List!'></input>
+					</span>
+				</form>
+				</span>
+
+				
+				
 			</div>
 			{%endfor%}
 		</div>
 
 		<div id='addIng-popup' class='popup' >
-			<h1 style="text-align:center;">Add Ingredient</h1>
+			<h1 style="text-align:center;">Add to Fridge</h1>
 			<br><br>
 			<form id='addIng-group' action="{% url 'fridge:addIngredient'%}" method="post">
 				{% csrf_token %}
@@ -187,9 +209,31 @@
 				  <span class="input-group-addon"># Grams:</span>
 				  <input type="number" name='IngAmount' class="form-control" value="1" required>
 				</div>
+				<input type="hidden" name="userID" value="{{userID}}">
 				<br>
 				<div class="input-group btn-group centeredButton" >
 					<input type='submit' class='btn btn-default' value='Add It'></input>
+				</div>
+
+			</form>
+		</div>
+		<div id='delIng-popup' class='popup' >
+			<h1 style="text-align:center;">Remove Ingredient</h1>
+			<br><br>
+			<form id='delIng-group' action="{% url 'fridge:delIngredient'%}" method="post">
+				{% csrf_token %}
+
+				<select name="IngNames" style="position:relative; left:50%; margin-left:-32px;" >
+					{%for i in ingredients%}
+					<option value="{{i.name}}" >{{i.name}}</option>
+					{%endfor%}
+				</select>
+
+				<br>
+				<input type="hidden" name="userID" value="{{userID}}">
+				<br><br>
+				<div class="input-group btn-group centeredButton" >
+					<input type='submit' class='btn btn-default' value='Remove It'></input>
 				</div>
 
 			</form>

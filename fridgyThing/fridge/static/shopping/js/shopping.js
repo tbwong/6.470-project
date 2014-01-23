@@ -18,6 +18,7 @@ $(document).ready(function() {
 			$("#memo").find(id).css("background-color", "#fff5eb");
 		}
 	});
+	
 //notes hover to make icons visible
 	$("#memo").on("mouseenter", ".memohov", function() {
 		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
@@ -102,38 +103,25 @@ $(document).ready(function() {
 		}
 	});
 	
-//press enter to save edits
-/*
-	$("#food-list").on("keypress", "#foodedit", function(e) {
-		console.log(e.keyCode);
-		if (e.keyCode === 13) {
-		  e.preventDefault();
-		  var foodedit = $("#foodedit").val();
-		  $(this).replaceWith('<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">'+foodedit+"</span><button type='button' class='close closer invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close closer invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
-		}
+//add to fridge!
+	$('.hov').on('click', '.add', function(){
+		$('#popupBackground').fadeIn();
+		$('#addIng-popup').show('slow');
+		okay = $(this).closest('.hov').attr("id");
+		$('#addIng-popup').find('#insertid').val(okay);
 	});
-*/
-	
-	
-//add ingredient at bottom
-/*
-	function addIng() {
-		var food = $("#food").val();
-		$("#food").val("");
-		if (food !== "" && food !== " "){
-		$("#food-list").append('<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">'+food+"</span><button type='button' class='close closer invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close closer invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
-		}
-	}
-	
-	$("#food").keypress(function(e) {
-		console.log(e.keyCode);
-		if (e.keyCode === 13) {
-		  e.preventDefault();
-		  addIng();
-		}
-	});
-*/
 
+	
+	
+	$('#popupBackground').click(function(){
+		$('#popupBackground').fadeOut();
+		$('#addIng-popup').hide('fast');
+	});
+/*
+	$(".showpiece").on("click", "#what", function() {
+		$('#food-list').find("#8").children(".submitremove").submit();
+	}); 
+	*/
 });
 
 

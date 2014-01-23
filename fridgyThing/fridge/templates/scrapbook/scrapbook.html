@@ -42,13 +42,10 @@
 
   <nav class='sidebarHolder' style='float:left;'>
     <ul class="sidebar nav nav-pills nav-stacked">
-      <li><a id = 'fridge' href="{% url 'fridge:appPage' %}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
-      <li><a id = 'shopping-list' href="{% url 'fridge:showShopping' %}"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
-      <li><a id = 'nutrition' href="{% url 'fridge:showGraphs' %}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
-      <li><a id='scrapbook' href="#% url 'fridge:showScrapbook"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
-      <li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
-      <li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
-      <li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+      <li><a id = 'fridge' href="{% url 'fridge:appPage' userID%}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+      <li><a id = 'shopping-list' href="{% url 'fridge:showShopping' userID%}"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
+      <li><a id = 'nutrition' href="{% url 'fridge:showGraphs' userID%}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+      <li><a id='scrapbook' href="{% url 'fridge:showScrapbook' userID%}"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
     </ul>
   </nav>
 
@@ -59,11 +56,15 @@
 
   <div class = "button"; id = "upload-button">
       <p> Upload another image? </p>
+<<<<<<< HEAD
       <span class="file-wrapper">
  
   <span class="button">Upload another picture?</span>
 
        <form action="{% url 'fridge:showScrapbook' %}" method="post" enctype="multipart/form-data">{% csrf_token %} <!--COME HERE -->
+=======
+       <form action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">{% csrf_token %} <!--COME HERE -->
+>>>>>>> fdb03d2917aec3df7b5f0eed2fa534fb9734fa7e
                 <p>
                     <!-- <input type="file" class="" name="image"> -->
                     {{ form.non_field_errors }}
