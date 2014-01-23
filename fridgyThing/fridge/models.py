@@ -6,7 +6,7 @@ from django import forms
 # Create your models here.
 #----------------Pav-----------------\/
 class Ingredient(models.Model):
-	user = models.ForeignKey()
+	user = models.ForeignKey(User)
 	name = models.CharField(max_length=200)
 	pic = models.CharField(max_length=200)
 	def __unicode__(self):
@@ -15,26 +15,32 @@ class Ingredient(models.Model):
 #----------------Pav-----------------/\
 #----------------Tiff-----------------\/
 class Calories(models.Model):
+	user = models.ForeignKey(User)
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
 
 class Carbs(models.Model):
+	user = models.ForeignKey(User)
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
 
 class Fats(models.Model):
+	user = models.ForeignKey(User)
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
 
 class Protein(models.Model):
+	user = models.ForeignKey(User)
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
 
 class Sodium(models.Model):
+	user = models.ForeignKey(User)
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
 
 class Sugar(models.Model):
+	user = models.ForeignKey(User)
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
 
@@ -42,6 +48,7 @@ class Sugar(models.Model):
 #----------------Jacqui-----------------\/
 
 class Pictures(models.Model):
+	user = models.ForeignKey(User)
 	picture = models.ImageField(upload_to = 'scrapbook_uploads', default = 'static/scrapbook/images/no_pic_uploaded.jpg');
 	date = models.DateTimeField('date published', auto_now=True)
 	caption = models.TextField(blank = True)
@@ -50,10 +57,12 @@ class Pictures(models.Model):
 
 #----------------Jacqui-----------------/\
 #----------------Rujia-----------------\/)
-        def __unicode__(self):
-                return self.item
+        
 class ShoppingList (models.Model):
-        item = models.CharField(max_length=200)
-        note = models.CharField(max_length=500
+		user = models.ForeignKey(User)
+		item = models.CharField(max_length=200)
+		note = models.CharField(max_length=500)
+		def __unicode__(self):
+			return self.item
         
 #----------------Rujia-----------------/\

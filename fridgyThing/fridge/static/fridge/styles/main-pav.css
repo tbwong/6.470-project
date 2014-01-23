@@ -1,0 +1,29 @@
+body{
+	background-color: black;
+}
+#background{
+	position:absolute; 
+	z-index:-1;
+	left:0;
+	top:0;
+	width:100%;
+	height:auto
+}
+
+#siteTitle{
+	font-family: 'Exo',sans-serif;
+	color:white;
+	text-align: center;
+	font-size: 90px;
+	margin-top: 10%;
+}
+#login-group{
+	width: 33%;
+	margin-left: 33%;
+}
+#login-button{
+	margin-left: 37%;
+}
+.input-group{
+	margin:10px;
+}

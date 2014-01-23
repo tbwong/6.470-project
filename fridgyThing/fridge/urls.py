@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^addShopping/',views.addShopping,name='addShopping'),
     #----------------Pav-----------------/\
     #----------------Tiff-----------------\/
+    url(r'^login/',views.my_view,name='my_view'),
     url(r'^graphs/',views.showGraphsPage,name='showGraphs'),
     #----------------Tiff-----------------/\
     #----------------Jacqui-----------------\/

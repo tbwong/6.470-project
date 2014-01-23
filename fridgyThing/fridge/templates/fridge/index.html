@@ -15,6 +15,8 @@
 
 	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/main.css'%}">
 
+	<script type="text/javascript" src="{% static 'fridge/styles/main.js'%}"> </script>
+
 
 </head>
 <body>
@@ -27,18 +29,24 @@
 			The Fridge
 		</header>
 
-	<form id='login-group' name='input' action="{% url 'fridge:appPage'%}">
-		<form id='login-group' name='input' action="layout.html">
+		<form id='login-group' name='input' action="{% url 'fridge:my_view' %}" method="post">
+			{% csrf_token %}
 			<div class="input-group">
-				<span class='input-group-addon'>@</span>
-				<input type='email' class="form-control" placeholder='Username' required autofocus>
+				<span class='input-group-addon'>U</span>
+				<input type='text' name = 'username' id= 'username' class="form-control" placeholder='Username' required autofocus>
 			</div>
 			<div class="input-group">
 				<span class='input-group-addon' style='padding:9px 15px;'> * </span>
-				<input type='password' class="form-control" placeholder='Password'required>
+				<input type='password' name='password' id='password' class="form-control" placeholder='Password'required>
 			</div>
-			<div class="input-group btn-group" id='login-button'>
-				<input type='submit' class='btn btn-default' value='Log In'></input>
+			<div class="input-group btn-group">
+				<div id='login-button'>
+					<input type='submit' class='btn btn-default' value='Log In'></input>
+				</div>
+				<div id='register-button'>
+					<input type='submit' class='btn btn-default' value='Register'>
+					</input>
+				</div>	
 			</div>
 		</form>
 	</div>

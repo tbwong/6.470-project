@@ -31,10 +31,17 @@ body{
 #login-group{
 	text-align: center;
 }
-#login-group #login-button{
+#login-button{
 	text-align: center;
 	position: absolute;
 	width: 50px;
+}
+#register-button {
+	text-align: center;
+	position: absolute;
+	margin-left: 100px;
+	width: 50px;
+
 }
 .input-group{
 	margin:10px;
