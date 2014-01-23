@@ -57,14 +57,21 @@
       <h1> Welcome to your Scrapbook! </h1>
   </div>
 
-  <div id = "new_button">
-    <p> Upload Another Image? </p>
-       <span class="btn btn-default btn-file"> 
+  <div class = "button"; id = "upload-button">
+      <p> Upload another image? </p>
+      <span class="file-wrapper">
+ 
+  <span class="button">Upload another picture?</span>
+
+       <form action="{% url 'fridge:showScrapbook' %}" method="post" enctype="multipart/form-data">{% csrf_token %} <!--COME HERE -->
+                <p>
                     <!-- <input type="file" class="" name="image"> -->
                     {{ form.non_field_errors }}
                     {{ form.picture }}
-              </span>
-         <input type="submit" value="Submit" /> 
+                </p>
+                <input type="submit" value="Submit" />
+            </form>
+            </span>
   </div>
 </center>
 
