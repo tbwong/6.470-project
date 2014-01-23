@@ -150,7 +150,6 @@ def showShoppingPage(request):
 		other.save()
 	else:
 		other = ShoppingList.objects.get(id=1).note
-#		genlist.remove(0)
 	return render(request, 'shopping/shopping.html', {'genlist':genlist, 'other':other})
 
 

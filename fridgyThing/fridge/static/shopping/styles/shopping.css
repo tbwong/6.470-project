@@ -17,6 +17,7 @@ header nav{
 }
 header nav .siteTitle{
 	display: inline-block;
+
 }
 header nav .siteTitle h1{
 	font-family:'Exo';
@@ -116,6 +117,12 @@ h1{
 	font-size:16px; 
 	background-color:#fff5eb;
 	float:left;
+	margin-left:20px;
+	margin-right:0px;
+}
+#minheight {
+	min-height:200px;
+	background-color: #fff5eb;
 }
 
 #shoppingheader {
@@ -209,6 +216,7 @@ h1{
 	background-color:#fff5eb;
 	float:left;
 	font-size:16px;
+	min-height:200px;
 }
 
 #text {
@@ -241,4 +249,9 @@ h1{
 	outline: 0;
 	box-shadow: None;
 	-webkit-box-shadow: None;
+}
+
+.note {
+	margin-top: 20px;
+	margin-left: 0px;
 }

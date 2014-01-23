@@ -47,9 +47,9 @@
 
 
 	<div class='showpiece'>
-		<div id="spacer">    .</div>
 		
 		<div id="food-list">
+			<div id="minheight">
 			<div id="shoppingheader"><span id="shoppingheadertext"><b>Shopping List</b></span><button type="button" class="close print"><span class="glyphicon glyphicon-print"></span></button></div>
 			<!-- show on list -->
 			{% for x in genlist %}
@@ -82,7 +82,7 @@
 			{% endif %}
 			{% endfor %}
 			
-			
+			</div>
 			<!-- add to list -->
 			<form action="{% url 'fridge:addItem' %}" method="post">
 			{% csrf_token %}
