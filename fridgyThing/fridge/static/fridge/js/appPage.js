@@ -103,6 +103,7 @@ $(document).ready(function(){
 		$('#addIng-popup').hide('fast');
 		$('#recipeInfo').hide('fast');
 		$('.rInfo').hide('fast');
+		$('#delIng-popup').hide('fast');
 	});
 
 	$('.recipeResult').click(function(){
@@ -112,6 +113,11 @@ $(document).ready(function(){
 		var dash = idnum.indexOf("-");
 		idnum = idnum.substring(dash+1);
 		$('#rInfo-'+idnum).show('fast');
+	});
+
+	$('#delIng').click(function(){
+		$('#popupBackground').fadeIn();
+		$('#delIng-popup').show('slow');
 	});
 });
 

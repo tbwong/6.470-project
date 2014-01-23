@@ -18,41 +18,63 @@ def showFridge(request):
 
 def addIngredient(request):
 	IngName = request.POST['IngName']
-	IngName.strip()
+	IngName.strip().lower();
 	# IngAmount = float(request.POST['IngAmount'])
 	i = Ingredient(name=IngName,pic='search')
 	i.save();
 	return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+def delIngredient(request):
+	IngName = request.POST['IngNames']
+	IngName.strip()
+	# IngAmount = float(request.POST['IngAmount'])
+	i = Ingredient.objects.get(name=IngName.lower())
+	i.delete();
+	return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+
 
 def getRecipes(request):
  	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
+ 	url= url+'&requirePictures=true'
  	ings = Ingredient.objects.all()
+ 	matchSet= []
+
  	for i in range(len(ings)):
  		temp = ings[i].name
  		temp = re.sub('/ /g', '',temp).lower()
- 		url = url+'&allowedIngredient[]='+temp
- 	url= url+'&requirePictures=true'
-	rec = requests.get(url)
+ 		url2 = url+'&allowedIngredient[]='+temp
+		rec = requests.get(url2)
 
-	temp = json.dumps(rec.json())
-	dct = json.loads(temp)
-	matches = dct['matches']
+		temp = json.dumps(rec.json())
+		dct = json.loads(temp)
+		matchSet.append(dct['matches'])
+ 	
 	recipeNames = []
 	recipeIngs = []
 	recipeIms = [] 
 	recipeIds = []
 	count=0
-
-	for match in matches:
-		recipeNames.append(match['recipeName'][0:25]+'...')
-		recipeIngs.append(match['ingredients'])
-		recipeIms.append(match['smallImageUrls'][0])
-		recipeIds.append(match['id'])
+	for matches in matchSet:
+		for match in matches:
+			recipeNames.append(match['recipeName'][0:25]+'...')
+			recipeIngs.append(match['ingredients'])
+			recipeIms.append(match['smallImageUrls'][0])
+			recipeIds.append(match['id'])
 
 	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds)
 	ingredients = Ingredient.objects.all() 
 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe} )
+
+# def makeMeal(request,datID):
+# 	 url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
+# 	 return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+def addShopping(request):
+	ings = request.POST.getlist('ingsList')
+	for j in ings:
+		i = ShoppingList(item=j,note=' ')
+		i.save();
+	return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+
 
 
 #----------------Pav-----------------/\
