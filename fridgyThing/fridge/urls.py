@@ -10,6 +10,8 @@ urlpatterns = patterns('',
     url(r'^getRecipes/',views.getRecipes,name='getRecipes'),
     # url(r'^(?P<datID>[-\w]+)/getRecipes/',views.getRecipes,name='getRecipes'),
     url(r'^addShopping/',views.addShopping,name='addShopping'),
+    url(r'^register/',views.register,name='register'),
+
     #----------------Pav-----------------/\
     #----------------Tiff-----------------\/
     url(r'^login/',views.my_view,name='my_view'),
