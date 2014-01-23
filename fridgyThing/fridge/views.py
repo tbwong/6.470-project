@@ -1,36 +1,41 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures
+from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures,User
 import requests,re, json
 from django.views.generic.base import RedirectView
 from forms import ImageUploadForm;
 from django.utils import timezone;
+from django.shortcuts import render_to_response
+from django.contrib.auth import authenticate, login, logout
+from django.core.context_processors import csrf
 
 # Create your views here.
 
 #----------------Pav-----------------\/
 def index(request):
 	return render(request, 'fridge/index.html')
-def showFridge(request):
-	ingredients = Ingredient.objects.all() 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients} )
+def showFridge(request,userID):
+	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID)) 
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'userID':userID} )
 
 def addIngredient(request):
 	IngName = request.POST['IngName']
-	IngName.strip().lower();
+	userID = request.POST['userID']
+	IngName.strip()
+	IngName= IngName.lower();
 	# IngAmount = float(request.POST['IngAmount'])
-	i = Ingredient(name=IngName,pic='search')
+	i = Ingredient(name=IngName,pic='search',user=User.objects.get(pk=userID))
 	i.save();
-	return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
 def delIngredient(request):
 	IngName = request.POST['IngNames']
+	userID = request.POST['userID']
 	IngName.strip()
 	# IngAmount = float(request.POST['IngAmount'])
-	i = Ingredient.objects.get(name=IngName.lower())
+	i = Ingredient.objects.get(name=IngName.lower(),user=User.objects.get(pk=userID))
 	i.delete();
-	return HttpResponseRedirect(reverse('fridge:appPage',args=()))
-
+	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
 
 def getRecipes(request):
  	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
@@ -69,35 +74,59 @@ def getRecipes(request):
 # 	 url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
 # 	 return HttpResponseRedirect(reverse('fridge:appPage',args=()))
 def addShopping(request):
+	userID = request.POST['userID']
 	ings = request.POST.getlist('ingsList')
 	for j in ings:
-		i = ShoppingList(item=j,note=' ')
+		i = ShoppingList(item=j,note=' ',user=User.objects.get(pk=userID))
 		i.save();
 	return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
 
-
-
 #----------------Pav-----------------/\
 #----------------Tiff-----------------\/
-def showGraphsPage(request):
+def my_view(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+			login(request, user)
+			userID = user.pk;
+			#raise Exception("I know python!")
+			return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
+        else:
+            # Return a 'disabled account' error message
+            return HttpResponse('There is a problem with your account. Contact us.')
+    else:
+        # Return an 'invalid login' error message.
+       return HttpResponse('Wrong username or password')
+
+
+def logout_view(request):
+    logout(request)
+    # Redirect to a success page.
+    return HttpResponseRedirect(reverse('fridge:index',args=()))
+
+
+def showGraphsPage(request,userID):
 	#calories,carbs,fat,protein,sodium,sugar
-	calories = [x.amount for x in Calories.objects.all()]
-	carbValues = [x.amount for x in Carbs.objects.all()]
-	fatValues = [x.amount for x in Fats.objects.all()]
-	proteinValues = [x.amount for x in Protein.objects.all()]
-	sodiumValues = [x.amount for x in Sodium.objects.all()]
-	sugarValues = [x.amount for x in Sugar.objects.all()]
+	calories = [x.amount for x in Calories.objects.filter(user=User.objects.get(pk=userID))]
+	carbValues = [x.amount for x in Carbs.objects.filter(user=User.objects.get(pk=userID))]
+	fatValues = [x.amount for x in Fats.objects.filter(user=User.objects.get(pk=userID))]
+	proteinValues = [x.amount for x in Protein.objects.filter(user=User.objects.get(pk=userID))]
+	sodiumValues = [x.amount for x in Sodium.objects.filter(user=User.objects.get(pk=userID))]
+	sugarValues = [x.amount for x in Sugar.objects.filter(user=User.objects.get(pk=userID))]
 #	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'cal':calories,
 												'carbs': carbValues,
 												'fat':fatValues,
 												'protein': proteinValues,
 												'sodium': sodiumValues,
-												'sugar': sugarValues
+												'sugar': sugarValues,
+												'userID': userID
 												})
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
-def showScrapbookPage(request):
+def showScrapbookPage(request,userID):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
@@ -105,10 +134,10 @@ def showScrapbookPage(request):
          #   m.model_pic = form.cleaned_data['image']
             #m.save()
             form.save()
-    scrapbook_gen = Pictures.objects.all()
-    url = Pictures.objects.all()
+    scrapbook_gen = Pictures.objects
+    url = Pictures.objects.filter(user=User.objects.get(pk=userID))
     #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
-    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm()})
+    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
 
 """
 def addImage(request):
@@ -155,47 +184,50 @@ def showScrapbookPage(request):
 
 
 #----------------Rujia-----------------\/
-def showShoppingPage(request):
-	itemslist = [(x.id, x.item) for x in ShoppingList.objects.all()]
-	memolist = [(x.id, x.note) for x in ShoppingList.objects.all()]
+def showShoppingPage(request,userID):
+	itemslist = [(x.id, x.item) for x in ShoppingList.objects.filter(user=User.objects.get(pk=userID))]
+	memolist = [(x.id, x.note) for x in ShoppingList.objects.filter(user=User.objects.get(pk=userID))]
 	genlist = ShoppingList.objects.all()
-	if ShoppingList.objects.count()==0 or ShoppingList.objects.all()[0].id != 1:
-		other = ShoppingList(item ='', note='', id=1)
+	if len(ShoppingList.objects.filter(user=User.objects.get(pk=userID)))==0 or ShoppingList.objects.filter(user=User.objects.get(pk=userID))[0].id != 1:
+		other = ShoppingList(item ='', note='', id=1,user=User.objects.get(pk=userID))
 		other.save()
 	else:
 		other = ShoppingList.objects.get(id=1).note
-	return render(request, 'shopping/shopping.html', {'genlist':genlist, 'other':other})
+	return render(request, 'shopping/shopping.html', {'genlist':genlist, 'other':other,'userID':userID})
 
 
 def addItem(request):
+	userID = request.POST['userID']
 	try:
 		Item = request.POST['ItemName']
-		i = ShoppingList(item=Item,note=' ')
+		i = ShoppingList(item=Item,note=' ',user=User.objects.get(pk=userID))
 		i.save();
 	except:
 		#nothing
 		i=1
 		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 
 def removeItem(request):
+	userID = request.POST['userID']
 	try:
 		Item = request.POST['ItemId']
-		i = ShoppingList.objects.get(id=Item)
+		i = ShoppingList.objects.get(id=Item,user=User.objects.get(pk=userID))
 		i.delete();
 	except:
 		#nothing
 		i=1
 		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 
 def replaceItem(request):
+	userID = request.POST['userID']
 	try:
 		NewItem = request.POST['NewItem']
 		ItemId = request.POST["ItemId"]
-		i = ShoppingList.objects.get(id=ItemId)
+		i = ShoppingList.objects.get(id=ItemId,user=User.objects.get(pk=userID))
 		i.item = NewItem
 		i.save()
 	except:
@@ -203,12 +235,13 @@ def replaceItem(request):
 		i=1
 		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 		
 def removeNote(request):
+	userID = request.POST['userID']
 	try:
 		Note = request.POST['NoteId']
-		i = ShoppingList.objects.get(id=Note)
+		i = ShoppingList.objects.get(id=Note,user=User.objects.get(pk=userID))
 		i.note = ''
 		i.save()
 	except:
@@ -216,13 +249,14 @@ def removeNote(request):
 		i=1
 		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 
 def replaceNote(request):
+	userID = request.POST['userID']
 	try:
 		NewNote = request.POST['NewNote']
 		NoteId = request.POST["NoteId"]
-		i = ShoppingList.objects.get(id=NoteId)
+		i = ShoppingList.objects.get(id=NoteId,user=User.objects.get(pk=userID))
 		i.note = NewNote
 		i.save()
 	except:
@@ -230,12 +264,13 @@ def replaceNote(request):
 		i=1
 		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 		
 def genNote(request):
+	userID = request.POST['userID']
 	try:
 		genNote = request.POST['other']
-		i = ShoppingList.objects.get(id=1)
+		i = ShoppingList.objects.get(id=1,user=User.objects.get(pk=userID))
 		i.note = genNote
 		i.save()
 	except:
@@ -243,7 +278,7 @@ def genNote(request):
 		i=1
 		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 		
 def addIngredientS(request):
 	IngName = request.POST['IngName']

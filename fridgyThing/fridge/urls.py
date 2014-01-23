@@ -4,7 +4,7 @@ from fridge import views
 urlpatterns = patterns('',
 	#----------------Pav-----------------\/
     url(r'^$', views.index, name='index'),
-    url(r'^fridge/', views.showFridge, name='appPage'),
+    url(r'^(?P<userID>[-\w]+)/fridge/', views.showFridge, name='appPage'),
     url(r'^addIngredient/',views.addIngredient,name='addIngredient'),
     url(r'^delIngredient/',views.delIngredient,name='delIngredient'),
     url(r'^getRecipes/',views.getRecipes,name='getRecipes'),
@@ -12,17 +12,19 @@ urlpatterns = patterns('',
     url(r'^addShopping/',views.addShopping,name='addShopping'),
     #----------------Pav-----------------/\
     #----------------Tiff-----------------\/
-    url(r'^graphs/',views.showGraphsPage,name='showGraphs'),
+    url(r'^login/',views.my_view,name='my_view'),
+    url(r'^logout/',views.logout_view,name='logout'),
+    url(r'^(?P<userID>[-\w]+)/graphs/',views.showGraphsPage,name='showGraphs'),
     #----------------Tiff-----------------/\
     #----------------Jacqui-----------------\/
-    url(r'^scrapbook/',views.showScrapbookPage, name='showScrapbook'),
+    url(r'^(?P<userID>[-\w]+)/scrapbook/',views.showScrapbookPage, name='showScrapbook'),
     #url(r'^scrapbook/',views.addImage, name='addImage'),
     #if settings.DEBUG:
     # static files (images, css, javascript, etc.)
 
     #----------------Jacqui-----------------/\
     #----------------Rujia-----------------\/
-    url(r'^shopping/',views.showShoppingPage, name='showShopping'),
+    url(r'^(?P<userID>[-\w]+)/shopping/',views.showShoppingPage, name='showShopping'),
     url(r'^addItem/', views.addItem, name='addItem'),
     url(r'^removeItem/', views.removeItem, name='removeItem'),
 	url(r'^replaceItem/', views.replaceItem, name='replaceItem'), 
