@@ -102,37 +102,27 @@ $(document).ready(function() {
 		}
 	});
 	
-//press enter to save edits
-/*
-	$("#food-list").on("keypress", "#foodedit", function(e) {
-		console.log(e.keyCode);
-		if (e.keyCode === 13) {
-		  e.preventDefault();
-		  var foodedit = $("#foodedit").val();
-		  $(this).replaceWith('<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">'+foodedit+"</span><button type='button' class='close closer invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close closer invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
-		}
+//add to fridge!
+	$('.hov').on('click', '.add', function(){
+		$('#popupBackground').fadeIn();
+		$('#addIng-popup').show('slow');
+		window.id = "#" + $(this).closest('.hov').id;
+//this part aint working
 	});
-*/
+
+	$('#popupBackground').click(function(){
+		$('#popupBackground').fadeOut();
+		$('#addIng-popup').hide('fast');
+	});
 	
-	
-//add ingredient at bottom
-/*
-	function addIng() {
-		var food = $("#food").val();
-		$("#food").val("");
-		if (food !== "" && food !== " "){
-		$("#food-list").append('<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">'+food+"</span><button type='button' class='close closer invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close closer invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
-		}
+	function removeitem() {
+		$('#food-list').find("#3").find('.submitremove').submit();
 	}
-	
-	$("#food").keypress(function(e) {
-		console.log(e.keyCode);
-		if (e.keyCode === 13) {
-		  e.preventDefault();
-		  addIng();
-		}
-	});
-*/
+/*
+	$("#addfridge").on('submit', function(event) {
+		alert("submitted");
+		$('#food-list').find("#3").find('.submitremove').submit();
+	}); */
 
 });
 
