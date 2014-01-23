@@ -21,7 +21,12 @@ urlpatterns = patterns('',
     #----------------Rujia-----------------\/
     url(r'^shopping/',views.showShoppingPage, name='showShopping'),
     url(r'^addItem/', views.addItem, name='addItem'),
-    url(r'^removeItem/', views.removeItem, name='removeItem')
+    url(r'^removeItem/', views.removeItem, name='removeItem'),
+	url(r'^replaceItem/', views.replaceItem, name='replaceItem'), 
+	url(r'^replaceNote/', views.replaceNote, name='replaceNote'),
+	url(r'^removeNote/', views.removeNote, name='removeNote'),
+	url(r'^genNote/', views.genNote, name='genNote')
+
     #----------------Rujia-----------------/\
     
 )

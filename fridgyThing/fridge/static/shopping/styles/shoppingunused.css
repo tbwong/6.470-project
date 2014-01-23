@@ -1,0 +1,63 @@
+
+/* unused! */
+#foodinput {
+	width:100%; 
+	padding-left:20px; 
+	padding-right:0px; 
+	padding-top:7px; 
+	padding-bottom:10px;
+}
+
+/* unused */
+
+
+
+/*unused */
+#foodedit {
+	font-size:16px;
+	font-style:italic;
+	background-color:#eeeeee;
+	border:transparent;
+	padding-left: 14px;
+	padding-top: 7px;
+	padding-bottom: 5px;
+	padding-right:14px;
+	height:36px;
+}
+
+/*unused*/
+#foodedit, #food:focus {
+	border-color: #66afe9;
+	outline: 0;
+	box-shadow: None;
+	-webkit-box-shadow: None;
+}	
+
+/*unused*/
+#food {
+	border: #FEEAEA;
+	font-style:italic;
+	font-size:16px;
+	width:155%;
+}
+
+
+#memocontent {
+	padding-left: 14px;
+	padding-top: 8px;
+	padding-bottom: 5px;
+	padding-right:14px;
+	background-color:#fff5eb;
+	font-size:16px;
+	font-family:'Segoe Print';
+	border:transparent;
+	outline:0;
+	float:left;
+}
+
+#memocontent:focus {
+	border-color: #66afe9;
+	outline: 0;
+	box-shadow: None;
+	-webkit-box-shadow: None;
+}

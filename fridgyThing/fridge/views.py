@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures
-import requests,re
+import requests,re, json
 from forms import ImageUploadForm;
 from django.utils import timezone;
 
@@ -17,17 +17,12 @@ def showFridge(request):
 
 
 def addIngredient(request):
-	try:
-		IngName = reqforuest.POST['IngName']
-		IngName.strip()
-		# IngAmount = float(request.POST['IngAmount'])
-		i = Ingredient(name=IngName,pic='search')
-		i.save();
-	except:
-		#nothing
-		i=1
-	else:
-		return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+	IngName = request.POST['IngName']
+	IngName.strip()
+	# IngAmount = float(request.POST['IngAmount'])
+	i = Ingredient(name=IngName,pic='search')
+	i.save();
+	return HttpResponseRedirect(reverse('fridge:appPage',args=()))
 
 # function getRecipies(Ingredients){
 # 	var url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
@@ -44,7 +39,7 @@ def addIngredient(request):
 # 		}
 # 	});
 # }
-def getRecipes(Ingredients):
+def getRecipes(request):
  	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
  	ings = Ingredient.objects.all()
  	for i in range(len(ings)):
@@ -52,11 +47,22 @@ def getRecipes(Ingredients):
  		temp = re.sub('/ /g', '',temp)
  		url = url+'&allowedIngredient[]='+temp
 	rec = requests.get(url)
-	
+
+	temp = json.dumps(rec.json())
+	dct = json.loads(temp)
+	matches = dct['matches']
+	recipeNames = []
+	recipeIngs = []
+	recipeIms = [] 
+	count=0
+
+	for match in matches:
+		recipeNames.append(match['recipeName'])
+		recipeIngs.append(match['ingredients'])
+		recipeIms.append(match['smallImageUrls'][0])
 
 	ingredients = Ingredient.objects.all() 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients} )
-
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'recipeNames':recipeNames,'recipeIngs':recipeIngs,'recipeIms':recipeIms} )
 
 
 
@@ -139,9 +145,15 @@ def showScrapbookPage(request):
 
 #----------------Rujia-----------------\/
 def showShoppingPage(request):
-        itemslist = [x.item for x in ShoppingList.objects.all()]
-        memolist = [x.note for x in ShoppingList.objects.all()]
-        return render(request, 'shopping/shopping.html', {'itemslist':itemslist, 'memolist':memolist})
+	itemslist = [(x.id, x.item) for x in ShoppingList.objects.all()]
+	memolist = [(x.id, x.note) for x in ShoppingList.objects.all()]
+	genlist = ShoppingList.objects.all()
+	if ShoppingList.objects.all()[0].id != 1:
+		other = ShoppingList(item ='', note='', id=1)
+		other.save()
+	else:
+		other = ShoppingList.objects.get(id=1).note
+	return render(request, 'shopping/shopping.html', {'genlist':genlist, 'other':other})
 
 
 def addItem(request):
@@ -158,8 +170,8 @@ def addItem(request):
 
 def removeItem(request):
 	try:
-		Item = request.POST['ItemNames']
-		i = ShoppingList.objects.get(item=Item)
+		Item = request.POST['ItemId']
+		i = ShoppingList.objects.get(id=Item)
 		i.delete();
 	except:
 		#nothing
@@ -169,15 +181,58 @@ def removeItem(request):
 		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
 
 def replaceItem(request):
-        try:
-		Item = request.POST['ItemName']
-		i = ShoppingList.objects.get(item=Item)
-		i.delete();
+	try:
+		NewItem = request.POST['NewItem']
+		ItemId = request.POST["ItemId"]
+		i = ShoppingList.objects.get(id=ItemId)
+		i.item = NewItem
+		i.save()
 	except:
 		#nothing
 		i=1
 		raise
 	else:
 		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		
+def removeNote(request):
+	try:
+		Note = request.POST['NoteId']
+		i = ShoppingList.objects.get(id=Note)
+		i.note = ''
+		i.save()
+	except:
+		#nothing
+		i=1
+		raise
+	else:
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+
+def replaceNote(request):
+	try:
+		NewNote = request.POST['NewNote']
+		NoteId = request.POST["NoteId"]
+		i = ShoppingList.objects.get(id=NoteId)
+		i.note = NewNote
+		i.save()
+	except:
+		#nothing
+		i=1
+		raise
+	else:
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		
+def genNote(request):
+	try:
+		genNote = request.POST['other']
+		i = ShoppingList.objects.get(id=1)
+		i.note = genNote
+		i.save()
+	except:
+		#nothing
+		i=1
+		raise
+	else:
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		
 	
 #----------------Rujia-----------------/\

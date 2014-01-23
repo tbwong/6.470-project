@@ -1,28 +1,53 @@
 $(document).ready(function() {
-//hover to make icons visible
+//items hover to make icons visible
+
 	$("#food-list").on("mouseenter", ".hov", function() {
-		if ($("#foodedit").length==0) {
-			$(this).children(".closer").removeClass("invisible");
+		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
+			$(this).find(".closer").removeClass("invisible");
+			var id= "#"+(this).id;
+			$("#memo").find(id).css("background-color", "#eeeeee");
 			$(this).css("background-color", "#eeeeee");
 		}
 	});
 	
 	$("#food-list").on("mouseleave", ".hov", function() {
-		if ($("#foodedit").length==0) {
-			$(this).children(".closer").addClass("invisible");
+		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
+			$(this).find(".closer").addClass("invisible");
 			$(this).css("background-color", "#fff5eb");
+			var id= "#"+(this).id;
+			$("#memo").find(id).css("background-color", "#fff5eb");
+		}
+	});
+//notes hover to make icons visible
+	$("#memo").on("mouseenter", ".memohov", function() {
+		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
+			$(this).find(".closer").removeClass("invisible");
+			var id= "#"+(this).id;
+			$("#food-list").find(id).css("background-color", "#eeeeee");
+			$(this).css("background-color", "#eeeeee");
+		}
+	});
+	
+	$("#memo").on("mouseleave", ".memohov", function() {
+		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
+			$(this).find(".closer").addClass("invisible");
+			$(this).css("background-color", "#fff5eb");
+			var id= "#"+(this).id;
+			$("#food-list").find(id).css("background-color", "#fff5eb");
 		}
 	});
 
-//click text to edit
-	$("#food-list").on("click", ".hov", function() {
-		//	alert("hello!");
+//items click "x" to remove
+	$("#food-list").on("click", ".remove", function() {
+		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
+			$(this).closest(".hov").children(".submitremove").submit();
+		}
 	});
 
-//click "x" to remove
-	$("#food-list").on("click", ".remove", function() {
-		if ($("#foodedit").length==0) {
-			$(this).parent(".hov").remove();
+//notes click "x" to remove
+	$("#memo").on("click", ".remove", function() {
+		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
+			$(this).closest(".memohov").children(".submitremove").submit();
 		}
 	});
 	
@@ -47,17 +72,38 @@ $(document).ready(function() {
 		this.val($initialVal);
 	};
 
-//click "pencil" to edit
+//items click "pencil" to edit
 	$("#food-list").on("click", ".edit", function() {
-		if ($("#foodedit").length==0) {
-			var foodcontent = $(this).parent(".hov").text();
-			$('input[name="ItemName"]').val(foodcontent);
-			$(this).parent(".hov").replaceWith($(".cantsee"));
-			$(".cantseeinput").focus().setCursorToTextEnd();
+		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
+			var editfood = $(this).closest(".hov").find("#editfood");
+			$(this).closest(".shoppingdisplay").hide();
+			editfood.attr('id', 'foodedit');
+			editfood.focus();
+			editfood.setCursorToTextEnd();
 		}
 	});
 
+//notes click "pencil" to edit
+	$("#memo").on("click", ".edit", function() {
+		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
+			var editnote = $(this).closest(".memohov").find("#editnote");
+			$(this).closest(".memodisplay").hide();
+			editnote.attr('id', 'noteedit');
+			editnote.focus();
+			editnote.setCursorToTextEnd();
+		}
+	});
+
+//gen note click to edit
+	$(".note").click(function() {
+		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
+			var note = $(this);
+			note.attr('id', 'othernote');
+		}
+	});
+	
 //press enter to save edits
+/*
 	$("#food-list").on("keypress", "#foodedit", function(e) {
 		console.log(e.keyCode);
 		if (e.keyCode === 13) {
@@ -66,10 +112,11 @@ $(document).ready(function() {
 		  $(this).replaceWith('<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">'+foodedit+"</span><button type='button' class='close closer invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close closer invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
 		}
 	});
-
+*/
 	
 	
 //add ingredient at bottom
+/*
 	function addIng() {
 		var food = $("#food").val();
 		$("#food").val("");
@@ -85,11 +132,17 @@ $(document).ready(function() {
 		  addIng();
 		}
 	});
+*/
+
 });
 
+
 $(document).click(function(e) {
-	if ($("#foodedit").length!=0 && e.target.id !== 'foodedit' && !($(e.target).hasClass("edit"))) {
-		var foodedit = $("#foodedit").val();
-		$("#foodedit").replaceWith('<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">'+foodedit+"</span><button type='button' class='close closer invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close closer invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
+	if (e.target.id !== 'foodedit' && e.target.id !== 'noteedit' && e.target.id !== "memocontent" && e.target.id !== "othernote" && !($(e.target).hasClass("edit"))) {
+		$("#foodedit").closest('.submitedit').submit(); 
+		$("#noteedit").closest('.submitedit').submit();
+		var a=$("#memocontent").val();
+		$("#other").val(a);
+		$("#othernote").children('.submitnote').submit();
 	}
 });
