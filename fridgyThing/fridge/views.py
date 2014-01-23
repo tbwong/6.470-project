@@ -47,10 +47,13 @@ def getRecipes(request):
  		temp = ings[i].name
  		temp = re.sub('/ /g', '',temp).lower()
  		url2 = url+'&allowedIngredient[]='+temp
-		rec = requests.get(url2)
+		try:
+			rec = requests.get(url2)
 
-		temp = json.dumps(rec.json())
-		dct = json.loads(temp)
+			temp = json.dumps(rec.json())
+			dct = json.loads(temp)
+		except:
+			return HttpResponse('Max API calls reached')
 		matchSet.append(dct['matches'])
  	
 	recipeNames = []
