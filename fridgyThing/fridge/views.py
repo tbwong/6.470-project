@@ -121,7 +121,8 @@ def showGraphsPage(request,userID):
 												'fat':fatValues,
 												'protein': proteinValues,
 												'sodium': sodiumValues,
-												'sugar': sugarValues
+												'sugar': sugarValues,
+												'userID': userID
 												})
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
@@ -136,7 +137,7 @@ def showScrapbookPage(request,userID):
     scrapbook_gen = Pictures.objects
     url = Pictures.objects.filter(user=User.objects.get(pk=userID))
     #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
-    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm()})
+    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
 
 """
 def addImage(request):
@@ -183,16 +184,16 @@ def showScrapbookPage(request):
 
 
 #----------------Rujia-----------------\/
-def showShoppingPage(request):
-	itemslist = [(x.id, x.item) for x in ShoppingList.objects.all()]
-	memolist = [(x.id, x.note) for x in ShoppingList.objects.all()]
+def showShoppingPage(request,userID):
+	itemslist = [(x.id, x.item) for x in ShoppingList.objects.filter(user=User.objects.get(pk=userID))]
+	memolist = [(x.id, x.note) for x in ShoppingList.objects.filter(user=User.objects.get(pk=userID))]
 	genlist = ShoppingList.objects.all()
-	if ShoppingList.objects.count()==0 or ShoppingList.objects.all()[0].id != 1:
+	if len(ShoppingList.objects.filter(user=User.objects.get(pk=userID)))==0 or ShoppingList.objects.filter(user=User.objects.get(pk=userID))[0].id != 1:
 		other = ShoppingList(item ='', note='', id=1)
 		other.save()
 	else:
 		other = ShoppingList.objects.get(id=1).note
-	return render(request, 'shopping/shopping.html', {'genlist':genlist, 'other':other})
+	return render(request, 'shopping/shopping.html', {'genlist':genlist, 'other':other,'userID':userID})
 
 
 def addItem(request):

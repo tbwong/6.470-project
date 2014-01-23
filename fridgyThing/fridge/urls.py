@@ -24,7 +24,7 @@ urlpatterns = patterns('',
 
     #----------------Jacqui-----------------/\
     #----------------Rujia-----------------\/
-    url(r'^shopping/',views.showShoppingPage, name='showShopping'),
+    url(r'^(?P<userID>[-\w]+)/shopping/',views.showShoppingPage, name='showShopping'),
     url(r'^addItem/', views.addItem, name='addItem'),
     url(r'^removeItem/', views.removeItem, name='removeItem'),
 	url(r'^replaceItem/', views.replaceItem, name='replaceItem'), 
