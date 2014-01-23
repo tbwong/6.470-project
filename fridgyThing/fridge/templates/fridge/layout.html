@@ -93,7 +93,7 @@
 						    *  searchers can be used by themselves without the SearchControl.  This is
 						    *  called using a "Raw Searcher".  When doing this, you must handle and draw
 						    *  the search results manually.
-						    */
+						    */ 
 						    
 						    google.load('search', '1');
 						    
@@ -148,17 +148,19 @@
 			</div>
 		</div>
 
-		{% if recipeNames %}
-			<div id = 'content'>
-				<ul>
-					{%for name in recipeNames%}
-					<li>{{name}}</li>
+		{% if recipeIms %}
+			<div id = 'content' style="margin: 0px;">
+				<ul id='recipeResults'>
+					{%for im in recipeIms%}
+					<li><img src="{{im}}" width="200" height="125"></li>
 					{%endfor%}					
 				</ul>
 			</div>
 		{% endif %}
 		
 		<div id="popupBackground"></div>
+		<div></div>
+
 		<div id='addIng-popup' class='popup' >
 			<h1 style="text-align:center;">Add Ingredient</h1>
 			<br><br>
