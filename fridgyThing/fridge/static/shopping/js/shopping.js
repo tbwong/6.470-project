@@ -107,21 +107,19 @@ $(document).ready(function() {
 	$('.hov').on('click', '.add', function(){
 		$('#popupBackground').fadeIn();
 		$('#addIng-popup').show('slow');
-		okay = $(this).closest('.hov').attr("id");
+		var okay = $(this).closest('.hov').attr("id");
+		var okayy = $(this).siblings('#text').text();
 		$('#addIng-popup').find('#insertid').val(okay);
+		$('#addIng-popup').find('#foodname').val(okayy);
+		$('#addIng-popup').find('#foodname').focus();
+		$('#addIng-popup').find('#foodname').setCursorToTextEnd();
 	});
-
-	
 	
 	$('#popupBackground').click(function(){
 		$('#popupBackground').fadeOut();
 		$('#addIng-popup').hide('fast');
 	});
-/*
-	$(".showpiece").on("click", "#what", function() {
-		$('#food-list').find("#8").children(".submitremove").submit();
-	}); 
-	*/
+
 });
 
 

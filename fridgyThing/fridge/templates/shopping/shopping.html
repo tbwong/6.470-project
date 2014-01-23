@@ -140,14 +140,14 @@
 		<div></div>
 
 		<div id='addIng-popup' class='popup' >
-			<h1 style="text-align:center;">Add Ingredient</h1>
+			<h1 style="text-align:center; font-size:25px;">Add to Fridge</h1>
 			<br><br>
 			<form id='addIng-group' action="{% url 'fridge:addIngredientS' %}" method="post">
 				{% csrf_token %}
 				<input type="hidden" name='Id' id="insertid" value=""></input>
 				<div class="input-group">
 				  <span class="input-group-addon">Ingredient Name:</span>
-				  <input type="text" name='IngName' class="form-control" placeholder="Be general.  ex: Ketchup NOT Heins Tomato Ketchup"></input>
+				  <input type="text" name='IngName' class="form-control" value="" id="foodname"></input>
 				</div>
 				<br>
 				<div class="input-group">
