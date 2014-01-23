@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # BUILDOUT_DIR = os.path.abspath(os.path.join(SETTINGS_DIR, '..'))
+STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static')
 # STATIC_ROOT = os.path.join(BUILDOUT_DIR, 'var', 'static')
-#MEDIA_ROOT = 'fridgyThing/fridge/static/scrapbook/images'
-#MEDIA_URL = '/scrapbook/'
+MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')
+#MEDIA_ROOT = '/media/'
+MEDIA_URL = '/media/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
