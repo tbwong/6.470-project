@@ -13,9 +13,9 @@ $(document).ready(function() {
 	$("#food-list").on("mouseleave", ".hov", function() {
 		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
 			$(this).find(".closer").addClass("invisible");
-			$(this).css("background-color", "#fff5eb");
+			$(this).css("background-color", "");
 			var id= "#"+(this).id;
-			$("#memo").find(id).css("background-color", "#fff5eb");
+			$("#memo").find(id).css("background-color", "");
 		}
 	});
 	
@@ -32,9 +32,9 @@ $(document).ready(function() {
 	$("#memo").on("mouseleave", ".memohov", function() {
 		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
 			$(this).find(".closer").addClass("invisible");
-			$(this).css("background-color", "#fff5eb");
+			$(this).css("background-color", "");
 			var id= "#"+(this).id;
-			$("#food-list").find(id).css("background-color", "#fff5eb");
+			$("#food-list").find(id).css("background-color", "");
 		}
 	});
 

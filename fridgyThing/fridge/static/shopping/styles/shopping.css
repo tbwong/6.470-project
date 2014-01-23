@@ -66,7 +66,7 @@ nav .sidebar{
 }
 
 #showpiece-fridge{
-	background-color: #FFF5EB;
+	background-color: #ffd1d1;
 	border-radius: 10px;
  
 }
@@ -115,14 +115,14 @@ h1{
 #food-list {
 	width:300px; 
 	font-size:16px; 
-	background-color:#fff5eb;
+	background-color:#ffd1d1;
 	float:left;
 	margin-left:20px;
 	margin-right:0px;
 }
 #minheight {
-	min-height:480px;
-	background-color: #fff5eb;
+	min-height:430px;
+	background: linear-gradient(#ffdfdf, #ffd1d1);
 }
 
 #shoppingheader {
@@ -131,6 +131,7 @@ h1{
 	padding-bottom:6px; 
 	font-size:20px;
 	height:45px;
+	background-color: #ffd1d1;
 }
 
 #listspace {
@@ -143,6 +144,7 @@ h1{
 	padding-bottom: 5px;
 	padding-right:14px;
 	word-wrap:break-word;
+	border-bottom:1pt dashed #CCA7A7;
 }
 	
 .check {
@@ -188,7 +190,7 @@ h1{
 	border: #FEEAEA;
 	font-style:italic;
 	font-size:16px;
-	background-color:#fff5eb;
+	background-color:#ffd1d1;
 }
 
 .print {
@@ -213,11 +215,9 @@ h1{
 
 #memo {
 	width: 300px;
-	background-color:#fff5eb;
 	float:left;
 	font-size:16px;
-	min-height:510px;
-	margin-left:20px;
+	padding-left:20px;
 	margin-right:20px;
 }
 
@@ -230,6 +230,25 @@ h1{
 	padding-top: 5px;
 	padding-bottom: 5px;
 	padding-right:14px;
+	border-bottom:1pt dashed #CCA7A7;
+}
+
+#noteheader {
+	padding-left:14px;
+	padding-top:7px; 
+	padding-bottom:6px; 
+	font-size:20px;
+	height:45px;
+	background-color: #ffd1d1;
+}
+
+#gradient {
+	background: linear-gradient(#ffdfdf, #ffd1d1);
+	min-height:465px;
+}
+#genheader{
+	width: ;
+	background-color: #ffd1d1;
 }
 
 #memocontent {
@@ -237,13 +256,13 @@ h1{
 	padding-top: 8px;
 	padding-bottom: 5px;
 	padding-right:14px;
-	background-color:#fff5eb;
+	background: linear-gradient(#ffdfdf, #ffd1d1);
 	font-size:14px;
 	font-family:'Segoe Print';
 	border:transparent;
 	outline:0;
 	float:left;
-	width: 300px;
+	width: 250px;
 }
 
 #memocontent:focus {
