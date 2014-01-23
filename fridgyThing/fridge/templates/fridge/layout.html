@@ -157,14 +157,14 @@
 		{% endif %}
 		
 		<div id="popupBackground"></div>
-		<div id='recipeInfo' class='popup'>
+		<div id='recipeInfo' class='popup-recipe'>
 			{%for r in recipe%}
 			<div id = 'rInfo-{{forloop.counter}}' class='rInfo' style='display:none; height:100%; overflow:scroll;'>
-				<h2>{{r.0}}</h2>
-				<h3>Ingredients: </h3>
+				<h2 id="recipetitle">{{r.0}}</h2>
+				<h3 id="recipeing">Ingredients: </h3>
 				<ul>
 				{%for ingredient in r.1%}
-					<li>{{ingredient}}</li>
+					<li id="recipelist">{{ingredient}}</li>
 				{%endfor%}
 				</ul>
 				<a href="http://www.yummly.com/recipe/{{r.3}}"><button>See Directions</button></a>

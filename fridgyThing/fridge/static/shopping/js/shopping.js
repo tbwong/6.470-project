@@ -115,12 +115,12 @@ $(document).ready(function() {
 		$('#addIng-popup').hide('fast');
 	});
 	
-	function removeitem() {
+	function removeItem() {
 		$('#food-list').find("#3").find('.submitremove').submit();
-	}
-/*
-	$("#addfridge").on('submit', function(event) {
-		alert("submitted");
+	};
+
+	/*
+	$("#what").on("click", function() {
 		$('#food-list').find("#3").find('.submitremove').submit();
 	}); */
 

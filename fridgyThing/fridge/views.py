@@ -137,7 +137,7 @@ def showShoppingPage(request):
 	itemslist = [(x.id, x.item) for x in ShoppingList.objects.all()]
 	memolist = [(x.id, x.note) for x in ShoppingList.objects.all()]
 	genlist = ShoppingList.objects.all()
-	if ShoppingList.objects.all()[0].id != 1:
+	if ShoppingList.objects.count()==0 or ShoppingList.objects.all()[0].id != 1:
 		other = ShoppingList(item ='', note='', id=1)
 		other.save()
 	else:
