@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^addShopping/',views.addShopping,name='addShopping'),
     #----------------Pav-----------------/\
     #----------------Tiff-----------------\/
+    url(r'^login/',views.my_view,name='my_view'),
     url(r'^graphs/',views.showGraphsPage,name='showGraphs'),
     #----------------Tiff-----------------/\
     #----------------Jacqui-----------------\/
@@ -28,7 +29,9 @@ urlpatterns = patterns('',
 	url(r'^replaceItem/', views.replaceItem, name='replaceItem'), 
 	url(r'^replaceNote/', views.replaceNote, name='replaceNote'),
 	url(r'^removeNote/', views.removeNote, name='removeNote'),
-	url(r'^genNote/', views.genNote, name='genNote')
+	url(r'^genNote/', views.genNote, name='genNote'),
+	url(r'^addIngredientS/', views.addIngredientS, name='addIngredientS'),
+
 
     #----------------Rujia-----------------/\
     

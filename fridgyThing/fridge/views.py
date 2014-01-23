@@ -6,6 +6,9 @@ import requests,re, json
 from django.views.generic.base import RedirectView
 from forms import ImageUploadForm;
 from django.utils import timezone;
+from django.shortcuts import render_to_response
+from django.contrib.auth import authenticate, login, logout
+from django.core.context_processors import csrf
 
 # Create your views here.
 
@@ -80,6 +83,26 @@ def addShopping(request):
 
 #----------------Pav-----------------/\
 #----------------Tiff-----------------\/
+def my_view(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            return HttpResponseRedirect('fridge:appPage',args=())
+        else:
+            # Return a 'disabled account' error message
+            return HttpResponseRedirect('fridge:appPage',args=())
+    else:
+        # Return an 'invalid login' error message.
+       return HttpResponseRedirect('fridge:appPage',args=())
+
+
+def logout_view(request):
+    logout(request)
+    # Redirect to a success page.
+
 def showGraphsPage(request):
 	#calories,carbs,fat,protein,sodium,sugar
 	calories = [x.amount for x in Calories.objects.all()]
@@ -160,7 +183,7 @@ def showShoppingPage(request):
 	itemslist = [(x.id, x.item) for x in ShoppingList.objects.all()]
 	memolist = [(x.id, x.note) for x in ShoppingList.objects.all()]
 	genlist = ShoppingList.objects.all()
-	if ShoppingList.objects.all()[0].id != 1:
+	if ShoppingList.objects.count()==0 or ShoppingList.objects.all()[0].id != 1:
 		other = ShoppingList(item ='', note='', id=1)
 		other.save()
 	else:
@@ -246,5 +269,15 @@ def genNote(request):
 	else:
 		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
 		
+def addIngredientS(request):
+	IngName = request.POST['IngName']
+	Id = request.POST['Id']
+#	IngName.strip().lower();
+	# IngAmount = float(request.POST['IngAmount'])
+	i = Ingredient(name=IngName,pic='search')
+	i.save();
+	a = ShoppingList.objects.get(id=Id)
+	a.delete()
+	return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
 	
 #----------------Rujia-----------------/\
