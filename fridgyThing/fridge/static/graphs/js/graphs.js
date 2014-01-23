@@ -21,28 +21,28 @@ $(document).ready(function(){
     $(window).resize()
 
     
-$('#calories-container').resize(function() {
-    calorieChart.redraw();
-});
-$('#carbs-container').resize(function() {
-    carbChart.redraw();
-});
-$('#fat-container').resize(function() {
-    fatChart.redraw();
-});
-$('#protein-container').resize(function() {
-    proteinChart.redraw();
-});
-$('#sodium-container').resize(function() {
-    sodiumChart.redraw();
-});
-$('#sugar-container').resize(function() {
-    sugarChart.redraw();
-});
+    $('#calories-container').resize(function() {
+        calorieChart.redraw();
+    });
+    $('#carbs-container').resize(function() {
+        carbChart.redraw();
+    });
+    $('#fat-container').resize(function() {
+        fatChart.redraw();
+    });
+    $('#protein-container').resize(function() {
+        proteinChart.redraw();
+    });
+    $('#sodium-container').resize(function() {
+        sodiumChart.redraw();
+    });
+    $('#sugar-container').resize(function() {
+        sugarChart.redraw();
+    });
 })
     
 
-function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarData, dates) {
+function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarData) {
 
     function drawCalories(x,y) {
         calorieChart = new Highcharts.Chart({
@@ -59,7 +59,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 text: 'Daily calorie intake'
             },
             xAxis: {
-                categories: dates
+
             },
             yAxis: {
                 title: {
@@ -82,7 +82,9 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
             series: [{
                 type: 'line',
                 name: 'Tiffany',
-                data: calData
+                data: calData,
+                color: '#CC99FF'
+
             }]
         });
     }
@@ -103,7 +105,6 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 text: 'Daily carb intake'
             },
             xAxis: {
-                categories: dates
             },
             yAxis: {
                 title: {
@@ -149,7 +150,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 text: 'Daily fat intake'
             },
             xAxis: {
-                categories: dates
+
             },
             yAxis: {
                 title: {
@@ -194,7 +195,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 text: 'Daily protein intake'
             },
             xAxis: {
-                categories: dates
+
             },
             yAxis: {
                 title: {
@@ -239,7 +240,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 text: 'Daily sodium intake'
             },
             xAxis: {
-                categories: dates
+
             },
             yAxis: {
                 title: {
@@ -284,7 +285,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 text: 'Daily sugar intake'
             },
             xAxis: {
-                categories: dates
+
             },
             yAxis: {
                 title: {
