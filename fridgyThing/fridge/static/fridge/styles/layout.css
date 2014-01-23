@@ -224,3 +224,15 @@ h1{
 	width: 58px;
 	margin-left: -29px;
 }
+#recipeResults{
+	list-style-type: none;
+}
+#recipeResults li{
+	display:inline-block;
+	margin: 2px;
+	border-radius: 10px;
+	border: 1px solid white;
+	-webkit-box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
+}
