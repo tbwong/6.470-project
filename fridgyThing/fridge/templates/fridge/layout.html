@@ -148,18 +148,33 @@
 			</div>
 		</div>
 
-		{% if recipeIms %}
+		{% if recipe%}
 			<div id = 'content' style="margin: 0px;">
+				<!--{{url}}<br>-->
 				<ul id='recipeResults'>
-					{%for im in recipeIms%}
-					<li><img src="{{im}}" width="200" height="125"></li>
+					{%for r in recipe%}
+					<li id = 'recipe-{{forloop.counter}}' class='recipeResult'><img src="{{r.2}}" width="200" height="125"><footer style='hieght:10px;'>{{r.0}}</footer></li>
 					{%endfor%}					
 				</ul>
 			</div>
 		{% endif %}
 		
 		<div id="popupBackground"></div>
-		<div></div>
+		<div id='recipeInfo' class='popup'>
+			{%for r in recipe%}
+			<div id = 'rInfo-{{forloop.counter}}' class='rInfo' style='display:none; height:100%; overflow:scroll;'>
+				<h2>{{r.0}}</h2>
+				<h3>Ingredients: </h3>
+
+				<ul>
+				{%for ingredient in r.1%}
+					<li>{{ingredient}}</li>
+				{%endfor%}
+				</ul>
+				<a href=""><button></button></a>
+			</div>
+			{%endfor%}
+		</div>
 
 		<div id='addIng-popup' class='popup' >
 			<h1 style="text-align:center;">Add Ingredient</h1>

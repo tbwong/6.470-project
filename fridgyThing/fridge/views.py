@@ -39,13 +39,15 @@ def addIngredient(request):
 # 		}
 # 	});
 # }
+
 def getRecipes(request):
- 	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
+ 	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&noUserSettings=true'
  	ings = Ingredient.objects.all()
  	for i in range(len(ings)):
  		temp = ings[i].name
- 		temp = re.sub('/ /g', '',temp)
- 		url = url+'&allowedIngredient[]='+temp
+ 		temp = re.sub('/ /g', '',temp).lower()
+ 		url = url+'&allowedIngredient='+temp
+ 	url= url+'&excludedIngredient=salt&maxTotalTimeInSeconds=Any+time&flavor.salty=+&flavor.savory=+&flavor.sour=+&flavor.bitter=+&flavor.sweet=+&flavor.spicy=+&nutrition.cholesterol=+&nutrition.fat=+&nutrition.calories=+&nutrition.carbs=+&imagesOnly=true&blogsOnly=false&sortBy=relevance'
 	rec = requests.get(url)
 
 	temp = json.dumps(rec.json())
@@ -61,8 +63,11 @@ def getRecipes(request):
 		recipeIngs.append(match['ingredients'])
 		recipeIms.append(match['smallImageUrls'][0])
 
+	recipe = zip(recipeNames,recipeIngs,recipeIms)
+
 	ingredients = Ingredient.objects.all() 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'recipeNames':recipeNames,'recipeIngs':recipeIngs,'recipeIms':recipeIms} )
+
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe} )
 
 
 
