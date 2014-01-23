@@ -6,8 +6,10 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^fridge/', views.showFridge, name='appPage'),
     url(r'^addIngredient/',views.addIngredient,name='addIngredient'),
+    url(r'^delIngredient/',views.delIngredient,name='delIngredient'),
     url(r'^getRecipes/',views.getRecipes,name='getRecipes'),
-
+    # url(r'^(?P<datID>[-\w]+)/getRecipes/',views.getRecipes,name='getRecipes'),
+    url(r'^addShopping/',views.addShopping,name='addShopping'),
     #----------------Pav-----------------/\
     #----------------Tiff-----------------\/
     url(r'^graphs/',views.showGraphsPage,name='showGraphs'),

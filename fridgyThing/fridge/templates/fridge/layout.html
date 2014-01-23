@@ -49,6 +49,11 @@
 							<br>
 							<label class='control-label'>Food</label>
 						</div>
+						<div id='delIng' class='control-button' href="">
+							<img class='control-im' src="{% static 'fridge/images/minus.png' %}" />
+							<br>
+							<label class='control-label'>Food</label>
+						</div>
 
 					</div>
 
@@ -168,6 +173,21 @@
 				{%endfor%}
 				</ul>
 				<a href="http://www.yummly.com/recipe/{{r.3}}"><button>See Directions</button></a>
+				<a href="{%url 'fridge:appPage'%}"><button>I Made It!</button></a>
+				<br>
+				<form action="{%url 'fridge:addShopping'%}" method='post'>
+					{% csrf_token %}
+
+					{%for ing in r.1%}
+					<input type='hidden' name='ingsList' value="{{ing}}">
+					{%endfor%}
+					<div class="input-group btn-group centeredButton" >
+						<input type='submit' class='btn btn-default' value='Add These Ingredients to My Shopping List!'></input>
+					</div>
+					
+				</form>
+				
+				
 			</div>
 			{%endfor%}
 		</div>
@@ -190,6 +210,26 @@
 				<br>
 				<div class="input-group btn-group centeredButton" >
 					<input type='submit' class='btn btn-default' value='Add It'></input>
+				</div>
+
+			</form>
+		</div>
+		<div id='delIng-popup' class='popup' >
+			<h1 style="text-align:center;">Remove Ingredient</h1>
+			<br><br>
+			<form id='delIng-group' action="{% url 'fridge:delIngredient'%}" method="post">
+				{% csrf_token %}
+
+				<select name="IngNames" style="position:relative; left:50%; margin-left:-32px;" >
+					{%for i in ingredients%}
+					<option value="{{i.name}}" >{{i.name}}</option>
+					{%endfor%}
+				</select>
+
+				<br>
+				<br><br>
+				<div class="input-group btn-group centeredButton" >
+					<input type='submit' class='btn btn-default' value='Remove It'></input>
 				</div>
 
 			</form>
