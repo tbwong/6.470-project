@@ -18,7 +18,8 @@ def showFridge(request):
 
 def addIngredient(request):
 	IngName = request.POST['IngName']
-	IngName.strip().lower();
+	IngName.strip()
+	IngName= IngName.lower();
 	# IngAmount = float(request.POST['IngAmount'])
 	i = Ingredient(name=IngName,pic='search')
 	i.save();
