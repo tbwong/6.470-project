@@ -35,13 +35,11 @@
 
 	<nav class='sidebarHolder' style='float:left;'>
 		<ul class="sidebar nav nav-pills nav-stacked">
-			<li><a id = 'fridge' href="{% url 'fridge:appPage' %}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
-			<li><a id = 'shopping list' href="{% url 'fridge:showShopping' %}"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
-			<li><a id = 'nutrition' href="{% url 'fridge:showGraphs' %}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
-			<li><a id='scrapbook' href="{% url 'fridge:showScrapbook' %}"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
-			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
-			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
-			<li><a href=""><span class='glyphicon glyphicon-book'></span> | Stuff<i class='arrow'>></i></a></li>
+			<li><a id = 'fridge' href="{% url 'fridge:appPage' userID%}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
+			<li><a id = 'shopping list' href="{% url 'fridge:showShopping' userID%}"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
+			<li><a id = 'nutrition' href="{% url 'fridge:showGraphs' userID%}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
+			<li><a id='scrapbook' href="{% url 'fridge:showScrapbook' userID%}"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
+			
 		</ul>
 	</nav>
 
@@ -69,14 +67,16 @@
 				</div>
 			
 				<form class="submitremove" action="{% url 'fridge:removeItem' %}" method="post">
-				{% csrf_token %}
-				<input name="ItemId" type="hidden" value="{{x.id}}"></input>
+					{% csrf_token %}
+					<input name="ItemId" type="hidden" value="{{x.id}}"></input>
+					<input name="userID" type="hidden" value="{{userID}}"></input>
 				</form>
 				
 				<form class="submitedit" action="{% url 'fridge:replaceItem' %}" method="post">
-				{% csrf_token %}
-				<input name="ItemId" type="hidden" value="{{x.id}}"></input>
-				<input name="NewItem" type="text" class="form-control" id="editfood" value="{{x.item}}"></input>			 			
+					{% csrf_token %}
+					<input name="ItemId" type="hidden" value="{{x.id}}"></input>
+					<input name="userID" type="hidden" value="{{userID}}"></input>
+					<input name="NewItem" type="text" class="form-control" id="editfood" value="{{x.item}}"></input>			 			
 				</form>
 			</div>	
 			{% endif %}
@@ -87,6 +87,7 @@
 			<form action="{% url 'fridge:addItem' %}" method="post">
 			{% csrf_token %}
 			<input type="text" id="food" name="ItemName" class="form-control" placeholder="Add to list..."></input>
+			<input name="userID" type="hidden" value="{{userID}}"></input>
 			</form>			
 		</div>
 		
@@ -111,11 +112,13 @@
 				<form class="submitremove" action="{% url 'fridge:removeNote' %}" method="post">
 				{% csrf_token %}
 				<input name="NoteId" type="hidden" value="{{x.id}}"></input>
+				<input name="userID" type="hidden" value="{{userID}}"></input>
 				</form>
 				
 				<form class="submitedit" action="{% url 'fridge:replaceNote' %}" method="post">
 				{% csrf_token %}
 				<input name="NoteId" type="hidden" value="{{x.id}}"></input>
+				<input name="userID" type="hidden" value="{{userID}}"></input>
 				<input name="NewNote" type="text" class="form-control" id="editnote" value="{{x.note}}"></input>						
 				</form>
 			</div>
@@ -129,6 +132,7 @@
 			<form class="submitnote" action="{% url 'fridge:genNote' %}" method="post">
 			{% csrf_token %}
 			<input id="other" name="other" val="" type="hidden"></input>
+			<input name="userID" type="hidden" value="{{userID}}"></input>
 			</form>
 		</div>
 		

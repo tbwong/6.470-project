@@ -189,7 +189,7 @@ def showShoppingPage(request,userID):
 	memolist = [(x.id, x.note) for x in ShoppingList.objects.filter(user=User.objects.get(pk=userID))]
 	genlist = ShoppingList.objects.all()
 	if len(ShoppingList.objects.filter(user=User.objects.get(pk=userID)))==0 or ShoppingList.objects.filter(user=User.objects.get(pk=userID))[0].id != 1:
-		other = ShoppingList(item ='', note='', id=1)
+		other = ShoppingList(item ='', note='', id=1,user=User.objects.get(pk=userID))
 		other.save()
 	else:
 		other = ShoppingList.objects.get(id=1).note
@@ -197,34 +197,37 @@ def showShoppingPage(request,userID):
 
 
 def addItem(request):
+	userID = request.POST['userID']
 	try:
 		Item = request.POST['ItemName']
-		i = ShoppingList(item=Item,note=' ')
+		i = ShoppingList(item=Item,note=' ',user=User.objects.get(pk=userID))
 		i.save();
 	except:
 		#nothing
 		i=1
 		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 
 def removeItem(request):
+	userID = request.POST['userID']
 	try:
 		Item = request.POST['ItemId']
-		i = ShoppingList.objects.get(id=Item)
+		i = ShoppingList.objects.get(id=Item,user=User.objects.get(pk=userID))
 		i.delete();
 	except:
 		#nothing
 		i=1
 		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 
 def replaceItem(request):
+	userID = request.POST['userID']
 	try:
 		NewItem = request.POST['NewItem']
 		ItemId = request.POST["ItemId"]
-		i = ShoppingList.objects.get(id=ItemId)
+		i = ShoppingList.objects.get(id=ItemId,user=User.objects.get(pk=userID))
 		i.item = NewItem
 		i.save()
 	except:
@@ -232,12 +235,13 @@ def replaceItem(request):
 		i=1
 		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 		
 def removeNote(request):
+	userID = request.POST['userID']
 	try:
 		Note = request.POST['NoteId']
-		i = ShoppingList.objects.get(id=Note)
+		i = ShoppingList.objects.get(id=Note,user=User.objects.get(pk=userID))
 		i.note = ''
 		i.save()
 	except:
@@ -245,13 +249,14 @@ def removeNote(request):
 		i=1
 		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 
 def replaceNote(request):
+	userID = request.POST['userID']
 	try:
 		NewNote = request.POST['NewNote']
 		NoteId = request.POST["NoteId"]
-		i = ShoppingList.objects.get(id=NoteId)
+		i = ShoppingList.objects.get(id=NoteId,user=User.objects.get(pk=userID))
 		i.note = NewNote
 		i.save()
 	except:
@@ -259,12 +264,13 @@ def replaceNote(request):
 		i=1
 		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 		
 def genNote(request):
+	userID = request.POST['userID']
 	try:
 		genNote = request.POST['other']
-		i = ShoppingList.objects.get(id=1)
+		i = ShoppingList.objects.get(id=1,user=User.objects.get(pk=userID))
 		i.note = genNote
 		i.save()
 	except:
@@ -272,7 +278,7 @@ def genNote(request):
 		i=1
 		raise
 	else:
-		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 		
 def addIngredientS(request):
 	IngName = request.POST['IngName']
