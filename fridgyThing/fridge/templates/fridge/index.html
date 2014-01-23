@@ -25,11 +25,11 @@
 	</div>
 
 	<div id='login-holder'>
-		<header id='siteTitle'>
-			The Fridge
+		<header id='siteTitle' style='position:relative; margin-top:100%;'>
+			frjr
 		</header>
 
-		<form id='login-group' name='input' action="{% url 'fridge:my_view' %}" method="post">
+		<form id='login-group' name='input' action="{% url 'fridge:my_view'%}" method="post">
 			{% csrf_token %}
 			<div class="input-group">
 				<span class='input-group-addon'>U</span>
