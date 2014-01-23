@@ -1,10 +1,12 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
 from django import forms
 
 # Create your models here.
 #----------------Pav-----------------\/
 class Ingredient(models.Model):
+	user = models.ForeignKey()
 	name = models.CharField(max_length=200)
 	pic = models.CharField(max_length=200)
 	def __unicode__(self):
@@ -47,11 +49,11 @@ class Pictures(models.Model):
 		return self.caption
 
 #----------------Jacqui-----------------/\
-#----------------Rujia-----------------\/
-class ShoppingList (models.Model):
-        item = models.CharField(max_length=200)
-        note = models.CharField(max_length=500)
+#----------------Rujia-----------------\/)
         def __unicode__(self):
                 return self.item
+class ShoppingList (models.Model):
+        item = models.CharField(max_length=200)
+        note = models.CharField(max_length=500
         
 #----------------Rujia-----------------/\
