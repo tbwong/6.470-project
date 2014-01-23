@@ -45,6 +45,7 @@
 
 
 	<div class='showpiece'>
+		{{userID}}<br>
 		
 		<div id="food-list">
 			<div id="minheight">
@@ -85,9 +86,9 @@
 			</div>
 			<!-- add to list -->
 			<form action="{% url 'fridge:addItem' %}" method="post">
-			{% csrf_token %}
-			<input type="text" id="food" name="ItemName" class="form-control" placeholder="Add to list..."></input>
-			<input name="userID" type="hidden" value="{{userID}}"></input>
+				{% csrf_token %}
+				<input type="text" id="food" name="ItemName" class="form-control" placeholder="Add to list..."></input>
+				<input name="userID" type="hidden" value="{{userID}}"></input>
 			</form>			
 		</div>
 		
