@@ -6,7 +6,10 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^fridge/', views.showFridge, name='appPage'),
     url(r'^addIngredient/',views.addIngredient,name='addIngredient'),
-    #url(r'^getRecipes/',views.getRecipes,name='getRecipes'),
+    url(r'^delIngredient/',views.delIngredient,name='delIngredient'),
+    url(r'^getRecipes/',views.getRecipes,name='getRecipes'),
+    # url(r'^(?P<datID>[-\w]+)/getRecipes/',views.getRecipes,name='getRecipes'),
+    url(r'^addShopping/',views.addShopping,name='addShopping'),
     #----------------Pav-----------------/\
     #----------------Tiff-----------------\/
     url(r'^graphs/',views.showGraphsPage,name='showGraphs'),
@@ -24,7 +27,8 @@ urlpatterns = patterns('',
     url(r'^removeItem/', views.removeItem, name='removeItem'),
 	url(r'^replaceItem/', views.replaceItem, name='replaceItem'), 
 	url(r'^replaceNote/', views.replaceNote, name='replaceNote'),
-	url(r'^removeNote/', views.removeNote, name='removeNote')
+	url(r'^removeNote/', views.removeNote, name='removeNote'),
+	url(r'^genNote/', views.genNote, name='genNote')
 
     #----------------Rujia-----------------/\
     

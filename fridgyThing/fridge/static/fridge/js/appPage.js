@@ -29,63 +29,63 @@ $(document).ready(function(){
 	// });
 
 	//TODO: need to do this in a for loop with values posibly from inside the html so I can use django variables
-    $('.ingredientPie').each(function(){
-    	 var chart = new Highcharts.Chart({
-	        chart: {
-	        	renderTo: this,
-	        	backgroundColor: null,
-	            plotBackgroundColor: null,
-	            plotBorderWidth: null,
-	            plotShadow: false
-	        },
-	        title: {
-	            text: null
-	        },
-	        tooltip: {
-	        	enabled: false
-	    	    // pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-	        },
-	        plotOptions: {
-	            pie: {
-	                allowPointSelect: false,
-	                cursor: null,
-	                dataLabels: {
-	                    enabled: false,
-	                    // color: '#000000',
-	                    // connectorColor: '#000000',
-	                    // format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-	                },
-	                point: {
-	                	enabled:null,
-						events: {
-							click: function(event){
-								//nothing
-							},
-							// legendItemClick: null,
-							mouseOut: function(event){
-								//nothing
-							},
-							mouseOver: function(event){
-								//nothing
-							}
-							// remove: null,
-							// select: null,
-							// unselect: null,
-							// update: null
-						}
-					}
-	            }
-	        },
-	        series: [{
-	            type: 'pie',
-	            name: 'Ingredient',
-	            data: [
-	                ['Firefox',   45.0],
-	                ['IE',       26.8]
-	            ]
-		    }]
-    	});
-    });
+    // $('.ingredientPie').each(function(){
+    // 	 var chart = new Highcharts.Chart({
+	   //      chart: {
+	   //      	renderTo: this,
+	   //      	backgroundColor: null,
+	   //          plotBackgroundColor: null,
+	   //          plotBorderWidth: null,
+	   //          plotShadow: false
+	   //      },
+	   //      title: {
+	   //          text: null
+	   //      },
+	   //      tooltip: {
+	   //      	enabled: false
+	   //  	    // pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	   //      },
+	   //      plotOptions: {
+	   //          pie: {
+	   //              allowPointSelect: false,
+	   //              cursor: null,
+	   //              dataLabels: {
+	   //                  enabled: false,
+	   //                  // color: '#000000',
+	   //                  // connectorColor: '#000000',
+	   //                  // format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+	   //              },
+	   //              point: {
+	   //              	enabled:null,
+				// 		events: {
+				// 			click: function(event){
+				// 				//nothing
+				// 			},
+				// 			// legendItemClick: null,
+				// 			mouseOut: function(event){
+				// 				//nothing
+				// 			},
+				// 			mouseOver: function(event){
+				// 				//nothing
+				// 			}
+				// 			// remove: null,
+				// 			// select: null,
+				// 			// unselect: null,
+				// 			// update: null
+				// 		}
+				// 	}
+	   //          }
+	   //      },
+	   //      series: [{
+	   //          type: 'pie',
+	   //          name: 'Ingredient',
+	   //          data: [
+	   //              ['Firefox',   45.0],
+	   //              ['IE',       26.8]
+	   //          ]
+		  //   }]
+    // 	});
+    // });
 
 	// $('.foodPic').mouseenter(function(){
 	// 	$(this).children('.ingredientPie').fadeIn();
@@ -101,21 +101,24 @@ $(document).ready(function(){
 	$('#popupBackground').click(function(){
 		$('#popupBackground').fadeOut();
 		$('#addIng-popup').hide('fast');
+		$('#recipeInfo').hide('fast');
+		$('.rInfo').hide('fast');
+		$('#delIng-popup').hide('fast');
+	});
+
+	$('.recipeResult').click(function(){
+		$('#popupBackground').fadeIn();
+		$('#recipeInfo').show('slow');
+		var idnum = this.id;
+		var dash = idnum.indexOf("-");
+		idnum = idnum.substring(dash+1);
+		$('#rInfo-'+idnum).show('fast');
+	});
+
+	$('#delIng').click(function(){
+		$('#popupBackground').fadeIn();
+		$('#delIng-popup').show('slow');
 	});
 });
-function getRecipies(Ingredients){
-	var url =' http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
-	var i =1;
-	for(i;i<Ingredients.length;i++){
-		url = url+'&allowedIngredient[]='+Ingredients[i].replace(/ /g, '');
-	}
-	$.ajax({
-		url: url,
-		dataType: "jsonp",
-		success: function (data) {
-			console.log(data)
-			alert(data);
-		}
-	});
-}
+
 

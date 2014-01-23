@@ -1,0 +1,31 @@
+﻿Merge branch 'master' of https://github.com/tbwong/6.470-project
+
+Conflicts:
+	fridgyThing/db.sqlite3
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 6 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#   (use "git commit" to conclude merge)
+#
+# Changes to be committed:
+#
+#	modified:   fridgyThing/fridge/static/graphs/js/graphs.js
+#	modified:   fridgyThing/fridge/static/graphs/styles/graphs.css
+#	modified:   fridgyThing/fridge/templates/graphs/graphs.html
+#	modified:   fridgyThing/fridge/views.py
+#	deleted:    fridgyThing/fridge/views.py.orig
+#	modified:   fridgyThing/nutrientsTableFiller.py
+#
+

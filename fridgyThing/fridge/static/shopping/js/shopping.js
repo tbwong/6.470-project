@@ -94,43 +94,45 @@ $(document).ready(function() {
 		}
 	});
 
-//press enter to save edits
-/*
-	$("#food-list").on("keypress", "#foodedit", function(e) {
-		console.log(e.keyCode);
-		if (e.keyCode === 13) {
-		  e.preventDefault();
-		  var foodedit = $("#foodedit").val();
-		  $(this).replaceWith('<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">'+foodedit+"</span><button type='button' class='close closer invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close closer invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
+//gen note click to edit
+	$(".note").click(function() {
+		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
+			var note = $(this);
+			note.attr('id', 'othernote');
 		}
 	});
-*/
 	
-	
-//add ingredient at bottom
-/*
-	function addIng() {
-		var food = $("#food").val();
-		$("#food").val("");
-		if (food !== "" && food !== " "){
-		$("#food-list").append('<div class="hov"><button type="button" class="check close"><span class="glyphicon glyphicon-check"></span></button><span id="text">'+food+"</span><button type='button' class='close closer invisible remove'><span class='glyphicon glyphicon-remove'></span></button> <button type='button' class='close closer invisible edit'><span class='glyphicon glyphicon-pencil' id='listspace'></span></button></div>");
-		}
-	}
-	
-	$("#food").keypress(function(e) {
-		console.log(e.keyCode);
-		if (e.keyCode === 13) {
-		  e.preventDefault();
-		  addIng();
-		}
+//add to fridge!
+	$('.hov').on('click', '.add', function(){
+		$('#popupBackground').fadeIn();
+		$('#addIng-popup').show('slow');
+		window.id = "#" + $(this).closest('.hov').id;
+//this part aint working
 	});
-*/
+
+	$('#popupBackground').click(function(){
+		$('#popupBackground').fadeOut();
+		$('#addIng-popup').hide('fast');
+	});
+	
+	function removeItem() {
+		$('#food-list').find("#3").find('.submitremove').submit();
+	};
+
+	/*
+	$("#what").on("click", function() {
+		$('#food-list').find("#3").find('.submitremove').submit();
+	}); */
+
 });
 
+
 $(document).click(function(e) {
-	if (e.target.id !== 'foodedit' && e.target.id !== 'noteedit' && e.target.id !== 'memocontent' && !($(e.target).hasClass("edit"))) {
+	if (e.target.id !== 'foodedit' && e.target.id !== 'noteedit' && e.target.id !== "memocontent" && e.target.id !== "othernote" && !($(e.target).hasClass("edit"))) {
 		$("#foodedit").closest('.submitedit').submit(); 
 		$("#noteedit").closest('.submitedit').submit();
-		$(".othernote").children('.submitnote').submit();
+		var a=$("#memocontent").val();
+		$("#other").val(a);
+		$("#othernote").children('.submitnote').submit();
 	}
 });
