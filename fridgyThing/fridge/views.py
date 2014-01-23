@@ -3,6 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures
 import requests,re, json
+from django.views.generic.base import RedirectView
 from forms import ImageUploadForm;
 from django.utils import timezone;
 
@@ -15,7 +16,6 @@ def showFridge(request):
 	ingredients = Ingredient.objects.all() 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients} )
 
-
 def addIngredient(request):
 	IngName = request.POST['IngName']
 	IngName.strip()
@@ -24,28 +24,14 @@ def addIngredient(request):
 	i.save();
 	return HttpResponseRedirect(reverse('fridge:appPage',args=()))
 
-# function getRecipies(Ingredients){
-# 	var url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
-# 	var i =1;
-# 	for(i;i<Ingredients.length;i++){
-# 		url = url+'&allowedIngredient[]='+Ingredients[i].replace(/ /g, '');
-# 	}
-# 	$.ajax({
-# 		url: url,
-# 		dataType: "jsonp",
-# 		success: function (data) {
-# 			console.log(data)
-# 			alert(data);
-# 		}
-# 	});
-# }
 def getRecipes(request):
- 	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q=?&requirePictures=true&maxTotalTimeInSeconds=3'
+ 	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
  	ings = Ingredient.objects.all()
  	for i in range(len(ings)):
  		temp = ings[i].name
- 		temp = re.sub('/ /g', '',temp)
+ 		temp = re.sub('/ /g', '',temp).lower()
  		url = url+'&allowedIngredient[]='+temp
+ 	url= url+'&requirePictures=true'
 	rec = requests.get(url)
 
 	temp = json.dumps(rec.json())
@@ -54,16 +40,19 @@ def getRecipes(request):
 	recipeNames = []
 	recipeIngs = []
 	recipeIms = [] 
+	recipeIds = []
 	count=0
 
 	for match in matches:
-		recipeNames.append(match['recipeName'])
+		recipeNames.append(match['recipeName'][0:25]+'...')
 		recipeIngs.append(match['ingredients'])
 		recipeIms.append(match['smallImageUrls'][0])
+		recipeIds.append(match['id'])
 
+	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds)
 	ingredients = Ingredient.objects.all() 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'recipeNames':recipeNames,'recipeIngs':recipeIngs,'recipeIms':recipeIms} )
 
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe} )
 
 
 #----------------Pav-----------------/\
@@ -90,17 +79,14 @@ def showScrapbookPage(request):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
+            #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
          #   m.model_pic = form.cleaned_data['image']
-            m.save()
+            #m.save()
+            form.save()
     scrapbook_gen = Pictures.objects.all()
-    url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
-    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url': url})
-
-
-
-
-
+    url = Pictures.objects.all()
+    #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
+    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm()})
 
 """
 def addImage(request):
