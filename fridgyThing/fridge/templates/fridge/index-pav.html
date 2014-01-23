@@ -19,29 +19,26 @@
 </head>
 <body>
 	<div id='background'>
-		<img src="{% static 'fridge/images/sliced-fruit2.jpg' %}">
+		<img src="{% static 'fridge/images/black_shiny_fridge_b.jpg' %}" style="width:100%">
 	</div>
 
-	<div id='login-holder'>
-		<header id='siteTitle'>
-			The Fridge
-		</header>
+	<header id='siteTitle'>
+		frjr
+	</header>
 
 	<form id='login-group' name='input' action="{% url 'fridge:appPage'%}">
-		<form id='login-group' name='input' action="layout.html">
-			<div class="input-group">
-				<span class='input-group-addon'>@</span>
-				<input type='email' class="form-control" placeholder='Username' required autofocus>
-			</div>
-			<div class="input-group">
-				<span class='input-group-addon' style='padding:9px 15px;'> * </span>
-				<input type='password' class="form-control" placeholder='Password'required>
-			</div>
-			<div class="input-group btn-group" id='login-button'>
-				<input type='submit' class='btn btn-default' value='Log In'></input>
-			</div>
-		</form>
-	</div>
+		<div class="input-group">
+			<span class='input-group-addon'>@</span>
+			<input type='email' class="form-control" placeholder='Username' required autofocus>
+		</div>
+		<div class="input-group">
+			<span class='input-group-addon' style='padding:9px 15px;'> * </span>
+			<input type='password' class="form-control" placeholder='Password'required>
+		</div>
+		<div class="input-group btn-group" id='login-button'>
+			<input type='submit' class='btn btn-default' value='Log In'></input>
+		</div>
+	</form>
 
 
 	<!-- Latest compiled and minified JavaScript -->

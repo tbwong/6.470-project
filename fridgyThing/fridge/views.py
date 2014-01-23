@@ -5,6 +5,9 @@ from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Su
 import requests,re
 from forms import ImageUploadForm;
 from django.utils import timezone;
+from django.shortcuts import render_to_response
+from django.contrib import auth
+from django.core.context_processors import csrf
 
 # Create your views here.
 
@@ -62,6 +65,11 @@ def getRecipes(Ingredients):
 
 #----------------Pav-----------------/\
 #----------------Tiff-----------------\/
+def login(request):
+	c = {}
+	c.update(csrf(request))
+	return render_to_response(index.html, c)
+
 def showGraphsPage(request):
 	#calories,carbs,fat,protein,sodium,sugar
 	calories = [x.amount for x in Calories.objects.all()]
