@@ -245,5 +245,15 @@ def genNote(request):
 	else:
 		return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
 		
+def addIngredientS(request):
+	IngName = request.POST['IngName']
+	Id = request.POST['Id']
+#	IngName.strip().lower();
+	# IngAmount = float(request.POST['IngAmount'])
+	i = Ingredient(name=IngName,pic='search')
+	i.save();
+	a = ShoppingList.objects.get(id=Id)
+	a.delete()
+	return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
 	
 #----------------Rujia-----------------/\

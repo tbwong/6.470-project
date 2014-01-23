@@ -18,6 +18,7 @@ $(document).ready(function() {
 			$("#memo").find(id).css("background-color", "#fff5eb");
 		}
 	});
+	
 //notes hover to make icons visible
 	$("#memo").on("mouseenter", ".memohov", function() {
 		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
@@ -106,24 +107,21 @@ $(document).ready(function() {
 	$('.hov').on('click', '.add', function(){
 		$('#popupBackground').fadeIn();
 		$('#addIng-popup').show('slow');
-		window.id = "#" + $(this).closest('.hov').id;
-//this part aint working
+		okay = $(this).closest('.hov').attr("id");
+		$('#addIng-popup').find('#insertid').val(okay);
 	});
 
+	
+	
 	$('#popupBackground').click(function(){
 		$('#popupBackground').fadeOut();
 		$('#addIng-popup').hide('fast');
 	});
-	
-	function removeItem() {
-		$('#food-list').find("#3").find('.submitremove').submit();
-	};
-
-	/*
-	$("#what").on("click", function() {
-		$('#food-list').find("#3").find('.submitremove').submit();
-	}); */
-
+/*
+	$(".showpiece").on("click", "#what", function() {
+		$('#food-list').find("#8").children(".submitremove").submit();
+	}); 
+	*/
 });
 
 
