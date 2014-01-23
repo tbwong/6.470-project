@@ -121,7 +121,7 @@ h1{
 	margin-right:0px;
 }
 #minheight {
-	min-height:200px;
+	min-height:480px;
 	background-color: #fff5eb;
 }
 
@@ -216,7 +216,9 @@ h1{
 	background-color:#fff5eb;
 	float:left;
 	font-size:16px;
-	min-height:200px;
+	min-height:510px;
+	margin-left:20px;
+	margin-right:20px;
 }
 
 #text {
@@ -253,5 +255,5 @@ h1{
 
 .note {
 	margin-top: 20px;
-	margin-left: 0px;
+	margin-left: 100px;
 }

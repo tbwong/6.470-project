@@ -90,7 +90,6 @@
 			</form>			
 		</div>
 		
-		<div id="spacer">    .</div>
 		
 		<div id="memo">
 			<div id="shoppingheader"><b>Memo</b></div>
@@ -125,9 +124,8 @@
 			
 		</div>
 		
-		<div id="spacer">    .</div>
 		<div class="note">
-			<textarea class="form-control" id="memocontent" rows="5" placeholder="Add general note here...">{{other}}</textarea>
+			<textarea class="form-control" id="memocontent" rows="24" placeholder="Add general note here...">{{other}}</textarea>
 			<form class="submitnote" action="{% url 'fridge:genNote' %}" method="post">
 			{% csrf_token %}
 			<input id="other" name="other" val="" type="hidden"></input>
