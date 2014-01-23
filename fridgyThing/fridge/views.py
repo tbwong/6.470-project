@@ -5,16 +5,19 @@ from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Su
 import requests,re, json
 from django.views.generic.base import RedirectView
 from forms import ImageUploadForm;
+from forms import MyRegistrationForm;
 from django.utils import timezone;
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
-
+from django.contrib import auth                 
+from forms import MyRegistrationForm
 # Create your views here.
 
 #----------------Pav-----------------\/
 def index(request):
-	return render(request, 'fridge/index.html')
+	rform = MyRegistrationForm()
+	return render(request, 'fridge/index.html',{'rform':rform})
 def showFridge(request,userID):
 	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID)) 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'userID':userID} )
@@ -38,7 +41,7 @@ def delIngredient(request):
 	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
 
 def getRecipes(request):
- 	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
+ 	url ='http://api.yummly.com/v1/api/recipes?_app_id=11cf413b&_app_key=7904cfbaa445d431246c18249bc5174e&q='
  	url= url+'&requirePictures=true'
  	ings = Ingredient.objects.all()
  	matchSet= []
@@ -84,6 +87,18 @@ def addShopping(request):
 		i.save();
 	return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
 
+def register(request):
+   if request.method == 'POST':
+        form = MyRegistrationForm(request.POST)     # create form object
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('fridge:index',args=()))
+	args = {}
+	args.update(csrf(request))
+	args['form'] = MyRegistrationForm()
+	print args
+	return HttpResponseRedirect(reverse('fridge:index',args=()))
+
 #----------------Pav-----------------/\
 #----------------Tiff-----------------\/
 def my_view(request):
@@ -127,6 +142,7 @@ def showGraphsPage(request,userID):
 												'sugar': sugarValues,
 												'userID': userID
 												})
+
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
 def showScrapbookPage(request,userID):
