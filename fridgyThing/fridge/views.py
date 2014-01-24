@@ -129,18 +129,8 @@ def showGraphsPage(request,userID):
 												})
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
-def showScrapbookPage(request,userID):
-    if request.method == 'POST':
-        form = ImageUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
-         #   m.model_pic = form.cleaned_data['image']
-            #m.save()
-            form.save()
-    scrapbook_gen = Pictures.objects
-    url = Pictures.objects.filter(user=User.objects.get(pk=userID))
-    #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
-    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
+
+    
 
 """
 def addImage(request):
@@ -181,6 +171,18 @@ def showScrapbookPage(request):
 	caption = [x.caption for x in Pictures.objects.all()]
 	return render(request, 'scrapbook/scrapbook.html', {'picture': picture, 'date':date, 'caption':caption})
 """
+def showScrapbookPage(request,userID):
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
+         #   m.model_pic = form.cleaned_data['image']
+            #m.save()
+            form.save()
+    scrapbook_gen = Pictures.objects
+    url = Pictures.objects.filter(user=User.objects.get(pk=userID))
+    #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
+    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
 
 #----------------Jacqui-----------------/\
 

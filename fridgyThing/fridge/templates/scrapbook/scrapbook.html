@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <head>
@@ -33,7 +32,7 @@
         <h1>frjr</h1>
       </div>
 <!--      <label class="seperatorLine">|</label> -->
-      <a href="{%url 'fridge:logout'%}"><div id='logout' style='float:right'>
+      <a href="index.html"><div id='logout' style='float:right'>
         <span class='glyphicon glyphicon-log-out' style='margin-left:12px'></span>
         <br>logout
       </div></a>
@@ -43,9 +42,10 @@
   <nav class='sidebarHolder' style='float:left;'>
     <ul class="sidebar nav nav-pills nav-stacked">
       <li><a id = 'fridge' href="{% url 'fridge:appPage' userID%}"><span class='glyphicon glyphicon-book'></span> | Fridge <i class='arrow'>></i></a></li>
-      <li><a id = 'shopping-list' href="{% url 'fridge:showShopping' userID%}"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
+      <li><a id = 'shopping list' href="{% url 'fridge:showShopping' userID%}"><span class='glyphicon glyphicon-cutlery'></span> | Shopping List<i class='arrow'>></i></a></li>
       <li><a id = 'nutrition' href="{% url 'fridge:showGraphs' userID%}"><span class='glyphicon glyphicon-list-alt'></span> | Nutrition Tracker<i class='arrow'>></i></a></li>
       <li><a id='scrapbook' href="{% url 'fridge:showScrapbook' userID%}"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
+      
     </ul>
   </nav>
 
@@ -56,23 +56,16 @@
 
   <div class = "button"; id = "upload-button">
       <p> Upload another image? </p>
-<<<<<<< HEAD
-      <span class="file-wrapper">
- 
-  <span class="button">Upload another picture?</span>
-
-       <form action="{% url 'fridge:showScrapbook' %}" method="post" enctype="multipart/form-data">{% csrf_token %} <!--COME HERE -->
-=======
        <form action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">{% csrf_token %} <!--COME HERE -->
->>>>>>> fdb03d2917aec3df7b5f0eed2fa534fb9734fa7e
                 <p>
                     <!-- <input type="file" class="" name="image"> -->
                     {{ form.non_field_errors }}
                     {{ form.picture }}
+
                 </p>
+                <input name="userID" type="hidden" value="{{userID}}"></input>
                 <input type="submit" value="Submit" />
             </form>
-            </span>
   </div>
 </center>
 
@@ -93,15 +86,9 @@
   <div id = "wrapper" class="showpiece">
     <ul id = "portfolio">
       {% for x in url %}
-      <!-- {{ x.picture }} -->
+      {{ x.picture }}
       <li><img src = '{{ MEDIA_URL }}{{ x.picture }}' ></li>
       {% endfor %}
-      <!--
-      {% for x in scrapbook_gen %}
-      <li>{{x.date}}</li>
-      {% endfor %}
-      <li><img src = {% static 'scrapbook/images/' x.picture  %} ></li>
-  -->
     </ul>
   </div>  
 </body>
