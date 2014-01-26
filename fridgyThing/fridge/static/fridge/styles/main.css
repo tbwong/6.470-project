@@ -1,3 +1,7 @@
+html{
+	height: 100%;
+	width: 100%;
+}
 body{
 	background-color: white;
 	height: 100%;
@@ -15,17 +19,19 @@ body{
 
 #siteTitle{
 	font-family: 'Exo',sans-serif;
-	color: #336600;
+	color: red;
+	/*336600;*/
 	text-align: center;
 	font-size: 80px;
 	margin-top: 10%;
+
 }
 
 #login-holder{
 	float: right;
 	width: 300px;
 	margin-right: 10%;
-	margin-left:10%;
+	margin-top: 75%;
 }
 
 #login-group{
