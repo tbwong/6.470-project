@@ -59,6 +59,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 text: 'Daily calorie intake'
             },
             xAxis: {
+                categories: dates,
+                labels:
+                {
+                    enabled: false
+                }
 
             },
             yAxis: {
@@ -105,6 +110,12 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 text: 'Daily carb intake'
             },
             xAxis: {
+                categories: dates,
+                labels:
+                {
+                    enabled: false
+                }
+
             },
             yAxis: {
                 title: {
@@ -150,6 +161,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 text: 'Daily fat intake'
             },
             xAxis: {
+                categories: dates,
+                labels:
+                {
+                    enabled: false
+                }
 
             },
             yAxis: {
@@ -195,6 +211,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 text: 'Daily protein intake'
             },
             xAxis: {
+                categories: dates,
+                labels:
+                {
+                    enabled: false
+                }
 
             },
             yAxis: {
@@ -240,6 +261,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 text: 'Daily sodium intake'
             },
             xAxis: {
+                categories: dates,
+                labels:
+                {
+                    enabled: false
+                }
 
             },
             yAxis: {
@@ -285,7 +311,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 text: 'Daily sugar intake'
             },
             xAxis: {
-
+                categories: dates,
+                labels:
+                {
+                    enabled: false
+                }
             },
             yAxis: {
                 title: {

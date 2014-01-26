@@ -191,7 +191,7 @@ def showGraphsPage(request,userID):
 	proteinValues = [x.amount for x in Protein.objects.filter(user=User.objects.get(pk=userID))]
 	sodiumValues = [x.amount for x in Sodium.objects.filter(user=User.objects.get(pk=userID))]
 	sugarValues = [x.amount for x in Sugar.objects.filter(user=User.objects.get(pk=userID))]
-	dates = [x.eaten_date for x in Calories.objects.filter(user=User.objects.get(pk=userID))]
+	dates = [str(x.eaten_date.date()) for x in Calories.objects.filter(user=User.objects.get(pk=userID))]
 #	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'age':age,
 												'body_weight': body_weight,
@@ -212,7 +212,6 @@ def showScrapbookPage(request,userID):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
-<<<<<<< HEAD
         #	user = User.objects.get(pk=userID)
             #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
          #   m.model_pic = form.cleaned_data['image']
@@ -224,20 +223,14 @@ def showScrapbookPage(request,userID):
     url = Pictures.objects.filter(user=User.objects.get(pk=userID))
     #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
     return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
-=======
-			user = User.objects.get(pk=userID)
+
+			#user = User.objects.get(pk=userID)
 			#m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
 			#   m.model_pic = form.cleaned_data['image']
 			#m.save()
 			#if form.user.is_valid():
 				#form.user(user=request.user) #check
-			form.save()
-	scrapbook_gen = Pictures.objects
-	url = Pictures.objects.filter(user=User.objects.get(pk=userID))
-	#url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
-	return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
->>>>>>> 6c31dee79445a34baeca58a57532e45f03f0ec0d
-   
+		
 
 class PhotoWizard(SessionWizardView):
 	file_storage = FileSystemStorage(location = os.path.join(settings.MEDIA_ROOT, ''))

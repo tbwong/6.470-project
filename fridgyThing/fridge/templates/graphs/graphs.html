@@ -26,11 +26,7 @@
 		$(function(){
 			//the whole page has loaded.
 			//cal,carbs,fat,protein,sodium,sugar
-			makeHighCharts({{cal}}, {{carbs}}, {{fat}}, {{protein}}, {{sodium}}, {{sugar}}, {{dates}}, '{{username}}')
-
-			// {% for i in cal %}
-
-			// {%endfor%}	
+			makeHighCharts({{cal}}, {{carbs}}, {{fat}}, {{protein}}, {{sodium}}, {{sugar}}, {{dates|safe}}, '{{username}}')
 		});
 	</script>
 

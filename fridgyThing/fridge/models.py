@@ -50,6 +50,7 @@ class Characteristics(models.Model):
 	user = models.ForeignKey(User)
 	age = models.IntegerField(default=0)
 	body_weight = models.IntegerField(default=0)
+	gender = models.CharField(max_length = 200)
 
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
