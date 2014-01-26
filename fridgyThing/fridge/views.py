@@ -159,8 +159,8 @@ class PhotoWizard(SessionWizardView):
 		return HttpResponseRedirect('/page-to-redirect-to-when-done/')
 
 
-"""
-Previous Stuff:
+
+# Previous Stuff:
 def showScrapbookPage(request,userID):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
@@ -173,7 +173,7 @@ def showScrapbookPage(request,userID):
     url = Pictures.objects.filter(user=User.objects.get(pk=userID))
     #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
     return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
-  """  
+   
 
 """
 def addImage(request):
