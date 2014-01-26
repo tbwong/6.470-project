@@ -52,15 +52,74 @@
   </nav>
 
 <center>
+  
   <div id = "title">
       <h1> Welcome to your Scrapbook! </h1>
   </div>
 
+<!-- New Upload Function --> 
+<div id = "form-area">
+<form class="form-inline" role="form">
+  <div class="form-group" id = "upload-form">
+    <label class="form-control" for="imguploadform"> Upload a New Picture? </label>
+    <div class = "form-control" for= "imguploadform">
+    <form id = "imguploadform" class = "form-control" action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">{% csrf_token %}          
+                <p>
+                    {{ form.non_field_errors }}
+                    {{ form.picture }}
+                    <input name="userID" type="hidden" value="{{userID}}"></input>
+                </p> 
+  </div>
+</div>
+  <div class="form-group">
+    <label class="form-control" for="title">Give it a title?</label>
+    <input type="text" class="form-control" id="title" placeholder="Title">
+                <p>
+                    {{ form.non_field_errors }}
+                    {{ form.title }}
+                    <input name="userID" type="hidden" value="{{userID}}"></input>
+                </p> 
+  </div>
+  <div class="form-group">
+    <label class="form-control" for="comment">Comment it up!</label>
+    <input type="text" class="form-control" id="comment" placeholder="Comment...">
+                <p>
+                    {{ form.non_field_errors }}
+                    {{ form.comment }}
+                    <input name="userID" type="hidden" value="{{userID}}"></input>
+                </p> 
+  </div>
+  </form>
+  <input type="submit" value = "Submit It! :D" class="btn btn-default"></input>
+</div>
+</div>
+
+
+<!--
+  <form role="form">
+    <div class="form-group">
+      <label for="PhotoUpload">Upload a New Pic?</label>
+      <input type = "file" class = "form-control" id = "Photo Upload" placeholder = "Upload Image?" action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">{% csrf_token %} 
+                <p>
+                    {{ form.non_field_errors }}
+                    {{ form.picture }}
+                </p>
+                <input name="userID" type="hidden" value="{{userID}}"></input>
+                <input type="submit" value="Submit" />
+    </div>
+    <div class="form-group">
+      <label for="TitleField">Title</label>
+      <input type="text" class="form-control" id="title" placeholder="Title">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+-->
+
+<!--
   <div class = "button"; id = "upload-button">
       <p> Upload another image? </p>
-       <form action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">{% csrf_token %} <!--COME HERE -->
+       <form action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">{% csrf_token %} 
                 <p>
-                    <!-- <input type="file" class="" name="image"> -->
                     {{ form.non_field_errors }}
                     {{ form.picture }}
 
@@ -117,10 +176,24 @@
   <div id = "wrapper" class="showpiece">
     <ul id = "portfolio">
       {% for x in url %}
-      {{ x.picture }}
       <li><img src = '{{ MEDIA_URL }}{{ x.picture }}' ></li>
       {% endfor %}
     </ul>
   </div>  
+
+<!-- More Grid Ideas
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img data-src="holder.js/300x200" alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+-->
 </body>
 </html>
