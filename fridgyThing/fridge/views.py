@@ -71,6 +71,7 @@ def getRecipes(request,userID):
 	recipeIngs = []
 	recipeIms = [] 
 	recipeIds = []
+	inFrjCount = []
 	count=0
 	for matches in matchSet:
 		for match in matches:
@@ -78,15 +79,30 @@ def getRecipes(request,userID):
 			recipeIngs.append(match['ingredients'])
 			recipeIms.append(match['smallImageUrls'][0])
 			recipeIds.append(match['id'])
+			inFrjCounter = 0
+			print match['ingredients']
+			print '----'
+			for ing in ings:
+				for s in match['ingredients']:
+					if ing.name.lower() in s.lower():
+						inFrjCounter=inFrjCounter+1
+			inFrjCount.append(inFrjCounter)
+			print inFrjCounter
 
-	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds)
+	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds,inFrjCount)
+	recipe = sorted(recipe,key=lambda recipe:recipe[4],reverse=True)
+
 	ingredients = Ingredient.objects.all() 
 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe,'userID':userID})
 
-# def makeMeal(request,datID):
-# 	 url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
-# 	 return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+def makeMeal(request,userID):
+	 # url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
+	 url ='http://api.yummly.com/v1/api/recipe/recipe-id?_app_id=11cf413b&_app_key=7904cfbaa445d431246c18249bc5174e'
+
+	 return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
+
+
 def addShopping(request):
 	userID = request.POST['userID']
 	ings = request.POST.getlist('ingsList')
