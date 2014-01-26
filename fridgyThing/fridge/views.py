@@ -173,6 +173,7 @@ def showScrapbookPage(request,userID):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
+        	user = User.objects.get(pk=userID)
             #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
          #   m.model_pic = form.cleaned_data['image']
             #m.save()
