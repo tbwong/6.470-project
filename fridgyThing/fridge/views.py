@@ -301,14 +301,15 @@ def genNote(request):
 		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 		
 def addIngredientS(request):
+	userID = request.POST['userID']
 	IngName = request.POST['IngName']
 	Id = request.POST['Id']
 #	IngName.strip().lower();
 	# IngAmount = float(request.POST['IngAmount'])
-	i = Ingredient(name=IngName,pic='search')
+	i = Ingredient(user=User.objects.get(pk=userID), name=IngName,pic='search')
 	i.save();
-	a = ShoppingList.objects.get(id=Id)
+	a = ShoppingList.objects.get(id=Id, user=User.objects.get(pk=userID))
 	a.delete()
-	return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+	return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 	
 #----------------Rujia-----------------/\
