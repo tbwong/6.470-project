@@ -79,7 +79,7 @@
 		</ul>
 	</nav>
 
-
+	{%if ingredientsLength > 0%}
 	<div id="showpiece-fridge" class='showpiece' style="display:none;">
 		<div class='scrollable'>
 			<div id = 'current-fridge'>
@@ -255,7 +255,11 @@
 			</form>
 		</div>
 	</div>
-
+	{%else%}
+	<div id='noFridge' class='showpiece'>
+		<img src="{%static 'fridge/images/noFoodMessage.jpg'%}" width="100%">
+	</div>
+	{%endif%}
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="{% static 'fridge/styles/bootstrap/js/bootstrap.min.js' %}"></script>
