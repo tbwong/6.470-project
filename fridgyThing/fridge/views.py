@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures,User
-import requests,re, json
+import requests,re,json
 from django.views.generic.base import RedirectView
 from forms import ImageUploadForm;
 from forms import MyRegistrationForm;
@@ -40,7 +40,7 @@ def delIngredient(request):
 	i.delete();
 	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
 
-def getRecipes(request):
+def getRecipes(request,userID):
  	url ='http://api.yummly.com/v1/api/recipes?_app_id=11cf413b&_app_key=7904cfbaa445d431246c18249bc5174e&q='
  	url= url+'&requirePictures=true'
  	ings = Ingredient.objects.all()
@@ -51,6 +51,7 @@ def getRecipes(request):
  		temp = re.sub('/ /g', '',temp).lower()
  		url2 = url+'&allowedIngredient[]='+temp
 		try:
+			
 			rec = requests.get(url2)
 
 			temp = json.dumps(rec.json())
@@ -74,7 +75,7 @@ def getRecipes(request):
 	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds)
 	ingredients = Ingredient.objects.all() 
 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe} )
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe,'userID':userID})
 
 # def makeMeal(request,datID):
 # 	 url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
@@ -85,7 +86,7 @@ def addShopping(request):
 	for j in ings:
 		i = ShoppingList(item=j,note=' ',user=User.objects.get(pk=userID))
 		i.save();
-	return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+	return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 
 def register(request):
    if request.method == 'POST':
