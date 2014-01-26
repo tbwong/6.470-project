@@ -5,26 +5,24 @@ from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Su
 import requests,re,json
 from django.views.generic.base import RedirectView
 from forms import ImageUploadForm;
-from forms import MyRegistrationForm;
 from django.utils import timezone;
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
 from django.contrib import auth                 
-from forms import MyRegistrationForm 
 from django.shortcuts import render_to_response
 from django.contrib.formtools.wizard.views import SessionWizardView
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 import os
+from django.contrib.auth.models import User
 
 # Create your views here.
 
 
 #----------------Pav-----------------\/
 def index(request):
-	rform = MyRegistrationForm()
-	return render(request, 'fridge/index.html',{'rform':rform})
+	return render(request, 'fridge/index.html')
 def showFridge(request,userID):
 	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID)) 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'userID':userID} )
@@ -138,15 +136,16 @@ def addShopping(request):
 	return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 
 def register(request):
-   if request.method == 'POST':
-        form = MyRegistrationForm(request.POST)     # create form object
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('fridge:index',args=()))
-	args = {}
-	args.update(csrf(request))
-	args['form'] = MyRegistrationForm()
-	print args
+	username = request.POST['username']
+	password = request.POST['password']
+	age = request.POST['age']
+	weight = request.POST['weight']
+
+	user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+	
+
+
+
 	return HttpResponseRedirect(reverse('fridge:index',args=()))
 
 #----------------Pav-----------------/\
