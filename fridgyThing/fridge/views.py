@@ -320,6 +320,7 @@ def showGraphsPage(request,userID):
 		sugarMessage = ":D"
 
 	for x in range(len(calories)-1):
+		print "appending stuff "+str(highCal)
 		highCal.append(highCal[0])
 		lowCal.append(lowCal[0])
 		highCarb.append(highCarb[0])
@@ -328,7 +329,7 @@ def showGraphsPage(request,userID):
 		lowFat.append(lowFat[0])
 		highProtein.append(highProtein[0])
 		lowProtein.append(lowProtein[0])
-		highSodium.append(highProtein[0])
+		highSodium.append(highSodium[0])
 		highSugar.append(highSugar[0])
 
 #	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
