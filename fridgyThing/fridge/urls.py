@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^(?P<userID>[-\w]+)/graphs/',views.showGraphsPage,name='showGraphs'),
     #----------------Tiff-----------------/\
     #----------------Jacqui-----------------\/
+    #url(r'^scrapbook/',views.showScrapbookPage, name='showScrapbook'),
     url(r'^(?P<userID>[-\w]+)/scrapbook/',views.showScrapbookPage, name='showScrapbook'),
     url(r'^contact/$', PhotoWizard.as_view([ImageUploadForm, TitleCommentForm])),
     #url(r'^scrapbook/',views.addImage, name='addImage'),
@@ -39,8 +40,6 @@ urlpatterns = patterns('',
 	url(r'^removeNote/', views.removeNote, name='removeNote'),
 	url(r'^genNote/', views.genNote, name='genNote'),
 	url(r'^addIngredientS/', views.addIngredientS, name='addIngredientS'),
-
-
     #----------------Rujia-----------------/\
     
 )

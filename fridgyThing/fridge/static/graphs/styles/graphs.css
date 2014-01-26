@@ -58,9 +58,9 @@ nav .sidebar{
 }
 
 .hiddenones {
-	position: relative;
+	position: absolute;
 	padding: 10px;
-	margin-left: 5%;
+	margin-left: 40px;
 	width: 500px;
 	height: 100px;
 
@@ -79,20 +79,21 @@ nav .sidebar{
 	font-weight: bold;
 	margin-right: 100px;
 	margin-top: 10px;
-	float: right;
 }
 
 #left {
-	position: relative;
+	position: absolute;
 	width: 20px;
 	display: inline; 
 	float:left;
-	margin-left: 40px;
+	margin-left: 20px;
+
+
 }
 #right {
-	position: relative;
+	position: absolute;
 	width: 20px;
-	margin-left: 60px;
+	margin-left: 560px;
 	float:left;
 	display: inline; 
 
@@ -104,6 +105,7 @@ nav .sidebar{
 }
 
 .container {
+	position: relative;
 	width: 500px;
 	height: 250px;
 	-webkit-box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);

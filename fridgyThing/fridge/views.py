@@ -20,6 +20,7 @@ import os
 
 # Create your views here.
 
+
 #----------------Pav-----------------\/
 def index(request):
 	rform = MyRegistrationForm()
@@ -152,14 +153,6 @@ def showGraphsPage(request,userID):
 
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
-class PhotoWizard(SessionWizardView):
-	file_storage = FileSystemStorage(location = os.path.join(settings.MEDIA_ROOT, ''))
-	def done(self, form_list, **kwargs):
-		do_something_with_the_form_data(form_list)
-		return HttpResponseRedirect('/page-to-redirect-to-when-done/')
-
-
-#Previous Stuff:
 def showScrapbookPage(request,userID):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
@@ -173,6 +166,13 @@ def showScrapbookPage(request,userID):
     #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
     return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
    
+
+class PhotoWizard(SessionWizardView):
+	file_storage = FileSystemStorage(location = os.path.join(settings.MEDIA_ROOT, ''))
+	def done(self, form_list, **kwargs):
+		do_something_with_the_form_data(form_list)
+		return HttpResponseRedirect('/page-to-redirect-to-when-done/')
+
 
 """
 def addImage(request):
