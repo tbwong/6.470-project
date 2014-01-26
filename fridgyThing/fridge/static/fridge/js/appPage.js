@@ -17,6 +17,7 @@ $(document).ready(function(){
 		console.log(page);
 	}
 	showShowpiece('#showpiece-fridge');
+	showShowpiece('#noFridge');
 	showControls('#control-fridge');
 
 	// $('.sidebarHolder .sidebar li a').click(function(){

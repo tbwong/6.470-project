@@ -24,8 +24,9 @@ import datetime
 def index(request):
 	return render(request, 'fridge/index.html')
 def showFridge(request,userID):
-	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID)) 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'userID':userID} )
+	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID))
+	ingredientsLength = len(ingredients) 
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'userID':userID,'ingredientsLength':ingredientsLength} )
 
 def addIngredient(request):
 	IngName = request.POST['IngName']
@@ -96,8 +97,9 @@ def getRecipes(request,userID):
 	recipe = sorted(recipe,key=lambda recipe:recipe[4],reverse=True)
 
 	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID))
+	ingredientsLength = len(ingredients) 
 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe,'userID':userID})
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'ingredientsLength':ingredientsLength,'url':url,'recipe':recipe,'userID':userID})
 
 def makeMeal(request):
 	userID = request.POST['userID']
