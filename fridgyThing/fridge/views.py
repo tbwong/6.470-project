@@ -96,11 +96,37 @@ def getRecipes(request,userID):
 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe,'userID':userID})
 
-def makeMeal(request,userID):
-	 # url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
-	 url ='http://api.yummly.com/v1/api/recipe/recipe-id?_app_id=11cf413b&_app_key=7904cfbaa445d431246c18249bc5174e'
+def makeMeal(request):
+	userID = request.POST['userID']
+	recipeID = request.POST['recipeID']
+	# url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
+	url ='http://api.yummly.com/v1/api/recipe/'+recipeID+'?_app_id=11cf413b&_app_key=7904cfbaa445d431246c18249bc5174e'
+	rec = requests.get(url)
+	temp = json.dumps(rec.json())
+	dct = json.loads(temp)
+	nutrition = dct['nutritionEstimates'] # cal,carb,fat,protein,sodium,sugar
+	
+	calories = nutrition[0] # unit is in kcal 
+	carbs = nutrition[6] # unit for all others is grams
+	fat = nutrition[1]
+	protein = nutrition[9]
+	sodium = nutrition[4]
+	sugar = nutrition[8]
 
-	 return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
+	cal = Calories(user=User.objects.get(pk=userID),amount=calories['value'],eaten_date=timezone.now())
+	cal.save();
+	car = Carbs(user=User.objects.get(pk=userID),amount=carbs['value'],eaten_date=timezone.now())
+	car.save();
+	f = Fats(user=User.objects.get(pk=userID),amount=fat['value'],eaten_date=timezone.now())
+	f.save();
+	pro = Protein(user=User.objects.get(pk=userID),amount=protein['value'],eaten_date=timezone.now())
+	pro.save();
+	sod = Sodium(user=User.objects.get(pk=userID),amount=sodium['value'],eaten_date=timezone.now())
+	sod.save();
+	sug = Sugar(user=User.objects.get(pk=userID),amount=sugar['value'],eaten_date=timezone.now())
+	sug.save();
+
+	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
 
 
 def addShopping(request):
