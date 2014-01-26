@@ -44,6 +44,10 @@ class Sugar(models.Model):
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
 
+class Characteristics(models.Model):
+	user = models.ForeignKey(User)
+	char = models.CharField(max_length=200)
+
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
 
