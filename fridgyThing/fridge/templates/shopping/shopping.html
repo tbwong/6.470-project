@@ -86,7 +86,7 @@
 			<!-- add to list -->
 			<form action="{% url 'fridge:addItem' %}" method="post">
 				{% csrf_token %}
-				<input type="text" id="food" name="ItemName" class="form-control" placeholder="Add to list..."></input>
+				<input type="text" id="food" name="ItemName" class="form-control" placeholder="Add to list here..."></input>
 				<input name="userID" type="hidden" value="{{userID}}"></input>
 			</form>			
 		</div>
@@ -129,8 +129,8 @@
 		</div>
 		
 		<div class="note">
-<!--			<div id="genheader">Notes</div>  -->
-			<textarea class="form-control" id="memocontent" rows="10" placeholder="Add general note here...">{{other}}</textarea>
+			<div id="genheader"><b>Notes</b></div> 
+			<textarea class="form-control" id="memocontent" rows="8" placeholder="Add general note here...">{{other}}</textarea>
 			<form class="submitnote" action="{% url 'fridge:genNote' %}" method="post">
 			{% csrf_token %}
 			<input id="other" name="other" val="" type="hidden"></input>
@@ -141,7 +141,7 @@
 		<div id="popupBackground"></div>
 		<div></div>
 
-		<div id='addIng-popup' class='popup' >
+<!--	<div id='addIng-popup' class='popup' >
 			<h1 style="text-align:center; font-size:25px;">Add to Fridge</h1>
 			<br><br>
 			<form id='addIng-group' action="{% url 'fridge:addIngredientS' %}" method="post">
@@ -161,6 +161,51 @@
 				<div id="what" class="input-group btn-group centeredButton" >
 					<input type='submit' class='btn btn-default' value='Add It'></input>
 				</div>
+			</form>
+		</div>
+-->	
+		<div id='addIng-popup' class='popup' >
+			<h1 style="text-align:center;">Add to Fridge</h1>
+			<br><br>
+			<form id='addIng-group' action="{% url 'fridge:addIngredient'%}" method="post">
+				{% csrf_token %}
+
+				<div class="input-group">
+				  <span class="input-group-addon">Ingredient Name:</span>
+				  <input type="text" name='IngName'class="form-control" placeholder="Be general.  ex: Ketchup NOT Heins Tomato Ketchup" required autofocus>
+				</div>
+				<br>
+				<div class="input-group">
+				  <span class="input-group-addon"># Grams:</span>
+				  <input type="number" name='IngAmount' class="form-control" value="1" required>
+				</div>
+				<input type="hidden" name="userID" value="{{userID}}">
+				<br>
+				<div class="input-group btn-group centeredButton" >
+					<input type='submit' class='btn btn-default' value='Add It'></input>
+				</div>
+
+			</form>
+		</div>
+		<div id='delIng-popup' class='popup' >
+			<h1 style="text-align:center;">Remove Ingredient</h1>
+			<br><br>
+			<form id='delIng-group' action="{% url 'fridge:delIngredient'%}" method="post">
+				{% csrf_token %}
+
+				<select name="IngNames" style="position:relative; left:50%; margin-left:-32px;" >
+					{%for i in ingredients%}
+					<option value="{{i.name}}" >{{i.name}}</option>
+					{%endfor%}
+				</select>
+
+				<br>
+				<input type="hidden" name="userID" value="{{userID}}">
+				<br><br>
+				<div class="input-group btn-group centeredButton" >
+					<input type='submit' class='btn btn-default' value='Remove It'></input>
+				</div>
+
 			</form>
 		</div>
 		
