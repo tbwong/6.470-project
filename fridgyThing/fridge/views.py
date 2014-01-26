@@ -16,7 +16,7 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 import os
 from django.contrib.auth.models import User
-
+import datetime
 # Create your views here.
 
 
@@ -104,25 +104,27 @@ def makeMeal(request):
 	dct = json.loads(temp)
 	nutrition = dct['nutritionEstimates'] # cal,carb,fat,protein,sodium,sugar
 	
-	calories = nutrition[0] # unit is in kcal 
-	carbs = nutrition[6] # unit for all others is grams
-	fat = nutrition[1]
-	protein = nutrition[9]
-	sodium = nutrition[4]
-	sugar = nutrition[8]
+	nutrients = []
+	nutrients.append(nutrition[0]) # calories # unit is in kcal 
+	nutrients.append(nutrition[6]) # carbs  # unit for all others is grams
+	nutrients.append(nutrition[1]) # fat
+	nutrients.append(nutrition[9]) # protein
+	nutrients.append(nutrition[4]) # sodium
+	nutrients.append(nutrition[8]) # sugar
 
-	cal = Calories(user=User.objects.get(pk=userID),amount=calories['value'],eaten_date=timezone.now())
-	cal.save();
-	car = Carbs(user=User.objects.get(pk=userID),amount=carbs['value'],eaten_date=timezone.now())
-	car.save();
-	f = Fats(user=User.objects.get(pk=userID),amount=fat['value'],eaten_date=timezone.now())
-	f.save();
-	pro = Protein(user=User.objects.get(pk=userID),amount=protein['value'],eaten_date=timezone.now())
-	pro.save();
-	sod = Sodium(user=User.objects.get(pk=userID),amount=sodium['value'],eaten_date=timezone.now())
-	sod.save();
-	sug = Sugar(user=User.objects.get(pk=userID),amount=sugar['value'],eaten_date=timezone.now())
-	sug.save();
+	nutrientObjects = [Calories,Carbs,Fats,Protein,Sodium,Sugar]
+
+	for i in range(len(nutrients)):
+		cur = nutrientObjects[i].objects.filter(user=User.objects.get(pk=userID))
+		added = False;
+		for c in cur:
+			if(c.eaten_date.date() == timezone.now().date()):
+				c.amount+=nutrients[i]['value']
+				c.save();
+				added = True
+		if (not added):
+			c = nutrientObjects[i](user=User.objects.get(pk=userID),amount=nutrients[i]['value'],eaten_date=timezone.now())
+			c.save();
 
 	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
 
@@ -141,10 +143,12 @@ def register(request):
 	age = request.POST['age']
 	weight = request.POST['weight']
 
-	user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-	
-
-
+	try:
+		user = User.objects.create_user(username, 'lennon@thebeatles.com', password)
+		char = Characteristics(user=user,age=age,body_weight=weight)
+		char.save()
+	except:
+		return HttpResponse('<h2>Either this user already exists or you\'re trying to mess with us.</h2>')
 
 	return HttpResponseRedirect(reverse('fridge:index',args=()))
 
@@ -206,17 +210,17 @@ def showScrapbookPage(request,userID):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
-        	user = User.objects.get(pk=userID)
-            #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
-         #   m.model_pic = form.cleaned_data['image']
-            #m.save()
-            #if form.user.is_valid():
-            	#form.user(user=request.user) #check
-            form.save()
-    scrapbook_gen = Pictures.objects
-    url = Pictures.objects.filter(user=User.objects.get(pk=userID))
-    #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
-    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
+			user = User.objects.get(pk=userID)
+			#m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
+			#   m.model_pic = form.cleaned_data['image']
+			#m.save()
+			#if form.user.is_valid():
+				#form.user(user=request.user) #check
+			form.save()
+	scrapbook_gen = Pictures.objects
+	url = Pictures.objects.filter(user=User.objects.get(pk=userID))
+	#url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
+	return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
    
 
 class PhotoWizard(SessionWizardView):
