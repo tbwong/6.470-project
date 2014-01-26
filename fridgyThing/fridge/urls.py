@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^addIngredient/',views.addIngredient,name='addIngredient'),
     url(r'^delIngredient/',views.delIngredient,name='delIngredient'),
     url(r'^(?P<userID>[-\w]+)/getRecipes/',views.getRecipes,name='getRecipes'),
-    # url(r'^(?P<datID>[-\w]+)/getRecipes/',views.getRecipes,name='getRecipes'),
+    url(r'^makeMeal/',views.makeMeal,name='makeMeal'),
     url(r'^addShopping/',views.addShopping,name='addShopping'),
     url(r'^register/',views.register,name='register'),
 

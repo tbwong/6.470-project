@@ -70,6 +70,7 @@ def getRecipes(request,userID):
 	recipeIngs = []
 	recipeIms = [] 
 	recipeIds = []
+	inFrjCount = []
 	count=0
 	for matches in matchSet:
 		for match in matches:
@@ -77,15 +78,30 @@ def getRecipes(request,userID):
 			recipeIngs.append(match['ingredients'])
 			recipeIms.append(match['smallImageUrls'][0])
 			recipeIds.append(match['id'])
+			inFrjCounter = 0
+			print match['ingredients']
+			print '----'
+			for ing in ings:
+				for s in match['ingredients']:
+					if ing.name.lower() in s.lower():
+						inFrjCounter=inFrjCounter+1
+			inFrjCount.append(inFrjCounter)
+			print inFrjCounter
 
-	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds)
+	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds,inFrjCount)
+	recipe = sorted(recipe,key=lambda recipe:recipe[4],reverse=True)
+
 	ingredients = Ingredient.objects.all() 
 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe,'userID':userID})
 
-# def makeMeal(request,datID):
-# 	 url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
-# 	 return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+def makeMeal(request,userID):
+	 # url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
+	 url ='http://api.yummly.com/v1/api/recipe/recipe-id?_app_id=11cf413b&_app_key=7904cfbaa445d431246c18249bc5174e'
+
+	 return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
+
+
 def addShopping(request):
 	userID = request.POST['userID']
 	ings = request.POST.getlist('ingsList')
@@ -159,8 +175,7 @@ class PhotoWizard(SessionWizardView):
 		return HttpResponseRedirect('/page-to-redirect-to-when-done/')
 
 
-"""
-Previous Stuff:
+
 def showScrapbookPage(request,userID):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
@@ -173,7 +188,6 @@ def showScrapbookPage(request,userID):
     url = Pictures.objects.filter(user=User.objects.get(pk=userID))
     #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
     return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
-  """  
 
 """
 def addImage(request):
