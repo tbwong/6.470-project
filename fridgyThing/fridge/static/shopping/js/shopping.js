@@ -133,9 +133,8 @@ $(document).ready(function() {
 
 });
 
-
 $(document).click(function(e) {
-	if (e.target.id !== 'foodedit' && e.target.id !== 'noteedit' && e.target.id !== "memocontent" && e.target.id !== "othernote" && !($(e.target).hasClass("edit"))) {
+	if (e.target.id !== 'foodedit' && e.target.id !== 'noteedit' && e.target.id !== "memocontent" && e.target.id!== "listspace") {
 		$("#foodedit").closest('.submitedit').submit(); 
 		$("#noteedit").closest('.submitedit').submit();
 		var a=$("#memocontent").val();
