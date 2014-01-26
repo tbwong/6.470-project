@@ -181,9 +181,15 @@ def logout_view(request):
 
 
 def showGraphsPage(request,userID):
+	def sum(seq):
+ 		def add(x,y): 
+ 			return x+y
+	   	return reduce(add, seq, 0)
+
 	#calories,carbs,fat,protein,sodium,sugar
 	currentUser = User.objects.get(pk=userID)
 	currentUsername = str(currentUser.username)
+	gender = str(currentUser.gender)
 	age = Characteristics.objects.get(user=currentUser).age
 	body_weight = Characteristics.objects.get(user=currentUser).body_weight
 
@@ -194,6 +200,39 @@ def showGraphsPage(request,userID):
 	sodiumValues = [x.amount for x in Sodium.objects.filter(user=User.objects.get(pk=userID))]
 	sugarValues = [x.amount for x in Sugar.objects.filter(user=User.objects.get(pk=userID))]
 	dates = [str(x.eaten_date.date()) for x in Calories.objects.filter(user=User.objects.get(pk=userID))]
+
+	calMessage = ""
+	carbMessage = ""
+	fatMessage = ""
+	proteinMessage = ""
+	sodiumMessage = ""
+	sugarMessage = ""
+
+# Men: BEE = (66.5 + 13.8(W) + 5.0(H) - 6.8(A) ) 1.2
+ 
+#  Women: BEE =( 655.1 + 9.6(W) + 1.9(H) - 4.7(A)) * 1.2
+
+	#Fat intake should equal 30% of your total days calories. 
+	if abs(sum(fatValues)/len(fatValues) - sum(calories)/len(calories)*.3) < 5:
+		fatMessage = "good fat!"
+	elif sum(fatValues)/len(fatValues) - sum(calories)/len(calories)*.3 < 0:
+		fatMessage = "too much fat!"
+	else:
+		fatMessage = "too little fat!"
+
+	#daily protein intake .8-1.0 g of protein/kg body weight. 
+
+	proteinLow = body_weight / 2.2 * .8
+	proteinHigh = body_weight / 2.2
+	if sum(proteinValues)/len(proteinValues) < proteinLow:
+		proteinMessage = "not enough protein!"
+	elif sum(proteinValues)/len(proteinValues) > proteinHigh:
+		proteinMessage = "too much protein!"
+	else:
+		proteinMessage = "just right protein!"
+
+
+
 #	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'age':age,
 												'body_weight': body_weight,
