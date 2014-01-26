@@ -18,6 +18,8 @@ class Calories(models.Model):
 	user = models.ForeignKey(User)
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
+	def __unicode__(self):
+		return str(self.user.username)+':'+str(self.amount)
 
 class Carbs(models.Model):
 	user = models.ForeignKey(User)
