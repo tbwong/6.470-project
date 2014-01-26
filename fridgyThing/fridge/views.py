@@ -221,6 +221,18 @@ def showGraphsPage(request,userID):
 	dailySodium = 0
 	dailySugar = 0
 
+	highCal = 0
+	lowCal = 0
+	highCarb = 0
+	lowCarb = 0
+	highFat = 0
+	lowFat = 0
+	highProtein = 0
+	lowProtein = 0
+
+	highSodium = 0
+	highSugar = 0
+
 	try:
 		dailyCal = float(sum(calories))/len(calories)
 		dailyCarb = float(sum(carbValues))/len(carbValues)
@@ -239,63 +251,83 @@ def showGraphsPage(request,userID):
 
 	# Men: BEE = (66.5 + 13.8(W) + 5.0(H) - 6.8(A) ) 1.2
 	# Women: BEE =( 655.1 + 9.6(W) + 1.9(H) - 4.7(A)) * 1.2
+	highCal = [(66.5 + 13.8*(body_weight/2.2) + 5.0*(height*2.54) - 6.8*age)*1.2 + 100]
+	lowCal = [(66.5 + 13.8*(body_weight/2.2) + 5.0*(height*2.54) - 6.8*age)*1.2 - 100]
 	if gender == "female":
-		if abs(dailyCal - (655.1 + 9.6*(body_weight/2.2) + 1.9*(height*2.54) - 4.7*age)*1.2) < 200:
-			calMessage = "good range!"
-		elif dailyCal - (655.1 + 9.6*(body_weight/2.2) + 1.9*(height*2.54) - 4.7*age)*1.2 < 0:
-			calMessage = "not enough calories"
-		else:
-			calMessage = "too many calories"
+		highCal = [(655.1 + 9.6*(body_weight/2.2) + 1.9*(height*2.54) - 4.7*age)*1.2 + 100]
+		lowCal = [(655.1 + 9.6*(body_weight/2.2) + 1.9*(height*2.54) - 4.7*age)*1.2 - 100]
 	else:
-		if abs(dailyCal - (66.5 + 13.8*(body_weight/2.2) + 5.0*(height*2.54) - 6.8*age)*1.2) < 200:
-			calMessage = "good range!"
-		elif dailyCal - (66.5 + 13.8*(body_weight/2.2) + 5.0*(height*2.54) - 6.8*age)*1.2 < 0:
-			calMessage = "not enough calories"
-		else:
-			calMessage = "too many calories"
+		highCal = [(66.5 + 13.8*(body_weight/2.2) + 5.0*(height*2.54) - 6.8*age)*1.2 + 100]
+		lowCal = [(66.5 + 13.8*(body_weight/2.2) + 5.0*(height*2.54) - 6.8*age)*1.2 - 100]
+
+	if(dailyCal < lowCal[0]):
+		calMessage = "Not enough calorieee"
+	elif(dailyCal > lowCal[0]):
+		calMessage = "tooo mannny of da calorieee"
+	else:
+		calMessage = "just right!"	
 	
+
 	#45 to 65 percent of your total daily calories come from carbohydrates.
-	if dailyCarb < dailyCal * .45:
+	highCarb = [dailyCal * .6]
+	lowCarb = [dailyCal * .45]
+	if dailyCarb < lowCarb[0]:
 		carbMessage = "not enough carbs!"
-	elif dailyCarb > dailyCal * .6:
+	elif dailyCarb > highCarb[0]:
 		carbMessage = "too many carbs!"
 	else:
 		carbMessage = "just right~"
 
 
 	#Fat intake should equal 30% of your total days calories. 
-	if abs(dailyFat - dailyCal*.3) < 5:
-		fatMessage = "good fat!"
-	elif dailyFat - dailyCal*.3 < 0:
-		fatMessage = "too much fat!"
-	else:
+	highFat = [dailyCal*.3 + 2]
+	lowFat = [dailyCal*.3 - 2]
+	if dailyFat < lowFat[0]:
 		fatMessage = "too little fat!"
+	elif dailyFat > highFat[0]:
+		fatMessage = "too much fat!"
 
 
-	#daily protein intake .8-1.0 g of protein/kg body weight. 
-	if dailyProtein < body_weight / 2.2 * .8:
+	#daily protein intake .8-1.0 g of protein/kg body weight.
+	highProtein =  [body_weight / 2.2]
+	lowProtein = [body_weight / 2.2 * .8]
+	if dailyProtein < lowProtein[0]:
 		proteinMessage = "not enough protein!"
-	elif dailyProtein > body_weight / 2.2:
+	elif dailyProtein > highProtein[0]:
 		proteinMessage = "too much protein!"
 	else:
 		proteinMessage = "just right protein!"
 
+
 	#daily sodium should not be more than 2.3 grams
-	if dailySodium > 2.3:
+	highSodium = [2.3]
+	if dailySodium > highSodium[0]:
 		sodiumMessage = "neeed FEWERE sodium"
 	else:
 		sodiumMessage = "AWWW YEAH good"
 
+
 	if gender == 'female':
-		if dailySugar > 20:
-			sugarMessage = "NOOO STAHPPPP!"
-		else:
-			sugarMessage = "alll gooooood"
+		highSugar = [20]
 	else:
-		if dailySugar > 36:
-			sugarMessage = "don't doooo ittt"
-		else:
-			sugarMessage = ":D"
+		highSugar = [36]
+
+	if dailySugar > highSugar[0]:
+		sugarMessage = "NOOO STAHPPPP!"
+	else:
+		sugarMessage = ":D"
+
+	for x in range(len(calories)-1):
+		highCal.append(highCal[0])
+		lowCal.append(lowCal[0])
+		highCarb.append(highCarb[0])
+		lowCarb.append(lowCarb[0])
+		highFat.append(highFat[0])
+		lowFat.append(lowFat[0])
+		highProtein.append(highProtein[0])
+		lowProtein.append(lowProtein[0])
+		highSodium.append(highProtein[0])
+		highSugar.append(highSugar[0])
 
 #	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'age':age,
@@ -314,7 +346,17 @@ def showGraphsPage(request,userID):
 												'fatMessage': fatMessage,
 												'proteinMessage': proteinMessage,
 												'sodiumMessage': sodiumMessage,
-												'sugarMessage': sugarMessage
+												'sugarMessage': sugarMessage,
+												'highCal': highCal,
+												'lowCal': lowCal,
+												'highCarb': highCarb,
+												'lowCarb': lowCarb,
+												'highFat': highFat,
+												'lowFat': lowFat,
+												'highProtein': highProtein,
+												'lowProtein': lowProtein,
+												'highSodium': highSodium,
+												'highSugar': highSugar
 												})
 
 #----------------Tiff-----------------/\
