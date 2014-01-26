@@ -1,5 +1,9 @@
 from django.conf.urls import patterns, url
 from fridge import views
+from django.conf.urls import patterns
+
+from forms import ImageUploadForm, TitleCommentForm#FIX
+from views import PhotoWizard #FIX
 
 urlpatterns = patterns('',
 	#----------------Pav-----------------\/
@@ -7,7 +11,7 @@ urlpatterns = patterns('',
     url(r'^(?P<userID>[-\w]+)/fridge/', views.showFridge, name='appPage'),
     url(r'^addIngredient/',views.addIngredient,name='addIngredient'),
     url(r'^delIngredient/',views.delIngredient,name='delIngredient'),
-    url(r'^getRecipes/',views.getRecipes,name='getRecipes'),
+    url(r'^(?P<userID>[-\w]+)/getRecipes/',views.getRecipes,name='getRecipes'),
     # url(r'^(?P<datID>[-\w]+)/getRecipes/',views.getRecipes,name='getRecipes'),
     url(r'^addShopping/',views.addShopping,name='addShopping'),
     url(r'^register/',views.register,name='register'),
@@ -20,6 +24,7 @@ urlpatterns = patterns('',
     #----------------Tiff-----------------/\
     #----------------Jacqui-----------------\/
     url(r'^(?P<userID>[-\w]+)/scrapbook/',views.showScrapbookPage, name='showScrapbook'),
+    url(r'^contact/$', PhotoWizard.as_view([ImageUploadForm, TitleCommentForm])),
     #url(r'^scrapbook/',views.addImage, name='addImage'),
     #if settings.DEBUG:
     # static files (images, css, javascript, etc.)

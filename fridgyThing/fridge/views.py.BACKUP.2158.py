@@ -47,7 +47,7 @@ def showGraphsPage(request):
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
 def showScrapbookPage(request):
-<<<<<<< HEAD
+#<<<<<<< HEAD
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
@@ -60,10 +60,10 @@ def showScrapbookPage(request):
        date = [x.date for x in Pictures.objects.all()]
        caption = [x.caption for x in Pictures.objects.all()]
        return render(request, 'scrapbook/scrapbook.html', {'date':date, 'caption':caption})
-=======
-       items = 0
-       return render(request, 'scrapbook/scrapbook.html', {'item':items})
->>>>>>> 90c3706e3518b146e20acdb556c14d3ee56ee75c
+#=======
+#       items = 0
+#       return render(request, 'scrapbook/scrapbook.html', {'item':items})
+#>>>>>>> 90c3706e3518b146e20acdb556c14d3ee56ee75c
 
 #----------------Jacqui-----------------/\
 

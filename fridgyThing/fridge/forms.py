@@ -5,10 +5,23 @@ from django import forms
 from django.contrib.auth.models import User   # fill in custom user info then save it 
 from django.contrib.auth.forms import UserCreationForm      
 
+"""
+class ImageUploadForm(ModelForm):
+    class Meta:
+        model = Pictures
+        fields = ['picture']
+"""
+
 class ImageUploadForm(ModelForm):
 	class Meta:
 		model = Pictures
 		fields = ['picture']
+
+class TitleCommentForm(forms.Form):
+    class Meta:
+        model = Pictures
+        field = ["caption", "title"]
+
 
 
 class MyRegistrationForm(UserCreationForm):
