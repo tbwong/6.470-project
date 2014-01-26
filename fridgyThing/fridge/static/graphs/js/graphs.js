@@ -42,7 +42,7 @@ $(document).ready(function(){
 })
     
 
-function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarData,dates,name) {
+function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarData,dates,name,highCal,lowCal,highCarb,lowCarb,highFat,lowFat,highProtein,lowProtein,highSodium,highSugar) {
 
     function drawCalories(x,y) {
         calorieChart = new Highcharts.Chart({
@@ -90,6 +90,18 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 data: calData,
                 color: '#CC99FF'
 
+            },
+            {
+                type: 'line',
+                name: 'low bound',
+                data: lowCal,
+                color: '#99FF66'
+            },
+            {
+                type: 'line',
+                name: 'high bound',
+                data: highCal,
+                color: '#99FF66'
             }]
         });
     }
@@ -140,6 +152,18 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 name: name,
                 data: carbsData,
                 color: '#0033FF'
+            },
+            {
+                type: 'line',
+                name: 'low bound',
+                data: lowCarb,
+                color: '#99FF66'
+            },
+            {
+                type: 'line',
+                name: 'high bound',
+                data: highCarb,
+                color: '#99FF66'
             }]
         });
     }
@@ -191,6 +215,18 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 name: name,
                 data: fatData,
                 color: '#339900'
+            },
+            {
+                type: 'line',
+                name: 'low bound',
+                data: lowFat,
+                color: '#99FF66'
+            },
+            {
+                type: 'line',
+                name: 'high bound',
+                data: highFat,
+                color: '#99FF66'
             }]
         });
     }
@@ -241,6 +277,18 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 name: name,
                 data: proteinData,
                 color: '#FF3300'
+            },
+            {
+                type: 'line',
+                name: 'low bound',
+                data: lowProtein,
+                color: '#99FF66'
+            },
+            {
+                type: 'line',
+                name: 'high bound',
+                data: highProtein,
+                color: '#99FF66'
             }]
         });
     }
@@ -291,6 +339,12 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 name: name,
                 data: sodiumData,
                 color: '#CC0033'
+            },
+            {
+                type: 'line',
+                name: 'high bound',
+                data: highSodium,
+                color: '#99FF66'
             }]
         });
     }
@@ -340,6 +394,12 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 name: name,
                 data: sugarData,
                 color: '#FF66CC'
+            },
+            {
+                type: 'line',
+                name: 'high sugar',
+                data: highSugar,
+                color: '#99FF66'
             }]
         });
         
