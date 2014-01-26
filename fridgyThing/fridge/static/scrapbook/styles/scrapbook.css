@@ -164,3 +164,13 @@ span.glyphicon-chevron-left {
 .file-wrapper input {
   font-size: 100px;
 }
+
+#upload-form {
+  vertical-align: top;
+  height: auto;
+  top: 0;
+}
+
+.h1 {
+  padding: 20px;
+}
