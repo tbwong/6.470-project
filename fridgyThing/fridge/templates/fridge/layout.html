@@ -175,20 +175,19 @@
 					<button class='btn btn-default' id="made">I Made It!</button>
 				</form> <br>
 				<h3 id="recipeing">Ingredients: </h3>
-				<span>
-					<ul>
-						<h5>Don't gots:</h5>
-					{%for ingredient in r.1%}
-						<li id="recipelist">{{ingredient}}</li>
-					{%endfor%}
-					</ul>
-					<ul>
-						<h5>We gots:</h5>
+				<ul>
+					<h5>We gots:</h5>
 					{%for ingredient in r.5%}
 						<li id="recipelist">{{ingredient}}</li>
 					{%endfor%}	
-					</ul>
-				</span>
+				</ul>
+				<ul>
+					<h5>Don't gots:</h5>
+					{%for ingredient in r.1%}
+						<li id="recipelist">{{ingredient}}</li>
+					{%endfor%}
+				</ul>
+				
 				<span><a href="http://www.yummly.com/recipe/{{r.3}}"><button class='btn btn-default' id="directions">See Directions</button></a><span>
 				<span>
 				<form action="{%url 'fridge:addShopping'%}" method='post'>
@@ -258,9 +257,6 @@
 	</div>
 
 
-	<div id="showpiece-scrapbook" class='showpiece' style="display:none;">
-		hi friends
-	</div>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="{% static 'fridge/styles/bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
