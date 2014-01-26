@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures,User
+from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures,User,Characteristics
 import requests,re,json
 from django.views.generic.base import RedirectView
 from forms import ImageUploadForm;
@@ -176,6 +176,11 @@ def logout_view(request):
 
 def showGraphsPage(request,userID):
 	#calories,carbs,fat,protein,sodium,sugar
+	currentUser = User.objects.get(pk=userID)
+	currentUsername = str(currentUser.username)
+	age = Characteristics.objects.get(user=currentUser).age
+	body_weight = Characteristics.objects.get(user=currentUser).body_weight
+
 	calories = [x.amount for x in Calories.objects.filter(user=User.objects.get(pk=userID))]
 	carbValues = [x.amount for x in Carbs.objects.filter(user=User.objects.get(pk=userID))]
 	fatValues = [x.amount for x in Fats.objects.filter(user=User.objects.get(pk=userID))]
@@ -183,13 +188,16 @@ def showGraphsPage(request,userID):
 	sodiumValues = [x.amount for x in Sodium.objects.filter(user=User.objects.get(pk=userID))]
 	sugarValues = [x.amount for x in Sugar.objects.filter(user=User.objects.get(pk=userID))]
 #	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
-	return render(request, 'graphs/graphs.html',{'cal':calories,
+	return render(request, 'graphs/graphs.html',{'age':age,
+												'body_weight': body_weight,
+												'cal':calories,
 												'carbs': carbValues,
 												'fat':fatValues,
 												'protein': proteinValues,
 												'sodium': sodiumValues,
 												'sugar': sugarValues,
-												'userID': userID
+												'userID': userID,
+												'username': currentUsername
 												})
 
 #----------------Tiff-----------------/\
@@ -198,9 +206,12 @@ def showScrapbookPage(request,userID):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
+        	user = User.objects.get(pk=userID)
             #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
          #   m.model_pic = form.cleaned_data['image']
             #m.save()
+            #if form.user.is_valid():
+            	#form.user(user=request.user) #check
             form.save()
     scrapbook_gen = Pictures.objects
     url = Pictures.objects.filter(user=User.objects.get(pk=userID))

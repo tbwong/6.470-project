@@ -46,7 +46,8 @@ class Sugar(models.Model):
 
 class Characteristics(models.Model):
 	user = models.ForeignKey(User)
-	char = models.CharField(max_length=200)
+	age = models.IntegerField(default=0)
+	body_weight = models.IntegerField(default=0)
 
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/

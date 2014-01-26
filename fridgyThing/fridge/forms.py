@@ -18,7 +18,7 @@ class ImageUploadForm(ModelForm):
 		fields = ['picture']
 		user = ['userID']
 
-class TitleCommentForm(forms.Form):
+class TitleCommentForm(ModelForm):
     class Meta:
         model = Pictures
         field = ["caption", "title"]
