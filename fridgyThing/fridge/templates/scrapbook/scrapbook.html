@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+
+
 <head>
   <meta charset=”utf-8”>  
   <title>ScrapBook</title>
@@ -69,7 +71,6 @@
   </div>
 </center>
 
-{% extends "base.html" %}
 {% load i18n %}
 
 {% block head %}
@@ -89,6 +90,7 @@
 {% else %}
     {{ wizard.form }}
 {% endif %}
+
 </table>
 {% if wizard.steps.prev %}
 <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
