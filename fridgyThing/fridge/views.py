@@ -188,6 +188,7 @@ def showGraphsPage(request,userID):
 	proteinValues = [x.amount for x in Protein.objects.filter(user=User.objects.get(pk=userID))]
 	sodiumValues = [x.amount for x in Sodium.objects.filter(user=User.objects.get(pk=userID))]
 	sugarValues = [x.amount for x in Sugar.objects.filter(user=User.objects.get(pk=userID))]
+	dates = [x.eaten_date for x in Calories.objects.filter(user=User.objects.get(pk=userID))]
 #	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'age':age,
 												'body_weight': body_weight,
@@ -197,6 +198,7 @@ def showGraphsPage(request,userID):
 												'protein': proteinValues,
 												'sodium': sodiumValues,
 												'sugar': sugarValues,
+												'dates': dates,
 												'userID': userID,
 												'username': currentUsername
 												})
@@ -207,7 +209,7 @@ def showScrapbookPage(request,userID):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
-        	user = User.objects.get(pk=userID)
+        #	user = User.objects.get(pk=userID)
             #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
          #   m.model_pic = form.cleaned_data['image']
             #m.save()

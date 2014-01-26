@@ -42,7 +42,7 @@ $(document).ready(function(){
 })
     
 
-function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarData,name) {
+function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarData,dates,name) {
 
     function drawCalories(x,y) {
         calorieChart = new Highcharts.Chart({
