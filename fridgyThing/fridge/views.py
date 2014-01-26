@@ -142,10 +142,12 @@ def register(request):
 	password = request.POST['password']
 	age = request.POST['age']
 	weight = request.POST['weight']
+	height = request.POST['height']
+	gender = request.POST['gender']
 
 	try:
 		user = User.objects.create_user(username, 'lennon@thebeatles.com', password)
-		char = Characteristics(user=user,age=age,body_weight=weight)
+		char = Characteristics(user=user,age=age,body_weight=weight,gender=gender,height=height)
 		char.save()
 	except:
 		return HttpResponse('<h2>Either this user already exists or you\'re trying to mess with us.</h2>')
