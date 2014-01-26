@@ -213,17 +213,23 @@ def showGraphsPage(request,userID):
 	dailyCarb = 0
 	dailyFat = 0
 	dailyProtein = 0
-	
+	dailySodium = 0
+	dailySugar = 0
+
 	try:
 		dailyCal = float(sum(calories))/len(calories)
 		dailyCarb = float(sum(carbValues))/len(carbValues)
 		dailyFat = float(sum(fatValues))/len(fatValues)
 		dailyProtein = float(sum(proteinValues))/len(proteinValues)
+		dailySodium = float(sum(sodiumValues))/len(sodiumValues)
+		dailySugar = float(sum(sugarValues))/len(sugarValues)
 	except ZeroDivisionError:
 		dailyCal = 0
 		dailyCarb = 0
 		dailyFat = 0
 		dailyProtein = 0
+		dailySodium = 0
+		dailySugar = 0
 
 
 	# Men: BEE = (66.5 + 13.8(W) + 5.0(H) - 6.8(A) ) 1.2
@@ -269,8 +275,22 @@ def showGraphsPage(request,userID):
 	else:
 		proteinMessage = "just right protein!"
 
+	#daily sodium should not be more than 2.3 grams
+	if dailySodium > 2.3:
+		sodiumMessage = "neeed FEWERE sodium"
+	else:
+		sodiumMessage = "AWWW YEAH good"
 
-
+	if gender == 'female':
+		if dailySugar > 20:
+			sugarMessage = "NOOO STAHPPPP!"
+		else:
+			sugarMessage = "alll gooooood"
+	else:
+		if dailySugar > 36:
+			sugarMessage = "don't doooo ittt"
+		else:
+			sugarMessage = ":D"
 
 #	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'age':age,
@@ -283,7 +303,13 @@ def showGraphsPage(request,userID):
 												'sugar': sugarValues,
 												'dates': dates,
 												'userID': userID,
-												'username': currentUsername
+												'username': currentUsername,
+												'calMessage': calMessage,
+												'carbMessage': carbMessage,
+												'fatMessage': fatMessage,
+												'proteinMessage': proteinMessage,
+												'sodiumMessage': sodiumMessage,
+												'sugarMessage': sugarMessage
 												})
 
 #----------------Tiff-----------------/\
