@@ -397,14 +397,14 @@ def showScrapbookPage(request):
 
 #----------------Rujia-----------------\/
 def showShoppingPage(request,userID):
-	itemslist = [(x.id, x.item) for x in ShoppingList.objects.filter(user=User.objects.get(pk=userID))]
-	memolist = [(x.id, x.note) for x in ShoppingList.objects.filter(user=User.objects.get(pk=userID))]
-	genlist = ShoppingList.objects.all()
 	if len(ShoppingList.objects.filter(user=User.objects.get(pk=userID)))==0 or ShoppingList.objects.filter(user=User.objects.get(pk=userID))[0].id != 1:
 		other = ShoppingList(item ='', note='', id=1,user=User.objects.get(pk=userID))
 		other.save()
 	else:
 		other = ShoppingList.objects.get(id=1).note
+	itemslist = [(x.id, x.item) for x in ShoppingList.objects.filter(user=User.objects.get(pk=userID))]
+	memolist = [(x.id, x.note) for x in ShoppingList.objects.filter(user=User.objects.get(pk=userID))]
+	genlist = ShoppingList.objects.all()
 	return render(request, 'shopping/shopping.html', {'genlist':genlist, 'other':other,'userID':userID})
 
 
