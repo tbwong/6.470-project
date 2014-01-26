@@ -14,8 +14,9 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap-theme.min.css' %}">
 
 	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/main.css'%}">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
 
-	<script type="text/javascript" src="{% static 'fridge/styles/main.js'%}"> </script>
+	<script type="text/javascript" src="{% static 'fridge/js/main.js' %}"></script>
 
 
 </head>
@@ -44,9 +45,20 @@
 					<input type='submit' class='btn btn-default' value='Log In'></input>
 				</div>
 				<div id='register-button'>
-					<input type='submit' class='btn btn-default' value='Register'>
+					<input type='none' class='btn btn-default' value='Register'>
 					</input>
 				</div>	
+			</div>
+		</form>
+	</div>
+	<div id="popupBackground"></div>
+	<div id='register-popup' class='popup' >
+		<h2>Let's get you a frj!</h2>
+		<form action="{%url 'fridge:register'%}" method="post">
+		{% csrf_token %}
+			{{rform}}
+			<div class="input-group btn-group centeredButton" >
+					<input type='submit' class='btn btn-default' value='Register'></input>
 			</div>
 		</form>
 	</div>

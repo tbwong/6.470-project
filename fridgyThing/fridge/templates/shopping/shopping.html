@@ -47,8 +47,8 @@
 	<div class='showpiece'>
 		
 		<div id="food-list">
-			<div id="minheight">
 			<div id="shoppingheader"><span id="shoppingheadertext"><b>Shopping List</b></span><button type="button" class="close print"><span class="glyphicon glyphicon-print"></span></button></div>
+			<div id="minheight">
 			<!-- show on list -->
 			{% for x in genlist %}
 			{% if x.id != 1 %} 
@@ -93,8 +93,8 @@
 		
 		
 		<div id="memo">
-			<div id="shoppingheader"><b>Memo</b></div>
-	
+			<div id="noteheader"><b>Memo</b></div>
+			<div id="gradient">
 <!--			<textarea class="form-control" id="memocontent" rows="1">30% discount from Shaw's!</textarea> -->
 			{% for x in genlist %}
 			{% if x.id != 1 %} 
@@ -124,11 +124,13 @@
 			</div>
 			{% endif %}
 			{% endfor %}
+			</div>
 			
 		</div>
 		
 		<div class="note">
-			<textarea class="form-control" id="memocontent" rows="24" placeholder="Add general note here...">{{other}}</textarea>
+<!--			<div id="genheader">Notes</div>  -->
+			<textarea class="form-control" id="memocontent" rows="10" placeholder="Add general note here...">{{other}}</textarea>
 			<form class="submitnote" action="{% url 'fridge:genNote' %}" method="post">
 			{% csrf_token %}
 			<input id="other" name="other" val="" type="hidden"></input>
@@ -144,6 +146,7 @@
 			<br><br>
 			<form id='addIng-group' action="{% url 'fridge:addIngredientS' %}" method="post">
 				{% csrf_token %}
+				<input name="userID" type="hidden" value="{{userID}}"></input>
 				<input type="hidden" name='Id' id="insertid" value=""></input>
 				<div class="input-group">
 				  <span class="input-group-addon">Ingredient Name:</span>

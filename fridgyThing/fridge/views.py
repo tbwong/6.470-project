@@ -5,16 +5,25 @@ from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Su
 import requests,re, json
 from django.views.generic.base import RedirectView
 from forms import ImageUploadForm;
+from forms import MyRegistrationForm;
 from django.utils import timezone;
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
+from django.contrib import auth                 
+from forms import MyRegistrationForm 
+from django.shortcuts import render_to_response
+from django.contrib.formtools.wizard.views import SessionWizardView
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+import os
 
 # Create your views here.
 
 #----------------Pav-----------------\/
 def index(request):
-	return render(request, 'fridge/index.html')
+	rform = MyRegistrationForm()
+	return render(request, 'fridge/index.html',{'rform':rform})
 def showFridge(request,userID):
 	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID)) 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'userID':userID} )
@@ -38,7 +47,7 @@ def delIngredient(request):
 	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
 
 def getRecipes(request):
- 	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
+ 	url ='http://api.yummly.com/v1/api/recipes?_app_id=11cf413b&_app_key=7904cfbaa445d431246c18249bc5174e&q='
  	url= url+'&requirePictures=true'
  	ings = Ingredient.objects.all()
  	matchSet= []
@@ -84,6 +93,18 @@ def addShopping(request):
 		i.save();
 	return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
 
+def register(request):
+   if request.method == 'POST':
+        form = MyRegistrationForm(request.POST)     # create form object
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('fridge:index',args=()))
+	args = {}
+	args.update(csrf(request))
+	args['form'] = MyRegistrationForm()
+	print args
+	return HttpResponseRedirect(reverse('fridge:index',args=()))
+
 #----------------Pav-----------------/\
 #----------------Tiff-----------------\/
 def my_view(request):
@@ -127,10 +148,31 @@ def showGraphsPage(request,userID):
 												'sugar': sugarValues,
 												'userID': userID
 												})
+
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
+class PhotoWizard(SessionWizardView):
+	file_storage = FileSystemStorage(location = os.path.join(settings.MEDIA_ROOT, ''))
+	def done(self, form_list, **kwargs):
+		do_something_with_the_form_data(form_list)
+		return HttpResponseRedirect('/page-to-redirect-to-when-done/')
 
-    
+
+"""
+Previous Stuff:
+def showScrapbookPage(request,userID):
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
+         #   m.model_pic = form.cleaned_data['image']
+            #m.save()
+            form.save()
+    scrapbook_gen = Pictures.objects
+    url = Pictures.objects.filter(user=User.objects.get(pk=userID))
+    #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
+    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
+  """  
 
 """
 def addImage(request):
@@ -171,18 +213,6 @@ def showScrapbookPage(request):
 	caption = [x.caption for x in Pictures.objects.all()]
 	return render(request, 'scrapbook/scrapbook.html', {'picture': picture, 'date':date, 'caption':caption})
 """
-def showScrapbookPage(request,userID):
-    if request.method == 'POST':
-        form = ImageUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
-         #   m.model_pic = form.cleaned_data['image']
-            #m.save()
-            form.save()
-    scrapbook_gen = Pictures.objects
-    url = Pictures.objects.filter(user=User.objects.get(pk=userID))
-    #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
-    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
 
 #----------------Jacqui-----------------/\
 
@@ -286,14 +316,15 @@ def genNote(request):
 		return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 		
 def addIngredientS(request):
+	userID = request.POST['userID']
 	IngName = request.POST['IngName']
 	Id = request.POST['Id']
 #	IngName.strip().lower();
 	# IngAmount = float(request.POST['IngAmount'])
-	i = Ingredient(name=IngName,pic='search')
+	i = Ingredient(user=User.objects.get(pk=userID), name=IngName,pic='search')
 	i.save();
-	a = ShoppingList.objects.get(id=Id)
+	a = ShoppingList.objects.get(id=Id, user=User.objects.get(pk=userID))
 	a.delete()
-	return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+	return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 	
 #----------------Rujia-----------------/\
