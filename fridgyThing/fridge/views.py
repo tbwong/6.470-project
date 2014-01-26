@@ -150,7 +150,7 @@ def register(request):
 		char = Characteristics(user=user,age=age,body_weight=weight,gender=gender,height=height)
 		char.save()
 	except:
-		return HttpResponse('<h2>Either this user already exists or you\'re trying to mess with us.</h2>')
+	 	return HttpResponse('<h2>Either this user already exists or you\'re trying to mess with us.</h2>')
 
 	return HttpResponseRedirect(reverse('fridge:index',args=()))
 
@@ -189,9 +189,10 @@ def showGraphsPage(request,userID):
 	#calories,carbs,fat,protein,sodium,sugar
 	currentUser = User.objects.get(pk=userID)
 	currentUsername = str(currentUser.username)
-	gender = str(currentUser.gender)
+	gender = Characteristics.objects.get(user=currentUser).gender
 	age = Characteristics.objects.get(user=currentUser).age
 	body_weight = Characteristics.objects.get(user=currentUser).body_weight
+	height = Characteristics.objects.get(user=currentUser).height
 
 	calories = [x.amount for x in Calories.objects.filter(user=User.objects.get(pk=userID))]
 	carbValues = [x.amount for x in Carbs.objects.filter(user=User.objects.get(pk=userID))]
@@ -208,30 +209,88 @@ def showGraphsPage(request,userID):
 	sodiumMessage = ""
 	sugarMessage = ""
 
-# Men: BEE = (66.5 + 13.8(W) + 5.0(H) - 6.8(A) ) 1.2
- 
-#  Women: BEE =( 655.1 + 9.6(W) + 1.9(H) - 4.7(A)) * 1.2
+	dailyCal = 0
+	dailyCarb = 0
+	dailyFat = 0
+	dailyProtein = 0
+	dailySodium = 0
+	dailySugar = 0
+
+	try:
+		dailyCal = float(sum(calories))/len(calories)
+		dailyCarb = float(sum(carbValues))/len(carbValues)
+		dailyFat = float(sum(fatValues))/len(fatValues)
+		dailyProtein = float(sum(proteinValues))/len(proteinValues)
+		dailySodium = float(sum(sodiumValues))/len(sodiumValues)
+		dailySugar = float(sum(sugarValues))/len(sugarValues)
+	except ZeroDivisionError:
+		dailyCal = 0
+		dailyCarb = 0
+		dailyFat = 0
+		dailyProtein = 0
+		dailySodium = 0
+		dailySugar = 0
+
+
+	# Men: BEE = (66.5 + 13.8(W) + 5.0(H) - 6.8(A) ) 1.2
+	# Women: BEE =( 655.1 + 9.6(W) + 1.9(H) - 4.7(A)) * 1.2
+	if gender == "female":
+		if abs(dailyCal - (655.1 + 9.6*(body_weight/2.2) + 1.9*(height*2.54) - 4.7*age)*1.2) < 200:
+			calMessage = "good range!"
+		elif dailyCal - (655.1 + 9.6*(body_weight/2.2) + 1.9*(height*2.54) - 4.7*age)*1.2 < 0:
+			calMessage = "not enough calories"
+		else:
+			calMessage = "too many calories"
+	else:
+		if abs(dailyCal - (66.5 + 13.8*(body_weight/2.2) + 5.0*(height*2.54) - 6.8*age)*1.2) < 200:
+			calMessage = "good range!"
+		elif dailyCal - (66.5 + 13.8*(body_weight/2.2) + 5.0*(height*2.54) - 6.8*age)*1.2 < 0:
+			calMessage = "not enough calories"
+		else:
+			calMessage = "too many calories"
+	
+	#45 to 65 percent of your total daily calories come from carbohydrates.
+	if dailyCarb < dailyCal * .45:
+		carbMessage = "not enough carbs!"
+	elif dailyCarb > dailyCal * .6:
+		carbMessage = "too many carbs!"
+	else:
+		carbMessage = "just right~"
+
 
 	#Fat intake should equal 30% of your total days calories. 
-	if abs(sum(fatValues)/len(fatValues) - sum(calories)/len(calories)*.3) < 5:
+	if abs(dailyFat - dailyCal*.3) < 5:
 		fatMessage = "good fat!"
-	elif sum(fatValues)/len(fatValues) - sum(calories)/len(calories)*.3 < 0:
+	elif dailyFat - dailyCal*.3 < 0:
 		fatMessage = "too much fat!"
 	else:
 		fatMessage = "too little fat!"
 
-	#daily protein intake .8-1.0 g of protein/kg body weight. 
 
-	proteinLow = body_weight / 2.2 * .8
-	proteinHigh = body_weight / 2.2
-	if sum(proteinValues)/len(proteinValues) < proteinLow:
+	#daily protein intake .8-1.0 g of protein/kg body weight. 
+	if dailyProtein < body_weight / 2.2 * .8:
 		proteinMessage = "not enough protein!"
-	elif sum(proteinValues)/len(proteinValues) > proteinHigh:
+	elif dailyProtein > body_weight / 2.2:
 		proteinMessage = "too much protein!"
 	else:
 		proteinMessage = "just right protein!"
 
+	#daily sodium should not be more than 2.3 grams
+	if dailySodium > 2.3:
+		sodiumMessage = "neeed FEWERE sodium"
+	else:
+		sodiumMessage = "AWWW YEAH good"
 
+	if gender == 'female':
+		if dailySugar > 20:
+			sugarMessage = "NOOO STAHPPPP!"
+		else:
+			sugarMessage = "alll gooooood"
+	else:
+		if dailySugar > 36:
+			sugarMessage = "don't doooo ittt"
+		else:
+			sugarMessage = ":D"
 
 #	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'age':age,
@@ -244,7 +303,13 @@ def showGraphsPage(request,userID):
 												'sugar': sugarValues,
 												'dates': dates,
 												'userID': userID,
-												'username': currentUsername
+												'username': currentUsername,
+												'calMessage': calMessage,
+												'carbMessage': carbMessage,
+												'fatMessage': fatMessage,
+												'proteinMessage': proteinMessage,
+												'sodiumMessage': sodiumMessage,
+												'sugarMessage': sugarMessage
 												})
 
 #----------------Tiff-----------------/\
