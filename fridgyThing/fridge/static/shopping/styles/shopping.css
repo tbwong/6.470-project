@@ -115,23 +115,24 @@ h1{
 #food-list {
 	width:300px; 
 	font-size:16px; 
-	background-color:#ffd1d1;
 	float:left;
+	margin-top:20px;
 	margin-left:20px;
 	margin-right:0px;
+	background-color:#FFB2D8;
 }
 #minheight {
 	min-height:430px;
-	background: linear-gradient(#ffdfdf, #ffd1d1);
+	background: linear-gradient(#ffdfdf, #FFB2D8);
 }
 
 #shoppingheader {
-	margin-left:14px;
-	padding-top:7px; 
+	padding-left:14px;
+	padding-top:4px; 
 	padding-bottom:6px; 
 	font-size:20px;
-	height:45px;
-	background-color: #ffd1d1;
+	height:40px;
+	background-color: #FFC8DC;
 }
 
 #listspace {
@@ -144,7 +145,7 @@ h1{
 	padding-bottom: 5px;
 	padding-right:14px;
 	word-wrap:break-word;
-	border-bottom:1pt dashed #CCA7A7;
+	border-bottom:1pt solid white;
 }
 	
 .check {
@@ -169,7 +170,7 @@ h1{
 #foodedit, #noteedit {
 	font-size:16px;
 	font-style:italic;
-	background-color:#eeeeee;
+	background-color:#feeaea;
 	border:transparent;
 	padding-left: 14px;
 	padding-top: 8px;
@@ -184,13 +185,28 @@ h1{
 	outline: 0;
 	box-shadow: None;
 	-webkit-box-shadow: None;
+
 }	
 
+#food::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #346437;
+}
+#food:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #346437;
+}
+#food::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #346437;
+}
+#food:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #346437;
+}
+
 #food {
-	border: #FEEAEA;
+	border-color: #FFB2D8;
+	border-width: 2pt;
 	font-style:italic;
 	font-size:16px;
-	background-color:#ffd1d1;
+	background-color:#FFB2D8;
 }
 
 .print {
@@ -230,39 +246,45 @@ h1{
 	padding-top: 5px;
 	padding-bottom: 5px;
 	padding-right:14px;
-	border-bottom:1pt dashed #CCA7A7;
+	border-bottom:1pt solid white;
 }
 
 #noteheader {
+	margin-top: 20px;
 	padding-left:14px;
-	padding-top:7px; 
+	padding-top:5px; 
 	padding-bottom:6px; 
 	font-size:20px;
-	height:45px;
-	background-color: #ffd1d1;
+	height:40px;
+	background-color: #FFC8DC;
 }
 
 #gradient {
-	background: linear-gradient(#ffdfdf, #ffd1d1);
+	background: linear-gradient(#ffdfdf, #FFB2D8);
 	min-height:465px;
 }
+
 #genheader{
-	width: ;
-	background-color: #ffd1d1;
+	padding-left:14px;
+	padding-top:3px; 
+	padding-bottom:6px; 
+	font-size:20px;
+	height:33px;
+	background-color: #FFC8DC;
+	
 }
 
 #memocontent {
+	background: linear-gradient(#ffdfdf, #FFB2D8);
+	font-size:16px;
+	border:transparent;
+	outline:0;
 	padding-left: 14px;
 	padding-top: 8px;
 	padding-bottom: 5px;
 	padding-right:14px;
-	background: linear-gradient(#ffdfdf, #ffd1d1);
-	font-size:14px;
-	font-family:'Segoe Print';
-	border:transparent;
-	outline:0;
-	float:left;
-	width: 250px;
+	width:250px;
+
 }
 
 #memocontent:focus {
@@ -272,9 +294,28 @@ h1{
 	-webkit-box-shadow: None;
 }
 
+#memocontent::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #858384;
+	font-style: italic;
+}
+#memocontent:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #858384;
+	font-style: italic;
+}
+#memocontent::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #858384;
+	font-style: italic;
+}
+#memocontent:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #858384;	
+	font-style: italic;
+}
+
 .note {
 	margin-top: 20px;
-	margin-left: 0px;
+	float:left;
+	background-color: #FFC8DC;
+
 }
 
 /* add ingredient (Pav) */

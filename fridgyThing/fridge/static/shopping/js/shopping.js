@@ -1,12 +1,23 @@
 $(document).ready(function() {
 //items hover to make icons visible
-
+/*	$("#food").on("mouseenter", function() {
+		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
+			$(this).css("background-color", "white");
+		}
+	});
+	
+	$("#food").on("mouseleave", function() {
+		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
+			$(this).css("background-color", "#FFB2D8");
+		}
+	}); */
+		
 	$("#food-list").on("mouseenter", ".hov", function() {
 		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
 			$(this).find(".closer").removeClass("invisible");
 			var id= "#"+(this).id;
-			$("#memo").find(id).css("background-color", "#eeeeee");
-			$(this).css("background-color", "#eeeeee");
+			$("#memo").find(id).css("background-color", "#feeaea");
+			$(this).css("background-color", "#feeaea");
 		}
 	});
 	
@@ -24,8 +35,8 @@ $(document).ready(function() {
 		if ($("#foodedit").length==0 && $("#noteedit").length==0) {
 			$(this).find(".closer").removeClass("invisible");
 			var id= "#"+(this).id;
-			$("#food-list").find(id).css("background-color", "#eeeeee");
-			$(this).css("background-color", "#eeeeee");
+			$("#food-list").find(id).css("background-color", "#feeaea");
+			$(this).css("background-color", "#feeaea");
 		}
 	});
 	
@@ -106,7 +117,7 @@ $(document).ready(function() {
 //add to fridge!
 	$('.hov').on('click', '.add', function(){
 		$('#popupBackground').fadeIn();
-		$('#addIng-popup').show('slow');
+		$('#addIng-popup').fadeIn();
 		var okay = $(this).closest('.hov').attr("id");
 		var okayy = $(this).siblings('#text').text();
 		$('#addIng-popup').find('#insertid').val(okay);
