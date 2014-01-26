@@ -26,11 +26,7 @@
 		$(function(){
 			//the whole page has loaded.
 			//cal,carbs,fat,protein,sodium,sugar
-			makeHighCharts({{cal}}, {{carbs}}, {{fat}}, {{protein}}, {{sodium}}, {{sugar}})
-
-			// {% for i in cal %}
-
-			// {%endfor%}	
+			makeHighCharts({{cal}}, {{carbs}}, {{fat}}, {{protein}}, {{sodium}}, {{sugar}}, {{dates|safe}}, '{{username}}')
 		});
 	</script>
 
@@ -94,13 +90,13 @@
 				</div>
 					
 				<div id="body-info">
-					Body weight: 120 lbs 
-					<p> Age: 25
+					Body weight: {{body_weight}}
+					<p> Age: {{age}}
 				</div>
 			</div>
 
 			
-			<button id="left" class="nutrition-buttons"> < </button>
+			<button id="left" class="nutrition-buttons hover"> < </button>
 			
 			
 			<div id="graphs-container" style="display: inline; float: left">

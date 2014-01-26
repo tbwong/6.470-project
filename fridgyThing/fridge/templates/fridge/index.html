@@ -13,7 +13,8 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap-theme.min.css' %}">
 
-	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/main.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/main.css' %}">
+
 	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
 
 	<script type="text/javascript" src="{% static 'fridge/js/main.js' %}"></script>
@@ -25,9 +26,9 @@
 		<img src="{% static 'fridge/images/sliced-fruit2.jpg' %}">
 	</div>
 
-	<div id='login-holder'>
-		<header id='siteTitle' style='position:relative; margin-top:100%;'>
-			frjr
+	<div id='login-holder' style= 'margin-top: 10%'>
+		<header id='siteTitle'>
+			frj
 		</header>
 
 		<form id='login-group' name='input' action="{% url 'fridge:my_view'%}" method="post">
@@ -56,8 +57,34 @@
 		<h2>Let's get you a frj!</h2>
 		<form action="{%url 'fridge:register'%}" method="post">
 		{% csrf_token %}
-			{{rform}}
-			<div class="input-group btn-group centeredButton" >
+			<pre>
+				<div class="input-group">
+					<span class="input-group-addon" style='width:100px;'>Username:</span>
+					<input type="text" name='username'class="form-control" style='width:360px;' required autofocus>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" style='width:100px;'>Password:</span>
+					<input type="password" name='password'class="form-control" style='width:360px;' required >
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" style='width:100px;'>Age:</span>
+					<input type="number" name='age'class="form-control" style='width:360px;' required >
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" style='width:100px;'>Weight(lb):</span>
+					<input type="number" name='weight'class="form-control" style='width:345px;' required >
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" style='width:100px;'>Height(in):</span>
+					<input type="number" name='height'class="form-control" style='width:345px;' required >
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" style='width:100px;'>Gender:</span>
+					<span><input type="radio" name='gender' value="male" required > Male <input type="radio" name='gender' value="female" required > Female</span>
+				</div>
+
+			</pre>
+			<div class="input-group btn-group centeredButton" style="left:50%; margin-left:-35px">
 					<input type='submit' class='btn btn-default' value='Register'></input>
 			</div>
 		</form>

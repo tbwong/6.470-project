@@ -1,23 +1,28 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures,User
-import requests,re, json
+from fridge.models import Ingredient, Calories, Carbs, Fats, Protein, Sodium, Sugar, ShoppingList,Pictures,User,Characteristics
+import requests,re,json
 from django.views.generic.base import RedirectView
 from forms import ImageUploadForm;
-from forms import MyRegistrationForm;
 from django.utils import timezone;
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
 from django.contrib import auth                 
-from forms import MyRegistrationForm
+from django.shortcuts import render_to_response
+from django.contrib.formtools.wizard.views import SessionWizardView
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+import os
+from django.contrib.auth.models import User
+import datetime
 # Create your views here.
+
 
 #----------------Pav-----------------\/
 def index(request):
-	rform = MyRegistrationForm()
-	return render(request, 'fridge/index.html',{'rform':rform})
+	return render(request, 'fridge/index.html')
 def showFridge(request,userID):
 	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID)) 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'userID':userID} )
@@ -40,10 +45,10 @@ def delIngredient(request):
 	i.delete();
 	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
 
-def getRecipes(request):
+def getRecipes(request,userID):
  	url ='http://api.yummly.com/v1/api/recipes?_app_id=11cf413b&_app_key=7904cfbaa445d431246c18249bc5174e&q='
  	url= url+'&requirePictures=true'
- 	ings = Ingredient.objects.all()
+ 	ings = Ingredient.objects.filter(user=User.objects.get(pk=userID))
  	matchSet= []
 
  	for i in range(len(ings)):
@@ -51,6 +56,7 @@ def getRecipes(request):
  		temp = re.sub('/ /g', '',temp).lower()
  		url2 = url+'&allowedIngredient[]='+temp
 		try:
+			
 			rec = requests.get(url2)
 
 			temp = json.dumps(rec.json())
@@ -63,6 +69,7 @@ def getRecipes(request):
 	recipeIngs = []
 	recipeIms = [] 
 	recipeIds = []
+	inFrjCount = []
 	count=0
 	for matches in matchSet:
 		for match in matches:
@@ -70,33 +77,81 @@ def getRecipes(request):
 			recipeIngs.append(match['ingredients'])
 			recipeIms.append(match['smallImageUrls'][0])
 			recipeIds.append(match['id'])
+			inFrjCounter = 0
+			print match['ingredients']
+			print '----'
+			for ing in ings:
+				for s in match['ingredients']:
+					if ing.name.lower() in s.lower():
+						inFrjCounter=inFrjCounter+1
+			inFrjCount.append(inFrjCounter)
+			print inFrjCounter
 
-	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds)
-	ingredients = Ingredient.objects.all() 
+	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds,inFrjCount)
+	recipe = sorted(recipe,key=lambda recipe:recipe[4],reverse=True)
 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe} )
+	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID))
 
-# def makeMeal(request,datID):
-# 	 url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
-# 	 return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe,'userID':userID})
+
+def makeMeal(request):
+	userID = request.POST['userID']
+	recipeID = request.POST['recipeID']
+	# url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
+	url ='http://api.yummly.com/v1/api/recipe/'+recipeID+'?_app_id=11cf413b&_app_key=7904cfbaa445d431246c18249bc5174e'
+	rec = requests.get(url)
+	temp = json.dumps(rec.json())
+	dct = json.loads(temp)
+	nutrition = dct['nutritionEstimates'] # cal,carb,fat,protein,sodium,sugar
+	if (len(nutrition)>=6):
+		nutrients = []
+		nutrients.append(nutrition[0]) # calories # unit is in kcal 
+		nutrients.append(nutrition[6]) # carbs  # unit for all others is grams
+		nutrients.append(nutrition[1]) # fat
+		nutrients.append(nutrition[9]) # protein
+		nutrients.append(nutrition[4]) # sodium
+		nutrients.append(nutrition[8]) # sugar
+
+		nutrientObjects = [Calories,Carbs,Fats,Protein,Sodium,Sugar]
+
+		for i in range(len(nutrients)):
+			cur = nutrientObjects[i].objects.filter(user=User.objects.get(pk=userID))
+			added = False;
+			for c in cur:
+				if(c.eaten_date.date() == timezone.now().date()):
+					c.amount+=nutrients[i]['value']
+					c.save();
+					added = True
+			if (not added):
+				c = nutrientObjects[i](user=User.objects.get(pk=userID),amount=nutrients[i]['value'],eaten_date=timezone.now())
+				c.save();
+				
+	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
+
+
 def addShopping(request):
 	userID = request.POST['userID']
 	ings = request.POST.getlist('ingsList')
 	for j in ings:
 		i = ShoppingList(item=j,note=' ',user=User.objects.get(pk=userID))
 		i.save();
-	return HttpResponseRedirect(reverse('fridge:showShopping',args=()))
+	return HttpResponseRedirect(reverse('fridge:showShopping',args=(userID,)))
 
 def register(request):
-   if request.method == 'POST':
-        form = MyRegistrationForm(request.POST)     # create form object
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('fridge:index',args=()))
-	args = {}
-	args.update(csrf(request))
-	args['form'] = MyRegistrationForm()
-	print args
+	username = request.POST['username']
+	password = request.POST['password']
+	age = request.POST['age']
+	weight = request.POST['weight']
+	height = request.POST['height']
+	gender = request.POST['gender']
+
+	try:
+		user = User.objects.create_user(username, 'lennon@thebeatles.com', password)
+		char = Characteristics(user=user,age=age,body_weight=weight,gender=gender,height=height)
+		char.save()
+	except:
+		return HttpResponse('<h2>Either this user already exists or you\'re trying to mess with us.</h2>')
+
 	return HttpResponseRedirect(reverse('fridge:index',args=()))
 
 #----------------Pav-----------------/\
@@ -126,21 +181,70 @@ def logout_view(request):
 
 
 def showGraphsPage(request,userID):
+	def sum(seq):
+ 		def add(x,y): 
+ 			return x+y
+	   	return reduce(add, seq, 0)
+
 	#calories,carbs,fat,protein,sodium,sugar
+	currentUser = User.objects.get(pk=userID)
+	currentUsername = str(currentUser.username)
+	gender = str(currentUser.gender)
+	age = Characteristics.objects.get(user=currentUser).age
+	body_weight = Characteristics.objects.get(user=currentUser).body_weight
+
 	calories = [x.amount for x in Calories.objects.filter(user=User.objects.get(pk=userID))]
 	carbValues = [x.amount for x in Carbs.objects.filter(user=User.objects.get(pk=userID))]
 	fatValues = [x.amount for x in Fats.objects.filter(user=User.objects.get(pk=userID))]
 	proteinValues = [x.amount for x in Protein.objects.filter(user=User.objects.get(pk=userID))]
 	sodiumValues = [x.amount for x in Sodium.objects.filter(user=User.objects.get(pk=userID))]
 	sugarValues = [x.amount for x in Sugar.objects.filter(user=User.objects.get(pk=userID))]
+	dates = [str(x.eaten_date.date()) for x in Calories.objects.filter(user=User.objects.get(pk=userID))]
+
+	calMessage = ""
+	carbMessage = ""
+	fatMessage = ""
+	proteinMessage = ""
+	sodiumMessage = ""
+	sugarMessage = ""
+
+# Men: BEE = (66.5 + 13.8(W) + 5.0(H) - 6.8(A) ) 1.2
+ 
+#  Women: BEE =( 655.1 + 9.6(W) + 1.9(H) - 4.7(A)) * 1.2
+
+	#Fat intake should equal 30% of your total days calories. 
+	if abs(sum(fatValues)/len(fatValues) - sum(calories)/len(calories)*.3) < 5:
+		fatMessage = "good fat!"
+	elif sum(fatValues)/len(fatValues) - sum(calories)/len(calories)*.3 < 0:
+		fatMessage = "too much fat!"
+	else:
+		fatMessage = "too little fat!"
+
+	#daily protein intake .8-1.0 g of protein/kg body weight. 
+
+	proteinLow = body_weight / 2.2 * .8
+	proteinHigh = body_weight / 2.2
+	if sum(proteinValues)/len(proteinValues) < proteinLow:
+		proteinMessage = "not enough protein!"
+	elif sum(proteinValues)/len(proteinValues) > proteinHigh:
+		proteinMessage = "too much protein!"
+	else:
+		proteinMessage = "just right protein!"
+
+
+
 #	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
-	return render(request, 'graphs/graphs.html',{'cal':calories,
+	return render(request, 'graphs/graphs.html',{'age':age,
+												'body_weight': body_weight,
+												'cal':calories,
 												'carbs': carbValues,
 												'fat':fatValues,
 												'protein': proteinValues,
 												'sodium': sodiumValues,
 												'sugar': sugarValues,
-												'userID': userID
+												'dates': dates,
+												'userID': userID,
+												'username': currentUsername
 												})
 
 #----------------Tiff-----------------/\
@@ -149,14 +253,33 @@ def showScrapbookPage(request,userID):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
-         #   m.model_pic = form.cleaned_data['image']
-            #m.save()
-            form.save()
+			user = User.objects.get(pk=userID)
+			print userID
+			m = Pictures(picture = request.FILES['picture'],date = timezone.now(), caption = "",user=user)
+         	# m.model_pic = form.cleaned_data['image']
+			m.save()
+            #if form.user.is_valid():
+            	#form.user(user=request.user) #check
+			# form.save()
     scrapbook_gen = Pictures.objects
     url = Pictures.objects.filter(user=User.objects.get(pk=userID))
     #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
     return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
+
+			#user = User.objects.get(pk=userID)
+			#m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
+			#   m.model_pic = form.cleaned_data['image']
+			#m.save()
+			#if form.user.is_valid():
+				#form.user(user=request.user) #check
+		
+
+class PhotoWizard(SessionWizardView):
+	file_storage = FileSystemStorage(location = os.path.join(settings.MEDIA_ROOT, ''))
+	def done(self, form_list, **kwargs):
+		do_something_with_the_form_data(form_list)
+		return HttpResponseRedirect('/page-to-redirect-to-when-done/')
+
 
 """
 def addImage(request):

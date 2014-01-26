@@ -18,6 +18,8 @@ class Calories(models.Model):
 	user = models.ForeignKey(User)
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
+	def __unicode__(self):
+		return str(self.user.username)+':'+str(self.amount)
 
 class Carbs(models.Model):
 	user = models.ForeignKey(User)
@@ -44,6 +46,12 @@ class Sugar(models.Model):
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
 
+class Characteristics(models.Model):
+	user = models.ForeignKey(User)
+	age = models.IntegerField(default=0)
+	body_weight = models.IntegerField(default=0)
+	gender = models.CharField(max_length = 200)
+
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
 
@@ -52,6 +60,7 @@ class Pictures(models.Model):
 	picture = models.ImageField(upload_to = 'scrapbook_uploads', default = 'static/scrapbook/images/no_pic_uploaded.jpg');
 	date = models.DateTimeField('date published', auto_now=True)
 	caption = models.TextField(blank = True)
+	title = models.CharField(max_length = 100, blank = True) #New
 	def __unicode__(self):
 		return self.caption
 
