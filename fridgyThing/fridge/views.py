@@ -234,14 +234,16 @@ def showGraphsPage(request,userID):
 
 	highSodium = 0
 	highSugar = 0
-
+	
 	try:
+
 		dailyCal = float(sum(calories))/len(calories)
 		dailyCarb = float(sum(carbValues))/len(carbValues)
 		dailyFat = float(sum(fatValues))/len(fatValues)
 		dailyProtein = float(sum(proteinValues))/len(proteinValues)
 		dailySodium = float(sum(sodiumValues))/len(sodiumValues)
 		dailySugar = float(sum(sugarValues))/len(sugarValues)
+		
 	except ZeroDivisionError:
 		dailyCal = 0
 		dailyCarb = 0
@@ -250,6 +252,7 @@ def showGraphsPage(request,userID):
 		dailySodium = 0
 		dailySugar = 0
 
+	
 
 	# Men: BEE = (66.5 + 13.8(W) + 5.0(H) - 6.8(A) ) 1.2
 	# Women: BEE =( 655.1 + 9.6(W) + 1.9(H) - 4.7(A)) * 1.2
@@ -320,7 +323,6 @@ def showGraphsPage(request,userID):
 		sugarMessage = ":D"
 
 	for x in range(len(calories)-1):
-		print "appending stuff "+str(highCal)
 		highCal.append(highCal[0])
 		lowCal.append(lowCal[0])
 		highCarb.append(highCarb[0])
