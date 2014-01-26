@@ -48,7 +48,7 @@ def delIngredient(request):
 def getRecipes(request,userID):
  	url ='http://api.yummly.com/v1/api/recipes?_app_id=11cf413b&_app_key=7904cfbaa445d431246c18249bc5174e&q='
  	url= url+'&requirePictures=true'
- 	ings = Ingredient.objects.all()
+ 	ings = Ingredient.objects.filter(user=User.objects.get(pk=userID))
  	matchSet= []
 
  	for i in range(len(ings)):
@@ -90,7 +90,7 @@ def getRecipes(request,userID):
 	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds,inFrjCount)
 	recipe = sorted(recipe,key=lambda recipe:recipe[4],reverse=True)
 
-	ingredients = Ingredient.objects.all() 
+	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID))
 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe,'userID':userID})
 
@@ -103,29 +103,29 @@ def makeMeal(request):
 	temp = json.dumps(rec.json())
 	dct = json.loads(temp)
 	nutrition = dct['nutritionEstimates'] # cal,carb,fat,protein,sodium,sugar
-	
-	nutrients = []
-	nutrients.append(nutrition[0]) # calories # unit is in kcal 
-	nutrients.append(nutrition[6]) # carbs  # unit for all others is grams
-	nutrients.append(nutrition[1]) # fat
-	nutrients.append(nutrition[9]) # protein
-	nutrients.append(nutrition[4]) # sodium
-	nutrients.append(nutrition[8]) # sugar
+	if (len(nutrition)>=6):
+		nutrients = []
+		nutrients.append(nutrition[0]) # calories # unit is in kcal 
+		nutrients.append(nutrition[6]) # carbs  # unit for all others is grams
+		nutrients.append(nutrition[1]) # fat
+		nutrients.append(nutrition[9]) # protein
+		nutrients.append(nutrition[4]) # sodium
+		nutrients.append(nutrition[8]) # sugar
 
-	nutrientObjects = [Calories,Carbs,Fats,Protein,Sodium,Sugar]
+		nutrientObjects = [Calories,Carbs,Fats,Protein,Sodium,Sugar]
 
-	for i in range(len(nutrients)):
-		cur = nutrientObjects[i].objects.filter(user=User.objects.get(pk=userID))
-		added = False;
-		for c in cur:
-			if(c.eaten_date.date() == timezone.now().date()):
-				c.amount+=nutrients[i]['value']
+		for i in range(len(nutrients)):
+			cur = nutrientObjects[i].objects.filter(user=User.objects.get(pk=userID))
+			added = False;
+			for c in cur:
+				if(c.eaten_date.date() == timezone.now().date()):
+					c.amount+=nutrients[i]['value']
+					c.save();
+					added = True
+			if (not added):
+				c = nutrientObjects[i](user=User.objects.get(pk=userID),amount=nutrients[i]['value'],eaten_date=timezone.now())
 				c.save();
-				added = True
-		if (not added):
-			c = nutrientObjects[i](user=User.objects.get(pk=userID),amount=nutrients[i]['value'],eaten_date=timezone.now())
-			c.save();
-
+				
 	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
 
 
@@ -318,13 +318,14 @@ def showScrapbookPage(request,userID):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
-        #	user = User.objects.get(pk=userID)
-            #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
-         #   m.model_pic = form.cleaned_data['image']
-            #m.save()
+			user = User.objects.get(pk=userID)
+			print userID
+			m = Pictures(picture = request.FILES['picture'],date = timezone.now(), caption = "",user=user)
+         	# m.model_pic = form.cleaned_data['image']
+			m.save()
             #if form.user.is_valid():
             	#form.user(user=request.user) #check
-            form.save()
+			# form.save()
     scrapbook_gen = Pictures.objects
     url = Pictures.objects.filter(user=User.objects.get(pk=userID))
     #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
