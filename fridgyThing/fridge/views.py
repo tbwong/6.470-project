@@ -71,6 +71,7 @@ def getRecipes(request,userID):
 	recipeIngs = []
 	recipeIms = [] 
 	recipeIds = []
+	inFrjCount = []
 	count=0
 	for matches in matchSet:
 		for match in matches:
@@ -78,15 +79,56 @@ def getRecipes(request,userID):
 			recipeIngs.append(match['ingredients'])
 			recipeIms.append(match['smallImageUrls'][0])
 			recipeIds.append(match['id'])
+			inFrjCounter = 0
+			print match['ingredients']
+			print '----'
+			for ing in ings:
+				for s in match['ingredients']:
+					if ing.name.lower() in s.lower():
+						inFrjCounter=inFrjCounter+1
+			inFrjCount.append(inFrjCounter)
+			print inFrjCounter
 
-	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds)
+	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds,inFrjCount)
+	recipe = sorted(recipe,key=lambda recipe:recipe[4],reverse=True)
+
 	ingredients = Ingredient.objects.all() 
 
 	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe,'userID':userID})
 
-# def makeMeal(request,datID):
-# 	 url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
-# 	 return HttpResponseRedirect(reverse('fridge:appPage',args=()))
+def makeMeal(request):
+	userID = request.POST['userID']
+	recipeID = request.POST['recipeID']
+	# url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
+	url ='http://api.yummly.com/v1/api/recipe/'+recipeID+'?_app_id=11cf413b&_app_key=7904cfbaa445d431246c18249bc5174e'
+	rec = requests.get(url)
+	temp = json.dumps(rec.json())
+	dct = json.loads(temp)
+	nutrition = dct['nutritionEstimates'] # cal,carb,fat,protein,sodium,sugar
+	
+	calories = nutrition[0] # unit is in kcal 
+	carbs = nutrition[6] # unit for all others is grams
+	fat = nutrition[1]
+	protein = nutrition[9]
+	sodium = nutrition[4]
+	sugar = nutrition[8]
+
+	cal = Calories(user=User.objects.get(pk=userID),amount=calories['value'],eaten_date=timezone.now())
+	cal.save();
+	car = Carbs(user=User.objects.get(pk=userID),amount=carbs['value'],eaten_date=timezone.now())
+	car.save();
+	f = Fats(user=User.objects.get(pk=userID),amount=fat['value'],eaten_date=timezone.now())
+	f.save();
+	pro = Protein(user=User.objects.get(pk=userID),amount=protein['value'],eaten_date=timezone.now())
+	pro.save();
+	sod = Sodium(user=User.objects.get(pk=userID),amount=sodium['value'],eaten_date=timezone.now())
+	sod.save();
+	sug = Sugar(user=User.objects.get(pk=userID),amount=sugar['value'],eaten_date=timezone.now())
+	sug.save();
+
+	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
+
+
 def addShopping(request):
 	userID = request.POST['userID']
 	ings = request.POST.getlist('ingsList')
@@ -165,9 +207,12 @@ def showScrapbookPage(request,userID):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
+        	user = User.objects.get(pk=userID)
             #m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
          #   m.model_pic = form.cleaned_data['image']
             #m.save()
+            #if form.user.is_valid():
+            	#form.user(user=request.user) #check
             form.save()
     scrapbook_gen = Pictures.objects
     url = Pictures.objects.filter(user=User.objects.get(pk=userID))

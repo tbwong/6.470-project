@@ -165,7 +165,15 @@
 		<div id='recipeInfo' class='popup-recipe'>
 			{%for r in recipe%}
 			<div id = 'rInfo-{{forloop.counter}}' class='rInfo' style='display:none; height:100%; overflow:scroll;'>
-				<span id="recipetitle">{{r.0}}</span> <a href="{%url 'fridge:appPage' userID%}"><button class='btn btn-default' id="made">I Made It!</button></a> <br>
+				<span id="recipetitle">{{r.0}}</span> 
+				<form action="{%url 'fridge:makeMeal'%}" method="post" >
+					{% csrf_token %}
+
+					<input type="hidden" name="userID" value="{{userID}}">
+					<input type="hidden" name="recipeID" value="{{r.3}}">
+
+					<button class='btn btn-default' id="made">I Made It!</button>
+				</form> <br>
 				<h3 id="recipeing">Ingredients: </h3>
 				<ul>
 				{%for ingredient in r.1%}
