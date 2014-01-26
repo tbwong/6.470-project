@@ -136,6 +136,7 @@ def logout_view(request):
 def showGraphsPage(request,userID):
 	#calories,carbs,fat,protein,sodium,sugar
 	currentUser = User.objects.get(pk=userID)
+	currentUsername = str(currentUser.username)
 	age = Characteristics.objects.get(user=currentUser).age
 	body_weight = Characteristics.objects.get(user=currentUser).body_weight
 
@@ -154,7 +155,8 @@ def showGraphsPage(request,userID):
 												'protein': proteinValues,
 												'sodium': sodiumValues,
 												'sugar': sugarValues,
-												'userID': userID
+												'userID': userID,
+												'username': currentUsername
 												})
 
 #----------------Tiff-----------------/\

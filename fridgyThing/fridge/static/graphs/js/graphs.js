@@ -42,7 +42,7 @@ $(document).ready(function(){
 })
     
 
-function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarData) {
+function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarData,name) {
 
     function drawCalories(x,y) {
         calorieChart = new Highcharts.Chart({
@@ -81,7 +81,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
             },
             series: [{
                 type: 'line',
-                name: 'Tiffany',
+                name: name,
                 data: calData,
                 color: '#CC99FF'
 
@@ -126,7 +126,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
             },
             series: [{
                 type: 'line',
-                name: 'Tiffany',
+                name: name,
                 data: carbsData,
                 color: '#0033FF'
             }]
@@ -172,7 +172,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
             },
             series: [{
                 type: 'line',
-                name: 'Tiffany',
+                name: name,
                 data: fatData,
                 color: '#339900'
             }]
@@ -217,7 +217,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
             },
             series: [{
                 type: 'line',
-                name: 'Tiffany',
+                name: name,
                 data: proteinData,
                 color: '#FF3300'
             }]
@@ -262,7 +262,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
             },
             series: [{
                 type: 'line',
-                name: 'Tiffany',
+                name: name,
                 data: sodiumData,
                 color: '#CC0033'
             }]
@@ -307,7 +307,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
             },
             series: [{
                 type: 'line',
-                name: 'Tiffany',
+                name: name,
                 data: sugarData,
                 color: '#FF66CC'
             }]
