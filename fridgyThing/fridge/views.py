@@ -260,7 +260,7 @@ def showScrapbookPage(request,userID):
 			m.save()
             #if form.user.is_valid():
             	#form.user(user=request.user) #check
-			form.save()
+			# form.save()
     scrapbook_gen = Pictures.objects
     url = Pictures.objects.filter(user=User.objects.get(pk=userID))
     #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
