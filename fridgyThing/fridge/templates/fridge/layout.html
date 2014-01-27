@@ -78,8 +78,103 @@
 			<li><a id='scrapbook' href="{% url 'fridge:showScrapbook' userID%}"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
 		</ul>
 	</nav>
+	<div id="popupBackground"></div>
+	<div id='recipeInfo' class='popup-recipe'>
+		{%for r in recipe%}
+		<div id = 'rInfo-{{forloop.counter}}' class='rInfo' style='display:none; height:100%; overflow:scroll;'>
+			<span id="recipetitle">{{r.0}}</span> 
+			<form action="{%url 'fridge:makeMeal'%}" method="post" >
+				{% csrf_token %}
+
+				<input type="hidden" name="userID" value="{{userID}}">
+				<input type="hidden" name="recipeID" value="{{r.3}}">
+
+				<button class='btn btn-default' id="made">I Made It!</button>
+			</form> <br>
+			<h3 id="recipeing">Ingredients: </h3>
+			<ul>
+				<h5>We gots:</h5>
+				{%for ingredient in r.5%}
+					<li id="recipelist">{{ingredient}}</li>
+				{%endfor%}	
+			</ul>
+			<ul>
+				<h5>Don't gots:</h5>
+				{%for ingredient in r.1%}
+					<li id="recipelist">{{ingredient}}</li>
+				{%endfor%}
+			</ul>
+			
+			<span><a href="http://www.yummly.com/recipe/{{r.3}}"><button class='btn btn-default' id="directions">See Directions</button></a><span>
+			<span>
+			<form action="{%url 'fridge:addShopping'%}" method='post'>
+				{% csrf_token %}
+
+				{%for ing in r.1%}
+				<input type='hidden' name='ingsList' value="{{ing}}">
+				{%endfor%}
+				<input type="hidden" name="userID" value="{{userID}}">
+
+				<span class="input-group btn-group centeredButton add" >
+					<input type='submit' class='btn btn-default' value='Add These Ingredients to My Shopping List!'></input>
+				</span>
+			</form>
+			</span>
+
+			
+			
+		</div>
+		{%endfor%}
+	</div>
+
+	<div id='addIng-popup' class='popup' >
+		<h1 style="text-align:center;">Add to Fridge</h1>
+		<br><br>
+		<form id='addIng-group' action="{% url 'fridge:addIngredient'%}" method="post">
+			{% csrf_token %}
+
+			<div class="input-group">
+			  <span class="input-group-addon">Ingredient Name:</span>
+			  <input type="text" name='IngName'class="form-control" placeholder="Be general.  ex: Ketchup NOT Heins Tomato Ketchup" required autofocus>
+			</div>
+			<br>
+			<div class="input-group">
+			  <span class="input-group-addon"># Grams:</span>
+			  <input type="number" name='IngAmount' class="form-control" value="1" required>
+			</div>
+			<input type="hidden" name="userID" value="{{userID}}">
+			<br>
+			<div class="input-group btn-group centeredButton" >
+				<input type='submit' class='btn btn-default' value='Add It'></input>
+			</div>
+
+		</form>
+	</div>
+	<div id='delIng-popup' class='popup' >
+		<h1 style="text-align:center;">Remove Ingredient</h1>
+		<br><br>
+		<form id='delIng-group' action="{% url 'fridge:delIngredient'%}" method="post">
+			{% csrf_token %}
+
+			<select name="IngNames" style="position:relative; left:50%; margin-left:-32px;" >
+				{%for i in ingredients%}
+				<option value="{{i.name}}" >{{i.name}}</option>
+				{%endfor%}
+			</select>
+
+			<br>
+			<input type="hidden" name="userID" value="{{userID}}">
+			<br><br>
+			<div class="input-group btn-group centeredButton" >
+				<input type='submit' class='btn btn-default' value='Remove It'></input>
+			</div>
+
+		</form>
+	</div>
 
 
+
+	{%if ingredientsLength > 0%}
 	<div id="showpiece-fridge" class='showpiece' style="display:none;">
 		<div class='scrollable'>
 			<div id = 'current-fridge'>
@@ -161,106 +256,13 @@
 			</div>
 		{% endif %}
 		
-		<div id="popupBackground"></div>
-		<div id='recipeInfo' class='popup-recipe'>
-			{%for r in recipe%}
-			<div id = 'rInfo-{{forloop.counter}}' class='rInfo' style='display:none; height:100%; overflow:scroll;'>
-				<span id="recipetitle">{{r.0}}</span> 
-				<form action="{%url 'fridge:makeMeal'%}" method="post" >
-					{% csrf_token %}
-
-					<input type="hidden" name="userID" value="{{userID}}">
-					<input type="hidden" name="recipeID" value="{{r.3}}">
-
-					<button class='btn btn-default' id="made">I Made It!</button>
-				</form> <br>
-				<h3 id="recipeing">Ingredients: </h3>
-				<span>
-					<ul>
-						<h5>Don't gots:</h5>
-					{%for ingredient in r.1%}
-						<li id="recipelist">{{ingredient}}</li>
-					{%endfor%}
-					</ul>
-					<ul>
-						<h5>We gots:</h5>
-					{%for ingredient in r.5%}
-						<li id="recipelist">{{ingredient}}</li>
-					{%endfor%}	
-					</ul>
-				</span>
-				<span><a href="http://www.yummly.com/recipe/{{r.3}}"><button class='btn btn-default' id="directions">See Directions</button></a><span>
-				<span>
-				<form action="{%url 'fridge:addShopping'%}" method='post'>
-					{% csrf_token %}
-
-					{%for ing in r.1%}
-					<input type='hidden' name='ingsList' value="{{ing}}">
-					{%endfor%}
-					<input type="hidden" name="userID" value="{{userID}}">
-
-					<span class="input-group btn-group centeredButton add" >
-						<input type='submit' class='btn btn-default' value='Add These Ingredients to My Shopping List!'></input>
-					</span>
-				</form>
-				</span>
-
-				
-				
-			</div>
-			{%endfor%}
-		</div>
-
-		<div id='addIng-popup' class='popup' >
-			<h1 style="text-align:center;">Add to Fridge</h1>
-			<br><br>
-			<form id='addIng-group' action="{% url 'fridge:addIngredient'%}" method="post">
-				{% csrf_token %}
-
-				<div class="input-group">
-				  <span class="input-group-addon">Ingredient Name:</span>
-				  <input type="text" name='IngName'class="form-control" placeholder="Be general.  ex: Ketchup NOT Heins Tomato Ketchup" required autofocus>
-				</div>
-				<br>
-				<div class="input-group">
-				  <span class="input-group-addon"># Grams:</span>
-				  <input type="number" name='IngAmount' class="form-control" value="1" required>
-				</div>
-				<input type="hidden" name="userID" value="{{userID}}">
-				<br>
-				<div class="input-group btn-group centeredButton" >
-					<input type='submit' class='btn btn-default' value='Add It'></input>
-				</div>
-
-			</form>
-		</div>
-		<div id='delIng-popup' class='popup' >
-			<h1 style="text-align:center;">Remove Ingredient</h1>
-			<br><br>
-			<form id='delIng-group' action="{% url 'fridge:delIngredient'%}" method="post">
-				{% csrf_token %}
-
-				<select name="IngNames" style="position:relative; left:50%; margin-left:-32px;" >
-					{%for i in ingredients%}
-					<option value="{{i.name}}" >{{i.name}}</option>
-					{%endfor%}
-				</select>
-
-				<br>
-				<input type="hidden" name="userID" value="{{userID}}">
-				<br><br>
-				<div class="input-group btn-group centeredButton" >
-					<input type='submit' class='btn btn-default' value='Remove It'></input>
-				</div>
-
-			</form>
-		</div>
 	</div>
-
-
-	<div id="showpiece-scrapbook" class='showpiece' style="display:none;">
-		hi friends
+	{%else%}
+	<div id='noFridge' class='showpiece'>
+		<img src="{%static 'fridge/images/noFoodMessage.jpg'%}" width="100%">
 	</div>
+	{%endif%}
+
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="{% static 'fridge/styles/bootstrap/js/bootstrap.min.js' %}"></script>
 </body>

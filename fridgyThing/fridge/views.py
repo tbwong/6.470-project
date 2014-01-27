@@ -24,8 +24,9 @@ import datetime
 def index(request):
 	return render(request, 'fridge/index.html')
 def showFridge(request,userID):
-	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID)) 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'userID':userID} )
+	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID))
+	ingredientsLength = len(ingredients) 
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'userID':userID,'ingredientsLength':ingredientsLength} )
 
 def addIngredient(request):
 	IngName = request.POST['IngName']
@@ -96,8 +97,9 @@ def getRecipes(request,userID):
 	recipe = sorted(recipe,key=lambda recipe:recipe[4],reverse=True)
 
 	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID))
+	ingredientsLength = len(ingredients) 
 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'url':url,'recipe':recipe,'userID':userID})
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'ingredientsLength':ingredientsLength,'url':url,'recipe':recipe,'userID':userID})
 
 def makeMeal(request):
 	userID = request.POST['userID']
@@ -232,14 +234,16 @@ def showGraphsPage(request,userID):
 
 	highSodium = 0
 	highSugar = 0
-
+	
 	try:
+
 		dailyCal = float(sum(calories))/len(calories)
 		dailyCarb = float(sum(carbValues))/len(carbValues)
 		dailyFat = float(sum(fatValues))/len(fatValues)
 		dailyProtein = float(sum(proteinValues))/len(proteinValues)
 		dailySodium = float(sum(sodiumValues))/len(sodiumValues)
 		dailySugar = float(sum(sugarValues))/len(sugarValues)
+		
 	except ZeroDivisionError:
 		dailyCal = 0
 		dailyCarb = 0
@@ -248,6 +252,7 @@ def showGraphsPage(request,userID):
 		dailySodium = 0
 		dailySugar = 0
 
+	
 
 	# Men: BEE = (66.5 + 13.8(W) + 5.0(H) - 6.8(A) ) 1.2
 	# Women: BEE =( 655.1 + 9.6(W) + 1.9(H) - 4.7(A)) * 1.2
@@ -272,9 +277,9 @@ def showGraphsPage(request,userID):
 	highCarb = [dailyCal * .6]
 	lowCarb = [dailyCal * .45]
 	if dailyCarb < lowCarb[0]:
-		carbMessage = "not enough carbs!"
+		carbMessage = "Have you been feeling tired? Try eating some healthy carbs like whole-grain pasta, quinoa, brown rice, and bean"
 	elif dailyCarb > highCarb[0]:
-		carbMessage = "too many carbs!"
+		carbMessage = "Too many carbs in your life? Try avoiding white bread, pasta, and rice, and adding healthy low-carb substitutes such as spaghetti squash or whole-wheat substitutes like brown rice for a yummy, hearty meal."
 	else:
 		carbMessage = "just right~"
 
@@ -283,16 +288,16 @@ def showGraphsPage(request,userID):
 	highFat = [dailyCal*.3 + 2]
 	lowFat = [dailyCal*.3 - 2]
 	if dailyFat < lowFat[0]:
-		fatMessage = "too little fat!"
+		fatMessage = "Stock up on healthy fats with nuts, oils, avocados, or some tasty peanut butter!"
 	elif dailyFat > highFat[0]:
-		fatMessage = "too much fat!"
+		fatMessage = "Try reducing your fat content by steering away from fatty meats and butter and keep healthy fat in your diet with nuts and oils!"
 
 
 	#daily protein intake .8-1.0 g of protein/kg body weight.
 	highProtein =  [body_weight / 2.2]
 	lowProtein = [body_weight / 2.2 * .8]
 	if dailyProtein < lowProtein[0]:
-		proteinMessage = "not enough protein!"
+		proteinMessage = "You're running a little low on protein! Try eating lean meats, fish, eggs, tofu, yogurt, or milk."
 	elif dailyProtein > highProtein[0]:
 		proteinMessage = "too much protein!"
 	else:
@@ -302,7 +307,7 @@ def showGraphsPage(request,userID):
 	#daily sodium should not be more than 2.3 grams
 	highSodium = [2.3]
 	if dailySodium > highSodium[0]:
-		sodiumMessage = "neeed FEWERE sodium"
+		sodiumMessage = "Try cutting down on sodium by reducing the amount of canned or processed foods that you use in your recipes or check for low sodium substitutes for items you buy."
 	else:
 		sodiumMessage = "AWWW YEAH good"
 
@@ -313,7 +318,7 @@ def showGraphsPage(request,userID):
 		highSugar = [36]
 
 	if dailySugar > highSugar[0]:
-		sugarMessage = "NOOO STAHPPPP!"
+		sugarMessage = "Eating too much sugar isn't all sweet! Try cutting down your sugar in recipes by reducing sugar quantities and substituting for natural sources such as honey and naturally-sweet fruit."
 	else:
 		sugarMessage = ":D"
 
@@ -326,7 +331,7 @@ def showGraphsPage(request,userID):
 		lowFat.append(lowFat[0])
 		highProtein.append(highProtein[0])
 		lowProtein.append(lowProtein[0])
-		highSodium.append(highProtein[0])
+		highSodium.append(highSodium[0])
 		highSugar.append(highSugar[0])
 
 #	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
