@@ -15,4 +15,4 @@ class ImageUploadForm(ModelForm):
 class ImageUploadForm(ModelForm):
 	class Meta:
 		model = Pictures
-		fields = ["picture", "caption", "title", "user"]
+		fields = ["picture", "caption", "title"]

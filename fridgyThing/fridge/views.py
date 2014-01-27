@@ -368,21 +368,24 @@ def showGraphsPage(request,userID):
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
 def showScrapbookPage(request,userID):
-    if request.method == 'POST':
-        form = ImageUploadForm(request.POST, request.FILES)
-        if form.is_valid():
+	if request.method == 'POST':
+		form = ImageUploadForm(request.POST, request.FILES)
+		if form.is_valid():
 			user = User.objects.get(pk=userID)
 			print userID
-			m = Pictures(picture = request.FILES['picture'],date = timezone.now(),title=request.POST['title'], caption = request.POST['comment'],user=user)
+			m = Pictures(picture = request.FILES['picture'],date = timezone.now(),title=request.POST['title'], caption = request.POST['caption'],user=user)
          	# m.model_pic = form.cleaned_data['image']
 			m.save()
             #if form.user.is_valid():
             	#form.user(user=request.user) #check
 			# form.save()
-    scrapbook_gen = Pictures.objects
-    url = Pictures.objects.filter(user=User.objects.get(pk=userID))
-    #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
-    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
+		else:
+			print 'THE HILLS ARE ALIVE'
+	print 'SOMETHING HAPPENED'
+	scrapbook_gen = Pictures.objects
+	url = Pictures.objects.filter(user=User.objects.get(pk=userID))
+	#url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
+	return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
 
 			#user = User.objects.get(pk=userID)
 			#m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
