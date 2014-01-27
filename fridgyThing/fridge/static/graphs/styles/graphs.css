@@ -59,18 +59,26 @@ nav .sidebar{
 
 .hiddenones {
 	position: absolute;
-	padding: 10px;
-	margin-left: 40px;
-	width: 500px;
-	height: 100px;
+	padding-left: 10px;
+	padding-right:10px;
+	top:90px;
+	left: 40px;
+	width: 510px;
+	height: 650px;
 
 	
 }
 
 #nutrition-info{
-	font-size: 50px;
+	font-size: 30px;
 	font-weight: bold;
-	margin: 10px;
+	width:250px;
+/*	background-color: #FFE4C4; 
+	margin-left:20px;
+	padding-left:30px; */
+	padding-top:20px;
+	padding-bottom:10px; 
+	padding-left:50px;
 	float: left;
 }
 
@@ -78,7 +86,7 @@ nav .sidebar{
 	position: absolute;
 	font-size: 15px;
 	font-weight: bold;
-	margin-left: 500px;
+	margin-left: 480px;
 	margin-top: 30px;
 }
 
@@ -102,13 +110,15 @@ nav .sidebar{
 .nutrition-buttons {
 	position: relative;
 	height: 50px;
-	margin-top: 120px;
+	margin-top: 100px;
+	font-size:20px;
 }
 
 .container {
 	position: relative;
 	width: 500px;
 	height: 250px;
+	margin-top:5px;
 	-webkit-box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);
 	box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);
@@ -121,6 +131,20 @@ nav .sidebar{
 	font-size: 15px;
 }
 
+.nutrient {
+	height:40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border:1pt solid white;
+	font-size: 15px;
+}
 
-
-
+#nutrient-container {
+	background-color:pink;
+	width: 240px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}

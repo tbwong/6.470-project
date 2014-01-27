@@ -322,18 +322,17 @@ def showGraphsPage(request,userID):
 	else:
 		sugarMessage = ":D"
 
-	# for x in range(len(calories)-1):
-	# 	print "appending stuff "+str(highCal)
-	# 	highCal.append(highCal[0])
-	# 	lowCal.append(lowCal[0])
-	# 	highCarb.append(highCarb[0])
-	# 	lowCarb.append(lowCarb[0])
-	# 	highFat.append(highFat[0])
-	# 	lowFat.append(lowFat[0])
-	# 	highProtein.append(highProtein[0])
-	# 	lowProtein.append(lowProtein[0])
-	# 	highSodium.append(highSodium[0])
-	# 	highSugar.append(highSugar[0])
+	for x in range(len(calories)-1):
+		highCal.append(highCal[0])
+		lowCal.append(lowCal[0])
+		highCarb.append(highCarb[0])
+		lowCarb.append(lowCarb[0])
+		highFat.append(highFat[0])
+		lowFat.append(lowFat[0])
+		highProtein.append(highProtein[0])
+		lowProtein.append(lowProtein[0])
+		highSodium.append(highSodium[0])
+		highSugar.append(highSugar[0])
 
 #	currentDates = [datetime.strptime(str(x.eaten_date), '%Y-%m-%d %H:%M:%S+00:00').date() for x in Calories.objects.all()]
 	return render(request, 'graphs/graphs.html',{'age':age,
@@ -373,7 +372,7 @@ def showScrapbookPage(request,userID):
         if form.is_valid():
 			user = User.objects.get(pk=userID)
 			print userID
-			m = Pictures(picture = request.FILES['picture'],date = timezone.now(),title=request.POST['title'], caption = request.POST['comment'],user=user)
+			m = Pictures(picture = request.FILES['picture'],date = timezone.now(), caption = "",user=user)
          	# m.model_pic = form.cleaned_data['image']
 			m.save()
             #if form.user.is_valid():
