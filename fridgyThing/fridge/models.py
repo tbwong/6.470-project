@@ -60,8 +60,8 @@ class Pictures(models.Model):
 	user = models.ForeignKey(User)
 	picture = models.ImageField(upload_to = 'scrapbook_uploads', default = 'static/scrapbook/images/no_pic_uploaded.jpg');
 	date = models.DateTimeField('date published', auto_now=True)
-	caption = models.TextField(blank = True)
-	title = models.CharField(max_length = 100, blank = True) #New
+	caption = models.CharField(max_length = 100, blank = True, help_text = "Tack on a title!")
+	title = models.CharField(max_length = 100, blank = True, help_text="Add dat comment!") #New
 	def __unicode__(self):
 		return self.caption
 

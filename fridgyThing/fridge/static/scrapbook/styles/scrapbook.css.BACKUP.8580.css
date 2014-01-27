@@ -174,6 +174,7 @@ transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 #id_picture { 
 }
 
+<<<<<<< HEAD
 #imguploadform{
 
 display: block;
@@ -187,13 +188,13 @@ background-color: #ff0030;
 background-image: none;
 border: 0px;
 border-radius: 0px;
--webkit-box-shadow: none; 
-box-shadow: none; 
+-webkit-box-shadow: inset 0 
+box-shadow: inset 0 
 -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-
+=======
 .popup{
   height: 450px;
   margin-top: -225px;
-
+>>>>>>> 9730b80f35cde47aaad4c89bf4b65c5489b8d493
 }

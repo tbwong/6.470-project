@@ -163,7 +163,7 @@ color: #555;
 vertical-align: middle;
 background-color: #fff;
 background-image: none;
-border: 0px solid #ccc;
+border: 1px solid #ccc;
 border-radius: 4px;
 -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
@@ -172,28 +172,4 @@ transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
 #id_picture { 
-}
-
-#imguploadform{
-
-display: block;
-width: 100%;
-height: 34px;
-font-size: 14px;
-line-height: 1.428571429;
-color: #fff;
-vertical-align: middle;
-background-color: #ff0030;
-background-image: none;
-border: 0px;
-border-radius: 0px;
--webkit-box-shadow: none; 
-box-shadow: none; 
--webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-
-.popup{
-  height: 450px;
-  margin-top: -225px;
-
 }
