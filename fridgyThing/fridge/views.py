@@ -270,7 +270,7 @@ def showGraphsPage(request,userID):
 	elif(dailyCal > lowCal[0]):
 		calMessage = "tooo mannny of da calorieee"
 	else:
-		calMessage = "just right!"	
+		calMessage = "Good job! You are in the optimal calorie zone :) Keep up the good work!"	
 	
 
 	#45 to 65 percent of your total daily calories come from carbohydrates.
@@ -281,7 +281,7 @@ def showGraphsPage(request,userID):
 	elif dailyCarb > highCarb[0]:
 		carbMessage = "Too many carbs in your life? Try avoiding white bread, pasta, and rice, and adding healthy low-carb substitutes such as spaghetti squash or whole-wheat substitutes like brown rice for a yummy, hearty meal."
 	else:
-		carbMessage = "just right~"
+		carbMessage = "Good job! You are in the optimal carb zone :) Keep up the good work!"
 
 
 	#Fat intake should equal 30% of your total days calories. 
