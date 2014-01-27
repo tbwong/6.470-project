@@ -3,43 +3,17 @@ var page = ''
 $(document).ready(function(){
 	//The page has loaded
 	
-	$('#addIng').click(function(){
-		$('#popupBackground').fadeIn();
-		$('#addIng-popup').show('slow');
-	});
-	$('#popupBackground').click(function(){
-		$('#popupBackground').fadeOut();
-		$('#addIng-popup').hide('fast');
-		$('#recipeInfo').hide('fast');
-		$('.rInfo').hide('fast');
-		$('#delIng-popup').hide('fast');
-	});
 
-	$('.recipeResult').click(function(){
-		$('#popupBackground').fadeIn();
-		$('#recipeInfo').show('slow');
-		var idnum = this.id;
-		var dash = idnum.indexOf("-");
-		idnum = idnum.substring(dash+1);
-		$('#rInfo-'+idnum).show('fast');
-	});
 
-	$('#delIng').click(function(){
-		$('#popupBackground').fadeIn();
-		$('#delIng-popup').show('slow');
-	});
 
-	
 	//$('#control-panel-holder #control-content').html(page);
 	$('.showpiece').hide();
 	$('.controlGroup').hide();
 	function showShowpiece(page){
-		$('.showpiece').hide();
 		$(page).show('slow');
 		console.log(page);
 	}
 	function showControls(control){
-		$('.controlGroup').hide();
 		$(control).show('slow');
 		console.log(page);
 	}
@@ -121,7 +95,31 @@ $(document).ready(function(){
 	// $('.ingredientPie').mouseout(function(){
 	// 	$(this).fadeOut();
 	// });
+	$('#addIng').click(function(){
+		$('#popupBackground').fadeIn();
+		$('#addIng-popup').show('slow');
+	});
+	$('#popupBackground').click(function(){
+		$('#popupBackground').fadeOut();
+		$('#addIng-popup').hide('fast');
+		$('#recipeInfo').hide('fast');
+		$('.rInfo').hide('fast');
+		$('#delIng-popup').hide('fast');
+	});
 
+	$('.recipeResult').click(function(){
+		$('#popupBackground').fadeIn();
+		$('#recipeInfo').show('slow');
+		var idnum = this.id;
+		var dash = idnum.indexOf("-");
+		idnum = idnum.substring(dash+1);
+		$('#rInfo-'+idnum).show('fast');
+	});
+
+	$('#delIng').click(function(){
+		$('#popupBackground').fadeIn();
+		$('#delIng-popup').show('slow');
+	});
 
 });
 

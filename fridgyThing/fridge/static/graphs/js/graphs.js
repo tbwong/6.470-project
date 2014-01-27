@@ -43,7 +43,6 @@ $(document).ready(function(){
     
 
 function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarData,dates,name,highCal,lowCal,highCarb,lowCarb,highFat,lowFat,highProtein,lowProtein,highSodium,highSugar) {
-
     function drawCalories(x,y) {
         calorieChart = new Highcharts.Chart({
             chart: {
@@ -73,6 +72,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 plotLines: [{
                     value: 0,
                     width: 1 
+                }],
+                plotBands: [{ // visualize the weekend
+                    from: highCal,
+                    to: lowCal,
+                    color: 'rgba(68, 170, 213, .2)'
                 }]
             },
             tooltip: {
@@ -90,18 +94,6 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 data: calData,
                 color: '#CC99FF'
 
-            },
-            {
-                type: 'line',
-                name: 'low bound',
-                data: lowCal,
-                color: '#00FFFF'
-            },
-            {
-                type: 'line',
-                name: 'high bound',
-                data: highCal,
-                color: '#00FFFF'
             }]
         });
     }
@@ -136,6 +128,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 plotLines: [{
                     value: 0,
                     width: 1 
+                }],
+                plotBands: [{ // visualize the weekend
+                    from: highCarb,
+                    to: lowCarb,
+                    color: 'rgba(68, 170, 213, .2)'
                 }]
             },
             tooltip: {
@@ -152,18 +149,6 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 name: name,
                 data: carbsData,
                 color: '#0033FF'
-            },
-            {
-                type: 'line',
-                name: 'low bound',
-                data: lowCarb,
-                color: '#00FFFF'
-            },
-            {
-                type: 'line',
-                name: 'high bound',
-                data: highCarb,
-                color: '#00FFFF'
             }]
         });
     }
@@ -199,6 +184,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 plotLines: [{
                     value: 0,
                     width: 1 
+                }],
+                plotBands: [{ // visualize the weekend
+                    from: lowFat,
+                    to: highFat,
+                    color: 'rgba(68, 170, 213, .2)'
                 }]
             },
             tooltip: {
@@ -215,18 +205,6 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 name: name,
                 data: fatData,
                 color: '#339900'
-            },
-            {
-                type: 'line',
-                name: 'low bound',
-                data: lowFat,
-                color: '#00FFFF'
-            },
-            {
-                type: 'line',
-                name: 'high bound',
-                data: highFat,
-                color: '#00FFFF'
             }]
         });
     }
@@ -261,6 +239,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 plotLines: [{
                     value: 0,
                     width: 1 
+                }],
+                plotBands: [{ // visualize the weekend
+                    from: highProtein,
+                    to: lowProtein,
+                    color: 'rgba(68, 170, 213, .2)'
                 }]
             },
             tooltip: {
@@ -277,18 +260,6 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 name: name,
                 data: proteinData,
                 color: '#FF3300'
-            },
-            {
-                type: 'line',
-                name: 'low bound',
-                data: lowProtein,
-                color: '#00FFFF'
-            },
-            {
-                type: 'line',
-                name: 'high bound',
-                data: highProtein,
-                color: '#00FFFF'
             }]
         });
     }
@@ -323,6 +294,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 plotLines: [{
                     value: 0,
                     width: 1 
+                }],
+                plotBands: [{ // visualize the weekend
+                    from: highSodium,
+                    to: highSodium+2,
+                    color: 'rgba(68, 170, 213, .2)'
                 }]
             },
             tooltip: {
@@ -334,17 +310,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 verticalAlign: 'middle',
                 borderWidth: 0
             },
-            series: [{
+             series: [{
                 type: 'line',
                 name: name,
                 data: sodiumData,
-                color: '#CC0033'
-            },
-            {
-                type: 'line',
-                name: 'high bound',
-                data: highSodium,
-                color: '#00FFFF'
+                color: '#FF3300'
             }]
         });
     }
@@ -378,6 +348,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 plotLines: [{
                     value: 0,
                     width: 1 
+                }],
+                plotBands: [{ // visualize the weekend
+                    from: highSugar,
+                    to: highSugar+2,
+                    color: 'rgba(68, 170, 213, .2)'
                 }]
             },
             tooltip: {
@@ -389,17 +364,11 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 verticalAlign: 'middle',
                 borderWidth: 0
             },
-            series: [{
+             series: [{
                 type: 'line',
                 name: name,
                 data: sugarData,
-                color: '#FF66CC'
-            },
-            {
-                type: 'line',
-                name: 'high bound',
-                data: highSugar,
-                color: '#00FFFF'
+                color: '#FF3300'
             }]
         });
         
