@@ -140,8 +140,8 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                     width: 1 
                 }],
                 plotBands: [{ // visualize the weekend
-                    from: highCal,
-                    to: lowCal,
+                    from: highCal[0],
+                    to: lowCal[0],
                     color: 'rgba(68, 170, 213, .2)'
                 }]
             },
@@ -158,6 +158,20 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 type: 'line',
                 name: name,
                 data: calData,
+                color: '#CC99FF'
+
+            }],
+            series: [{
+                type: 'line',
+                name: 'upper',
+                data: highCal,
+                color: '#CC99FF'
+
+            }],
+            series: [{
+                type: 'line',
+                name: 'lower',
+                data: lowCal,
                 color: '#CC99FF'
 
             }]
@@ -196,8 +210,8 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                     width: 1 
                 }],
                 plotBands: [{ // visualize the weekend
-                    from: highCarb,
-                    to: lowCarb,
+                    from: highCarb[0],
+                    to: lowCarb[0],
                     color: 'rgba(68, 170, 213, .2)'
                 }]
             },
@@ -252,8 +266,8 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                     width: 1 
                 }],
                 plotBands: [{ // visualize the weekend
-                    from: lowFat,
-                    to: highFat,
+                    from: lowFat[0],
+                    to: highFat[0],
                     color: 'rgba(68, 170, 213, .2)'
                 }]
             },
@@ -307,8 +321,8 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                     width: 1 
                 }],
                 plotBands: [{ // visualize the weekend
-                    from: highProtein,
-                    to: lowProtein,
+                    from: highProtein[0],
+                    to: lowProtein[0],
                     color: 'rgba(68, 170, 213, .2)'
                 }]
             },
@@ -362,8 +376,8 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                     width: 1 
                 }],
                 plotBands: [{ // visualize the weekend
-                    from: highSodium,
-                    to: highSodium+2,
+                    from: highSodium[0],
+                    to: highSodium[0]+2,
                     color: 'rgba(68, 170, 213, .2)'
                 }]
             },
@@ -416,8 +430,8 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                     width: 1 
                 }],
                 plotBands: [{ // visualize the weekend
-                    from: highSugar,
-                    to: highSugar+2,
+                    from: highSugar[0],
+                    to: highSugar[0]+2,
                     color: 'rgba(68, 170, 213, .2)'
                 }]
             },
