@@ -91,21 +91,24 @@ nav .sidebar{
 	display: inline; 
 	position:absolute;
 	left: 45px;
-	top:100px;
+	top:210px;
 
 
 }
 #right {
 	position:absolute;
 	width: 20px;
-	left: 490px;
-	top:100px;
+	left: 485px;
+	top:210px;
 	display: inline; 
 
 }
 .nutrition-buttons {
-	height: 50px;
-	font-size:25px;
+	font-size:30px;
+}
+
+.nutrition-buttons:focus {
+	border:transparent;
 }
 
 .container {
@@ -169,5 +172,5 @@ nav .sidebar{
 	padding-top: 10px;
 	padding-bottom: 10px;
 	font-size: 15px;
-	background-color:white;
+	background-color:rgb(253, 228, 228);
 }
