@@ -6,6 +6,7 @@ $(document).ready(function(){
 		if (parseInt((this).id, 10) !== currentDiv) {
 			var mainn = "#" + (this).id;
 			$(mainn).css("background-color", "rgb(255, 228, 232)");
+			
 		}
 	});
 	
@@ -13,6 +14,7 @@ $(document).ready(function(){
 		if (parseInt((this).id, 10) !== currentDiv) {
 			var mainn = "#" + (this).id;
 			$(mainn).css("background-color", "");
+			
 		}
 	});
 	
@@ -21,14 +23,20 @@ $(document).ready(function(){
 		var number = parseInt((this).id, 10);
 		var main = "#"+currentDiv;
 		var mainn = "#" + (this).id;
+		var d = "#d" + (this).id;
 		$(main).css("background-color", "");
 		$(mainn).css("background-color", "white");
+		var m = "#m" +(this.id);
+		$(".feedback").hide();
+		$(m).show();
+		$(".des").hide();
+		$(d).show();
 		if (currentDiv < number){
-			$('.hiddenones').hide("slide", {direction:"left"});
+			$('.hiddenones').hide("fade");
 			$(maind).show("slide", {direction:"right"});	
 		}
 		else {
-			$('.hiddenones').hide("slide", {direction:"right"});
+			$('.hiddenones').hide("fade");
 			$(maind).show("slide", {direction:"left"});
 		}
 		currentDiv = number;
@@ -37,13 +45,19 @@ $(document).ready(function(){
     $('#right').click(function(){
         if(currentDiv<6){
 			currentDiv += 1;
-			$('.hiddenones').hide("slide", {direction:"left"});
+			$('.hiddenones').hide("fade");
 			$('#health-'+currentDiv).show("slide", { direction: "right" });
 			var main = "#"+currentDiv;
 			var sub = currentDiv -1;
 			var mainn = "#"+sub;
+			var d = "#d" + currentDiv;
+			var m = "#m" +currentDiv;
+			$(".feedback").hide();
+			$(m).show();
 			$(mainn).css("background-color", "");
 			$(main).css("background-color", "white");
+			$(".des").hide();
+			$(d).show();
 			console.log(currentDiv);
 		}
     });  
@@ -51,13 +65,19 @@ $(document).ready(function(){
     $('#left').click(function(){
         if(currentDiv > 1){
 			currentDiv -= 1;
-			$('.hiddenones').hide("slide", {direction:"right"});
+			$('.hiddenones').hide("fade");
 			$('#health-'+currentDiv).show("slide", {direction:"left"});
 			var main = "#"+currentDiv;
 			var sub = currentDiv + 1;
 			var mainn = "#"+sub;
+			var d = "#d" + currentDiv;
+			var m = "#m" +currentDiv;
+			$(".feedback").hide();
+			$(m).show();
 			$(mainn).css("background-color", "");
 			$(main).css("background-color", "white");
+			$(".des").hide();
+			$(d).show();
 			console.log(currentDiv);
 		}
     });
@@ -68,13 +88,19 @@ $(document).ready(function(){
 			e.preventDefault();
 			if(currentDiv<6){
 				currentDiv += 1;
-				$('.hiddenones').hide("slide", {direction:"left"});
+				$('.hiddenones').hide("fade");
 				$('#health-'+currentDiv).show("slide", { direction: "right" });
 				var main = "#"+currentDiv;
 				var sub = currentDiv -1;
 				var mainn = "#"+sub;
 				$(mainn).css("background-color", "");
 				$(main).css("background-color", "white");
+				var d = "#d" + currentDiv;
+				$(".des").hide();
+				$(d).show();
+				var m = "#m" +currentDiv;
+				$(".feedback").hide();
+				$(m).show();
 				console.log(currentDiv);
 			};
 		};
@@ -86,13 +112,19 @@ $(document).ready(function(){
 			e.preventDefault();
 			if(currentDiv>1){
 				currentDiv -= 1;
-				$('.hiddenones').hide("slide", {direction:"right"});
+				$('.hiddenones').hide("fade");
 				$('#health-'+currentDiv).show("slide", { direction: "left" });
 				var main = "#"+currentDiv;
 				var sub = currentDiv +1;
 				var mainn = "#"+sub;
 				$(mainn).css("background-color", "");
 				$(main).css("background-color", "white");
+				var d = "#d" + currentDiv;
+				$(".des").hide();
+				$(d).show();
+				var m = "#m" +currentDiv;
+				$(".feedback").hide();
+				$(m).show();
 				console.log(currentDiv);
 			};
 		};

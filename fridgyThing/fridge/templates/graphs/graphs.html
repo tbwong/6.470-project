@@ -87,120 +87,127 @@
 	<div id="showpiece" class='showpiece' style="position: absolute">	
 			<div id="title-description" style="width: 600px; height: 100px">
 				<div id="nutrition-info" >
-					Nutrition Trends
+					Your Nutrition Trends
 				</div>
 					
 				<div id="body-info">
-					<span style="opacity: 0">___</span>Age: {{age}}
+					Age: {{age}}
 					<p> Weight: {{body_weight}} 
 				</div>
-			</div>
-
-			
-			<button id="left" class="close nutrition-buttons hover"><span class="glyphicon glyphicon-chevron-left"></span></button>
-			
+			</div>			
 			
 			<div style="display: inline; float: left">
 				<div id="health-1" class="hiddenones">
 					<div id="calories-container" class="container"></div>
-					<div id="calories-text" class="text">
+				<!--	<div id="calories-text" class="text">
 						Calories are units of energy that are burned by your body to stay healthy.
 						Intaking too many calories can lead to weight gain and health problems, while
 						intaking too few can lead to poor nutrition and low energy levels.
-					</div>
+					</div> 
 					<p>
 						{{lowCal}} - {{highCal}} 
-					</p>
-					<div id="calories-feedback" class="feedback">
-						<header>HEY {{username}}!</header>
-						{{calMessage}}
-					</div>
+					</p> -->
 				</div>
-			
+					
 				<div id="health-2" class="hiddenones" style='display:none'>
 					<div id="carbs-container" class="container"></div>
-					<div id="carbs-text" class="text">
+<!--					<div id="carbs-text" class="text">
 			            Something about carbs. Blah. Lalalalallalal. 
 			            Ermpdlkajs;fl a;sldkfjasld fj
 			            asldkfja;sldkfjas;ldkjfa;lskdjf;lkdjfk
 			            as;ldkfjasldkfjdlkjfkdjfk
-		      		</div>
+		      		</div> 
 					<p>
 						{{lowCarb}} - {{highCarb}} 
-					</p>
-		      		<div id="carbs-feedback" class="feedback">
-						<header>HEY {{username}}!</header>
-						{{carbsMessage}}
-					</div>
+					</p> -->
 		      	</div>
 		   
 		    	<div id="health-4" class="hiddenones" style='display:none'>
 					<div id="fat-container" class="container"></div>
-					<div id="fat-text" class="text">
+<!--					<div id="fat-text" class="text">
 						a;sldkfja;sldkf ja;ldfkj a;ls dk
-					</div>
+					</div>  
 					<p>
 						{{lowFat}} - {{highFat}} 
-					</p>
-					<div id="fat-feedback" class="feedback">
-						<header>HEY {{username}}!</header>
-						{{fatMessage}}
-					</div>
+					</p> -->
 				</div>
 			
 		    	<div id="health-3" class="hiddenones" style='display:none'>
 		    		<div id="protein-container" class="container"></div>
-		    		<div id="protein-text" class="text">
+<!--		    		<div id="protein-text" class="text">
 		    			lijlijl;jn;lkjf;alskjf;as
-		    		</div>
+		    		</div> 
 					<p>
 						{{lowProtein}} - {{highProtein}} 
-					</p>
-		    		<div id="protein-feedback" class="feedback">
-						<header>HEY {{username}}!</header>
-						{{proteinMessage}}
-					</div>
+					</p> -->
 		    	</div>
 		    
 		    	<div id="health-5" class="hiddenones" style='display:none'>
 		    		<div id="sodium-container" class="container"></div>
-		    		<div id="sodium-text" class="text">
+<!--		    		<div id="sodium-text" class="text">
 		    			a;sldfja ;lkja;lf kja;slkfj
-		    		</div>
+		    		</div> 
 					<p>
 						{{highSodium}} - {{highSodium}}+2 
-					</p>
-		    		<div id="sodium-feedback" class="feedback">
-						<header>HEY {{username}}!</header>
-						{{sodiumMessage}}
-					</div>
+					</p> -->
 		    	</div>
 		    
 		    	<div id="health-6" class="hiddenones" style='display:none'>
 		    		<div id="sugar-container" class="container"></div>
-		    		<div id="sugar-text" class="text">
+<!--		    		<div id="sugar-text" class="text">
 		    			a;sldfk a;lfkjas;ldkf ja;slkfj
-		    		</div>
+		    		</div> 
 					<p>
 						{{highSugar}} - {{highSugar}} 
-					</p>
-		    		<div id="sugar-feedback" class="feedback">
-						<header>HEY {{username}}!</header>
-						{{sugarMessage}}
-					</div>
-
+					</p> -->
 		    	</div>
 		    </div>
+			
+			<div id="messages">
+				<div id="m1" class="feedback" style="display:block">
+					<header>Hey {{username}}!</header>
+					{{calMessage}}
+				</div>
+				<div id="m2" class="feedback">
+					<header>Hey {{username}}!</header>
+					{{carbsMessage}}
+				</div>
+				<div id="m3" class="feedback">
+					<header>Hey {{username}}!</header>
+					{{proteinMessage}}
+				</div>
+				<div id="m4" class="feedback">
+						<header>Hey {{username}}!</header>
+						{{fatMessage}}
+				</div>
+				<div id="m5" class="feedback">
+					<header>Hey {{username}}!</header>
+					{{sodiumMessage}}
+				</div>
+				<div id="m6" class="feedback">
+					<header>Hey {{username}}!</header>
+					{{sugarMessage}}
+				</div>
+			</div>
+
+				
+			<button id="left" class="close nutrition-buttons hover"><span class="glyphicon glyphicon-chevron-left"></span></button>
 
 			<button id="right" class="close nutrition-buttons"><span class="glyphicon glyphicon-chevron-right"></span></button>
 		
 		<div id="nutrient-container">
-			<div class="nutrient" id="1">Calories</div>
-			<div class="nutrient" id="2">Carbs</div>
-			<div class="nutrient" id="3">Protein</div>
-			<div class="nutrient" id="4">Fat</div>
-			<div class="nutrient" id="5">Sodium</div>
-			<div class="nutrient" id="6">Sugar</div>
+			<div class="nutrient" id="1"><b>Calories</b></div>
+			<div class="des" id="d1" style="display: block;">Calories are units of energy that are burned by your body to stay healthy. Intaking too many calories can lead to weight gain and health problems, while intaking too few can lead to poor nutrition and low energy levels.</div>
+			<div class="nutrient" id="2"><b>Carbs</b></div>
+			<div class="des" id="d2">Calories are units of energy that are burned by your body to stay healthy. Intaking too many calories can lead to weight gain and health problems, while intaking too few can lead to poor nutrition and low energy levels.</div>			
+			<div class="nutrient" id="3"><b>Protein</b></div>
+			<div class="des" id="d3">Calories are units of energy that are burned by your body to stay healthy. Intaking too many calories can lead to weight gain and health problems, while intaking too few can lead to poor nutrition and low energy levels.</div>
+			<div class="nutrient" id="4"><b>Fat</b></div>
+			<div class="des" id="d4">Calories are units of energy that are burned by your body to stay healthy. Intaking too many calories can lead to weight gain and health problems, while intaking too few can lead to poor nutrition and low energy levels.</div>
+			<div class="nutrient" id="5"><b>Sodium</b></div>
+			<div class="des" id="d5">Calories are units of energy that are burned by your body to stay healthy. Intaking too many calories can lead to weight gain and health problems, while intaking too few can lead to poor nutrition and low energy levels. </div>
+			<div class="nutrient" id="6"><b>Sugar</b></div>
+			<div class="des" id="d6">Calories are units of energy that are burned by your body to stay healthy. Intaking too many calories can lead to weight gain and health problems, while intaking too few can lead to poor nutrition and low energy levels.</div>
 		</div>
 	</div>
 
