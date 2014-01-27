@@ -49,7 +49,6 @@
     </ul>
   </nav>
 
-
 <center>
 <div id = "form-area" class = "stitched">
      <div id = "title">
@@ -58,7 +57,7 @@
   <div class="form-group" id = "upload-form">
     <form id = "imguploadform" class = "form-control" action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">
           {% csrf_token %}   
-          <div class="form-group" class="fileUpload" style='display:inline-block;'>
+          <div class="form-group" id="fileUpload" style='display:inline-block;'>
                {{ form.non_field_errors }}
                {{ form.picture }}       
           </div>
@@ -87,9 +86,10 @@
           <h6 id='scrapbook-caption'></h6>
           
      </div>
-    <ul class = "stitched">
+    <div class = "stitched">
+    <ul class = "media-grid">
       {% for x in url %}
-      <li><img src = '{{ MEDIA_URL }}{{ x.picture }}' id = "scrapbook_img{{forloop.counter}}" class = "polaroid" ></li>
+      <li><a href="#"><img src = '{{ MEDIA_URL }}{{ x.picture }}' id = "scrapbook_img{{forloop.counter}}" class = "polaroid" > </a></li>
       <script type="text/javascript">
           $(function(){
                $('#scrapbook_img{{forloop.counter}}').click(function(){
@@ -113,9 +113,8 @@
       </div> -->
     </div>
       {% endfor %}
-    </ul>
   </div>  
-
+</div>
 <!-- Grid   
 
 <div class="row">
