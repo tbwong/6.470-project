@@ -16,3 +16,8 @@ class ImageUploadForm(ModelForm):
 	class Meta:
 		model = Pictures
 		fields = ["picture", "caption", "title"]
+		widgets = {
+            'caption': forms.TextInput(attrs={'class': 'form-control'}),
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+

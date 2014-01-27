@@ -9,6 +9,7 @@
   {% load staticfiles %} 
 
   <link href='http://fonts.googleapis.com/css?family=Exo:200,300,400,500|Alegreya+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Rum+Raisin' rel='stylesheet' type='text/css'>
 
   <!-- Boostrap -->
   <link rel="stylesheet" type="text/css" href="{% static 'fridge/styles/bootstrap/css/bootstrap.min.css' %}">
@@ -51,31 +52,14 @@
     </ul>
   </nav>
 
+
 <center>
-  <div id = "title">
-      <h1> Welcome to your Scrapbook! </h1>
-  </div>
-
-<!--
-
-  <div class = "button"; id = "upload-button">
-      <p> Upload another image? </p>
-       <form action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">{% csrf_token %} 
-                <p>
-                    {{ form.non_field_errors }}
-                    {{ form.picture }}
-
-                </p>
-                <input name="userID" type="hidden" value="{{userID}}"></input>
-                <input type="submit" value="Submit" />
-            </form>
-  </div>
-</center>
--->
-
-<!-- New Upload Function --> 
-<hr>
 <div id = "form-area" class = "stitched">
+  <div id = "title">
+       <h1> Welcome to your Scrapbook! </h1>
+    </div>
+    <form class="form-inline" role="form">
+  <div class="form-group" id = "upload-form">
     <form id = "imguploadform" class = "form-control" action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">
           {% csrf_token %}   
           <div class="form-group" style='display:inline-block;'>
@@ -96,7 +80,8 @@
           </div>
   </form>
 </div>
-<hr>
+</div>
+</div>
 <!--
 
 {% load i18n %}
