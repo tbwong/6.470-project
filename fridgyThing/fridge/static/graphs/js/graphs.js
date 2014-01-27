@@ -1,23 +1,89 @@
 var currentDiv = 1;
 $(document).ready(function(){
+	$("#1").css("background-color", "white");
+	
+	$(".nutrient").click(function() {
+		var maind = "#health-" + (this).id;
+		var number = parseInt((this).id, 10);
+		var main = "#"+currentDiv;
+		var mainn = "#" + (this).id;
+		$(main).css("background-color", "");
+		$(mainn).css("background-color", "white");
+		if (currentDiv < number){
+			$('.hiddenones').hide("slide", {direction:"left"});
+			$(maind).show("slide", {direction:"right"});	
+		}
+		else {
+			$('.hiddenones').hide("slide", {direction:"right"});
+			$(maind).show("slide", {direction:"left"});
+		}
+		currentDiv = number;
+	});
+	
     $('#right').click(function(){
-        currentDiv += 1;
-        if(currentDiv>6){
-            currentDiv=6;
-        }
-        $('.hiddenones').hide();
-        $('#health-'+currentDiv).show();
-        console.log(currentDiv);
+        if(currentDiv<6){
+			currentDiv += 1;
+			$('.hiddenones').hide("slide", {direction:"left"});
+			$('#health-'+currentDiv).show("slide", { direction: "right" });
+			var main = "#"+currentDiv;
+			var sub = currentDiv -1;
+			var mainn = "#"+sub;
+			$(mainn).css("background-color", "");
+			$(main).css("background-color", "white");
+			console.log(currentDiv);
+		}
     });  
+	
     $('#left').click(function(){
-        currentDiv -= 1;
-        if(currentDiv < 1){
-            currentDiv = 1;
-        }
-        $('.hiddenones').hide();
-        $('#health-'+currentDiv).show();
-        console.log(currentDiv);
+        if(currentDiv > 1){
+			currentDiv -= 1;
+			$('.hiddenones').hide("slide", {direction:"right"});
+			$('#health-'+currentDiv).show("slide", {direction:"left"});
+			var main = "#"+currentDiv;
+			var sub = currentDiv + 1;
+			var mainn = "#"+sub;
+			$(mainn).css("background-color", "");
+			$(main).css("background-color", "white");
+			console.log(currentDiv);
+		}
     });
+//press > or < to navigate through graphs	
+	$(document).keypress(function(e) {
+		console.log(e.keyCode);
+		if (e.keyCode === 46) {
+			e.preventDefault();
+			if(currentDiv<6){
+				currentDiv += 1;
+				$('.hiddenones').hide("slide", {direction:"left"});
+				$('#health-'+currentDiv).show("slide", { direction: "right" });
+				var main = "#"+currentDiv;
+				var sub = currentDiv -1;
+				var mainn = "#"+sub;
+				$(mainn).css("background-color", "");
+				$(main).css("background-color", "white");
+				console.log(currentDiv);
+			};
+		};
+	});
+	
+	$(document).keypress(function(e) {
+		console.log(e.keyCode);
+		if (e.keyCode === 44) {
+			e.preventDefault();
+			if(currentDiv>1){
+				currentDiv -= 1;
+				$('.hiddenones').hide("slide", {direction:"right"});
+				$('#health-'+currentDiv).show("slide", { direction: "left" });
+				var main = "#"+currentDiv;
+				var sub = currentDiv +1;
+				var mainn = "#"+sub;
+				$(mainn).css("background-color", "");
+				$(main).css("background-color", "white");
+				console.log(currentDiv);
+			};
+		};
+	});
+	
     $(window).resize()
 
     
@@ -102,7 +168,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 name: 'high bound',
                 data: highCal,
                 color: '#00FFFF'
-            }]
+            }] 
         });
     }
     drawCalories('#calories-container'.width, '#calories-container'.height) 
