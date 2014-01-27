@@ -2,8 +2,7 @@ from django.conf.urls import patterns, url
 from fridge import views
 from django.conf.urls import patterns
 
-from forms import ImageUploadForm, TitleCommentForm#FIX
-from views import PhotoWizard #FIX
+from forms import ImageUploadForm
 
 urlpatterns = patterns('',
 	#----------------Pav-----------------\/
@@ -25,7 +24,6 @@ urlpatterns = patterns('',
     #----------------Jacqui-----------------\/
     #url(r'^scrapbook/',views.showScrapbookPage, name='showScrapbook'),
     url(r'^(?P<userID>[-\w]+)/scrapbook/',views.showScrapbookPage, name='showScrapbook'),
-    url(r'^contact/$', PhotoWizard.as_view([ImageUploadForm, TitleCommentForm])),
     #url(r'^scrapbook/',views.addImage, name='addImage'),
     #if settings.DEBUG:
     # static files (images, css, javascript, etc.)
