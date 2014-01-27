@@ -76,34 +76,25 @@
 <!-- New Upload Function --> 
 <hr>
 <div id = "form-area" class = "stitched">
-  <div class="form-group" id = "upload-form">
     <form id = "imguploadform" class = "form-control" action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">
-          {% csrf_token %}          
-          <p>
-          {{ form.non_field_errors }}
-          {{ form.picture }}
-          </p> 
-          <p>
-          {{ form.non_field_errors }}
-          {{ form.title }}
-          </p> 
-          <p>
-          {{ form.non_field_errors }}
-          {{ form.caption }}
-          </p>
-          <div class="form-group">
-               <!-- <input type="text" class="form-control" name='title' id="title" placeholder="Put a title!"> -->
-                 
+          {% csrf_token %}   
+          <div class="form-group" style='display:inline-block;'>
+               {{ form.non_field_errors }}
+               {{ form.picture }}       
           </div>
-          <div class="form-group">
-               <!-- <input type="text" class="form-control" name='comment' id="comment" placeholder="Add dat comment..."> -->
-                
+          <div class="form-group" style='display:inline-block;'>
+               {{ form.non_field_errors }}
+               {{ form.title }}
           </div>
-          <div class = "form-group">
+          <div class="form-group" style='display:inline-block;'>
+               {{ form.non_field_errors }}
+               {{ form.caption }}
+          </div> 
+
+          <div class = "form-group" style='display:inline-block;'>
                <input type="submit" id = "submitbutton" class="btn btn-success" value="Upload Nao! :D"/>
           </div>
   </form>
-</div>
 </div>
 <hr>
 <!--
