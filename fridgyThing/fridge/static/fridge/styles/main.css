@@ -52,6 +52,9 @@ body{
 	width: 50px;
 
 }
+.input-group{
+	margin: 10px;
+}
 #login-group .input-group{
 	margin:10px;
 	box-shadow: 1px 1px 15px #888888;
@@ -62,10 +65,10 @@ body{
 	display: none;
 	position: fixed;
 	width: 500px;
-	height: 600px;
+	height: 400px;
 	left: 50%;
 	margin-left: -250px;
-	top: 30%;
+	top: 40%;
 	margin-top: -150px;
 	background-color: white;
 	border-radius: 10px;

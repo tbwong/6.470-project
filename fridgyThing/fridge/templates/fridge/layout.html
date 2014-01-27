@@ -44,17 +44,20 @@
 								<label class='control-label'>Noms!</label>
 							</div>
 						</a>
-						<div id='addIng' class='control-button' href="">
-							<img class='control-im' src="{% static 'fridge/images/plus.png' %}" />
-							<br>
-							<label class='control-label'>Food</label>
-						</div>
-						<div id='delIng' class='control-button' href="">
-							<img class='control-im' src="{% static 'fridge/images/minus.png' %}" />
-							<br>
-							<label class='control-label'>Food</label>
-						</div>
-
+						<a>
+							<div id='addIng' class='control-button' href="">
+								<img class='control-im' src="{% static 'fridge/images/plus.png' %}" />
+								<br>
+								<label class='control-label'>Food</label>
+							</div>
+						</a>
+						<a>
+							<div id='delIng' class='control-button' href="">
+								<img class='control-im' src="{% static 'fridge/images/minus.png' %}" />
+								<br>
+								<label class='control-label'>Food</label>
+							</div>
+						</a>
 					</div>
 
 					<div id='control-scrapbook' class='controlGroup' style='display:none;'>
@@ -135,7 +138,7 @@
 
 			<div class="input-group">
 			  <span class="input-group-addon">Ingredient Name:</span>
-			  <input type="text" name='IngName'class="form-control" placeholder="Be general.  ex: Ketchup NOT Heins Tomato Ketchup" required autofocus>
+			  <input type="text" name='IngName'class="form-control" placeholder="Be general.  ex: Ketchup NOT Heinz Tomato Ketchup" required autofocus>
 			</div>
 			<br>
 			<div class="input-group">
@@ -165,7 +168,7 @@
 			<br>
 			<input type="hidden" name="userID" value="{{userID}}">
 			<br><br>
-			<div class="input-group btn-group centeredButton" >
+			<div class="input-group btn-group centeredButton" style="margin-left:42%;">
 				<input type='submit' class='btn btn-default' value='Remove It'></input>
 			</div>
 
