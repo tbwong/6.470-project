@@ -17,10 +17,21 @@ $(document).ready(function(){
 			
 		}
 	});
+
 	
 	$(".nutrient").click(function() {
 		var maind = "#health-" + (this).id;
 		var number = parseInt((this).id, 10);
+		
+		$("#right").show();
+		$("#left").show();
+		if (number === 6) {
+			$("#right").hide();
+		}
+		else if (number ===1) {
+			$("#left").hide();
+		} 
+		
 		var main = "#"+currentDiv;
 		var mainn = "#" + (this).id;
 		var d = "#d" + (this).id;
@@ -43,6 +54,7 @@ $(document).ready(function(){
 	});
 	
     $('#right').click(function(){
+		$(this).blur();
         if(currentDiv<6){
 			currentDiv += 1;
 			$('.hiddenones').hide("fade");
@@ -58,11 +70,18 @@ $(document).ready(function(){
 			$(main).css("background-color", "white");
 			$(".des").hide();
 			$(d).show();
+			if (currentDiv === 6) {
+				$("#right").hide();
+			}
+			else if (currentDiv ===2) {
+				$("#left").show();
+			}
 			console.log(currentDiv);
 		}
     });  
 	
     $('#left').click(function(){
+		$(this).blur();
         if(currentDiv > 1){
 			currentDiv -= 1;
 			$('.hiddenones').hide("fade");
@@ -78,6 +97,12 @@ $(document).ready(function(){
 			$(main).css("background-color", "white");
 			$(".des").hide();
 			$(d).show();
+			if (currentDiv ===1) {
+				$("#left").hide();
+			}
+			else if (currentDiv ===5) {
+				$("#right").show();
+			}
 			console.log(currentDiv);
 		}
     });
@@ -101,6 +126,12 @@ $(document).ready(function(){
 				var m = "#m" +currentDiv;
 				$(".feedback").hide();
 				$(m).show();
+				if (currentDiv === 6) {
+					$("#right").hide();
+				}
+				else if (currentDiv ===2) {
+					$("#left").show();
+				}
 				console.log(currentDiv);
 			};
 		};
@@ -125,6 +156,12 @@ $(document).ready(function(){
 				var m = "#m" +currentDiv;
 				$(".feedback").hide();
 				$(m).show();
+				if (currentDiv ===1) {
+					$("#left").hide();
+				}
+				else if (currentDiv ===5) {
+					$("#right").show();
+				}
 				console.log(currentDiv);
 			};
 		};
