@@ -234,16 +234,14 @@ def showGraphsPage(request,userID):
 
 	highSodium = 0
 	highSugar = 0
-	
-	try:
 
+	try:
 		dailyCal = float(sum(calories))/len(calories)
 		dailyCarb = float(sum(carbValues))/len(carbValues)
 		dailyFat = float(sum(fatValues))/len(fatValues)
 		dailyProtein = float(sum(proteinValues))/len(proteinValues)
 		dailySodium = float(sum(sodiumValues))/len(sodiumValues)
 		dailySugar = float(sum(sugarValues))/len(sugarValues)
-		
 	except ZeroDivisionError:
 		dailyCal = 0
 		dailyCarb = 0
@@ -252,7 +250,6 @@ def showGraphsPage(request,userID):
 		dailySodium = 0
 		dailySugar = 0
 
-	
 
 	# Men: BEE = (66.5 + 13.8(W) + 5.0(H) - 6.8(A) ) 1.2
 	# Women: BEE =( 655.1 + 9.6(W) + 1.9(H) - 4.7(A)) * 1.2
@@ -277,9 +274,9 @@ def showGraphsPage(request,userID):
 	highCarb = [dailyCal * .6]
 	lowCarb = [dailyCal * .45]
 	if dailyCarb < lowCarb[0]:
-		carbMessage = "Have you been feeling tired? Try eating some healthy carbs like whole-grain pasta, quinoa, brown rice, and bean"
+		carbMessage = "not enough carbs!"
 	elif dailyCarb > highCarb[0]:
-		carbMessage = "Too many carbs in your life? Try avoiding white bread, pasta, and rice, and adding healthy low-carb substitutes such as spaghetti squash or whole-wheat substitutes like brown rice for a yummy, hearty meal."
+		carbMessage = "too many carbs!"
 	else:
 		carbMessage = "just right~"
 
@@ -288,16 +285,16 @@ def showGraphsPage(request,userID):
 	highFat = [dailyCal*.3 + 2]
 	lowFat = [dailyCal*.3 - 2]
 	if dailyFat < lowFat[0]:
-		fatMessage = "Stock up on healthy fats with nuts, oils, avocados, or some tasty peanut butter!"
+		fatMessage = "too little fat!"
 	elif dailyFat > highFat[0]:
-		fatMessage = "Try reducing your fat content by steering away from fatty meats and butter and keep healthy fat in your diet with nuts and oils!"
+		fatMessage = "too much fat!"
 
 
 	#daily protein intake .8-1.0 g of protein/kg body weight.
 	highProtein =  [body_weight / 2.2]
 	lowProtein = [body_weight / 2.2 * .8]
 	if dailyProtein < lowProtein[0]:
-		proteinMessage = "You're running a little low on protein! Try eating lean meats, fish, eggs, tofu, yogurt, or milk."
+		proteinMessage = "not enough protein!"
 	elif dailyProtein > highProtein[0]:
 		proteinMessage = "too much protein!"
 	else:
@@ -307,7 +304,7 @@ def showGraphsPage(request,userID):
 	#daily sodium should not be more than 2.3 grams
 	highSodium = [2.3]
 	if dailySodium > highSodium[0]:
-		sodiumMessage = "Try cutting down on sodium by reducing the amount of canned or processed foods that you use in your recipes or check for low sodium substitutes for items you buy."
+		sodiumMessage = "neeed FEWERE sodium"
 	else:
 		sodiumMessage = "AWWW YEAH good"
 
@@ -318,7 +315,7 @@ def showGraphsPage(request,userID):
 		highSugar = [36]
 
 	if dailySugar > highSugar[0]:
-		sugarMessage = "Eating too much sugar isn't all sweet! Try cutting down your sugar in recipes by reducing sugar quantities and substituting for natural sources such as honey and naturally-sweet fruit."
+		sugarMessage = "NOOO STAHPPPP!"
 	else:
 		sugarMessage = ":D"
 
@@ -368,31 +365,36 @@ def showGraphsPage(request,userID):
 #----------------Tiff-----------------/\
 #----------------Jacqui-----------------\/
 def showScrapbookPage(request,userID):
-	if request.method == 'POST':
-		form = ImageUploadForm(request.POST, request.FILES)
-		if form.is_valid():
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
 			user = User.objects.get(pk=userID)
 			print userID
-			m = Pictures(picture = request.FILES['picture'],date = timezone.now(),title=request.POST['title'], caption = request.POST['caption'],user=user)
+			m = Pictures(picture = request.FILES['picture'],date = timezone.now(), caption = "",user=user)
          	# m.model_pic = form.cleaned_data['image']
 			m.save()
             #if form.user.is_valid():
             	#form.user(user=request.user) #check
 			# form.save()
-		else:
-			print 'THE HILLS ARE ALIVE'
-	print 'SOMETHING HAPPENED'
-	scrapbook_gen = Pictures.objects
-	url = Pictures.objects.filter(user=User.objects.get(pk=userID))
-	#url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
-	return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
+    scrapbook_gen = Pictures.objects
+    url = Pictures.objects.filter(user=User.objects.get(pk=userID))
+    #url = [x.picture.url.replace("fridge/static/", "") for x in Pictures.objects.all()]
+    return render(request, 'scrapbook/scrapbook.html', {'scrapbook_gen':scrapbook_gen, 'url':url, 'form': ImageUploadForm(),'userID':userID})
 
 			#user = User.objects.get(pk=userID)
 			#m = Pictures(picture = request.FILES['image'],date = timezone.now(), caption = "") #
 			#   m.model_pic = form.cleaned_data['image']
 			#m.save()
 			#if form.user.is_valid():
-				#form.user(user=request.user) #chec		
+				#form.user(user=request.user) #check
+		
+
+class PhotoWizard(SessionWizardView):
+	file_storage = FileSystemStorage(location = os.path.join(settings.MEDIA_ROOT, ''))
+	def done(self, form_list, **kwargs):
+		do_something_with_the_form_data(form_list)
+		return HttpResponseRedirect('/page-to-redirect-to-when-done/')
+
 
 """
 def addImage(request):

@@ -76,41 +76,26 @@
 <!-- New Upload Function --> 
 <hr>
 <div id = "form-area" class = "stitched">
-<form class="form-inline" role="form">
-  <div class="form-group" id = "upload-form">
-    <div class = "form-control" for= "imguploadform">
-    <form id = "imguploadform" class = "form-control" action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">{% csrf_token %}          
-                <p>
-                    {{ form.non_field_errors }}
-                    {{ form.picture }}
-                </p> 
-                    <input name="userID" type="hidden" value="{{userID}}"></input>
-  </div>
-</div>
-  <div class="form-group">
-    <input type="text" class="form-control" id="title" placeholder="Put a title!">
-                <p>
-                    {{ form.non_field_errors }}
-                    {{ form.title }}
-                    <input name="userID" type="hidden" value="{{userID}}"></input>
-                </p> 
-  </div>
-  <div class="form-group">
-    <input type="text" class="form-control" id="comment" placeholder="Add dat comment...">
-                <p>
-                    {{ form.non_field_errors }}
-                    {{ form.comment }}
-                    <input name="userID" type="hidden" value="{{userID}}"></input>
-                </p> 
-  </div>
-  <div class = "form-group">
-    <input type="submit" id = "submitbutton" class="btn btn-success" value="Upload Nao! :D"/>
-  </form>
-  
-</div>
-</div>
-</div>
+    <form id = "imguploadform" class = "form-control" action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}   
+          <div class="form-group" style='display:inline-block;'>
+               {{ form.non_field_errors }}
+               {{ form.picture }}       
+          </div>
+          <div class="form-group" style='display:inline-block;'>
+               {{ form.non_field_errors }}
+               {{ form.title }}
+          </div>
+          <div class="form-group" style='display:inline-block;'>
+               {{ form.non_field_errors }}
+               {{ form.caption }}
+          </div> 
 
+          <div class = "form-group" style='display:inline-block;'>
+               <input type="submit" id = "submitbutton" class="btn btn-success" value="Upload Nao! :D"/>
+          </div>
+  </form>
+</div>
 <hr>
 <!--
 
