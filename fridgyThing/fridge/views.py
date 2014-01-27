@@ -383,15 +383,7 @@ def showScrapbookPage(request,userID):
 			#   m.model_pic = form.cleaned_data['image']
 			#m.save()
 			#if form.user.is_valid():
-				#form.user(user=request.user) #check
-		
-
-class PhotoWizard(SessionWizardView):
-	file_storage = FileSystemStorage(location = os.path.join(settings.MEDIA_ROOT, ''))
-	def done(self, form_list, **kwargs):
-		do_something_with_the_form_data(form_list)
-		return HttpResponseRedirect('/page-to-redirect-to-when-done/')
-
+				#form.user(user=request.user) #chec		
 
 """
 def addImage(request):
