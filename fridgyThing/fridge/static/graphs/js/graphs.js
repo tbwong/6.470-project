@@ -123,7 +123,6 @@ $(document).ready(function(){
     
 
 function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarData,dates,name,highCal,lowCal,highCarb,lowCarb,highFat,lowFat,highProtein,lowProtein,highSodium,highSugar) {
-<<<<<<< HEAD
 	Highcharts.theme = {
 		colors: ["#DDDF0D", "#7798BF", "#55BF3B", "#DF5353", "#aaeeee", "#ff0066", "#eeaaee",
 			"#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
@@ -372,8 +371,6 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
 	// Apply the theme
 	Highcharts.setOptions(Highcharts.theme);
 
-=======
->>>>>>> 1252b6fb69e0b6b2c27c5eb0f503b5432b2a13fc
     function drawCalories(x,y) {
         calorieChart = new Highcharts.Chart({
             chart: {

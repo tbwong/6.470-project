@@ -447,7 +447,7 @@ def showShoppingPage(request,userID):
 		other = ShoppingList.objects.get(id=1).note
 	itemslist = [(x.id, x.item) for x in ShoppingList.objects.filter(user=User.objects.get(pk=userID))]
 	memolist = [(x.id, x.note) for x in ShoppingList.objects.filter(user=User.objects.get(pk=userID))]
-	genlist = ShoppingList.objects.all()
+	genlist = ShoppingList.objects.filter(user=User.objects.get(pk=userID))
 	return render(request, 'shopping/shopping.html', {'genlist':genlist, 'other':other,'userID':userID})
 
 
