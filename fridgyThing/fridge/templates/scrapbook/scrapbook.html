@@ -117,7 +117,7 @@
      <div id="popupBackground"></div>
      <div id='scrapbook-popup' class='popup' >
           <h1 id='scrapbook-title' style="text-align:center;"></h1>
-          <img id='scrapbook-image' width="300px">
+          <img id='scrapbook-image' width="400px">
           <br>
           <h6 id='scrapbook-caption'></h6>
           
@@ -145,7 +145,7 @@
                $('#scrapbook_img{{forloop.counter}}').click(function(){
                     $('#scrapbook-popup #scrapbook-title').html("{{x.title}}");
                     $('#scrapbook-popup #scrapbook-image').attr('src','{{MEDIA_URL}}{{x.picture}}');
-                    $('#scrapbook-popup #scrapbook-title').html("{{x.caption}}");
+                    $('#scrapbook-popup #scrapbook-caption').html("{{x.caption}}");
                     
                     $('#popupBackground').fadeIn();
                     $('#scrapbook-popup').show('slow');

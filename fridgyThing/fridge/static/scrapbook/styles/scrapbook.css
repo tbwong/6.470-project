@@ -318,3 +318,8 @@ transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 
 #id_picture { 
 }
+
+.popup{
+  height: 450px;
+  margin-top: -225px;
+}
