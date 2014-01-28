@@ -170,34 +170,49 @@
 	</div>
 
 	<div id='addIng-popup' class='popup' >
-		<h1 style="text-align:center;font-size:28px">Add to Fridge</h1>
+		<h1 style="text-align:center;font-size:20px">Add to Fridge</h1>
 		<br><br>
 		<form id='addIng-group' action="{% url 'fridge:addIngredient'%}" method="post">
 			{% csrf_token %}
-
+<!--
 			<div class="input-group">
 			  <span class="input-group-addon">Ingredient Name:</span>
-			  <input type="text" name='IngName'class="form-control" placeholder="Be general.  ex: Ketchup NOT Heinz Tomato Ketchup" required autofocus>
+			  <input type="text" name='IngName'class="form-control" placeholder="Be general.  ex: Ketchup NOT Heinz Tomato Ketchup">
 			</div>
 			<br>
 			<div class="input-group">
-			  <input type="hidden" name='IngAmount' class="form-control" value="1" required>
+			  <input type="hidden" name='IngAmount' class="form-control" value="1">
 			</div>
 			<input type="hidden" name="userID" value="{{userID}}">
 			<br>
 			<div class="input-group btn-group centeredButton" >
 				<input type='submit' class='btn btn-default' value='Add It'></input>
 			</div>
-
+			-->
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="input-group">
+						<input type="text" name='IngName' placeholder="Ingredient Name" class="form-control" style="width: 205px; position: relative;top: -20px;">
+						<span class="input-group-btn">
+							<button class="btn btn-default" id="add" type="button" style="position: relative;top: -20px;">Add</button>
+						</span>
+					</div><!-- /input-group -->
+				</div><!-- /.col-lg-6 -->
+			</div><!-- /.row -->
+			<div class="input-group">
+			  <input type="hidden" name='IngAmount' class="form-control" value="1">
+			</div>
+			<input type="hidden" name="userID" value="{{userID}}">
 		</form>
+		<div style="position: relative;top: -10px;color: gray; padding-left: 10px;">Be general!(ex. Ketchup, not Heinz Tomato Ketchup)</div>
 	</div>
 	<div id='delIng-popup' class='popup' >
-		<h1 style="text-align:center;font-size:29px">Remove Ingredient</h1>
+		<h1 style="text-align:center;font-size:20px">Remove Ingredient</h1>
 		<br><br>
 		<form id='delIng-group' action="{% url 'fridge:delIngredient'%}" method="post">
 			{% csrf_token %}
 
-			<select name="IngNames" style="position:relative; left:50%; margin-left:-32px;" >
+			<select name="IngNames" style="position: relative;top: -15px;left: 0;width: 160px;height: 34px;"} >
 				{%for i in ingredients%}
 				<option value="{{i.name}}" >{{i.name}}</option>
 				{%endfor%}
@@ -206,7 +221,7 @@
 			<br>
 			<input type="hidden" name="userID" value="{{userID}}">
 			<br><br>
-			<div class="input-group btn-group centeredButton" style="margin-left:42%;">
+			<div class="input-group btn-group notcenteredButton" style="margin-left:42%;">
 				<input type='submit' class='btn btn-default' value='Remove It'></input>
 			</div>
 
