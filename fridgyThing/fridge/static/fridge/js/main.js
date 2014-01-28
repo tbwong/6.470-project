@@ -9,11 +9,11 @@ $(function(){
 
 	$('#register-button').click(function(){
 		$('#popupBackground').fadeIn();
-		$('#register-popup').show('slow');
+		$('#register-popup').fadeIn();
 	});
 	$('#popupBackground').click(function(){
 		$('#popupBackground').fadeOut();
-		$('#register-popup').hide('fast');
+		$('#register-popup').fadeOut();
 
 	});
 });
