@@ -18,8 +18,8 @@ class ImageUploadForm(ModelForm):
 		fields = ["picture", "caption", "title"]
 		widgets = {
             'caption': forms.TextInput(attrs={'class': 'form-control'}),
-            'caption': forms.TextInput(attrs={'placeholder': 'Caption'}),
+            'caption': forms.TextInput(attrs={'placeholder': 'Caption','required':''}),
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'title': forms.TextInput(attrs={'placeholder': 'Title'})
+            'title': forms.TextInput(attrs={'placeholder': 'Title','required':''})
         }
 

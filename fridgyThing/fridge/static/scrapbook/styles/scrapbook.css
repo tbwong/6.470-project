@@ -321,6 +321,14 @@ nav .sidebar{
   width:500px;
   background-color:transparent;
 }
-
+.thumbnail{
+  width: 200px;
+  height: 170px;
+  overflow: hidden;
+}
+.thumbnail img{
+  height: 160px;
+  width: auto;
+}
 
 
