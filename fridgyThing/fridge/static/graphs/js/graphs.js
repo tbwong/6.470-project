@@ -499,10 +499,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 valueSuffix: ''
             },
             legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+				enabled:false
             },
             series: [{
                 type: 'column',
@@ -555,10 +552,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 valueSuffix: ''
             },
             legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+                enabled:false
             },
             series: [{
                 type: 'column',
@@ -611,10 +605,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 valueSuffix: ''
             },
             legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+                enabled:false
             },
             series: [{
                 type: 'column',
@@ -666,10 +657,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 valueSuffix: ''
             },
             legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+                enabled:false
             },
             series: [{
                 type: 'column',
@@ -721,10 +709,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 valueSuffix: ''
             },
             legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+				enabled:false
             },
              series: [{
                 type: 'column',
@@ -775,10 +760,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 valueSuffix: ''
             },
             legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+				enabled:false
             },
              series: [{
                 type: 'column',
