@@ -59,7 +59,7 @@ nav .sidebar{
 
 .hiddenones {
 	position: absolute;
-	width:500px;
+	width:calc(100% - 260px);
 	background-color:transparent;
 }
 
@@ -67,14 +67,19 @@ nav .sidebar{
 
 #body-info {
 	position: absolute;
-	font-size: 15px;
+	font-size: 20px;
 	font-weight: bold;
+	padding: 7px;
+
+	-webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
 }
 
 #left {
 	width: 20px; 
 	position:absolute;
-	left: 10px;
+	left: 1px;
 	top:200px;
 
 
@@ -82,7 +87,7 @@ nav .sidebar{
 #right {
 	position:absolute;
 	width: 20px;
-	left: 660px;
+	left: calc(100% - 300px + 35px);
 	top:200px;
 
 }
@@ -93,10 +98,10 @@ nav .sidebar{
 
 .container {
 	position: absolute;
-	width: 630px;
+	width: 100%;
 	height: 440px;
 	margin-top:5px;
-	margin-left: 35px;
+	margin-left: 10px;
 	background-color:transparent;
 	/*
 	-webkit-box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);
@@ -126,7 +131,7 @@ nav .sidebar{
 }
 
 #nutrient-container {
-	background-color:pink;
+	background-color: pink;
 	width: 240px;
 	position: absolute;
 	top: 0px;
@@ -134,15 +139,29 @@ nav .sidebar{
 }
 #messages {
 	position:absolute;
-	top:450px;
+	top:460px;
 	left:20px;
+	padding: 5px;
+
+	
 }
 
 .feedback {
 	display:none;
 	font-size: 15px;
-	margin-left: 100px;
+	margin-left: 130px;
 	width: 485px;
+	padding: 7px;
+	-webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+}
+
+.greeting {
+	font-size: 20px;
+	font-weight: bold;
+
+
 }
 
 .des {
