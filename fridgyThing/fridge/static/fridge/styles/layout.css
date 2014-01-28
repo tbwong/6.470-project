@@ -57,16 +57,22 @@ a:hover{
 
 /*control panel*/
 #control-panel-holder{
-	display: inline-block;
-	margin-left: 100px;
-	margin-top:-10px;
+display: inline-block;
+float: right;
+width: 210px;
+margin-top: -10px;
 }
 #control-panel-holder .cpBracket{
-	font-size: 50px;
-	font-weight: lighter;
+font-size: 50px;
+font-weight: lighter;
+display: inline-block;
+margin-left: -19px;
+opacity: 0.1;
+width: 0px;
 }
 
 .panelLabel{
+	display:none;
 	text-align: center;
 	transform:rotate(-90deg);
 	-ms-transform:rotate(-90deg); /* IE 9 */
@@ -74,12 +80,17 @@ a:hover{
 	margin: 0px;
 }
 .control-button{
-	display: inline-block;
-	border:1px solid white;
-	border-radius: 5px;
-	padding: 3px 12px;
-	position: relative;
-	width: 60px;
+display: inline-block;
+border: 1px white;
+border-radius: 5px;
+padding: 3px 23px;
+position: relative;
+width: 80px;
+
+}
+
+.control-button:hover{
+opacity:0.5;
 
 }
 .control-button .control-label{
@@ -89,8 +100,9 @@ a:hover{
 	margin-top: -4px;
 	width: 36px;
 	text-align: center;
-	
-
+}
+.control-button .control-label:hover{
+opacity:1;
 }
 .control-button .control-im{
 	position: absolute;
@@ -188,7 +200,7 @@ h1{
 	margin: 0px;
 }
 #current-fridge{
-	width:1000000px; 
+	width:2000px; 
 	padding-left:20px;
 }
 
@@ -235,9 +247,9 @@ h1{
 	margin: 2px;
 	border-radius: 10px;
 	border: 1px solid white;
-	-webkit-box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
+/*	-webkit-box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
 	-moz-box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
-	box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75); */
 }
 
 /* Rujia's popup styling */

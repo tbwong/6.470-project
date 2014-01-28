@@ -19,17 +19,18 @@ $(document).ready(function(){
 	//$('#control-panel-holder #control-content').html(page);
 	$('.showpiece').hide();
 	$('.controlGroup').hide();
-	function showShowpiece(page){
-		$(page).show('slow');
-		console.log(page);
-	}
 	function showControls(control){
-		$(control).show('slow');
+		$(control).show(200);
 		console.log(page);
 	}
+	function showShowpiece(page){
+		$(page).show(800);
+		console.log(page);
+	}
+	showControls('#control-fridge')
 	showShowpiece('#showpiece-fridge');
 	showShowpiece('#noFridge');
-	showControls('#control-fridge');
+	
 
 	// $('.sidebarHolder .sidebar li a').click(function(){
 	// 	if(page!=$(this).attr('id')){
