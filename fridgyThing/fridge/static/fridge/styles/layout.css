@@ -249,7 +249,7 @@ h1{
 .popup-recipe {
 	display: none;
 	position: fixed;
-	width: 600px;
+	width: 500px;
 	height: 60%;
 	left: 50%;
 	margin-left: -250px;
@@ -267,8 +267,9 @@ h1{
 #recipetitle {
 	font-size: 25px;
 	margin-left:5px;
-	position: relative;
-	top: 3px;
+	position: absolute;
+top: 10px;
+left: 13px;
 }
 
 #recipeing {
@@ -300,17 +301,21 @@ h1{
 	padding-top: 3px;
 }
 #made {
-	position:relative;
-	right: -380px;
-	top:-39px;
+position: absolute;
+right: 105px;
+width: 60px;
+top: 10px;
+padding-left: 4px;
 }
 
 #directions {
 	margin-left: 5px;
 	margin-top:10px;
-	position: relative;
-	right: -55px;
-	top: -5px;
+	position: absolute;
+	right: 10px;
+	top: 0px;
+width: 90px;
+padding-left: 6px;
 }
 
 .add {
@@ -322,7 +327,7 @@ h1{
 	width:230px; 
 	float: left; 
 	position:relative; 
-	top:-40px;
+	top:70px;
 }
 
 .arrows {
@@ -338,4 +343,11 @@ h1{
 #right {
 	top:130px;
 	left:500px;
+}
+
+#fixed-header {
+	background-color:#fff5eb;
+position: absolute;
+width: 460px;
+height: 50px;
 }

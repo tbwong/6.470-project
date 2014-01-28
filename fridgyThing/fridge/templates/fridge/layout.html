@@ -120,16 +120,7 @@
 		{%endif%}
 		{%for r in recipe%}
 		<div id = 'rInfo-{{forloop.counter}}' class='rInfo' style='display:none; height:100%; overflow-y:scroll;'>
-			<span id="recipetitle" style='display:inline-block;'>{{r.0}}</span> 
-			<a href="http://www.yummly.com/recipe/{{r.3}}"><button class ='btn btn-default' id="directions">See Directions</button></a>
-			<form style='' action="{%url 'fridge:makeMeal'%}" method="post" >
-				{% csrf_token %}
-
-				<input type="hidden" name="userID" value="{{userID}}">
-				<input type="hidden" name="recipeID" value="{{r.3}}">
-
-				<button class='btn btn-default' id="made">I Made It!</button>
-			</form> <br>
+			
 			<div id="listblock">
 				<div id="listheader">You need:</div>
 				{%for ingredient in r.1%}
@@ -150,6 +141,7 @@
 					</form>
 				</span>
 			</div>
+			
 			<div id="listblock">
 				<div id="listheader">You have:</div>
 				{%for ingredient in r.5%}
@@ -157,9 +149,18 @@
 				{%endfor%}	
 			</div>
 			
-			
+			<div id="fixed-header">
+				<span id="recipetitle" style='display:inline-block;'>{{r.0}}</span> 
+				<a href="http://www.yummly.com/recipe/{{r.3}}"><button class ='btn btn-default' id="directions">See Directions</button></a>
+				<form style='' action="{%url 'fridge:makeMeal'%}" method="post" >
+					{% csrf_token %}
 
+					<input type="hidden" name="userID" value="{{userID}}">
+					<input type="hidden" name="recipeID" value="{{r.3}}">
 
+					<button class='btn btn-default' id="made">I Made It!</button>
+				</form> <br>
+			</div>
 			
 			
 		</div>
@@ -189,7 +190,7 @@
 		</form>
 	</div>
 	<div id='delIng-popup' class='popup' >
-		<h1 style="text-align:center;">Remove Ingredient</h1>
+		<h1 style="text-align:center;font-size:29px">Remove Ingredient</h1>
 		<br><br>
 		<form id='delIng-group' action="{% url 'fridge:delIngredient'%}" method="post">
 			{% csrf_token %}
