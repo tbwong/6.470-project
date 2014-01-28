@@ -65,6 +65,10 @@ border-bottom-right-radius: 50px;
    font-weight: normal;
 }
 
+.polaroid{
+  
+}
+
 img.thumbnail {  
     background:#000; /*Change this to a background image or remove*/  
     border:solid #fff;  
