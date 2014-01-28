@@ -121,7 +121,7 @@
 		{%for r in recipe%}
 		<div id = 'rInfo-{{forloop.counter}}' class='rInfo' style='display:none; height:100%; overflow-y:scroll;'>
 			<span id="recipetitle" style='display:inline-block;'>{{r.0}}</span> 
-			<a href="http://www.yummly.com/recipe/{{r.3}}"><button class='btn btn-default' id="directions">See Directions</button></a>
+			<a href="http://www.yummly.com/recipe/{{r.3}}"><button class ='btn btn-default' id="directions">See Directions</button></a>
 			<form style='' action="{%url 'fridge:makeMeal'%}" method="post" >
 				{% csrf_token %}
 

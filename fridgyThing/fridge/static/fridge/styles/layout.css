@@ -249,7 +249,7 @@ h1{
 .popup-recipe {
 	display: none;
 	position: fixed;
-	width: 500px;
+	width: 600px;
 	height: 60%;
 	left: 50%;
 	margin-left: -250px;
