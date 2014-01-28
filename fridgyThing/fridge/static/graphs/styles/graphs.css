@@ -42,7 +42,7 @@ a:hover{
 	color: grey;
 }
 nav.sidebarHolder{
-	height: 1000px;
+	height: 600px;
 	width: 250px;
 	z-index: -1;
 }
@@ -50,7 +50,6 @@ nav.sidebarHolder{
 nav .sidebar{
 	width: 250px;
 	background-color: #FFE4C4;
-	height: 100%;
 }
 .arrow{
 	float: right;

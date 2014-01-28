@@ -115,12 +115,16 @@ $(document).ready(function() {
 	});
 	
 //add to fridge!
+	$("#addbutton").on("click", function() {
+		$("#addIng-group").submit();
+	});
+
 	$('.hov').on('click', '.add', function(){
 		$('#popupBackground').fadeIn();
 		$('#addIng-popup').fadeIn();
 		var okay = $(this).closest('.hov').attr("id");
 		var okayy = $(this).siblings('#text').text();
-		$('#addIng-popup').find('#insertid').val(okay);
+		$('#addIng-popup').find('#id').val(okay);
 		$('#addIng-popup').find('#foodname').val(okayy);
 		$('#addIng-popup').find('#foodname').focus();
 		$('#addIng-popup').find('#foodname').setCursorToTextEnd();

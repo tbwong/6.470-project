@@ -144,14 +144,14 @@
 		<div id='addIng-popup' class='popupnew' >
 			<h1 style="text-align:center;font-size:20px">Add to Fridge</h1>
 			<br><br>
-			<form id='addIng-group' action="{% url 'fridge:addIngredient'%}" method="post">
+			<form id='addIng-group' action="{% url 'fridge:addIngredientS'%}" method="post">
 				{% csrf_token %}
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="input-group">
-							<input type="text" name='IngName' placeholder="Ingredient Name" class="form-control" style="width: 165px; position: relative;top: -20px;">
+							<input type="text" name='IngName' placeholder="Ingredient Name" id ="foodname" class="form-control" style="width: 165px; position: relative;top: -20px;">
 							<span class="input-group-btn">
-								<button class="btn btn-default" id="add" type="button" style="position: relative;top: -20px;">Add</button>
+								<button class="btn btn-default" id="addbutton" type="button" style="position: relative;top: -20px;">Add</button>
 							</span>
 						</div><!-- /input-group -->
 					</div><!-- /.col-lg-6 -->
@@ -160,6 +160,7 @@
 				  <input type="hidden" name='IngAmount' class="form-control" value="1">
 				</div>
 				<input type="hidden" name="userID" value="{{userID}}">
+				<input type="hidden" id = 'id' name="Id" value="">
 			</form>
 			<div style="position: relative;top: -10px;color: gray; padding-left: 10px;">Be general!(ex. Ketchup, not Heinz Tomato Ketchup)</div>
 		</div>

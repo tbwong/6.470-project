@@ -468,7 +468,9 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
-                reflow: true
+                reflow: true,
+				borderWidth: 3,
+				borderColor: '#4572A7'
             },
             title: {
                 text: 'Daily calorie intake'
@@ -521,7 +523,9 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
-                reflow: true
+                reflow: true,
+				borderWidth: 3,
+				borderColor: '#4572A7'
             },
             title: {
                 text: 'Daily carb intake'
@@ -574,7 +578,9 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
-                reflow: true
+                reflow: true,
+				borderWidth: 3,
+				borderColor: '#4572A7'
             },
             title: {
                 text: 'Daily fat intake'
@@ -626,7 +632,9 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
-                reflow: true
+                reflow: true,
+				borderWidth: 3,
+				borderColor: '#4572A7'
             },
             title: {
                 text: 'Daily protein intake'
@@ -678,7 +686,9 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
-                reflow: true
+                reflow: true,
+				borderWidth: 3,
+				borderColor: '#4572A7'
             },
             title: {
                 text: 'Daily sodium intake'
@@ -730,7 +740,9 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
-                reflow: true
+                reflow: true,
+				borderWidth: 3,
+				borderColor: '#4572A7'
             },
             title: {
                 text: 'Daily sugar intake'
