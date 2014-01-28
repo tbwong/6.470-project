@@ -99,7 +99,7 @@ padding-left: 25px; margin:0px">
       {% for x in url %}
       <div class="col-sm-4">
       <div class="thumbnail">
-      <img src = '{{ MEDIA_URL }}{{ x.picture }}' id = "scrapbook_img{{forloop.counter}}" class = "polaroid" > 
+      <img src = '{{ MEDIA_URL }}{{ x.picture }}' id = "scrapbook_img{{forloop.counter}}" class = "polaroid"> 
       <script type="text/javascript">
           $(function(){
                $('#scrapbook_img{{forloop.counter}}').click(function(){
