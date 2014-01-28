@@ -485,7 +485,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
             },
             yAxis: {
                 title: {
-                    text: 'Calories (g)'
+                    text: 'Calories (kcal)'
                 },
                 plotLines: [{
                     value: 0,
@@ -703,7 +703,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
             },
             yAxis: {
                 title: {
-                    text: 'Sodium (g)'
+                    text: 'Sodium (mg)'
                 },
                 plotLines: [{
                     value: 0,
