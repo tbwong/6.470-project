@@ -86,9 +86,12 @@
           <br>
           <h6 id='scrapbook-caption'></h6>
      </div>
+    
     <div class = "stitched">
+    <div class="container">
+    <div class= "row">
 
-
+      <div class="col-lg-3 col-sm-4 col-xs-6">
       {% for x in url %}
       <img src = '{{ MEDIA_URL }}{{ x.picture }}' id = "scrapbook_img{{forloop.counter}}" class = "polaroid" > 
       <script type="text/javascript">
