@@ -49,7 +49,6 @@
     </ul>
   </nav>
 
-
 <center>
 <div id = "form-area" class = "stitched">
      <div id = "title">
@@ -58,7 +57,7 @@
   <div class="form-group" id = "upload-form">
     <form id = "imguploadform" class = "form-control" action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">
           {% csrf_token %}   
-          <div class="form-group" class="fileUpload" style='display:inline-block;'>
+          <div class="form-group" id="fileUpload" style='display:inline-block;'>
                {{ form.non_field_errors }}
                {{ form.picture }}       
           </div>
@@ -77,7 +76,10 @@
   </form>
 </div>
 </div>
-<!--Old Grid --> 
+
+<!-- Grid -->
+
+  <div class = "stitched">
 
      <div id="popupBackground"></div>
      <div id='scrapbook-popup' class='popup' >
@@ -85,11 +87,14 @@
           <img id='scrapbook-image' width="400px">
           <br>
           <h6 id='scrapbook-caption'></h6>
-          
      </div>
-    <ul class = "stitched">
+
+    <div class="container">
+    <div class= "row">
       {% for x in url %}
-      <li><img src = '{{ MEDIA_URL }}{{ x.picture }}' id = "scrapbook_img{{forloop.counter}}" class = "polaroid" ></li>
+      <div class="col-lg-3 col-sm-4 col-xs-6">
+      <div class="thumbnail">
+      <img src = '{{ MEDIA_URL }}{{ x.picture }}' id = "scrapbook_img{{forloop.counter}}" class = "polaroid" > 
       <script type="text/javascript">
           $(function(){
                $('#scrapbook_img{{forloop.counter}}').click(function(){
@@ -107,33 +112,85 @@
                });
           });
       </script>
-<!--       <div class = "caption">
-        <h3>'{{ MEDIA_URL }}{{ x.title }}'</h3>
-        <p>'{{ MEDIA_URL }}{{ x.caption }}'</p>
-      </div> -->
+    </a>
     </div>
+      </div> 
       {% endfor %}
-    </ul>
-  </div>  
+</div>
+</div>
+     <script src="{% static 'fridge/styles/bootstrap/js/bootstrap.min.js' %}"></script>
 
-<!-- Grid   
 
-<div class="row">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      {% for x in url %}
-      <img src = '{{ MEDIA_URL }}{{ x.picture }}' alt="...">
-      <div class="caption">
-        <li><img src = '{{ MEDIA_URL }}{{ x.picture }}' ></li>
-        <h3>'{{ MEDIA_URL }}{{ x.title }}'</h3>
-        <p>'{{ MEDIA_URL }}{{ x.caption }}'</p>
-      {% endfor %}
-      </div>
+
+<div class="container">
+<h1>Bootstrap 3 Responsive Image Grid</h1>
+<hr>
+  Resize the browser to see the responsive layout change.
+<hr>
+  <div class="row">
+    <div class="col-lg-3 col-sm-4 col-xs-6">
+        <a href="#" class="thumbnail">
+          <img src="http://placehold.it/350x150/EEE" class="img-responsive">
+        </a>
+    </div>
+     <div class="col-lg-3 col-sm-4 col-xs-6">
+        <a href="#" class="thumbnail">
+          <img src="http://placehold.it/350x150/bb2222/fff" class="img-responsive">
+        </a>
+    </div>
+    <div class="col-lg-3 col-sm-4 col-xs-6">
+        <a href="#" class="thumbnail">
+             <img src="http://placehold.it/350x150" class="img-responsive">
+        </a>
+    </div>
+    <div class="col-lg-3 col-sm-4 col-xs-6">
+        <a href="#" class="thumbnail pull-left">
+          <img src="http://placehold.it/350x150/22bb22/333" class="img-responsive">
+        </a>
+    </div>
+    <div class="col-lg-3 col-sm-4 col-xs-6">
+        <a href="#" class="thumbnail">
+             <img src="http://placehold.it/350x150/2222bb/fff" class="img-responsive">
+        </a>
+    </div>
+    <div class="col-lg-3 col-sm-4 col-xs-6">
+        <a href="#" class="thumbnail">
+             <img src="http://placehold.it/350x150" class="img-responsive">
+        </a>
+    </div>
+    <div class="col-lg-3 col-sm-4 col-xs-6">
+        <a href="#" class="thumbnail">
+             <img src="http://placehold.it/350x150/771111/fff" class="img-responsive">
+        </a>
+    </div>
+    <div class="col-lg-3 col-sm-4 col-xs-6">
+        <a href="#" class="thumbnail">
+          <img src="http://placehold.it/350x150/999/777" class="img-responsive">
+        </a>
+    </div>
+    <div class="col-lg-3 col-sm-4 col-xs-6">
+        <a href="#" class="thumbnail">
+             <img src="http://placehold.it/350x150/117711/fff" class="img-responsive">
+        </a>
+    </div>
+    <div class="col-lg-3 col-sm-4 col-xs-6">
+        <a href="#" class="thumbnail">
+             <img src="http://placehold.it/350x150" class="img-responsive">
+        </a>
+    </div>
+    <div class="col-lg-3 col-sm-4 col-xs-6">
+        <a href="#" class="thumbnail">
+             <img src="http://placehold.it/350x150" class="img-responsive">
+        </a>
+    </div>
+    <div class="col-lg-3 col-sm-4 col-xs-6">
+        <a href="#" class="thumbnail">
+          <img src="http://placehold.it/350x150/11bb11/fff" class="img-responsive">
+        </a>
     </div>
   </div>
 </div>
--->
-     <!-- Latest compiled and minified JavaScript -->
-     <script src="{% static 'fridge/styles/bootstrap/js/bootstrap.min.js' %}"></script>
+<hr>
+
 </body>
 </html>
