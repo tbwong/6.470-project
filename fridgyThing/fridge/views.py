@@ -266,11 +266,11 @@ def showGraphsPage(request,userID):
 		lowCal = [(66.5 + 13.8*(body_weight/2.2) + 5.0*(height*2.54) - 6.8*age)*1.2 - 100]
 
 	if(dailyCal < lowCal[0]):
-		calMessage = "Not enough calorieee"
+		calMessage = "You're calorie levels are looking a bit low! Make sure you're eating enough food everyday :)"
 	elif(dailyCal > lowCal[0]):
-		calMessage = "tooo mannny of da calorieee"
+		calMessage = "You've been intaking a lot of calories recently! You might want to onsider cutting down portion sizes or unnecessary snacking :)"
 	else:
-		calMessage = "just right!"	
+		calMessage = "Good job! You are in the optimal calorie zone :) Keep up the good work!"	
 	
 
 	#45 to 65 percent of your total daily calories come from carbohydrates.
@@ -281,7 +281,7 @@ def showGraphsPage(request,userID):
 	elif dailyCarb > highCarb[0]:
 		carbMessage = "Too many carbs in your life? Try avoiding white bread, pasta, and rice, and adding healthy low-carb substitutes such as spaghetti squash or whole-wheat substitutes like brown rice for a yummy, hearty meal."
 	else:
-		carbMessage = "just right~"
+		carbMessage = "Good job! You are in the optimal carb zone :) Keep up the good work!"
 
 
 	#Fat intake should equal 30% of your total days calories. 
@@ -291,7 +291,8 @@ def showGraphsPage(request,userID):
 		fatMessage = "Stock up on healthy fats with nuts, oils, avocados, or some tasty peanut butter!"
 	elif dailyFat > highFat[0]:
 		fatMessage = "Try reducing your fat content by steering away from fatty meats and butter and keep healthy fat in your diet with nuts and oils!"
-
+	else:
+		fatMessage = "Good job! You are in the optimal fat zone :) Keep up the good work!"
 
 	#daily protein intake .8-1.0 g of protein/kg body weight.
 	highProtein =  [body_weight / 2.2]
@@ -299,9 +300,9 @@ def showGraphsPage(request,userID):
 	if dailyProtein < lowProtein[0]:
 		proteinMessage = "You're running a little low on protein! Try eating lean meats, fish, eggs, tofu, yogurt, or milk."
 	elif dailyProtein > highProtein[0]:
-		proteinMessage = "too much protein!"
+		proteinMessage = "You've been eating a lot of protein recently! Why don't you give your liver a break and lay off the meats for a bit?"
 	else:
-		proteinMessage = "just right protein!"
+		proteinMessage = "Good job! You are in the optimal protein zone :) Keep up the good work!"
 
 
 	#daily sodium should not be more than 2.3 grams
@@ -309,7 +310,7 @@ def showGraphsPage(request,userID):
 	if dailySodium > highSodium[0]:
 		sodiumMessage = "Try cutting down on sodium by reducing the amount of canned or processed foods that you use in your recipes or check for low sodium substitutes for items you buy."
 	else:
-		sodiumMessage = "AWWW YEAH good"
+		sodiumMessage = "Good job! You are in the optimal sodium zone :) Keep up the good work!"
 
 
 	if gender == 'female':
@@ -320,7 +321,7 @@ def showGraphsPage(request,userID):
 	if dailySugar > highSugar[0]:
 		sugarMessage = "Eating too much sugar isn't all sweet! Try cutting down your sugar in recipes by reducing sugar quantities and substituting for natural sources such as honey and naturally-sweet fruit."
 	else:
-		sugarMessage = ":D"
+		sugarMessage = "Good job! You are in the optimal sugar zone :) Keep up the good work!"
 
 	# for x in range(len(calories)-1):
 	# 	print "appending stuff "+str(highCal)
