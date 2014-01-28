@@ -65,7 +65,9 @@ border-bottom-right-radius: 50px;
 }
 
 .polaroid{
-  
+  width: 400px;
+  height: 300px;
+  overflow: hidden;  
 }
 
 img.thumbnail {  
