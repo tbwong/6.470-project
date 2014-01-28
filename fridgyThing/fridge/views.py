@@ -117,7 +117,8 @@ def makeMeal(request):
 		nutrients.append(nutrition[6]) # carbs  # unit for all others is grams
 		nutrients.append(nutrition[1]) # fat
 		nutrients.append(nutrition[9]) # protein
-		nutrients.append(nutrition[4]) # sodium
+		nutrition[4]["value"] = nutrition[4]["value"] * 1000
+		nutrients.append(nutrition[4]) # sodium unit is mg
 		nutrients.append(nutrition[8]) # sugar
 
 		nutrientObjects = [Calories,Carbs,Fats,Protein,Sodium,Sugar]
