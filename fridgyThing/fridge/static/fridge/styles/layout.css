@@ -142,6 +142,7 @@ nav .sidebar{
 	height: -moz-calc(100% - 79px);
 	height: -webkit-calc(100% - 79px);
 	height: calc(100%-79px);
+	
 }
 
 #showpiece-fridge{
