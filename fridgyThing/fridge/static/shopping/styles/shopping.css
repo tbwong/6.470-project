@@ -115,10 +115,9 @@ h1{
 #food-list {
 	width:300px; 
 	font-size:16px; 
-	float:left;
-	margin-top:20px;
-	margin-left:20px;
-	margin-right:0px;
+	position: absolute;
+	left: 260px;
+	top: 90px;
 	background-color:#FFB2D8;
 }
 #minheight {
@@ -173,8 +172,8 @@ h1{
 	background-color:#feeaea;
 	border:transparent;
 	padding-left: 14px;
-	padding-top: 8px;
-	padding-bottom: 8px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	padding-right:14px;
 	height:100%;
 	width:100%;
@@ -231,10 +230,10 @@ h1{
 
 #memo {
 	width: 300px;
-	float:left;
+	position:absolute;
 	font-size:16px;
-	padding-left:20px;
-	margin-right:20px;
+	left: 570px;
+	top: 70px;
 }
 
 #text {
@@ -312,10 +311,10 @@ h1{
 }
 
 .note {
-	margin-top: 20px;
-	float:left;
 	background-color: #FFC8DC;
-
+	position: absolute;
+	top: 90px;
+	left: 880px;
 }
 
 /* add ingredient (Pav) */

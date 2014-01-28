@@ -139,8 +139,8 @@ $(document).ready(function(){
 			$('#popupBackground').fadeIn();
 			$('#recipeInfo').show('slow');
 			currentID = currentID - 1;
-			$('.rInfo').hide('fade');
-			$('#rInfo-'+currentID).show("slow");
+			$('.rInfo').hide();
+			$('#rInfo-'+currentID).show("slide", {direction:"left"});
 		}
 	});
 
@@ -149,8 +149,8 @@ $(document).ready(function(){
 			$('#popupBackground').fadeIn();
 			$('#recipeInfo').show('slow');
 			currentID = parseInt(currentID) + 1;
-			$('.rInfo').hide('fade');
-			$('#rInfo-'+currentID).show("slow");
+			$('.rInfo').hide();
+			$('#rInfo-'+currentID).show("slide", {direction:"right"});
 	});
 });
 
