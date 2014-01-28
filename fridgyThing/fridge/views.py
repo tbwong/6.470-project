@@ -96,11 +96,11 @@ def getRecipes(request,userID):
 
 	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds,inFrjCount,recipeWeHaveIngs)
 	recipe = sorted(recipe,key=lambda recipe:recipe[4],reverse=True)
-
+	rLen = len(recipe)
 	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID))
 	ingredientsLength = len(ingredients) 
 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'ingredientsLength':ingredientsLength,'url':url,'recipe':recipe,'userID':userID})
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'ingredientsLength':ingredientsLength,'url':url,'recipe':recipe,'userID':userID,'rLen':rLen})
 
 def makeMeal(request):
 	userID = request.POST['userID']

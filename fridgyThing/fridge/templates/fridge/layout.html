@@ -88,12 +88,42 @@
 	<div id='recipeInfo' class='popup-recipe'>
 		<button id="left" class="close arrows"><span class="glyphicon glyphicon-chevron-left"></span></button>
 		<button id="right" class="close arrows"><span class="glyphicon glyphicon-chevron-right"></span></button>
-		
+		{%if rLen%}
+		<script type="text/javascript">
+			$(function(){
+				alert('lol')
+				var currentID = '1';
+				//navigate with left/right buttons	
+				$("#left").click(function() {
+					$(this).blur();
+					if(currentID > 1) {
+						$('#popupBackground').fadeIn();
+						$('#recipeInfo').show('slow');
+						currentID = currentID - 1;
+						$('.rInfo').hide();
+						$('#rInfo-'+currentID).show("slide", {direction:"left"});
+					}
+				});
+
+				$("#right").click(function() {
+					$(this).blur();
+					if(currentID<{{rLen}}){
+						$('#popupBackground').fadeIn();
+						$('#recipeInfo').show('slow');
+						currentID = parseInt(currentID) + 1;
+						$('.rInfo').hide();
+						$('#rInfo-'+currentID).show("slide", {direction:"right"});
+					}
+				});
+			});
+
+		</script>
+		{%endif%}
 		{%for r in recipe%}
 		<div id = 'rInfo-{{forloop.counter}}' class='rInfo' style='display:none; height:100%; overflow-y:scroll;'>
-			<span id="recipetitle">{{r.0}}</span> 
-			<span><a href="http://www.yummly.com/recipe/{{r.3}}"><button class='btn btn-default' id="directions">See Directions</button></a><span>
-			<form action="{%url 'fridge:makeMeal'%}" method="post" >
+			<span id="recipetitle" style='display:inline-block;'>{{r.0}}</span> 
+			<a href="http://www.yummly.com/recipe/{{r.3}}"><button class='btn btn-default' id="directions">See Directions</button></a>
+			<form style='' action="{%url 'fridge:makeMeal'%}" method="post" >
 				{% csrf_token %}
 
 				<input type="hidden" name="userID" value="{{userID}}">
