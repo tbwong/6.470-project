@@ -1,6 +1,8 @@
 var page = ''
 
 $(document).ready(function(){
+	var currentID = '1';
+
 	//The page has loaded
 	
 	//hover on pictures:just implemented
@@ -122,6 +124,7 @@ $(document).ready(function(){
 		var dash = idnum.indexOf("-");
 		idnum = idnum.substring(dash+1);
 		$('#rInfo-'+idnum).show('fast');
+		currentID = idnum
 	});
 
 	$('#delIng').click(function(){
@@ -130,11 +133,25 @@ $(document).ready(function(){
 	});
 	
 //navigate with left/right buttons	
-/*
-	$("#left").click(function(){
-		$(
+	$("#left").click(function() {
+		$(this).blur();
+		if(currentID > 1) {
+			$('#popupBackground').fadeIn();
+			$('#recipeInfo').show('slow');
+			currentID = currentID - 1;
+			$('.rInfo').hide('fade');
+			$('#rInfo-'+currentID).show("slow");
+		}
 	});
-*/
+
+	$("#right").click(function() {
+		$(this).blur();
+			$('#popupBackground').fadeIn();
+			$('#recipeInfo').show('slow');
+			currentID = parseInt(currentID) + 1;
+			$('.rInfo').hide('fade');
+			$('#rInfo-'+currentID).show("slow");
+	});
 });
 
 
