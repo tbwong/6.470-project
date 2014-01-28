@@ -130,6 +130,11 @@ $(document).ready(function() {
 		$('#popupBackground').fadeOut();
 		$('#addIng-popup').hide('fast');
 	});
+	
+	$("#memocontent").click(function(){
+		$("#foodedit").closest('.submitedit').submit(); 
+		$("#noteedit").closest('.submitedit').submit();
+	});
 
 });
 
