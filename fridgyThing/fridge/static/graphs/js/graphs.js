@@ -192,6 +192,7 @@ $(document).ready(function(){
     
 
 function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarData,dates,name,highCal,lowCal,highCarb,lowCarb,highFat,lowFat,highProtein,lowProtein,highSodium,highSugar) {
+	console.log(calData)
 	Highcharts.theme = {
 		colors: ["#DDDF0D", "#7798BF", "#55BF3B", "#DF5353", "#aaeeee", "#ff0066", "#eeaaee",
 			"#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],

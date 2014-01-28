@@ -220,3 +220,10 @@ transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     margin-top: -225px;
 
 }
+
+.row {
+margin-right: 15px;
+margin-left: 45px;
+position: fixed;
+padding-left: 25px;
+}

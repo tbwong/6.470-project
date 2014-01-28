@@ -80,7 +80,7 @@
 <!-- Grid -->
 
   <div class = "stitched">
-
+    <p>
      <div id="popupBackground"></div>
      <div id='scrapbook-popup' class='popup' >
           <h1 id='scrapbook-title' style="text-align:center;"></h1>
@@ -89,10 +89,16 @@
           <h6 id='scrapbook-caption'></h6>
      </div>
 
-    <div class="container">
-    <div class= "row">
+    <div class="container" style = "width: 85%;
+padding-left: 1px;
+padding-right: 1px;
+margin-left: 175px;
+margin-right: 1px;
+margin-top: 20px;">
+    <div class= "row" style = "border-left-width: 1px;
+padding-left: 25px; margin = 0">
       {% for x in url %}
-      <div class="col-lg-3 col-sm-4 col-xs-6">
+      <div class="col-sm-4">
       <div class="thumbnail">
       <img src = '{{ MEDIA_URL }}{{ x.picture }}' id = "scrapbook_img{{forloop.counter}}" class = "polaroid" > 
       <script type="text/javascript">
@@ -117,80 +123,8 @@
       </div> 
       {% endfor %}
 </div>
-</div>
+
      <script src="{% static 'fridge/styles/bootstrap/js/bootstrap.min.js' %}"></script>
-
-
-
-<div class="container">
-<h1>Bootstrap 3 Responsive Image Grid</h1>
-<hr>
-  Resize the browser to see the responsive layout change.
-<hr>
-  <div class="row">
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/350x150/EEE" class="img-responsive">
-        </a>
-    </div>
-     <div class="col-lg-3 col-sm-4 col-xs-6">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/350x150/bb2222/fff" class="img-responsive">
-        </a>
-    </div>
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-        <a href="#" class="thumbnail">
-             <img src="http://placehold.it/350x150" class="img-responsive">
-        </a>
-    </div>
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-        <a href="#" class="thumbnail pull-left">
-          <img src="http://placehold.it/350x150/22bb22/333" class="img-responsive">
-        </a>
-    </div>
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-        <a href="#" class="thumbnail">
-             <img src="http://placehold.it/350x150/2222bb/fff" class="img-responsive">
-        </a>
-    </div>
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-        <a href="#" class="thumbnail">
-             <img src="http://placehold.it/350x150" class="img-responsive">
-        </a>
-    </div>
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-        <a href="#" class="thumbnail">
-             <img src="http://placehold.it/350x150/771111/fff" class="img-responsive">
-        </a>
-    </div>
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/350x150/999/777" class="img-responsive">
-        </a>
-    </div>
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-        <a href="#" class="thumbnail">
-             <img src="http://placehold.it/350x150/117711/fff" class="img-responsive">
-        </a>
-    </div>
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-        <a href="#" class="thumbnail">
-             <img src="http://placehold.it/350x150" class="img-responsive">
-        </a>
-    </div>
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-        <a href="#" class="thumbnail">
-             <img src="http://placehold.it/350x150" class="img-responsive">
-        </a>
-    </div>
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/350x150/11bb11/fff" class="img-responsive">
-        </a>
-    </div>
-  </div>
-</div>
-<hr>
 
 </body>
 </html>
