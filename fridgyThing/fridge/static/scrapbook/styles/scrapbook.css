@@ -73,8 +73,7 @@ img.polaroid {
     -webkit-box-shadow:1px 1px 5px #333;  
     -moz-box-shadow:1px 1px 5px #333;  
     height:200px; /*Set to height of your image or desired div*/  
-    width:200px; /*Set to width of your image or desired div*/  
-    float: auto;
+    width:200px; /*Set to width of your image or desired div*/
 }  
 
 h1{
