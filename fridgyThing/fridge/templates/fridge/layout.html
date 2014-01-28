@@ -167,7 +167,7 @@
 	</div>
 
 	<div id='addIng-popup' class='popup' >
-		<h1 style="text-align:center;">Add to Fridge</h1>
+		<h1 style="text-align:center;font-size:28px">Add to Fridge</h1>
 		<br><br>
 		<form id='addIng-group' action="{% url 'fridge:addIngredient'%}" method="post">
 			{% csrf_token %}
@@ -178,8 +178,7 @@
 			</div>
 			<br>
 			<div class="input-group">
-			  <span class="input-group-addon"># Grams:</span>
-			  <input type="number" name='IngAmount' class="form-control" value="1" required>
+			  <input type="hidden" name='IngAmount' class="form-control" value="1" required>
 			</div>
 			<input type="hidden" name="userID" value="{{userID}}">
 			<br>
