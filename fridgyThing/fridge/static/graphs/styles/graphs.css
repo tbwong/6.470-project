@@ -59,7 +59,7 @@ nav .sidebar{
 
 .hiddenones {
 	position: absolute;
-	width:calc(100% - 300px);
+	width:calc(100% - 260px);
 	background-color:transparent;
 }
 
@@ -74,7 +74,7 @@ nav .sidebar{
 #left {
 	width: 20px; 
 	position:absolute;
-	left: 10px;
+	left: 1px;
 	top:200px;
 
 
@@ -82,7 +82,7 @@ nav .sidebar{
 #right {
 	position:absolute;
 	width: 20px;
-	left: calc(100% - 300px + 20px);
+	left: calc(100% - 300px + 35px);
 	top:200px;
 
 }
@@ -96,7 +96,7 @@ nav .sidebar{
 	width: 100%;
 	height: 440px;
 	margin-top:5px;
-	margin-left: 35px;
+	margin-left: 10px;
 	background-color:transparent;
 	/*
 	-webkit-box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);
