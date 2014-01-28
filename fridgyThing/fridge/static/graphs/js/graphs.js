@@ -1,5 +1,6 @@
 var currentDiv = 1;
 $(document).ready(function(){
+
 	$("#1").css("background-color", "white");
 	
 	$(".nutrient").on("mouseenter", function() {
@@ -44,12 +45,15 @@ $(document).ready(function(){
 		$(d).show();
 		if (currentDiv < number){
 			$('.hiddenones').hide("fade");
-			$(maind).show("slide", {direction:"right"});	
+			$(maind).show("slide", {direction:"right"});
+            $(maind).attr('width','calc(100% - 300px)');
+            $(window).resize();
 		}
 		else {
 			$('.hiddenones').hide("fade");
 			$(maind).show("slide", {direction:"left"});
-		}
+            $(window).resize();
+        }
 		currentDiv = number;
 	});
 	
@@ -59,6 +63,9 @@ $(document).ready(function(){
 			currentDiv += 1;
 			$('.hiddenones').hide("fade");
 			$('#health-'+currentDiv).show("slide", { direction: "right" });
+            $('#health-'+currentDiv).attr('width','calc(100% - 300px)');
+            $(window).resize();
+
 			var main = "#"+currentDiv;
 			var sub = currentDiv -1;
 			var mainn = "#"+sub;
@@ -86,7 +93,10 @@ $(document).ready(function(){
 			currentDiv -= 1;
 			$('.hiddenones').hide("fade");
 			$('#health-'+currentDiv).show("slide", {direction:"left"});
-			var main = "#"+currentDiv;
+            $('#health-'+currentDiv).attr('width','calc(100% - 300px)');
+            $(window).resize();
+			
+            var main = "#"+currentDiv;
 			var sub = currentDiv + 1;
 			var mainn = "#"+sub;
 			var d = "#d" + currentDiv;
@@ -115,7 +125,10 @@ $(document).ready(function(){
 				currentDiv += 1;
 				$('.hiddenones').hide("fade");
 				$('#health-'+currentDiv).show("slide", { direction: "right" });
-				var main = "#"+currentDiv;
+                $('#health-'+currentDiv).attr('width','calc(100% - 300px)');
+                $(window).resize();
+				
+                var main = "#"+currentDiv;
 				var sub = currentDiv -1;
 				var mainn = "#"+sub;
 				$(mainn).css("background-color", "");
@@ -145,6 +158,9 @@ $(document).ready(function(){
 				currentDiv -= 1;
 				$('.hiddenones').hide("fade");
 				$('#health-'+currentDiv).show("slide", { direction: "left" });
+                $('#health-'+currentDiv).attr('width','calc(100% - 300px)');
+                $(window).resize();
+
 				var main = "#"+currentDiv;
 				var sub = currentDiv +1;
 				var mainn = "#"+sub;
@@ -167,26 +183,26 @@ $(document).ready(function(){
 		};
 	});
 	
-    $(window).resize()
+    
 
     
     $('#calories-container').resize(function() {
-        calorieChart.redraw();
+        $(this).redraw();
     });
     $('#carbs-container').resize(function() {
-        carbChart.redraw();
+        $(this).redraw();
     });
     $('#fat-container').resize(function() {
-        fatChart.redraw();
+        $(this).redraw();
     });
     $('#protein-container').resize(function() {
-        proteinChart.redraw();
+        $(this).redraw();
     });
     $('#sodium-container').resize(function() {
-        sodiumChart.redraw();
+        $(this).redraw();
     });
     $('#sugar-container').resize(function() {
-        sugarChart.redraw();
+        $(this).redraw();
     });
 })
     

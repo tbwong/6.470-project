@@ -59,7 +59,7 @@ nav .sidebar{
 
 .hiddenones {
 	position: absolute;
-	width:500px;
+	width:calc(100% - 300px);
 	background-color:transparent;
 }
 
@@ -82,7 +82,7 @@ nav .sidebar{
 #right {
 	position:absolute;
 	width: 20px;
-	left: 660px;
+	left: calc(100% - 300px + 20px);
 	top:200px;
 
 }
@@ -93,7 +93,7 @@ nav .sidebar{
 
 .container {
 	position: absolute;
-	width: 630px;
+	width: 100%;
 	height: 440px;
 	margin-top:5px;
 	margin-left: 35px;
