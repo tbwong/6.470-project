@@ -269,7 +269,7 @@ def showGraphsPage(request,userID):
 		lowCal = [(66.5 + 13.8*(body_weight/2.2) + 5.0*(height*2.54) - 6.8*age)*1.2 - 100]
 
 	if(dailyCal < lowCal[0]):
-		calMessage = "You're calorie levels are looking a bit low! Make sure you're eating enough food everyday :)"
+		calMessage = "Your calorie levels are looking a bit low! Make sure you're eating enough food everyday :)"
 	elif(dailyCal > lowCal[0]):
 		calMessage = "You've been intaking a lot of calories recently! You might want to onsider cutting down portion sizes or unnecessary snacking :)"
 	else:
