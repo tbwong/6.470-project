@@ -77,6 +77,10 @@
 </div>
 </div>
 
+<button id="left" class="close nutrition-buttons" style="display:none"><span class="glyphicon glyphicon-chevron-left"></span></button>
+
+<button id="right" class="close nutrition-buttons"><span class="glyphicon glyphicon-chevron-right"></span></button>
+
 <!-- Grid -->
 
   <div class = "stitched">
@@ -89,12 +93,7 @@
           <h6 id='scrapbook-caption'></h6>
      </div>
 
-    <div class="container" style = "width: 85%;
-padding-left: 1px;
-padding-right: 1px;
-margin-left: 175px;
-margin-right: 1px;
-margin-top: 20px;">
+    <div class="container" style = "width: 85%; padding-left: 1px; padding-right: 1px; margin-left: 175px; margin-right: 1px; margin-top: 20px;">
     <div class= "row" style = "border-left-width: 1px;
 padding-left: 25px; margin = 0">
       {% for x in url %}
@@ -106,16 +105,37 @@ padding-left: 25px; margin = 0">
                $('#scrapbook_img{{forloop.counter}}').click(function(){
                     $('#scrapbook-popup #scrapbook-title').html("{{x.title}}");
                     $('#scrapbook-popup #scrapbook-image').attr('src','{{MEDIA_URL}}{{x.picture}}');
-                    $('#scrapbook-popup #scrapbook-caption').html("{{x.caption}}");
-                    
+                    $('#scrapbook-popup #scrapbook-caption').html("{{x.caption}}");      
                     $('#popupBackground').fadeIn();
                     $('#scrapbook-popup').show('slow');
 
                });
-               $('#popupBackground').click(function(){
-                    $('#popupBackground').fadeOut();
-                    $('#scrapbook-popup').hide('fast');
-               });
+          $('#popupBackground').click(function(){
+            $('#popupBackground').fadeOut();
+            $('#addIng-popup').hide('fast');
+            $('#recipeInfo').hide('fast');
+            $('.rInfo').hide('fast');
+            $('#delIng-popup').hide('fast');
+          });
+          });
+          $("#left").click(function() {
+            $(this).blur();
+            if(currentID > 1) {
+              $('#popupBackground').fadeIn();
+              $('#recipeInfo').show('slow');
+              currentID = currentID - 1;
+              $('.rInfo').hide();
+              $('#rInfo-'+currentID).show("slide", {direction:"left"});
+            }
+          });
+
+          $("#right").click(function() {
+            $(this).blur();
+              $('#popupBackground').fadeIn();
+              $('#recipeInfo').show('slow');
+              currentID = parseInt(currentID) + 1;
+              $('.rInfo').hide();
+              $('#rInfo-'+currentID).show("slide", {direction:"right"});
           });
       </script>
     </a>
