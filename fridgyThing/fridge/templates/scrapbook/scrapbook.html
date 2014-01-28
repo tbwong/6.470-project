@@ -78,6 +78,7 @@
         </form>
       </div>
   </div>
+  </center>
 
 <!-- Grid -->
 
@@ -90,12 +91,52 @@
             <h6 id='scrapbook-caption'></h6>
        </div>
 
+
        <div class="container" >
             <div class= "row">
                  {% for x in url %}
                       <div class="col-sm-4">
                            <div class="thumbnail">
-                                <img src = '{{ MEDIA_URL }}{{ x.picture }}' id = "scrapbook_img{{forloop.counter}}" class = "polaroid"> 
+                                <img src = '{{ MEDIA_URL }}{{ x.picture }}' id = "scrapbook_img{{forloop.counter}}" class = "polaroid">
+                                <script type="text/javascript">
+                                   $(document).ready(function(){
+
+                                        $('#scrapbook_img{{forloop.counter}}').click(function(){
+                                             $('#scrapbook-popup #scrapbook-title').html("{{x.title}}");
+                                             $('#scrapbook-popup #scrapbook-image').attr('src','{{MEDIA_URL}}{{x.picture}}');
+                                             $('#scrapbook-popup #scrapbook-caption').html("{{x.caption}}");      
+                                             $('#popupBackground').fadeIn();
+                                             $('#scrapbook-popup').show('slow');
+                                        });
+
+                                        $('#popupBackground').click(function(){
+                                             $('#popupBackground').fadeOut();
+                                             $('#scrapbook-popup').hide('fast');
+                                        });
+
+                                        $("#left").click(function() {
+                                             $(this).blur();
+                                             if(currentID > 1) {
+                                                  $('#popupBackground').fadeIn();
+                                                  $('#recipeInfo').show('slow');
+                                                  currentID = currentID - 1;
+                                                  $('.rInfo').hide();
+                                                  $('#rInfo-'+currentID).show("slide", {direction:"left"});
+                                             }
+                                        });
+
+                                        $("#right").click(function() {
+                                             $(this).blur();
+                                             //TODO IF STATEMENT
+                                                  $('#popupBackground').fadeIn();
+                                                  $('#recipeInfo').show('slow');
+                                                  currentID = parseInt(currentID) + 1;
+                                                  $('.rInfo').hide();
+                                                  $('#rInfo-'+currentID).show("slide", {direction:"right"});
+                                        });
+
+                                   });
+                              </script> 
                            </div>
                       </div> 
                  {% endfor %}
