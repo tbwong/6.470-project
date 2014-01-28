@@ -198,11 +198,11 @@ transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
   box-shadow: none; 
   -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-
-  .popup{
+}
+.popup{
     height: 450px;
     margin-top: -225px;
-
+    color:black;
 }
 
 .row {

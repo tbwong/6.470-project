@@ -19,7 +19,7 @@
 
   <!-- Scripts -->
   <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
-  <script type="text/javascript" src="{% static 'scrapbook/js/scrapBook.js' %}"> </script>
+  <!--<script type="text/javascript" src="{% static 'scrapbook/js/scrapBook.js' %}"> </script>-->
 </head>
 
    <!--End Header -->
@@ -95,7 +95,7 @@
 
     <div class="container" style = "width: 85%; padding-left: 1px; padding-right: 1px; margin-left: 175px; margin-right: 1px; margin-top: 20px;">
     <div class= "row" style = "border-left-width: 1px;
-padding-left: 25px; margin = 0">
+padding-left: 25px; margin:0px">
       {% for x in url %}
       <div class="col-sm-4">
       <div class="thumbnail">
@@ -110,32 +110,30 @@ padding-left: 25px; margin = 0">
                     $('#scrapbook-popup').show('slow');
 
                });
-          $('#popupBackground').click(function(){
-            $('#popupBackground').fadeOut();
-            $('#addIng-popup').hide('fast');
-            $('#recipeInfo').hide('fast');
-            $('.rInfo').hide('fast');
-            $('#delIng-popup').hide('fast');
-          });
-          });
-          $("#left").click(function() {
-            $(this).blur();
-            if(currentID > 1) {
-              $('#popupBackground').fadeIn();
-              $('#recipeInfo').show('slow');
-              currentID = currentID - 1;
-              $('.rInfo').hide();
-              $('#rInfo-'+currentID).show("slide", {direction:"left"});
-            }
-          });
+               $('#popupBackground').click(function(){
+                 $('#popupBackground').fadeOut();
+                 $('#scrapbook-popup').hide('fast');
+               });
+          
+               $("#left").click(function() {
+                 $(this).blur();
+                 if(currentID > 1) {
+                   $('#popupBackground').fadeIn();
+                   $('#recipeInfo').show('slow');
+                   currentID = currentID - 1;
+                   $('.rInfo').hide();
+                   $('#rInfo-'+currentID).show("slide", {direction:"left"});
+                 }
+               });
 
-          $("#right").click(function() {
-            $(this).blur();
-              $('#popupBackground').fadeIn();
-              $('#recipeInfo').show('slow');
-              currentID = parseInt(currentID) + 1;
-              $('.rInfo').hide();
-              $('#rInfo-'+currentID).show("slide", {direction:"right"});
+               $("#right").click(function() {
+                 $(this).blur();
+                   $('#popupBackground').fadeIn();
+                   $('#recipeInfo').show('slow');
+                   currentID = parseInt(currentID) + 1;
+                   $('.rInfo').hide();
+                   $('#rInfo-'+currentID).show("slide", {direction:"right"});
+               });
           });
       </script>
     </a>

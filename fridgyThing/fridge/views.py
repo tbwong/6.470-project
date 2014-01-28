@@ -42,8 +42,9 @@ def delIngredient(request):
 	userID = request.POST['userID']
 	IngName.strip()
 	# IngAmount = float(request.POST['IngAmount'])
-	i = Ingredient.objects.get(name=IngName.lower(),user=User.objects.get(pk=userID))
-	i.delete();
+	i = Ingredient.objects.filter(name=IngName.lower(),user=User.objects.get(pk=userID))
+	for j in i:
+		j.delete();
 	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
 
 def getRecipes(request,userID):
@@ -95,11 +96,11 @@ def getRecipes(request,userID):
 
 	recipe = zip(recipeNames,recipeIngs,recipeIms,recipeIds,inFrjCount,recipeWeHaveIngs)
 	recipe = sorted(recipe,key=lambda recipe:recipe[4],reverse=True)
-
+	rLen = len(recipe)
 	ingredients = Ingredient.objects.filter(user=User.objects.get(pk=userID))
 	ingredientsLength = len(ingredients) 
 
-	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'ingredientsLength':ingredientsLength,'url':url,'recipe':recipe,'userID':userID})
+	return render(request, 'fridge/layout.html', {'ingredients':ingredients,'ingredientsLength':ingredientsLength,'url':url,'recipe':recipe,'userID':userID,'rLen':rLen})
 
 def makeMeal(request):
 	userID = request.POST['userID']

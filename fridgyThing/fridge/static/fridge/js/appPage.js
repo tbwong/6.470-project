@@ -1,7 +1,7 @@
 var page = ''
 
 $(document).ready(function(){
-	var currentID = '1';
+	
 
 	//The page has loaded
 	
@@ -107,7 +107,7 @@ $(document).ready(function(){
 	// });
 	$('#addIng').click(function(){
 		$('#popupBackground').fadeIn();
-		$('#addIng-popup').show('slow');
+		$('#addIng-popup').fadeIn();
 	});
 	$('#popupBackground').click(function(){
 		$('#popupBackground').fadeOut();
@@ -119,7 +119,7 @@ $(document).ready(function(){
 
 	$('.recipeResult').click(function(){
 		$('#popupBackground').fadeIn();
-		$('#recipeInfo').show('slow');
+		$('#recipeInfo').fadeIn();
 		var idnum = this.id;
 		var dash = idnum.indexOf("-");
 		idnum = idnum.substring(dash+1);
@@ -129,29 +129,10 @@ $(document).ready(function(){
 
 	$('#delIng').click(function(){
 		$('#popupBackground').fadeIn();
-		$('#delIng-popup').show('slow');
+		$('#delIng-popup').fadeIn();
 	});
 	
-//navigate with left/right buttons	
-	$("#left").click(function() {
-		$(this).blur();
-		if(currentID > 1) {
-			$('#popupBackground').fadeIn();
-			$('#recipeInfo').show('slow');
-			currentID = currentID - 1;
-			$('.rInfo').hide();
-			$('#rInfo-'+currentID).show("slide", {direction:"left"});
-		}
-	});
 
-	$("#right").click(function() {
-		$(this).blur();
-			$('#popupBackground').fadeIn();
-			$('#recipeInfo').show('slow');
-			currentID = parseInt(currentID) + 1;
-			$('.rInfo').hide();
-			$('#rInfo-'+currentID).show("slide", {direction:"right"});
-	});
 });
 
 
