@@ -25,26 +25,36 @@ class Carbs(models.Model):
 	user = models.ForeignKey(User)
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
+	def __unicode__(self):
+		return str(self.user.username)+':'+str(self.amount)
 
 class Fats(models.Model):
 	user = models.ForeignKey(User)
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
+	def __unicode__(self):
+		return str(self.user.username)+':'+str(self.amount)
 
 class Protein(models.Model):
 	user = models.ForeignKey(User)
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
+	def __unicode__(self):
+		return str(self.user.username)+':'+str(self.amount)
 
 class Sodium(models.Model):
 	user = models.ForeignKey(User)
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
+	def __unicode__(self):
+		return str(self.user.username)+':'+str(self.amount)
 
 class Sugar(models.Model):
 	user = models.ForeignKey(User)
 	amount = models.IntegerField(default=0)
 	eaten_date = models.DateTimeField('date published')
+	def __unicode__(self):
+		return str(self.user.username)+':'+str(self.amount)
 
 class Characteristics(models.Model):
 	user = models.ForeignKey(User)
