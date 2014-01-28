@@ -53,9 +53,9 @@
 		</form>
 	</div>
 	<div id="popupBackground"></div>
-	<div id='register-popup' class='popup' >
-		<h2>Let's get you a frj!</h2>
-		<form action="{%url 'fridge:register'%}" method="post" style="border:1px dotted black; border-radius:10px;">
+	<div id='register-popup' class='popup' style="background-color:#fff5eb">
+		<h2 style="margin-top: 5px;font-size: 20px;margin-left: 12px;">Let's get you a frj!</h2>
+		<form action="{%url 'fridge:register'%}" method="post" style="border:1px dashed rgb(185, 179, 179); border-radius:10px;">
 		{% csrf_token %}
 			
 				<div class="input-group">
@@ -80,6 +80,7 @@
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon" style='width:100px;'>Gender:</span>
+					<span style="opacity:0">         .</span>
 					<span><input type="radio" name='gender' value="male" required > Male <input type="radio" name='gender' value="female" required > Female</span>
 				</div>
 
