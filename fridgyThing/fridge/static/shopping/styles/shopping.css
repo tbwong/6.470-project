@@ -352,3 +352,7 @@ h1{
 	box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
 	padding: 10px;
 }
+.shadowed{
+	border-radius: 10px;
+	
+}

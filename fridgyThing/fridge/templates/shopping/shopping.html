@@ -46,7 +46,7 @@
 
 	<div class='showpiece'>
 		
-		<div id="food-list">
+		<div id="food-list" class='shadowed'>
 			<div id="shoppingheader"><span id="shoppingheadertext"><b>Shopping List</b></span><button type="button" class="close print"><span class="glyphicon glyphicon-print"></span></button></div>
 			<div id="minheight">
 			<!-- show on list -->
@@ -92,7 +92,7 @@
 		</div>
 		
 		
-		<div id="memo">
+		<div id="memo" class='shadowed'>
 			<div id="noteheader"><b>Memo</b></div>
 			<div id="gradient">
 <!--			<textarea class="form-control" id="memocontent" rows="1">30% discount from Shaw's!</textarea> -->
@@ -128,7 +128,7 @@
 			
 		</div>
 		
-		<div class="note">
+		<div class="note" class='shadowed'>
 			<div id="genheader"><b>Notes</b></div> 
 			<textarea class="form-control" id="memocontent" rows="8" placeholder="Add general note here...">{{other}}</textarea>
 			<form class="submitnote" action="{% url 'fridge:genNote' %}" method="post">
