@@ -487,7 +487,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 borderWidth: 0
             },
             series: [{
-                type: 'line',
+                type: 'column',
                 name: name,
                 data: calData,
                 color: '#CC99FF'
@@ -557,7 +557,7 @@ function makeHighCharts(calData,carbsData,fatData,proteinData,sodiumData,sugarDa
                 borderWidth: 0
             },
             series: [{
-                type: 'line',
+                type: 'column',
                 name: name,
                 data: carbsData,
                 color: '#0033FF'
