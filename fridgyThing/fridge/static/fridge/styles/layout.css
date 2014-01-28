@@ -139,7 +139,7 @@ nav .sidebar{
 #showpiece-fridge .scrollable{
 	background-color: #FFF5EB;
 	border-radius: 10px;
-	overflow: scroll;
+	overflow-x: scroll;
 }
 
 #showpiece-fridge ul{
@@ -242,6 +242,10 @@ h1{
 
 /* Rujia's popup styling */
 
+.recipeResult:hover {
+	opacity: 30%;
+}
+
 .popup-recipe {
 	display: none;
 	position: fixed;
@@ -263,30 +267,75 @@ h1{
 #recipetitle {
 	font-size: 25px;
 	margin-left:5px;
+	position: relative;
+	top: 3px;
 }
 
 #recipeing {
 	font-size: 18px;
 	margin-left: 5px;
+	position: relative;
+	top: -40px;
 }
 
 #recipelist {
 	margin-left: 10px;
 	font-size: 15px;
 	margin-right: 10px;
+	padding-left: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	background-color: white;
+	border-top: 1pt solid rgb(255, 219, 226);
 }
 
-#made {
-	float:right;
+#listheader {
+	margin-left: 10px;
+	font-size: 15px;
+	padding-left: 10px;
+	padding-bottom: 3px;
+	background-color: rgb(255, 219, 226);
 	margin-right: 10px;
+	height: 30px;
+	padding-top: 3px;
+}
+#made {
+	position:relative;
+	right: -380px;
+	top:-39px;
 }
 
 #directions {
 	margin-left: 5px;
 	margin-top:10px;
+	position: relative;
+	right: -55px;
+	top: -5px;
 }
 
 .add {
 	margin-top: 10px;
-	margin-left:5px
+	margin-left:10px
+}
+
+#listblock {
+	width:230px; 
+	float: left; 
+	position:relative; 
+	top:-40px;
+}
+
+.arrows {
+	position: absolute;
+	font-size: 50px;
+}
+
+#left {
+	left: -50px;
+	top: 130px;
+}
+
+#right {
+	top:130px;
+	left:500px;
 }

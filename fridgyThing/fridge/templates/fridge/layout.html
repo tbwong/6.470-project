@@ -81,11 +81,17 @@
 			<li><a id='scrapbook' href="{% url 'fridge:showScrapbook' userID%}"><span  class='glyphicon glyphicon-user'></span> | Scrapbook<i class='arrow'>></i></a></li>
 		</ul>
 	</nav>
-	<div id="popupBackground"></div>
+	<div id="popupBackground">
+	</div>
+	
 	<div id='recipeInfo' class='popup-recipe'>
+		<button id="left" class="close arrows"><span class="glyphicon glyphicon-chevron-left"></span></button>
+		<button id="right" class="close arrows"><span class="glyphicon glyphicon-chevron-right"></span></button>
+		
 		{%for r in recipe%}
-		<div id = 'rInfo-{{forloop.counter}}' class='rInfo' style='display:none; height:100%; overflow:scroll;'>
+		<div id = 'rInfo-{{forloop.counter}}' class='rInfo' style='display:none; height:100%; overflow-y:scroll;'>
 			<span id="recipetitle">{{r.0}}</span> 
+			<span><a href="http://www.yummly.com/recipe/{{r.3}}"><button class='btn btn-default' id="directions">See Directions</button></a><span>
 			<form action="{%url 'fridge:makeMeal'%}" method="post" >
 				{% csrf_token %}
 
@@ -94,35 +100,35 @@
 
 				<button class='btn btn-default' id="made">I Made It!</button>
 			</form> <br>
-			<h3 id="recipeing">Ingredients: </h3>
-			<ul>
-				<h5>We gots:</h5>
-				{%for ingredient in r.5%}
-					<li id="recipelist">{{ingredient}}</li>
-				{%endfor%}	
-			</ul>
-			<ul>
-				<h5>Don't gots:</h5>
+			<div id="listblock">
+				<div id="listheader">You need:</div>
 				{%for ingredient in r.1%}
-					<li id="recipelist">{{ingredient}}</li>
+					<div id="recipelist">{{ingredient}}</div>
 				{%endfor%}
-			</ul>
-			
-			<span><a href="http://www.yummly.com/recipe/{{r.3}}"><button class='btn btn-default' id="directions">See Directions</button></a><span>
-			<span>
-			<form action="{%url 'fridge:addShopping'%}" method='post'>
-				{% csrf_token %}
+				<span>
+					<form action="{%url 'fridge:addShopping'%}" method='post'>
+						{% csrf_token %}
 
-				{%for ing in r.1%}
-				<input type='hidden' name='ingsList' value="{{ing}}">
-				{%endfor%}
-				<input type="hidden" name="userID" value="{{userID}}">
+						{%for ing in r.1%}
+						<input type='hidden' name='ingsList' value="{{ing}}">
+						{%endfor%}
+						<input type="hidden" name="userID" value="{{userID}}">
 
-				<span class="input-group btn-group centeredButton add" >
-					<input type='submit' class='btn btn-default' value='Add These Ingredients to My Shopping List!'></input>
+						<span class="input-group btn-group centeredButton add" >
+							<input type='submit' class='btn btn-default' value='Add to My Shopping List!'></input>
+						</span>
+					</form>
 				</span>
-			</form>
-			</span>
+			</div>
+			<div id="listblock">
+				<div id="listheader">You have:</div>
+				{%for ingredient in r.5%}
+					<div id="recipelist">{{ingredient}}</div>
+				{%endfor%}	
+			</div>
+			
+			
+
 
 			
 			
