@@ -3,6 +3,14 @@ var page = ''
 $(document).ready(function(){
 	//The page has loaded
 	
+	//hover on pictures:just implemented
+	$("#recipeResults").on("mouseenter", ".recipeResult", function() {
+		$(this).css("opacity", "0.5");
+	});
+
+	$("#recipeResults").on("mouseleave", ".recipeResult", function() {
+		$(this).css("opacity", "");
+	});
 
 
 
@@ -120,7 +128,13 @@ $(document).ready(function(){
 		$('#popupBackground').fadeIn();
 		$('#delIng-popup').show('slow');
 	});
-
+	
+//navigate with left/right buttons	
+/*
+	$("#left").click(function(){
+		$(
+	});
+*/
 });
 
 
