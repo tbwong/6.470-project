@@ -49,96 +49,60 @@
     </ul>
   </nav>
 
-<center>
-<div id = "form-area" class = "stitched">
-     <div id = "title">
-       <h1> Welcome to your Scrapbook! </h1>
-     </div>
-  <div class="form-group" id = "upload-form">
-    <form id = "imguploadform" class = "form-control" action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">
-          {% csrf_token %}   
-          <div class="form-group" id="fileUpload" style='display:inline-block;'>
-               {{ form.non_field_errors }}
-               {{ form.picture }}       
-          </div>
-      
-          <div class="form-group" style='display:inline-block;'>
-               {{ form.non_field_errors }}
-               {{ form.title }}
-          </div>
-          <div class="form-group" style='display:inline-block;'>
-               {{ form.non_field_errors }}
-               {{ form.caption }}
-          </div> 
+<div id="showpiece" class='showpiece' style="position: absolute">
+  <center>
+  <div id = "form-area" class = "stitched">
+      <div id = "title">
+         <h1> Welcome to your Scrapbook! </h1>
+      </div>
+      <div class="form-group" id = "upload-form">
+        <form id = "imguploadform" class = "form-control" action="{% url 'fridge:showScrapbook' userID%}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}   
+              <div class="form-group" id="fileUpload" style='display:inline-block;'>
+                   {{ form.non_field_errors }}
+                   {{ form.picture }}       
+              </div>
+          
+              <div class="form-group" style='display:inline-block;'>
+                   {{ form.non_field_errors }}
+                   {{ form.title }}
+              </div>
+              <div class="form-group" style='display:inline-block;'>
+                   {{ form.non_field_errors }}
+                   {{ form.caption }}
+              </div> 
 
-          <div class = "form-group" style='display:inline-block;'>
-               <input type="submit" id = "submitbutton" class="btn btn-success" value="Upload Nao! :D"/>
-          </div>
-  </form>
-</div>
-</div>
+              <div class = "form-group" style='display:inline-block;'>
+                   <input type="submit" id = "submitbutton" class="btn btn-success" value="Upload Nao! :D"/>
+              </div>
+        </form>
+      </div>
+  </div>
 
 <!-- Grid -->
 
-<div class = "stitched">
-     <div id="popupBackground"></div>
-     <div id='scrapbook-popup' class='popup' >
-          <h1 id='scrapbook-title' style="text-align:center;"></h1>
-          <img id='scrapbook-image' width="400px">
-          <br>
-          <h6 id='scrapbook-caption'></h6>
-     </div>
+  <div class = "stitched">
+       <div id="popupBackground"></div>
+       <div id='scrapbook-popup' class='popup' >
+            <h1 id='scrapbook-title' style="text-align:center;"></h1>
+            <img id='scrapbook-image' width="400px">
+            <br>
+            <h6 id='scrapbook-caption'></h6>
+       </div>
 
-     <div class="container" style = "width: 85%; padding-left: 1px; padding-right: 1px; margin-left: 175px; margin-right: 1px; margin-top: 20px;">
-          <div class= "row" style = "border-left-width: 1px;
-          padding-left: 25px; margin:0px; position: relative">
-               {% for x in url %}
-                    <div class="col-sm-4">
-                         <div class="thumbnail">
-                              <img src = '{{ MEDIA_URL }}{{ x.picture }}' id = "scrapbook_img{{forloop.counter}}" class = "polaroid"> 
-                                   <script type="text/javascript">
-                                   $(function(){
-                                   $('#scrapbook_img{{forloop.counter}}').click(function(){
-                                   $('#scrapbook-popup #scrapbook-title').html("{{x.title}}");
-                                   $('#scrapbook-popup #scrapbook-image').attr('src','{{MEDIA_URL}}{{x.picture}}');
-                                   $('#scrapbook-popup #scrapbook-caption').html("{{x.caption}}");      
-                                   $('#popupBackground').fadeIn();
-                                   $('#scrapbook-popup').show('slow');
-
-                                   });
-                                   $('#popupBackground').click(function(){
-                                   $('#popupBackground').fadeOut();
-                                   $('#scrapbook-popup').hide('fast');
-                                   });
-
-                                   $("#left").click(function() {
-                                   $(this).blur();
-                                   if(currentID > 1) {
-                                   $('#popupBackground').fadeIn();
-                                   $('#recipeInfo').show('slow');
-                                   currentID = currentID - 1;
-                                   $('.rInfo').hide();
-                                   $('#rInfo-'+currentID).show("slide", {direction:"left"});
-                                   }
-                                   });
-
-                                   $("#right").click(function() {
-                                   $(this).blur();
-                                   $('#popupBackground').fadeIn();
-                                   $('#recipeInfo').show('slow');
-                                   currentID = parseInt(currentID) + 1;
-                                   $('.rInfo').hide();
-                                   $('#rInfo-'+currentID).show("slide", {direction:"right"});
-                                   });
-                                   });
-                              </script>
-                         </div>
-                    </div> 
-               {% endfor %}
-          </div>
-     </div>
+       <div class="container" >
+            <div class= "row">
+                 {% for x in url %}
+                      <div class="col-sm-4">
+                           <div class="thumbnail">
+                                <img src = '{{ MEDIA_URL }}{{ x.picture }}' id = "scrapbook_img{{forloop.counter}}" class = "polaroid"> 
+                           </div>
+                      </div> 
+                 {% endfor %}
+            </div>
+       </div>
+  </div>
 </div>
-
      <script src="{% static 'fridge/styles/bootstrap/js/bootstrap.min.js' %}"></script>
 
 </body>

@@ -48,7 +48,7 @@ def delIngredient(request):
 	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
 
 def getRecipes(request,userID):
- 	url ='http://api.yummly.com/v1/api/recipes?_app_id=11cf413b&_app_key=7904cfbaa445d431246c18249bc5174e&q='
+ 	url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
  	url= url+'&requirePictures=true'
  	ings = Ingredient.objects.filter(user=User.objects.get(pk=userID))
  	matchSet= []
@@ -106,7 +106,7 @@ def makeMeal(request):
 	userID = request.POST['userID']
 	recipeID = request.POST['recipeID']
 	# url ='http://api.yummly.com/v1/api/recipes?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14&q='
-	url ='http://api.yummly.com/v1/api/recipe/'+recipeID+'?_app_id=11cf413b&_app_key=7904cfbaa445d431246c18249bc5174e'
+	url ='http://api.yummly.com/v1/api/recipe/'+recipeID+'?_app_id=ccb5dd3c&_app_key=8f8f5a9fd5023ce15ea82f24ee8aac14'
 	rec = requests.get(url)
 	temp = json.dumps(rec.json())
 	dct = json.loads(temp)
