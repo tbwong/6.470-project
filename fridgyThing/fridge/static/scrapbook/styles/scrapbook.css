@@ -20,7 +20,7 @@ body{
 }
 
 #showpiece {
-  width: 75%;
+  width: calc(100% - 275px);
   height: 100%;
 }
 
