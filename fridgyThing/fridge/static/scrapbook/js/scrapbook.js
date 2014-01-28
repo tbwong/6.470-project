@@ -9,3 +9,4 @@
 		$('.rInfo').hide('fast');
 		$('#delIng-popup').hide('fast');
 	});
+	
