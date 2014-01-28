@@ -153,15 +153,16 @@ def register(request):
 	weight = request.POST['weight']
 	height = request.POST['height']
 	gender = request.POST['gender']
-
+	userID = 0;
 	try:
 		user = User.objects.create_user(username, 'lennon@thebeatles.com', password)
+		userID= user.pk
 		char = Characteristics(user=user,age=age,body_weight=weight,gender=gender,height=height)
 		char.save()
 	except:
 	 	return HttpResponse('<h2>Either this user already exists or you\'re trying to mess with us.</h2>')
 
-	return HttpResponseRedirect(reverse('fridge:index',args=()))
+	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
 
 #----------------Pav-----------------/\
 #----------------Tiff-----------------\/

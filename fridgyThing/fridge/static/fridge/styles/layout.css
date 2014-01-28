@@ -192,8 +192,7 @@ nav .sidebar{
 
 #showpiece-fridge #content{
 	width: auto;
-	height: 80%;
-	background-color: white;
+	background-color: rgb(255, 248, 245);
 	padding: 10px;
 }
 h1{
@@ -205,6 +204,24 @@ h1{
 }
 
 .popup{
+	display: none;
+	position: fixed;
+	width: 500px;
+	height: 300px;
+	left: 50%;
+	margin-left: -250px;
+	top: 50%;
+	margin-top: -150px;
+	background-color: white;
+	border-radius: 10px;
+	-webkit-box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
+	padding: 10px;
+	z-index: 1000;
+}
+
+.popupnew{
 display: none;
 position: fixed;
 width: 275px;
@@ -241,12 +258,13 @@ z-index: 1000;
 }
 #recipeResults{
 	list-style-type: none;
+	background-color:rgb(255, 218, 205);
 }
 #recipeResults li{
 	display:inline-block;
 	margin: 2px;
 	border-radius: 10px;
-	border: 1px solid white;
+	background-color: white;
 /*	-webkit-box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
 	-moz-box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75);
 	box-shadow: 10px 10px 107px -21px rgba(0,0,0,0.75); */
