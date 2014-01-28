@@ -14,7 +14,9 @@ $(document).ready(function(){
 		$(this).css("opacity", "");
 	});
 
-
+	$("#add").on("click", function() {
+		$("#addIng-group").submit();
+	});
 
 	//$('#control-panel-holder #control-content').html(page);
 	$('.showpiece').hide();
@@ -112,10 +114,10 @@ $(document).ready(function(){
 	});
 	$('#popupBackground').click(function(){
 		$('#popupBackground').fadeOut();
-		$('#addIng-popup').hide('fast');
+		$('#addIng-popup').fadeOut();
 		$('#recipeInfo').hide('fast');
 		$('.rInfo').hide('fast');
-		$('#delIng-popup').hide('fast');
+		$('#delIng-popup').hide('slide', {direction:"bottom"});
 	});
 
 	$('.recipeResult').click(function(){
