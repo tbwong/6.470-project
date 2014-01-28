@@ -15,7 +15,6 @@ body{
 }
 
 #right, #left{
-  position: relative;
   top:150px;
   opacity: 0.5;
 }
