@@ -76,7 +76,7 @@ nav .sidebar{
 /*	-webkit-box-shadow: 10px 10px 162px -25px rgba(0,0,0,0.75);
 -moz-box-shadow: 10px 10px 162px -25px rgba(0,0,0,0.75);
 box-shadow: 10px 10px 162px -25px rgba(0,0,0,0.75);  */
-background-color: #CAFF70; 
+background-color: rgb(255, 255, 142); 
 width:125px;
 }
 
@@ -171,7 +171,7 @@ width:125px;
 /*	-webkit-box-shadow: 10px 10px 162px -25px rgba(0,0,0,0.75);
 -moz-box-shadow: 10px 10px 162px -25px rgba(0,0,0,0.75);
 box-shadow: 10px 10px 162px -25px rgba(0,0,0,0.75); */
-background-color: #CAFF70; 
+background-color: rgb(255, 255, 142); 
 }  
 
 .greeting {
