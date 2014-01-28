@@ -107,7 +107,7 @@ $(document).ready(function(){
 	// });
 	$('#addIng').click(function(){
 		$('#popupBackground').fadeIn();
-		$('#addIng-popup').show('slow');
+		$('#addIng-popup').fadeIn();
 	});
 	$('#popupBackground').click(function(){
 		$('#popupBackground').fadeOut();
@@ -119,7 +119,7 @@ $(document).ready(function(){
 
 	$('.recipeResult').click(function(){
 		$('#popupBackground').fadeIn();
-		$('#recipeInfo').show('slow');
+		$('#recipeInfo').fadeIn();
 		var idnum = this.id;
 		var dash = idnum.indexOf("-");
 		idnum = idnum.substring(dash+1);
@@ -129,7 +129,7 @@ $(document).ready(function(){
 
 	$('#delIng').click(function(){
 		$('#popupBackground').fadeIn();
-		$('#delIng-popup').show('slow');
+		$('#delIng-popup').fadeIn();
 	});
 	
 //navigate with left/right buttons	
