@@ -59,64 +59,44 @@ nav .sidebar{
 
 .hiddenones {
 	position: absolute;
-	top:90px;
-	left: 30px;
 	width:500px;
 	background-color:transparent;
 }
 
-#nutrition-info{
-	font-size: 30px;
-	font-weight: bold;
-	width:500px;
-/*	background-color: #FFE4C4; 
-	margin-left:20px;
-	padding-left:30px; */
-	padding-top:20px;
-	padding-bottom:10px; 
-	padding-left:50px;
-	float: left;
-}
+
 
 #body-info {
 	position: absolute;
 	font-size: 15px;
 	font-weight: bold;
-	left: 540px;
-	top: 100px;
 }
 
 #left {
-	width: 20px;
-	display: inline; 
+	width: 20px; 
 	position:absolute;
-	left: 45px;
-	top:210px;
+	left: 10px;
+	top:200px;
 
 
 }
 #right {
 	position:absolute;
 	width: 20px;
-	left: 485px;
-	top:210px;
-	display: inline; 
+	left: 660px;
+	top:200px;
 
 }
 .nutrition-buttons {
-	font-size:30px;
-}
-
-.nutrition-buttons:focus {
-	border:transparent;
+	height: 50px;
+	font-size:25px;
 }
 
 .container {
-	position: relative;
-	width: 500px;
-	height: 350px;
+	position: absolute;
+	width: 630px;
+	height: 440px;
 	margin-top:5px;
-	float:left;
+	margin-left: 35px;
 	background-color:transparent;
 	/*
 	-webkit-box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.75);
@@ -141,16 +121,6 @@ nav .sidebar{
 	font-size: 16px;
 }
 
-.nutrient-header{
-	height:40px;
-	padding-left: 9px;
-	padding-right: 10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border:1pt solid white;
-	font-size: 16px;
-}
-
 .nutrient:hover{
 	cursor: hand;
 }
@@ -164,15 +134,15 @@ nav .sidebar{
 }
 #messages {
 	position:absolute;
-	top:150px;
-	left:19px;
+	top:450px;
+	left:20px;
 }
 
 .feedback {
 	display:none;
-	margin-left: 520px;
-	width: 200px;
 	font-size: 15px;
+	margin-left: 100px;
+	width: 485px;
 }
 
 .des {
@@ -182,5 +152,6 @@ nav .sidebar{
 	padding-top: 10px;
 	padding-bottom: 10px;
 	font-size: 15px;
-	background-color:rgb(253, 228, 228);
+	height: 180px;
+	background-color:white;
 }
