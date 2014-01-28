@@ -173,8 +173,6 @@ transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 
 #id_picture { 
   width: 97px;
-  opacity: .01;
-
 }
 
 #submitbutton{
