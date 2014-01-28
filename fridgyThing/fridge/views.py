@@ -42,8 +42,9 @@ def delIngredient(request):
 	userID = request.POST['userID']
 	IngName.strip()
 	# IngAmount = float(request.POST['IngAmount'])
-	i = Ingredient.objects.get(name=IngName.lower(),user=User.objects.get(pk=userID))
-	i.delete();
+	i = Ingredient.objects.filter(name=IngName.lower(),user=User.objects.get(pk=userID))
+	for j in i:
+		j.delete();
 	return HttpResponseRedirect(reverse('fridge:appPage',args=(userID,)))
 
 def getRecipes(request,userID):
