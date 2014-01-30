@@ -276,9 +276,11 @@ def showGraphsPage(request,userID):
 		calMessage = "Good job! You are in the optimal calorie zone :) Keep up the good work!"	
 	
 
-	#45 to 65 percent of your total daily calories come from carbohydrates.
-	highCarb = [dailyCal * .6]
-	lowCarb = [dailyCal * .45]
+	#lbs / 8
+	highCarb = [dailyCal / 8 + 50]
+	lowCarb = [dailyCal / 8 - 50]
+
+
 	if dailyCarb < lowCarb[0]:
 		carbMessage = "Have you been feeling tired? Try eating some healthy carbs like whole-grain pasta, quinoa, brown rice, and bean"
 	elif dailyCarb > highCarb[0]:
@@ -288,8 +290,8 @@ def showGraphsPage(request,userID):
 
 
 	#Fat intake should equal 30% of your total days calories. 
-	highFat = [dailyCal*.3 + 2]
-	lowFat = [dailyCal*.3 - 2]
+	highFat = [dailyCal/9 * .3 + 10]
+	lowFat = [dailyCal/9  * .3 - 10]
 	if dailyFat < lowFat[0]:
 		fatMessage = "Stock up on healthy fats with nuts, oils, avocados, or some tasty peanut butter!"
 	elif dailyFat > highFat[0]:
@@ -298,8 +300,8 @@ def showGraphsPage(request,userID):
 		fatMessage = "Good job! You are in the optimal fat zone :) Keep up the good work!"
 
 	#daily protein intake .8-1.0 g of protein/kg body weight.
-	highProtein =  [body_weight / 2.2]
-	lowProtein = [body_weight / 2.2 * .8]
+	highProtein =  [body_weight / 2.5]
+	lowProtein = [body_weight / 2.5 * .8]
 	if dailyProtein < lowProtein[0]:
 		proteinMessage = "You're running a little low on protein! Try eating lean meats, fish, eggs, tofu, yogurt, or milk."
 	elif dailyProtein > highProtein[0]:
@@ -308,8 +310,8 @@ def showGraphsPage(request,userID):
 		proteinMessage = "Good job! You are in the optimal protein zone :) Keep up the good work!"
 
 
-	#daily sodium should not be more than 2.3 grams
-	highSodium = [2.3]
+	#daily sodium should not be more than 2300 milligrams
+	highSodium = [2300]
 	if dailySodium > highSodium[0]:
 		sodiumMessage = "Try cutting down on sodium by reducing the amount of canned or processed foods that you use in your recipes or check for low sodium substitutes for items you buy."
 	else:
@@ -317,9 +319,9 @@ def showGraphsPage(request,userID):
 
 
 	if gender == 'female':
-		highSugar = [20]
+		highSugar = [25]
 	else:
-		highSugar = [36]
+		highSugar = [37.5]
 
 	if dailySugar > highSugar[0]:
 		sugarMessage = "Eating too much sugar isn't all sweet! Try cutting down your sugar in recipes by reducing sugar quantities and substituting for natural sources such as honey and naturally-sweet fruit."
