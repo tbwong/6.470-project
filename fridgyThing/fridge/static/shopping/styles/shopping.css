@@ -239,7 +239,7 @@ h1{
 	position:absolute;
 	font-size:16px;
 	left: 570px;
-	top: 70px;
+	top: 90px;
 }
 
 #text {
@@ -255,7 +255,7 @@ h1{
 }
 
 #noteheader {
-	margin-top: 20px;
+	margin-top: 0px;
 	padding-left:14px;
 	padding-top:5px; 
 	padding-bottom:6px; 
@@ -321,6 +321,10 @@ h1{
 	position: absolute;
 	top: 90px;
 	left: 880px;
+	-webkit-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.2);
+box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.2);
+
 }
 
 /* add ingredient (Pav) */
@@ -361,5 +365,9 @@ z-index: 1000;
 
 .shadowed{
 	border-radius: 10px;
+	-webkit-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.2);
+box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.2);
+
 	
 }
